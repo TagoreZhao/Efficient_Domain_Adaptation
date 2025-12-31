@@ -11,8 +11,7 @@ def eval_ppl(dataset, seqlen, model, tokenizer, device=torch.device("cuda:0"), s
 
     print(f"evaluating on {dataset}")
     ppl_test = 0
-    # Suppose `get_loaders` returns (trainloader, testloader)
-    # Here we only need the testloader
+
     _, testloader = get_loaders(
         name=dataset, 
         seqlen=seqlen,

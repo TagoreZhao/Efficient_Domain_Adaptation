@@ -4,7 +4,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 torch.cuda.empty_cache()
 
-model_name = "Qwen/Qwen3-0.6B"
+model_name = "meta-llama/Llama-2-7b-hf"
 save_dir = "model/downloaded"
 os.makedirs(save_dir, exist_ok=True)
 
