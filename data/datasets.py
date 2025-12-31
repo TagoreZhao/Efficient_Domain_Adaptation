@@ -35,7 +35,7 @@ def get_wikitext2(nsamples, seed, seqlen, tokenizer):
 
     # Encode datasets
     trainenc = tokenizer(" ".join(traindata['text']), return_tensors='pt')
-    testenc = tokenizer("\n\n".join(testdata['text']), return_tensors='pt')
+    testenc = tokenizer(" ".join(testdata['text']), return_tensors='pt')
 
     # Generate samples from training set
     random.seed(seed)
@@ -132,8 +132,7 @@ def get_multilegalpile_ppl(nsamples, seed, seqlen, tokenizer):
         texts.append(example["text"])
 
     # 3. Tokenize all 300 samples as a single joined string
-    joined_text = " ".join(texts)
-    encoded_text = tokenizer(joined_text, return_tensors='pt')
+    encoded_text = tokenizer(" ".join(texts), return_tensors='pt')
 
     # 4. Generate nsamples from this encoded text
     random.seed(seed)
