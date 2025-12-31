@@ -3,45 +3,44 @@ import torch.nn as nn
 from tqdm import tqdm
 from data.datasets import get_loaders
 
-def eval_ppl(args, model, tokenizer, device=torch.device("cuda:0")):
+def eval_ppl(dataset, seqlen, model, tokenizer, device=torch.device("cuda:0")):
     # Set dataset
-    dataset = args.dataset
+    dataset = dataset
     print(f"evaluating on {dataset}")
     ppl_test = 0
     # Suppose `get_loaders` returns (trainloader, testloader)
     # Here we only need the testloader
     _, testloader = get_loaders(
         name=dataset, 
-        seqlen=args.seqlen,
+        seqlen=seqlen,
         seed=1234, 
         tokenizer=tokenizer
     )
 
 
-    if args.dataset == "wikitext2":
+    if dataset == "wikitext2":
         with torch.no_grad():
             ppl_test = eval_ppl_wikitext(
                 model=model, 
                 testenc=testloader, 
-                seqlen=args.seqlen, 
-                bs=1, 
+                seqlen=seqlen, 
                 device=device
             )
-    elif args.dataset == "harrison":
+    elif dataset == "harrison":
         with torch.no_grad():
             ppl_test = eval_ppl_Harrison(
                 model=model, 
                 testenc=testloader, 
-                seqlen=args.seqlen, 
+                seqlen=seqlen, 
                 bs=1, 
                 device=device
             )
-    elif args.dataset == "pplmultilegal":
+    elif dataset == "pplmultilegal":
         with torch.no_grad():
             ppl_test = eval_ppl_multilegalpile(
                 model=model, 
                 testenc=testloader, 
-                seqlen=args.seqlen, 
+                seqlen=seqlen, 
                 bs=1, 
                 device=device
             )
@@ -49,51 +48,61 @@ def eval_ppl(args, model, tokenizer, device=torch.device("cuda:0")):
     else:
         print("Perplexity over this dataset is not implemented yet")
 
-    return 
+    return ppl_test
 
-def eval_ppl_wikitext(model, testenc, seqlen, bs=1, device=None):
-    if seqlen <= 0:
-        raise ValueError("seqlen must be a positive integer.")
+import torch
+import torch.nn as nn
 
-    # testenc is presumably an encoded dataset, e.g. testenc.input_ids
-    testenc = testenc.input_ids
+def eval_ppl_wikitext(model, testenc, seqlen, device=None):
+    """
+    Evaluate perplexity on a long token stream using non-overlapping blocks (no stride),
+    processing one block at a time (no batch processing).
 
-    # Calculate how many samples we can form (seq chunks)
-    nsamples = testenc.numel() // seqlen
-    nlls = []
+    PPL = exp(total_NLL / total_predicted_tokens), where each block contributes (seqlen-1)
+    predicted tokens because of next-token shifting.
+    """
+    if seqlen <= 1:
+        raise ValueError("seqlen must be > 1 (need at least 2 tokens to predict next-token).")
+
+    model.eval()
+    if device is None:
+        device = next(model.parameters()).device
+
+    input_ids = testenc.input_ids
+    if input_ids.dim() == 1:
+        input_ids = input_ids.unsqueeze(0)  # [1, N]
+
+    nsamples = input_ids.numel() // seqlen
     print(f"nsamples {nsamples}")
 
-    for i in range(0, nsamples, bs):
-        if i % 50 == 0:
-            print(f"sample {i}")
+    total_nll = 0.0
+    total_pred_tokens = 0
 
-        j = min(i + bs, nsamples)
+    loss_fct = nn.CrossEntropyLoss(reduction="sum")
 
-        # Slice out tokens for batch
-        # shape: [1, seqlen] if bs=1
-        inputs = testenc[:, (i * seqlen):(j * seqlen)].to(device)
-        #print("The input has shape",inputs.shape)
-        inputs = inputs.reshape(j - i, seqlen)
-        #print("The input has shape",inputs.shape)
-        # Forward pass with AMP
+    with torch.no_grad():
+        for i in range(nsamples):
+            if i % 50 == 0:
+                print(f"sample {i}")
 
-        lm_logits = model(inputs).logits
+            # One block: [1, seqlen]
+            inputs = input_ids[:, i * seqlen : (i + 1) * seqlen].to(device)
 
-        shift_logits = lm_logits[:, :-1, :].contiguous()
-        shift_labels = inputs[:, 1:]
+            logits = model(inputs).logits  # [1, seqlen, vocab]
 
-        loss_fct = nn.CrossEntropyLoss()
-        loss = loss_fct(shift_logits.reshape(-1, shift_logits.size(-1)), 
-                        shift_labels.reshape(-1))
+            shift_logits = logits[:, :-1, :].contiguous()   # [1, seqlen-1, vocab]
+            shift_labels = inputs[:, 1:].contiguous()       # [1, seqlen-1]
 
-        # negative log likelihood for batch
-        neg_log_likelihood = loss.float() * seqlen * (j - i)
-        nlls.append(neg_log_likelihood)
+            nll = loss_fct(
+                shift_logits.view(-1, shift_logits.size(-1)),
+                shift_labels.view(-1),
+            )
 
-    ppl = torch.exp(torch.stack(nlls).sum() / (nsamples * seqlen))
+            total_nll += nll.item()
+            total_pred_tokens += (seqlen - 1)
 
-    # Clean up
-    torch.cuda.empty_cache()
+    ppl = torch.exp(torch.tensor(total_nll / total_pred_tokens))
+
     return ppl.item()
 
 def eval_ppl_Harrison(model, testenc, seqlen, bs=1, device="cuda"):

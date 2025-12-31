@@ -1,7 +1,10 @@
 import os
+import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-model_name = "Qwen/Qwen3-4B"
+torch.cuda.empty_cache()
+
+model_name = "Qwen/Qwen3-0.6B"
 save_dir = "model/downloaded"
 os.makedirs(save_dir, exist_ok=True)
 
@@ -9,7 +12,7 @@ os.makedirs(save_dir, exist_ok=True)
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(
     model_name,
-    torch_dtype="auto",
+    dtype="auto",
     device_map="auto",
     cache_dir=save_dir
 )
