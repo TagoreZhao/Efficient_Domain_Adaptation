@@ -1,3 +1,4 @@
+import os
 import json
 import random
 from turtle import pd
@@ -29,7 +30,82 @@ def get_loaders(
         return get_Harrison(nsamples, seed, seqlen, tokenizer)
     if 'pplmultilegal' in name:
         return get_multilegalpile_ppl(nsamples, seed, seqlen, tokenizer)
+
+def construct_med_data(pubmed_count=7000,
+                       pubmed_yes=0.5,
+                       pubmed_no=0.5,
+                       mednli_count=7000,
+                       mednli_entailment=0.33,
+                       mednli_contradiction=0.33,
+                       hqs_count=1000,
+                       c4_count=0,
+                       seed=1234):
+    """
+    Constructs a list of fine-tuning examples from four sources:
+      - PubMedQA (formatted in Alcapa style)
+      - MedNLI (formatted in Alcapa style)
+      - HQS/MeQSum (formatted in Alcapa style)
+      - C4 (kept in standard format)
     
+    Each example is a dict with keys: 'source', 'input_text', and 'target_text'.
+    
+    Parameters:
+      - pubmed_count (int): number of PubMedQA examples to retrieve.
+      - pubmed_yes (float): proportion of positive examples for PubMedQA.
+      - pubmed_no (float): proportion of negative examples for PubMedQA.
+      - mednli_count (int): number of MedNLI examples to retrieve.
+      - mednli_entailment (float): proportion of entailment examples.
+      - mednli_contradiction (float): proportion of contradiction examples.
+      - hqs_count (int): number of HQS/MeQSum examples to use.
+      - c4_count (int): number of C4 examples to use.
+      - seed (int): random seed for reproducibility.
+    
+    Returns:
+      - A list of dictionaries, each with keys "source", "input_text", and "target_text".
+    """
+    random.seed(seed)
+    finetune_data = []
+
+    # Retrieve PubMedQA data. (Assumes get_pubmedqa is defined elsewhere)
+    pubmedqa_data = get_pubmedqa(pubmed_count=pubmed_count, positive=pubmed_yes, negative=pubmed_no, seed=seed)
+
+    # Retrieve MedNLI data. (Assumes get_mednli is defined elsewhere)
+    mednli_data = get_mednli(mednli_count=mednli_count, 
+                             entailment_prop=mednli_entailment, 
+                             contradiction_prop=mednli_contradiction, 
+                             seed=seed)
+
+    # --- HQS / MeQSum (Alcapa format) ---
+    hqs_data = get_hqs(hqs_count=hqs_count)
+    
+    # --- C4 Dataset (Standard format) ---
+    # For C4, we simply include the raw text as is.
+    if c4_count > 0:
+        c4_data = load_dataset('allenai/c4', 'en', split='train', streaming=True)
+        c4_examples = []
+        for example in c4_data:
+            text = example['text']
+            # Optionally skip very short texts.
+            if len(text) < 100:
+                continue
+            c4_examples.append({
+                "source": "C4",
+                "input_text": text,
+                "target_text": ""
+            })
+            if len(c4_examples) >= c4_count:
+                break
+        finetune_data.extend(c4_examples)
+    
+    # Extend with MedNLI and PubMedQA data.
+    finetune_data.extend(mednli_data)
+    finetune_data.extend(pubmedqa_data)
+    finetune_data.extend(hqs_data)
+    
+    # Shuffle the examples.
+    random.shuffle(finetune_data)
+    
+    return finetune_data
 
 def get_wikitext2(nsamples, seed, seqlen, tokenizer):
     # Load train and test datasets
@@ -214,7 +290,13 @@ def get_c4(nsamples, seed, seqlen, tokenizer):
 
     return trainloader, valdata
 
-def get_pubmedqa(pubmed_count=7000, positive=0.5, negative=0.3, seed=1234, file_path="data/downloaded/pubmedqa_maybe_output.json"):
+def get_pubmedqa(
+    pubmed_count=7000,
+    positive=0.5,
+    negative=0.3,
+    seed=1234,
+    file_path="data/downloaded/pubmedqa_maybe_output.json",
+):
     """
     Prepare fine-tuning data from PubMedQA dataset with properly formatted prompts.
     Sampling positive (yes), negative (no), and maybe examples according to specified proportions.
@@ -223,24 +305,42 @@ def get_pubmedqa(pubmed_count=7000, positive=0.5, negative=0.3, seed=1234, file_
     random.seed(seed)
 
     # Load the PubMedQA dataset
-    pubmed_data = load_dataset('qiaojin/PubMedQA', 'pqa_artificial', split='train')
+    pubmed_data = load_dataset("qiaojin/PubMedQA", "pqa_artificial", split="train")
     if len(pubmed_data) > pubmed_count:
         pubmed_data = pubmed_data.select(range(pubmed_count))
+
+    # Load optional maybe data from file (robust to missing/invalid files)
+    maybe_data = []
+    if file_path and os.path.exists(file_path):
+        try:
+            with open(file_path, "r") as f:
+                loaded = json.load(f)
+            if isinstance(loaded, list):
+                maybe_data = loaded
+            else:
+                print(f"[get_pubmedqa] maybe file exists but is not a list; ignoring: {file_path}")
+                maybe_data = []
+        except Exception as e:
+            print(f"[get_pubmedqa] failed to load maybe file; ignoring: {file_path}. Error: {e}")
+            maybe_data = []
+    else:
+        print("[get_pubmedqa] no maybe data")
 
     # Group the data by final decision (yes, no, maybe)
     yes_data = []
     no_data = []
-    with open(file_path, "r") as f:
-        maybe_data = json.load(f)
 
     for row in pubmed_data:
-        label = row['final_decision'].strip().lower()
+        label = str(row.get("final_decision", "")).strip().lower()
         if label == "yes":
             yes_data.append(row)
         elif label == "no":
             no_data.append(row)
         elif label == "maybe":
             maybe_data.append(row)
+
+    if not maybe_data:
+        print("[get_pubmedqa] no maybe data")
 
     if positive + negative > 1.0:
         raise ValueError("The sum of positive and negative proportions must be <= 1.0.")
@@ -250,16 +350,33 @@ def get_pubmedqa(pubmed_count=7000, positive=0.5, negative=0.3, seed=1234, file_
     desired_maybe = pubmed_count - desired_yes - desired_no
 
     def sample_data(data_list, desired_count):
+        """Safe sampler: returns [] if desired_count==0 or data_list is empty."""
+        if desired_count <= 0:
+            return []
+        if not data_list:
+            return []
         if len(data_list) >= desired_count:
             return random.sample(data_list, desired_count)
-        else:
-            return random.choices(data_list, k=desired_count)
+        return random.choices(data_list, k=desired_count)
 
     sampled_yes = sample_data(yes_data, desired_yes)
     sampled_no = sample_data(no_data, desired_no)
-    sampled_maybe = sample_data(maybe_data, desired_maybe) if desired_maybe > 0 else []
+    sampled_maybe = sample_data(maybe_data, desired_maybe)
 
+    # If maybe_data is unavailable, fill the remainder from yes/no so we still hit pubmed_count
     final_samples = sampled_yes + sampled_no + sampled_maybe
+    remaining = pubmed_count - len(final_samples)
+    if remaining > 0:
+        fallback_pool = yes_data + no_data
+        if fallback_pool:
+            print(f"[get_pubmedqa] filling {remaining} missing samples from yes/no (maybe unavailable/insufficient).")
+            final_samples += sample_data(fallback_pool, remaining)
+        else:
+            print("[get_pubmedqa] warning: no data available to fill remaining samples.")
+    else:
+        # In case of any overfill (shouldn't happen with the logic above, but keep it safe)
+        final_samples = final_samples[:pubmed_count]
+
     random.shuffle(final_samples)
 
     # New input template matching evaluation
@@ -275,23 +392,30 @@ def get_pubmedqa(pubmed_count=7000, positive=0.5, negative=0.3, seed=1234, file_
         "Question: {question}\n\n"
         "Response: The answer is"
     )
-
     pubmed_target_template = " {ground_truth}"
 
     for row in final_samples:
-        contexts = "\n\n".join(row['context']['contexts']) if isinstance(row['context'], dict) else row.get('context', '')
-        labels = ", ".join(row['context'].get('labels', [])) if isinstance(row['context'], dict) else ''
-        meshes = ", ".join(row['context'].get('meshes', [])) if isinstance(row['context'], dict) else ''
+        # Handle both HF dataset rows and plain dicts from JSON
+        context_obj = row.get("context", {})
+        if isinstance(context_obj, dict):
+            contexts_list = context_obj.get("contexts", [])
+            contexts = "\n\n".join(contexts_list) if isinstance(contexts_list, list) else str(contexts_list)
+            labels = ", ".join(context_obj.get("labels", []) or [])
+            meshes = ", ".join(context_obj.get("meshes", []) or [])
+        else:
+            contexts = str(context_obj) if context_obj is not None else ""
+            labels = ""
+            meshes = ""
 
         input_text = pubmed_input_template.format(
             contexts=contexts,
             labels=labels,
             meshes=meshes,
-            question=row['question']
+            question=row.get("question", "")
         )
 
         target_text = pubmed_target_template.format(
-            ground_truth=row['final_decision'].strip().lower()
+            ground_truth=str(row.get("final_decision", "")).strip().lower()
         )
 
         finetune_data.append({
