@@ -1,6 +1,8 @@
 import json
 import random
+from turtle import pd
 from datasets import load_dataset
+import pandas as pd
 
 
 local_data_directory = "data/downloaded"
@@ -386,6 +388,36 @@ def get_mednli(mednli_count=7000,
         })
         
     return finetune_data
+
+def get_hqs(hqs_count = 1000, data_dir = 'data/downloaded/MeQSum_ACL2019_BenAbacha_Demner-Fushman.xlsx'):
+    
+    prompt_template = (
+            "Below is an instruction that describes a task related to HealthCare, paired with further context. "
+            "Write a response that appropriately completes the request.\n\n"
+            "Instruction: Summarize the following consumer health question by generating a condensed version that retains all critical information necessary to find correct and complete answers. "
+            "Focus on preserving key entities (e.g., conditions, treatments, tests) and the main intent of the question, while omitting unnecessary peripheral details. "
+            "Write the summary fluently in natural language and avoid simply shortening without ensuring information completeness.\n\n"
+            "Please provide the shortened version directly.\n\n"
+            "Input: {input_question}\n\nShortened Question:"
+    )
+    
+    hqs_target_template = " {sum}"
+    finetune_data = []
+    # Load the MeQSum dataset from Excel.
+    hqs_df = pd.read_excel(data_dir)
+    hqs_df = hqs_df.head(hqs_count)
+    
+    for _, row in hqs_df.iterrows():
+        input_text = prompt_template.format(input_question=row['CHQ'])
+        target_text = hqs_target_template.format(sum=row['Summary'])  # Adjust column name as needed.
+        finetune_data.append({
+            "source": "MeQSum",
+            "input_text": input_text,
+            "target_text": target_text
+        })
+
+    return finetune_data
+
 
 def get_casehold(casehold_count=7000, 
                  choice_prop=[1/5, 1/5, 1/5, 1/5, 1/5],
