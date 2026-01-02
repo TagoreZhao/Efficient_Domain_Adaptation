@@ -4,8 +4,11 @@ import torch
 import pandas as pd 
 from time import time
 from tqdm import tqdm
-from data.templates import *
 from pathlib import Path
+from datasets import load_dataset
+from collections import Counter
+from data.templates import *
+from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report, precision_recall_fscore_support
 from evaluate import load as load_metric
 
 BAD_PREFIX_PATTERNS = [
@@ -24,6 +27,454 @@ CUT_MARKERS = [
     "Explanation:",
     "Please provide",
 ]
+
+def evaluate_mednli(
+    model,
+    tokenizer,
+    file_path="data/downloaded/physionet.org/files/mednli/1.0.0/mli_test_v1.jsonl",
+    device="cuda",
+    save_output="assets/mednli_predictions.txt",
+    seed=1234,
+    max_attempts=3,
+    max_new_tokens=10,
+    n_eval=None,              # optional: limit number of examples
+    do_bootstrap_ci=True,
+    n_boot=1000,
+):
+    """
+    Evaluate MedNLI and save:
+      - Per-example: id, sentence1, sentence2, gold, pred, raw generated continuation
+      - End summary: accuracy, macro-F1, per-class metrics, confusion matrix, report, distributions, error rates,
+                     optional bootstrap CI for macro-F1
+    """
+
+    random.seed(seed)
+    torch.manual_seed(seed)
+
+    save_path = Path(save_output)
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Load JSONL
+    with open(file_path, "r", encoding="utf-8") as file:
+        data = [json.loads(line) for line in file]
+
+    if n_eval is not None:
+        data = data[: int(n_eval)]
+
+    expected_labels = ["entailment", "contradiction", "neutral"]
+
+    # Robust: first token id for each label string (for logits fallback)
+    def first_token_id(text: str) -> int:
+        ids = tokenizer.encode(text, add_special_tokens=False)
+        if not ids:
+            raise ValueError(f"Tokenizer produced empty ids for label: {text}")
+        return ids[0]
+
+    label_token_ids = [first_token_id(lbl) for lbl in expected_labels]
+
+    model.to(device)
+    model.eval()
+
+    ground_truth = []
+    predictions = []
+
+    with open(save_path, "w", encoding="utf-8") as f_out:
+        f_out.write("=== MedNLI Evaluation Log ===\n")
+        f_out.write(
+            f"n_eval={len(data)}, seed={seed}, max_new_tokens={max_new_tokens}, max_attempts={max_attempts}\n"
+        )
+        f_out.write(f"device={device}\n")
+        f_out.write("=" * 70 + "\n\n")
+
+        for idx, entry in enumerate(tqdm(data, desc="Evaluating MedNLI")):
+            sentence1 = entry["sentence1"]
+            sentence2 = entry["sentence2"]
+            gold_label = str(entry["gold_label"]).strip().lower()
+
+            prompt = mednli_input_template.format(sentence1=sentence1, sentence2=sentence2)
+
+            prediction = "unknown"
+            decoded_full = ""
+            raw_generation = ""
+
+            for attempt in range(max_attempts):
+                inputs = tokenizer(
+                    prompt,
+                    return_tensors="pt",
+                    truncation=True,
+                    padding=True,
+                    max_length=2048,
+                ).to(device)
+
+                with torch.no_grad():
+                    outputs = model.generate(
+                        **inputs,
+                        max_new_tokens=max_new_tokens,
+                        do_sample=True,
+                        top_k=50,
+                        top_p=0.9,
+                        temperature=0.9,
+                        output_scores=True,
+                        return_dict_in_generate=True,
+                        pad_token_id=tokenizer.eos_token_id,
+                    )
+
+                decoded_full = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).strip()
+
+                # Save "everything after the prompt" if prompt was echoed; otherwise save full decoded
+                raw_generation = (
+                    decoded_full[len(prompt):].strip() if decoded_full.startswith(prompt) else decoded_full
+                )
+
+                # Parse label primarily from the generated continuation
+                resp_low = raw_generation.lower()
+
+                match = re.search(
+                    r"(entailment|contradiction|neutral)\b",
+                    resp_low,
+                    flags=re.IGNORECASE,
+                )
+                if match:
+                    candidate = match.group(1).lower().strip()
+                    if candidate in expected_labels:
+                        prediction = candidate
+                        break
+
+            # Fallback to logits if still unknown
+            if prediction == "unknown":
+                try:
+                    first_token_logits = outputs.scores[0][0]  # (vocab_size,)
+                    masked_logits = first_token_logits[label_token_ids]
+                    predicted_label_idx = int(torch.argmax(masked_logits).item())
+                    prediction = expected_labels[predicted_label_idx]
+                except Exception:
+                    prediction = "unknown"
+
+            predictions.append(prediction)
+            ground_truth.append(gold_label)
+
+            # Per-example logging
+            example_id = entry.get("pairID", entry.get("id", idx))
+            f_out.write(f"example_id: {example_id}\n")
+            f_out.write(f"GOLD: {gold_label}\n")
+            f_out.write(f"PRED: {prediction}\n")
+            f_out.write("SENTENCE1:\n")
+            f_out.write(sentence1.strip() + "\n")
+            f_out.write("SENTENCE2:\n")
+            f_out.write(sentence2.strip() + "\n")
+            f_out.write("RAW_GENERATION:\n")
+            matches = list(re.finditer(r"\bFinal Answer\s*:\s*", decoded_output, flags=re.IGNORECASE))
+            if matches:
+                last_match = matches[-1]
+                raw_generation = raw_generation[last_match.end():].strip()
+            f_out.write(raw_generation.strip() + "\n")
+            f_out.write("-" * 70 + "\n\n")
+
+        # Metrics
+        accuracy = accuracy_score(ground_truth, predictions)
+        macro_f1 = f1_score(ground_truth, predictions, average="macro", labels=expected_labels)
+
+        cm = confusion_matrix(ground_truth, predictions, labels=expected_labels)
+
+        prec, rec, f1s, support = precision_recall_fscore_support(
+            ground_truth, predictions, labels=expected_labels, zero_division=0
+        )
+
+        pred_counts = Counter(predictions)
+        true_counts = Counter(ground_truth)
+
+        report = classification_report(
+            ground_truth, predictions, labels=expected_labels, zero_division=0
+        )
+
+        # Optional bootstrap CI for macro-F1
+        ci_text = ""
+        if do_bootstrap_ci:
+            rng = random.Random(seed)
+            n = len(ground_truth)
+            boot_scores = []
+            for _ in range(n_boot):
+                idxs = [rng.randrange(n) for _ in range(n)]
+                t_b = [ground_truth[i] for i in idxs]
+                p_b = [predictions[i] for i in idxs]
+                boot_scores.append(f1_score(t_b, p_b, average="macro", labels=expected_labels))
+            boot_scores.sort()
+            lo = boot_scores[int(0.025 * n_boot)]
+            hi = boot_scores[int(0.975 * n_boot) - 1]
+            ci_text = f"Macro-F1 95% bootstrap CI (n_boot={n_boot}): [{lo:.4f}, {hi:.4f}]"
+
+        # Append final metrics to the same file
+        f_out.write("\n\n" + "=" * 70 + "\n")
+        f_out.write("=== FINAL METRICS SUMMARY ===\n")
+        f_out.write(f"Accuracy: {accuracy:.4f}\n")
+        f_out.write(f"Macro-F1: {macro_f1:.4f}\n")
+        if ci_text:
+            f_out.write(ci_text + "\n")
+
+        f_out.write("\n=== Prediction Distribution ===\n")
+        for label in expected_labels + sorted([l for l in pred_counts.keys() if l not in expected_labels]):
+            if label in pred_counts:
+                count = pred_counts[label]
+                f_out.write(f"  {label}: {count} ({count/len(predictions)*100:.2f}%)\n")
+
+        f_out.write("\n=== Ground Truth Distribution ===\n")
+        for label in expected_labels + sorted([l for l in true_counts.keys() if l not in expected_labels]):
+            if label in true_counts:
+                count = true_counts[label]
+                f_out.write(f"  {label}: {count} ({count/len(ground_truth)*100:.2f}%)\n")
+
+        f_out.write("\n=== Confusion Matrix (rows=true, cols=pred) ===\n")
+        f_out.write("Labels: " + ", ".join(expected_labels) + "\n")
+        f_out.write(str(cm) + "\n")
+
+        f_out.write("\n=== Per-class Precision/Recall/F1/Support ===\n")
+        for i, lbl in enumerate(expected_labels):
+            f_out.write(
+                f"  {lbl}: precision={prec[i]:.4f}, recall={rec[i]:.4f}, f1={f1s[i]:.4f}, support={support[i]}\n"
+            )
+
+        f_out.write("\n=== Classification Report ===\n")
+        f_out.write(report + "\n")
+
+        f_out.write("\n=== Error Rates per True Label ===\n")
+        for i, lbl in enumerate(expected_labels):
+            total = cm[i].sum()
+            correct = cm[i][i]
+            err = 1.0 - (correct / total) if total > 0 else 0.0
+            f_out.write(f"  {lbl}: {err*100:.2f}%\n")
+
+    print("=== MedNLI Results ===")
+    print(f"Saved detailed log to: {save_path.resolve()}")
+    print(f"Accuracy = {accuracy:.4f}")
+    print(f"Macro-F1 = {macro_f1:.4f}")
+    if ci_text:
+        print(ci_text)
+
+    return accuracy, macro_f1, cm, predictions
+
+
+def evaluate_pubmedqa(
+    model,
+    tokenizer,
+    device="cuda",
+    save_output="assets/pubmedqa_predictions.txt",
+    seed=1234,
+    n_eval=500,
+    max_new_tokens=10,
+    max_attempts=3,
+    do_bootstrap_ci=True,
+    n_boot=1000,
+):
+    """
+    Evaluate a model on the first `n_eval` instances of PubMedQA (pqa_labeled/train).
+
+    Saves to `save_output`:
+      - For each example: pubid, question, gold, pred, raw decoded output
+      - At end: accuracy, macro-F1, per-class metrics, confusion matrix, report, distributions,
+                and optional bootstrap CI for macro-F1.
+    """
+    random.seed(seed)
+    torch.manual_seed(seed)
+
+    # Ensure output dir exists
+    save_path = Path(save_output)
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+
+    data = load_dataset("qiaojin/PubMedQA", "pqa_labeled", split="train")
+    tokenizer.pad_token = tokenizer.eos_token
+
+    ground_truth = {row["pubid"]: str(row["final_decision"]).strip().lower() for row in data}
+    questions = {row["pubid"]: row["question"] for row in data}
+    contexts_data = {row["pubid"]: row["context"] for row in data}
+
+    expected_labels = ["yes", "no", "maybe"]
+
+    # Robust: get first token id of each label string
+    def first_token_id(text: str) -> int:
+        ids = tokenizer.encode(text, add_special_tokens=False)
+        if not ids:
+            raise ValueError(f"Tokenizer produced empty ids for label: {text}")
+        return ids[0]
+
+    label_token_ids = [first_token_id(lbl) for lbl in expected_labels]
+
+    pubids = list(questions.keys())[:n_eval]
+
+    predictions = {}
+    raw_outputs = {}
+
+    model.to(device)
+    model.eval()
+
+    # Open output file once; write header + per-sample logs as we go
+    with open(save_path, "w", encoding="utf-8") as f_out:
+        f_out.write("=== PubMedQA Evaluation Log ===\n")
+        f_out.write(f"n_eval={n_eval}, seed={seed}, max_new_tokens={max_new_tokens}, max_attempts={max_attempts}\n")
+        f_out.write(f"device={device}\n")
+        f_out.write("=" * 70 + "\n\n")
+
+        for pubid in tqdm(pubids, desc="Predicting final decisions"):
+            question = questions[pubid]
+            context_info = contexts_data[pubid] or {}
+
+            contexts_text = "\n\n".join(context_info.get("contexts", []) or [])
+            labels_text = ", ".join(context_info.get("labels", []) or [])
+            meshes_text = ", ".join(context_info.get("meshes", []) or [])
+
+            prompt = pubmed_input_template.format(
+                contexts=contexts_text,
+                labels=labels_text,
+                meshes=meshes_text,
+                question=question,
+            )
+
+            prediction = "unknown"
+            decoded_output = ""
+
+            for attempt in range(max_attempts):
+                inputs = tokenizer(
+                    prompt,
+                    return_tensors="pt",
+                    truncation=True,
+                    padding=True,
+                    max_length=2048,
+                ).to(device)
+
+                with torch.no_grad():
+                    outputs = model.generate(
+                        input_ids=inputs["input_ids"],
+                        attention_mask=inputs["attention_mask"],
+                        max_new_tokens=max_new_tokens,
+                        do_sample=True,
+                        top_k=50,
+                        top_p=0.9,
+                        temperature=0.9,
+                        output_scores=True,
+                        return_dict_in_generate=True,
+                        pad_token_id=tokenizer.eos_token_id,
+                    )
+
+                decoded_output = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).lower()
+                match = re.search(r"the answer is\s*(yes|no|maybe)", decoded_output)
+                if match:
+                    prediction = match.group(1).strip()
+                    break
+
+            # Fallback to logits for first generated token if still unknown
+            if prediction == "unknown":
+                try:
+                    first_token_logits = outputs.scores[0][0]  # (vocab_size,)
+                    masked_logits = first_token_logits[label_token_ids]
+                    predicted_label_idx = int(torch.argmax(masked_logits).item())
+                    prediction = expected_labels[predicted_label_idx]
+                except Exception:
+                    prediction = "unknown"
+
+            gold = ground_truth.get(pubid, "unknown")
+
+            predictions[pubid] = prediction
+            raw_outputs[pubid] = decoded_output
+
+            # Write per-example block
+            f_out.write(f"pubid: {pubid}\n")
+            f_out.write(f"GOLD: {gold}\n")
+            f_out.write(f"PRED: {prediction}\n")
+            f_out.write("QUESTION:\n")
+            f_out.write(question.strip() + "\n")
+            f_out.write("RAW_DECODED:\n")
+            matches = list(re.finditer(r"\bresponse\s*:\s*", decoded_output, flags=re.IGNORECASE))
+            if matches:
+                last_match = matches[-1]
+                decoded_output = decoded_output[last_match.end():].strip()
+            f_out.write(decoded_output.strip() + "\n")
+            f_out.write("-" * 70 + "\n\n")
+
+        # Compute metrics
+        truth = [ground_truth[pmid] for pmid in pubids]
+        preds = [predictions[pmid] for pmid in pubids]
+
+        acc = accuracy_score(truth, preds)
+        maf = f1_score(truth, preds, average="macro", labels=expected_labels)
+
+        cm = confusion_matrix(truth, preds, labels=expected_labels)
+
+        # Per-class metrics
+        prec, rec, f1s, support = precision_recall_fscore_support(
+            truth, preds, labels=expected_labels, zero_division=0
+        )
+
+        pred_counts = Counter(preds)
+        true_counts = Counter(truth)
+
+        report = classification_report(
+            truth, preds, labels=expected_labels, zero_division=0
+        )
+
+        # Optional bootstrap CI for macro-F1
+        ci_text = ""
+        if do_bootstrap_ci:
+            rng = random.Random(seed)
+            n = len(truth)
+            boot_scores = []
+            for _ in range(n_boot):
+                idxs = [rng.randrange(n) for _ in range(n)]
+                t_b = [truth[i] for i in idxs]
+                p_b = [preds[i] for i in idxs]
+                boot_scores.append(f1_score(t_b, p_b, average="macro", labels=expected_labels))
+            boot_scores.sort()
+            lo = boot_scores[int(0.025 * n_boot)]
+            hi = boot_scores[int(0.975 * n_boot) - 1]
+            ci_text = f"Macro-F1 95% bootstrap CI (n_boot={n_boot}): [{lo:.4f}, {hi:.4f}]"
+
+        # Append summary section to file
+        f_out.write("\n\n" + "=" * 70 + "\n")
+        f_out.write("=== FINAL METRICS SUMMARY ===\n")
+        f_out.write(f"Accuracy: {acc:.4f}\n")
+        f_out.write(f"Macro-F1: {maf:.4f}\n")
+        if ci_text:
+            f_out.write(ci_text + "\n")
+
+        f_out.write("\n=== Prediction Distribution ===\n")
+        for label in expected_labels + sorted([l for l in pred_counts.keys() if l not in expected_labels]):
+            if label in pred_counts:
+                count = pred_counts[label]
+                f_out.write(f"  {label}: {count} ({count/len(preds)*100:.2f}%)\n")
+
+        f_out.write("\n=== Ground Truth Distribution ===\n")
+        for label in expected_labels + sorted([l for l in true_counts.keys() if l not in expected_labels]):
+            if label in true_counts:
+                count = true_counts[label]
+                f_out.write(f"  {label}: {count} ({count/len(truth)*100:.2f}%)\n")
+
+        f_out.write("\n=== Confusion Matrix (rows=true, cols=pred) ===\n")
+        f_out.write("Labels: " + ", ".join(expected_labels) + "\n")
+        f_out.write(str(cm) + "\n")
+
+        f_out.write("\n=== Per-class Precision/Recall/F1/Support ===\n")
+        for i, lbl in enumerate(expected_labels):
+            f_out.write(
+                f"  {lbl}: precision={prec[i]:.4f}, recall={rec[i]:.4f}, f1={f1s[i]:.4f}, support={support[i]}\n"
+            )
+
+        f_out.write("\n=== Classification Report ===\n")
+        f_out.write(report + "\n")
+
+        f_out.write("\n=== Error Rates per True Label ===\n")
+        for idx, label in enumerate(expected_labels):
+            total = cm[idx].sum()
+            correct = cm[idx][idx]
+            err = 1.0 - (correct / total) if total > 0 else 0.0
+            f_out.write(f"  {label}: {err*100:.2f}%\n")
+
+    # Also print concise console summary
+    print("=== PubMedQA Results ===")
+    print(f"Saved detailed log to: {save_path.resolve()}")
+    print(f"Accuracy = {acc:.4f}")
+    print(f"Macro-F1 = {maf:.4f}")
+    if ci_text:
+        print(ci_text)
+
+    return acc, maf, cm, predictions
 
 def evaluate_HQS_rouge(model, tokenizer, 
                        file_path="data/downloaded/MEDIQA2021-Task1-TestSet-ReferenceSummaries.xlsx",\

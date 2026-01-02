@@ -1,12 +1,13 @@
 import os
-import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from evaluation.domain_zero_shot import evaluate_pubmedqa
+import torch
 
 torch.cuda.empty_cache()
 
-model_name = "meta-llama/Llama-2-7b-hf"
-save_dir = "model/downloaded"
-os.makedirs(save_dir, exist_ok=True)
+model_name = "meta-llama/Llama-3.2-1B"
+model_save_dir = "model/downloaded"
+os.makedirs(model_save_dir, exist_ok=True)
 
 # load the tokenizer and the model
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -14,38 +15,9 @@ model = AutoModelForCausalLM.from_pretrained(
     model_name,
     dtype="auto",
     device_map="auto",
-    cache_dir=save_dir
+    cache_dir=model_save_dir
 )
 
-# prepare the model input
-prompt = "Give me a short introduction to large language model."
-messages = [
-    {"role": "user", "content": prompt}
-]
-text = tokenizer.apply_chat_template(
-    messages,
-    tokenize=False,
-    add_generation_prompt=True,
-    enable_thinking=True # Switches between thinking and non-thinking modes. Default is True.
-)
-model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
+acc, maf, cm, predictions = evaluate_pubmedqa(model, tokenizer)
+print(f"PubMedQA Accuracy: {acc}, Macro F1: {maf}")
 
-# conduct text completion
-generated_ids = model.generate(
-    **model_inputs,
-    max_new_tokens=32768
-)
-output_ids = generated_ids[0][len(model_inputs.input_ids[0]):].tolist() 
-
-# parsing thinking content
-try:
-    # rindex finding 151668 (</think>)
-    index = len(output_ids) - output_ids[::-1].index(151668)
-except ValueError:
-    index = 0
-
-thinking_content = tokenizer.decode(output_ids[:index], skip_special_tokens=True).strip("\n")
-content = tokenizer.decode(output_ids[index:], skip_special_tokens=True).strip("\n")
-
-print("thinking content:", thinking_content)
-print("content:", content)

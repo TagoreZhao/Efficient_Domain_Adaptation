@@ -1,0 +1,5035 @@
+=== PubMedQA Evaluation Log ===
+n_eval=500, seed=1234, max_new_tokens=10, max_attempts=3
+device=cuda
+======================================================================
+
+pubid: 21645374
+GOLD: yes
+PRED: yes
+QUESTION:
+Do mitochondria play a role in remodelling lace plant leaves during programmed cell death?
+RAW_DECODED:
+the answer is yes. there are multiple ways to interpret this sentence
+----------------------------------------------------------------------
+
+pubid: 16418930
+GOLD: no
+PRED: no
+QUESTION:
+Landolt C and snellen e acuity: differences in strabismus amblyopia?
+RAW_DECODED:
+the answer is no.
+
+explanation: the reference range for visual ac
+----------------------------------------------------------------------
+
+pubid: 9488747
+GOLD: yes
+PRED: yes
+QUESTION:
+Syncope during bathing in infants, a pediatric form of water-induced urticaria?
+RAW_DECODED:
+the answer is yes, the statement is correct. in the case
+----------------------------------------------------------------------
+
+pubid: 17208539
+GOLD: no
+PRED: no
+QUESTION:
+Are the long-term results of the transanal pull-through equal to those of the transabdominal pull-through?
+RAW_DECODED:
+the answer is no, the long-term results of the transanal
+----------------------------------------------------------------------
+
+pubid: 10808977
+GOLD: yes
+PRED: maybe
+QUESTION:
+Can tailored interventions increase mammography use among HMO women?
+RAW_DECODED:
+the answer is maybe.
+
+the study examined whether tailored interventions enhance mamm
+----------------------------------------------------------------------
+
+pubid: 23831910
+GOLD: yes
+PRED: no
+QUESTION:
+Double balloon enteroscopy: is it efficacious and safe in a community setting?
+RAW_DECODED:
+the answer is no.
+
+explanation: in the past, double balloon
+----------------------------------------------------------------------
+
+pubid: 26037986
+GOLD: maybe
+PRED: no
+QUESTION:
+30-Day and 1-year mortality in emergency general surgery laparotomies: an area of concern and need for improvement?
+RAW_DECODED:
+the answer is no. the data is correct. the 30
+----------------------------------------------------------------------
+
+pubid: 26852225
+GOLD: no
+PRED: no
+QUESTION:
+Is adjustment for reporting heterogeneity necessary in sleep disorders?
+RAW_DECODED:
+the answer is no. the chopit model uses a hierarchical
+----------------------------------------------------------------------
+
+pubid: 17113061
+GOLD: no
+PRED: yes
+QUESTION:
+Do mutations causing low HDL-C promote increased carotid intima-media thickness?
+RAW_DECODED:
+the answer is yes. the study found that carotid int
+----------------------------------------------------------------------
+
+pubid: 10966337
+GOLD: yes
+PRED: no
+QUESTION:
+A short stay or 23-hour ward in a general and academic children's hospital: are they effective?
+RAW_DECODED:
+the answer is no
+
+this answer is wrong because the information we
+----------------------------------------------------------------------
+
+pubid: 25432938
+GOLD: yes
+PRED: no
+QUESTION:
+Did Chile's traffic law reform push police enforcement?
+RAW_DECODED:
+the answer is no.
+
+• chile's traffic law was introduced in
+----------------------------------------------------------------------
+
+pubid: 18847643
+GOLD: no
+PRED: maybe
+QUESTION:
+Therapeutic anticoagulation in the trauma patient: is it safe?
+RAW_DECODED:
+the answer is maybe.
+
+response
+----------------------------------------------------------------------
+
+pubid: 18239988
+GOLD: yes
+PRED: yes
+QUESTION:
+Differentiation of nonalcoholic from alcoholic steatohepatitis: are routine laboratory markers useful?
+RAW_DECODED:
+the answer is yes, yes, maybe.
+
+• we investigated the
+----------------------------------------------------------------------
+
+pubid: 25957366
+GOLD: no
+PRED: no
+QUESTION:
+Prompting Primary Care Providers about Increased Patient Risk As a Result of Family History: Does It Work?
+RAW_DECODED:
+the answer is no. the study authors note that there is “
+----------------------------------------------------------------------
+
+pubid: 24866606
+GOLD: yes
+PRED: yes
+QUESTION:
+Do emergency ultrasound fellowship programs impact emergency medicine residents' ultrasound education?
+RAW_DECODED:
+the answer is yes. there is no evidence supporting that emergency ultrasound
+----------------------------------------------------------------------
+
+pubid: 26578404
+GOLD: yes
+PRED: no
+QUESTION:
+Patient-Controlled Therapy of Breathlessness in Palliative Care: A New Therapeutic Concept for Opioid Administration?
+RAW_DECODED:
+the answer is no. patient-controlled therapy (pct) of
+----------------------------------------------------------------------
+
+pubid: 11729377
+GOLD: yes
+PRED: no
+QUESTION:
+Is there still a need for living-related liver transplantation in children?
+RAW_DECODED:
+the answer is no, because there is no need for living-related
+----------------------------------------------------------------------
+
+pubid: 17096624
+GOLD: yes
+PRED: no
+QUESTION:
+Do patterns of knowledge and attitudes exist among unvaccinated seniors?
+RAW_DECODED:
+the answer is no.
+
+explanation: the author’s data suggest that
+----------------------------------------------------------------------
+
+pubid: 22694248
+GOLD: yes
+PRED: yes
+QUESTION:
+Is there a model to teach and practice retroperitoneoscopic nephrectomy?
+RAW_DECODED:
+the answer is yes. we performed fifteen rpns. the
+----------------------------------------------------------------------
+
+pubid: 22990761
+GOLD: yes
+PRED: no
+QUESTION:
+Cardiovascular risk in a rural adult West African population: is resting heart rate also relevant?
+RAW_DECODED:
+the answer is no, but the prevalence of a heart rate above
+----------------------------------------------------------------------
+
+pubid: 19394934
+GOLD: yes
+PRED: yes
+QUESTION:
+Israeli hospital preparedness for terrorism-related multiple casualty incidents: can the surge capacity and injury severity distribution be better predicted?
+RAW_DECODED:
+the answer is yes.
+
+this study evaluated the current readiness guidelines of
+----------------------------------------------------------------------
+
+pubid: 11481599
+GOLD: yes
+PRED: yes
+QUESTION:
+Acute respiratory distress syndrome in children with malignancy--can we predict outcome?
+RAW_DECODED:
+the answer is yes. we found that respiratory data are predictive of
+----------------------------------------------------------------------
+
+pubid: 21669959
+GOLD: yes
+PRED: no
+QUESTION:
+Secondhand smoke risk in infants discharged from an NICU: potential for significant health disparities?
+RAW_DECODED:
+the answer is no.
+
+a. yes, it is likely that
+----------------------------------------------------------------------
+
+pubid: 23806388
+GOLD: yes
+PRED: yes
+QUESTION:
+Do nomograms designed to predict biochemical recurrence (BCR) do a better job of predicting more clinically relevant prostate cancer outcomes than BCR?
+RAW_DECODED:
+the answer is yes. the dpc nomogram performs better than
+----------------------------------------------------------------------
+
+pubid: 17919952
+GOLD: yes
+PRED: yes
+QUESTION:
+Are reports of mechanical dysfunction in chronic oro-facial pain related to somatisation?
+RAW_DECODED:
+the answer is yes.
+
+the relationship between self-reported mechanical factors and
+----------------------------------------------------------------------
+
+pubid: 10966943
+GOLD: no
+PRED: no
+QUESTION:
+Amblyopia: is visual loss permanent?
+RAW_DECODED:
+the answer is no.
+
+the mean improvement in acuity in amb
+----------------------------------------------------------------------
+
+pubid: 23690198
+GOLD: yes
+PRED: no
+QUESTION:
+Implementation of epidural analgesia for labor: is the standard of effective analgesia reachable in all women?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 17940352
+GOLD: maybe
+PRED: no
+QUESTION:
+Does HER2 immunoreactivity provide prognostic information in locally advanced urothelial carcinoma patients receiving adjuvant M-VEC chemotherapy?
+RAW_DECODED:
+the answer is no.
+
+explanation: in this study, her2
+----------------------------------------------------------------------
+
+pubid: 20537205
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is halofantrine ototoxic?
+RAW_DECODED:
+the answer is maybe. however, there is insufficient data to say
+----------------------------------------------------------------------
+
+pubid: 28707539
+GOLD: yes
+PRED: yes
+QUESTION:
+Visceral adipose tissue area measurement at a single level: can it represent visceral adipose tissue volume?
+RAW_DECODED:
+the answer is yes, but with some caveats.
+
+in summary
+----------------------------------------------------------------------
+
+pubid: 7482275
+GOLD: no
+PRED: maybe
+QUESTION:
+Necrotizing fasciitis: an indication for hyperbaric oxygenation therapy?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: there is a lack of convincing
+----------------------------------------------------------------------
+
+pubid: 24183388
+GOLD: maybe
+PRED: no
+QUESTION:
+Is the Hawkins sign able to predict necrosis in fractures of the neck of the astragalus?
+RAW_DECODED:
+the answer is no because of a lack of statistical significance and the
+----------------------------------------------------------------------
+
+pubid: 9645785
+GOLD: no
+PRED: no
+QUESTION:
+Is a mandatory general surgery rotation necessary in the surgical clerkship?
+RAW_DECODED:
+the answer is no, there is no need for a general surgery
+----------------------------------------------------------------------
+
+pubid: 26298839
+GOLD: yes
+PRED: yes
+QUESTION:
+Is Acupuncture Efficacious for Treating Phonotraumatic Vocal Pathologies?
+RAW_DECODED:
+the answer is “yes”. acupuncture is an effective treatment for
+----------------------------------------------------------------------
+
+pubid: 24153338
+GOLD: yes
+PRED: no
+QUESTION:
+Is aneurysm repair justified for the patients aged 80 or older after aneurysmal subarachnoid hemorrhage?
+RAW_DECODED:
+the answer is no.
+
+explanation: the main result of the study
+----------------------------------------------------------------------
+
+pubid: 18534072
+GOLD: no
+PRED: no
+QUESTION:
+Do general practice characteristics influence uptake of an information technology (IT) innovation in primary care?
+RAW_DECODED:
+the answer is no. this finding was also confirmed by other studies
+----------------------------------------------------------------------
+
+pubid: 8847047
+GOLD: no
+PRED: no
+QUESTION:
+Prognosis of well differentiated small hepatocellular carcinoma--is well differentiated hepatocellular carcinoma clinically early cancer?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 10575390
+GOLD: no
+PRED: yes
+QUESTION:
+Do follow-up recommendations for abnormal Papanicolaou smears influence patient adherence?
+RAW_DECODED:
+the answer is: yes, no, or maybe.
+
+explanation:
+----------------------------------------------------------------------
+
+pubid: 20084845
+GOLD: yes
+PRED: no
+QUESTION:
+Biomolecular identification of allergenic pollen: a new perspective for aerobiological monitoring?
+RAW_DECODED:
+the answer is no, because this statement is incorrect. the above
+----------------------------------------------------------------------
+
+pubid: 15703931
+GOLD: no
+PRED: maybe
+QUESTION:
+Does diabetes mellitus influence the efficacy of FDG-PET in the diagnosis of cervical cancer?
+RAW_DECODED:
+the answer is maybe.
+----------------------------------------------------------------------
+
+pubid: 18269157
+GOLD: yes
+PRED: no
+QUESTION:
+Biomechanical and wound healing characteristics of corneas after excimer laser keratorefractive surgery: is there a difference between advanced surface ablation and sub-Bowman's keratomileusis?
+RAW_DECODED:
+the answer is no.
+
+explanation: the following description describes how to
+----------------------------------------------------------------------
+
+pubid: 25489696
+GOLD: yes
+PRED: maybe
+QUESTION:
+Does radiotherapy of the primary rectal cancer affect prognosis after pelvic exenteration for recurrent rectal cancer?
+RAW_DECODED:
+the answer is maybe. the main point of the article is that
+----------------------------------------------------------------------
+
+pubid: 14599616
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Can a practicing surgeon detect early lymphedema reliably?
+RAW_DECODED:
+the answer is maybe.
+
+it is very difficult to measure arm circumference
+----------------------------------------------------------------------
+
+pubid: 22537902
+GOLD: no
+PRED: yes
+QUESTION:
+Colorectal cancer with synchronous liver metastases: does global management at the same centre improve results?
+RAW_DECODED:
+the answer is yes.
+
+explanation: global management was adopted when the
+----------------------------------------------------------------------
+
+pubid: 19054501
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is motion perception deficit in schizophrenia a consequence of eye-tracking abnormality?
+RAW_DECODED:
+the answer is maybe. the answer is no. the answer is
+----------------------------------------------------------------------
+
+pubid: 16432652
+GOLD: yes
+PRED: yes
+QUESTION:
+Transgastric endoscopic splenectomy: is it possible?
+RAW_DECODED:
+the answer is yes. we have previously reported the feasibility of diagnostic
+----------------------------------------------------------------------
+
+pubid: 19504993
+GOLD: yes
+PRED: yes
+QUESTION:
+It's Fournier's gangrene still dangerous?
+RAW_DECODED:
+the answer is "maybe". since we cannot know everything that might
+----------------------------------------------------------------------
+
+pubid: 20571467
+GOLD: yes
+PRED: no
+QUESTION:
+Is it appropriate to implant kidneys from elderly donors in young recipients?
+RAW_DECODED:
+the answer is not appropriate. this is because the study does not
+----------------------------------------------------------------------
+
+pubid: 24237112
+GOLD: yes
+PRED: no
+QUESTION:
+Do provider service networks result in lower expenditures compared with HMOs or primary care case management in Florida's Medicaid program?
+RAW_DECODED:
+the answer is no.
+
+explanation: we conducted a difference-in-d
+----------------------------------------------------------------------
+
+pubid: 21402341
+GOLD: no
+PRED: no
+QUESTION:
+Assessment of carotid artery stenosis before coronary artery bypass surgery. Is it always necessary?
+RAW_DECODED:
+the answer is no, and depends on risk factors of carot
+----------------------------------------------------------------------
+
+pubid: 20082356
+GOLD: maybe
+PRED: yes
+QUESTION:
+Should direct mesocolon invasion be included in T4 for the staging of gastric cancer?
+RAW_DECODED:
+the answer is yes.
+
+explanation: the mesocolon is a
+----------------------------------------------------------------------
+
+pubid: 26606599
+GOLD: maybe
+PRED: yes
+QUESTION:
+Do Surrogates of Injury Severity Influence the Occurrence of Heterotopic Ossification in Fractures of the Acetabulum?
+RAW_DECODED:
+the answer is yes. ho prophylaxis with external radiation beam
+----------------------------------------------------------------------
+
+pubid: 11340218
+GOLD: no
+PRED: no
+QUESTION:
+Does pretreatment with statins improve clinical outcome after stroke?
+RAW_DECODED:
+the answer is no.
+
+section labels: background and purpose, methods
+----------------------------------------------------------------------
+
+pubid: 25481573
+GOLD: yes
+PRED: yes
+QUESTION:
+Processing fluency effects: can the content and presentation of participant information sheets influence recruitment and participation for an antenatal intervention?
+RAW_DECODED:
+the answer is probably yes. however, it is not obvious how
+----------------------------------------------------------------------
+
+pubid: 25277731
+GOLD: maybe
+PRED: no
+QUESTION:
+Sternal fracture in growing children : A rare and often overlooked fracture?
+RAW_DECODED:
+the answer is no. the correct answer is no. the statement
+----------------------------------------------------------------------
+
+pubid: 25475395
+GOLD: yes
+PRED: yes
+QUESTION:
+Is there a correlation between androgens and sexual desire in women?
+RAW_DECODED:
+the answer is yes. sexual desire is related to androgen levels
+----------------------------------------------------------------------
+
+pubid: 23177368
+GOLD: no
+PRED: no
+QUESTION:
+Does immediate breast reconstruction compromise the delivery of adjuvant chemotherapy?
+RAW_DECODED:
+the answer is no. breast reconstruction in patients receiving adjuvant
+----------------------------------------------------------------------
+
+pubid: 17179167
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Human papillomavirus and pterygium. Is the virus a risk factor?
+RAW_DECODED:
+the answer is maybe. this is because the hpv could be a
+----------------------------------------------------------------------
+
+pubid: 14612308
+GOLD: no
+PRED: yes
+QUESTION:
+Can PRISM predict length of PICU stay?
+RAW_DECODED:
+the answer is yes, it does. prism has a
+----------------------------------------------------------------------
+
+pubid: 27491658
+GOLD: yes
+PRED: yes
+QUESTION:
+Can predilatation in transcatheter aortic valve implantation be omitted?
+RAW_DECODED:
+the answer is yes. the study is important because it found that
+----------------------------------------------------------------------
+
+pubid: 19822586
+GOLD: yes
+PRED: yes
+QUESTION:
+Autoerotic asphyxiation: secret pleasure--lethal outcome?
+RAW_DECODED:
+the answer is probably no. while a patient could commit suicide by
+----------------------------------------------------------------------
+
+pubid: 27643961
+GOLD: no
+PRED: maybe
+QUESTION:
+Major depression and alcohol use disorder in adolescence: Does comorbidity lead to poorer outcomes of depression?
+RAW_DECODED:
+the answer is maybe.
+----------------------------------------------------------------------
+
+pubid: 23539689
+GOLD: yes
+PRED: maybe
+QUESTION:
+Cold preparation use in young children after FDA warnings: do concerns still exist?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: the fda has recently been reviewing
+----------------------------------------------------------------------
+
+pubid: 22453060
+GOLD: yes
+PRED: no
+QUESTION:
+Does a 4 diagram manual enable laypersons to operate the Laryngeal Mask Supreme®?
+RAW_DECODED:
+the answer is no. the reason is that a layperson has
+----------------------------------------------------------------------
+
+pubid: 22227642
+GOLD: no
+PRED: yes
+QUESTION:
+Can we measure mesopic pupil size with the cobalt blue light slit-lamp biomicroscopy method?
+RAW_DECODED:
+the answer is yes. the accuracy of this method is similar to
+----------------------------------------------------------------------
+
+pubid: 12380309
+GOLD: no
+PRED: yes
+QUESTION:
+Should circumcision be performed in childhood?
+RAW_DECODED:
+the answer is yes.
+
+explanation: when a child has balan
+----------------------------------------------------------------------
+
+pubid: 22186742
+GOLD: no
+PRED: maybe
+QUESTION:
+Does a colonoscopy after acute diverticulitis affect its management?
+RAW_DECODED:
+the answer is maybe. colonoscopy may be beneficial to patients
+----------------------------------------------------------------------
+
+pubid: 22188074
+GOLD: yes
+PRED: no
+QUESTION:
+Do instrumental activities of daily living predict dementia at 1- and 2-year follow-up?
+RAW_DECODED:
+the answer is no. it is very unlikely that this statement is
+----------------------------------------------------------------------
+
+pubid: 27989969
+GOLD: no
+PRED: no
+QUESTION:
+Does the Simultaneous Use of a Neuroendoscope Influence the Incidence of Ventriculoperitoneal Shunt Infection?
+RAW_DECODED:
+the answer is no. the overall infection rate in patients with an
+----------------------------------------------------------------------
+
+pubid: 18607272
+GOLD: yes
+PRED: no
+QUESTION:
+Body perception: do parents, their children, and their children's physicians perceive body image differently?
+RAW_DECODED:
+the answer is no. there is no significant difference between the accuracy
+----------------------------------------------------------------------
+
+pubid: 18235194
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Is a specialised training of phonological awareness indicated in every preschool child?
+RAW_DECODED:
+the answer is maybe.
+----------------------------------------------------------------------
+
+pubid: 18049437
+GOLD: yes
+PRED: no
+QUESTION:
+Is there any relationship between streptococcal infection and multiple sclerosis?
+RAW_DECODED:
+the answer is no. there is no relationship between streptoc
+----------------------------------------------------------------------
+
+pubid: 15597845
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is the combination with 2-methoxyestradiol able to reduce the dosages of chemotherapeutices in the treatment of human ovarian cancer?
+RAW_DECODED:
+the answer is maybe, but probably no.
+
+firstly, the
+----------------------------------------------------------------------
+
+pubid: 24996865
+GOLD: yes
+PRED: maybe
+QUESTION:
+Assessing joint line positions by means of the contralateral knee: a new approach for planning knee revision surgery?
+RAW_DECODED:
+the answer is maybe.
+----------------------------------------------------------------------
+
+pubid: 23361217
+GOLD: yes
+PRED: no
+QUESTION:
+Does the type of tibial component affect mechanical alignment in unicompartmental knee replacement?
+RAW_DECODED:
+the answer is no, the type of tibial component does
+----------------------------------------------------------------------
+
+pubid: 17489316
+GOLD: maybe
+PRED: yes
+QUESTION:
+Is tumour expression of VEGF associated with venous invasion and survival in pT3 renal cell carcinoma?
+RAW_DECODED:
+the answer is yes
+
+explanation: we identified 3 groups (
+----------------------------------------------------------------------
+
+pubid: 14518645
+GOLD: yes
+PRED: maybe
+QUESTION:
+Injury and poisoning mortality among young men--are there any common factors amenable to prevention?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: many factors have been shown to
+----------------------------------------------------------------------
+
+pubid: 20337202
+GOLD: maybe
+PRED: no
+QUESTION:
+Continuation of pregnancy after antenatal corticosteroid administration: opportunity for rescue?
+RAW_DECODED:
+the answer is no because the women who delivered at<34 weeks
+----------------------------------------------------------------------
+
+pubid: 26449554
+GOLD: yes
+PRED: no
+QUESTION:
+Does either obesity or OSA severity influence the response of autotitrating CPAP machines in very obese subjects?
+RAW_DECODED:
+the answer is no. in other words, cpap devices respond
+----------------------------------------------------------------------
+
+pubid: 26215326
+GOLD: yes
+PRED: no
+QUESTION:
+Does the clinical presentation of a prior preterm birth predict risk in a subsequent pregnancy?
+RAW_DECODED:
+the answer is no, but maybe.
+
+contexts:
+the objective
+----------------------------------------------------------------------
+
+pubid: 29112560
+GOLD: yes
+PRED: yes
+QUESTION:
+Is the Distance Worth It?
+RAW_DECODED:
+the answer is yes if your goal is to have the most effective
+----------------------------------------------------------------------
+
+pubid: 24315783
+GOLD: yes
+PRED: no
+QUESTION:
+Aripiprazole: a new risk factor for pathological gambling?
+RAW_DECODED:
+the answer is no, because the risk factor is unlikely and the
+----------------------------------------------------------------------
+
+pubid: 9381529
+GOLD: yes
+PRED: no
+QUESTION:
+Immune suppression by lysosomotropic amines and cyclosporine on T-cell responses to minor and major histocompatibility antigens: does synergy exist?
+RAW_DECODED:
+the answer is no.
+
+discussion: in our experience, chloro
+----------------------------------------------------------------------
+
+pubid: 8985020
+GOLD: yes
+PRED: yes
+QUESTION:
+Does induction chemotherapy have a role in the management of nasopharyngeal carcinoma?
+RAW_DECODED:
+the answer is yes. the data presented in the article suggest that
+----------------------------------------------------------------------
+
+pubid: 26708803
+GOLD: maybe
+PRED: yes
+QUESTION:
+Treatment of contralateral hydrocele in neonatal testicular torsion: Is less more?
+RAW_DECODED:
+the answer is yes.
+
+section labels: patient and method
+
+me
+----------------------------------------------------------------------
+
+pubid: 22427593
+GOLD: maybe
+PRED: yes
+QUESTION:
+Are normally sighted, visually impaired, and blind pedestrians accurate and reliable at making street crossing decisions?
+RAW_DECODED:
+the answer is yes.
+
+explanation: we found that normally sighted
+----------------------------------------------------------------------
+
+pubid: 11570976
+GOLD: maybe
+PRED: yes
+QUESTION:
+Is it Crohn's disease?
+RAW_DECODED:
+the answer is yes.
+
+explanation: the patient had features of cro
+----------------------------------------------------------------------
+
+pubid: 19757704
+GOLD: yes
+PRED: no
+QUESTION:
+Is Chaalia/Pan Masala harmful for health?
+RAW_DECODED:
+the answer is no.
+
+explanation: chaalia and pan masala
+----------------------------------------------------------------------
+
+pubid: 27592038
+GOLD: yes
+PRED: yes
+QUESTION:
+Does multi-modal cervical physical therapy improve tinnitus in patients with cervicogenic somatic tinnitus?
+RAW_DECODED:
+the answer is yes.
+
+background
+
+tinnitus is the perception of
+----------------------------------------------------------------------
+
+pubid: 27044366
+GOLD: maybe
+PRED: no
+QUESTION:
+Detailed analysis of sputum and systemic inflammation in asthma phenotypes: are paucigranulocytic asthmatics really non-inflammatory?
+RAW_DECODED:
+the answer is no. granulocytic airway inflammation,
+----------------------------------------------------------------------
+
+pubid: 9792366
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is HIV/STD control in Jamaica making a difference?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: there was no clear evidence that
+----------------------------------------------------------------------
+
+pubid: 17562682
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Is Panton-Valentine leucocidin associated with the pathogenesis of Staphylococcus aureus bacteraemia in the UK?
+RAW_DECODED:
+the answer is maybe. the evidence shows that pvl-positive s
+----------------------------------------------------------------------
+
+pubid: 15800018
+GOLD: yes
+PRED: yes
+QUESTION:
+Are even impaired fasting blood glucose levels preoperatively associated with increased mortality after CABG surgery?
+RAW_DECODED:
+the answer is yes.
+
+a: answer: yes
+explanation:
+----------------------------------------------------------------------
+
+pubid: 14978612
+GOLD: yes
+PRED: no
+QUESTION:
+Does positron emission tomography change management in primary rectal cancer?
+RAW_DECODED:
+the answer is no. as the authors themselves state, "the
+----------------------------------------------------------------------
+
+pubid: 18843057
+GOLD: no
+PRED: yes
+QUESTION:
+Can you deliver accurate tidal volume by manual resuscitator?
+RAW_DECODED:
+the answer is yes
+
+explain why or why not: t
+----------------------------------------------------------------------
+
+pubid: 23076787
+GOLD: no
+PRED: yes
+QUESTION:
+Can increases in the cigarette tax rate be linked to cigarette retail prices?
+RAW_DECODED:
+the answer is yes, yes, maybe.
+
+explanation: china has
+----------------------------------------------------------------------
+
+pubid: 9199905
+GOLD: yes
+PRED: no
+QUESTION:
+Vertical lines in distal esophageal mucosa (VLEM): a true endoscopic manifestation of esophagitis in children?
+RAW_DECODED:
+the answer is no.
+
+comment: this study describes a case of
+----------------------------------------------------------------------
+
+pubid: 23999452
+GOLD: yes
+PRED: no
+QUESTION:
+Does hypoglycaemia increase the risk of cardiovascular events?
+RAW_DECODED:
+the answer is no (no effect).
+----------------------------------------------------------------------
+
+pubid: 22534881
+GOLD: no
+PRED: maybe
+QUESTION:
+Does the radiographic transition zone correlate with the level of aganglionosis on the specimen in Hirschsprung's disease?
+RAW_DECODED:
+the answer is maybe. radiographic transition zone is a vague term
+----------------------------------------------------------------------
+
+pubid: 24785562
+GOLD: yes
+PRED: yes
+QUESTION:
+Is dexamethasone an effective alternative to oral prednisone in the treatment of pediatric asthma exacerbations?
+RAW_DECODED:
+the answer is yes. there is adequate evidence to support the use
+----------------------------------------------------------------------
+
+pubid: 22564465
+GOLD: yes
+PRED: yes
+QUESTION:
+Mammographic screening in Sami speaking municipalities and a control group. Are early outcome measures influenced by ethnicity?
+RAW_DECODED:
+the answer is yes.
+
+section labels: answers, contexts
+----------------------------------------------------------------------
+
+pubid: 27456836
+GOLD: yes
+PRED: yes
+QUESTION:
+Do Electrochemiluminescence Assays Improve Prediction of Time to Type 1 Diabetes in Autoantibody-Positive TrialNet Subjects?
+RAW_DECODED:
+the answer is yes. this statement is correct.
+
+section labels:
+----------------------------------------------------------------------
+
+pubid: 27287237
+GOLD: yes
+PRED: yes
+QUESTION:
+Assessment of appropriate antimicrobial prescribing: do experts agree?
+RAW_DECODED:
+the answer is yes, as we have shown.
+
+reference: a
+----------------------------------------------------------------------
+
+pubid: 14697414
+GOLD: yes
+PRED: yes
+QUESTION:
+Is there a favorable subset of patients with prostate cancer who develop oligometastases?
+RAW_DECODED:
+the answer is yes.
+
+explanation: oligometastases are
+----------------------------------------------------------------------
+
+pubid: 26686513
+GOLD: maybe
+PRED: no
+QUESTION:
+Cycloplegic autorefraction in young adults: is it mandatory?
+RAW_DECODED:
+the answer is no. cycloplegic autorefraction
+----------------------------------------------------------------------
+
+pubid: 15530261
+GOLD: yes
+PRED: no
+QUESTION:
+Does screening or surveillance for primary hepatocellular carcinoma with ultrasonography improve the prognosis of patients?
+RAW_DECODED:
+the answer is no.
+
+explain why.
+----------------------------------------------------------------------
+
+pubid: 24160268
+GOLD: maybe
+PRED: no
+QUESTION:
+"Would a man smell a rose then throw it away?
+RAW_DECODED:
+the answer is no. you can only smell a rose once,
+----------------------------------------------------------------------
+
+pubid: 21823940
+GOLD: no
+PRED: no
+QUESTION:
+Department of Transportation vs self-reported data on motor vehicle collisions and driving convictions for stroke survivors: do they agree?
+RAW_DECODED:
+the answer is no. they do not agree. in this study
+----------------------------------------------------------------------
+
+pubid: 27217036
+GOLD: yes
+PRED: yes
+QUESTION:
+Neoadjuvant Imatinib in Locally Advanced Gastrointestinal stromal Tumours, Will Kit Mutation Analysis Be a Pathfinder?
+RAW_DECODED:
+the answer is yes. however, we need to further study the
+----------------------------------------------------------------------
+
+pubid: 18565233
+GOLD: yes
+PRED: no
+QUESTION:
+Does the lipid-lowering peroxisome proliferator-activated receptors ligand bezafibrate prevent colon cancer in patients with coronary artery disease?
+RAW_DECODED:
+the answer is no. however, there is a 5.
+----------------------------------------------------------------------
+
+pubid: 19694846
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Does self-efficacy mediate the relationship between transformational leadership behaviours and healthcare workers' sleep quality?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: sleep quality is a complex construct
+----------------------------------------------------------------------
+
+pubid: 27184293
+GOLD: maybe
+PRED: no
+QUESTION:
+Does microbial contamination influence the success of the hematopoietic cell transplantation outcomes?
+RAW_DECODED:
+the answer is no.
+
+section labels: introduction, methods,
+----------------------------------------------------------------------
+
+pubid: 19459018
+GOLD: no
+PRED: no
+QUESTION:
+Very high serum CA 19-9 levels: a contraindication to pancreaticoduodenectomy?
+RAW_DECODED:
+the answer is no. this is a contraindication for
+----------------------------------------------------------------------
+
+pubid: 22042121
+GOLD: no
+PRED: no
+QUESTION:
+Perioperative care in an animal model for training in abdominal surgery: is it necessary a preoperative fasting?
+RAW_DECODED:
+the answer is no, the preoperative fasting was unnecessary. the
+----------------------------------------------------------------------
+
+pubid: 16100194
+GOLD: no
+PRED: no
+QUESTION:
+Are physicians aware of the side effects of angiotensin-converting enzyme inhibitors?
+RAW_DECODED:
+the answer is no
+
+explanation: angiotensin-converting
+----------------------------------------------------------------------
+
+pubid: 25480629
+GOLD: maybe
+PRED: yes
+QUESTION:
+Residual fundus or neofundus after laparoscopic sleeve gastrectomy: is fundectomy safe and effective as revision surgery?
+RAW_DECODED:
+the answer is yes. fundectomy is safe and effective as a
+----------------------------------------------------------------------
+
+pubid: 17453263
+GOLD: yes
+PRED: maybe
+QUESTION:
+Are physician estimates of asthma severity less accurate in black than in white patients?
+RAW_DECODED:
+the answer is maybe.
+
+question: is the accuracy of physician estimates
+----------------------------------------------------------------------
+
+pubid: 18322741
+GOLD: yes
+PRED: maybe
+QUESTION:
+Does laparoscopic surgery decrease the risk of atrial fibrillation after foregut surgery?
+RAW_DECODED:
+the answer is maybe, but with statistical significance that is low.
+----------------------------------------------------------------------
+
+pubid: 19106867
+GOLD: yes
+PRED: maybe
+QUESTION:
+The Main Gate Syndrome: a new format in mass-casualty victim "surge" management?
+RAW_DECODED:
+the answer is maybe. this is a possible explanation of the problem
+----------------------------------------------------------------------
+
+pubid: 25691513
+GOLD: yes
+PRED: no
+QUESTION:
+Do communication disorders extend to musical messages?
+RAW_DECODED:
+the answer is no. in the study, the authors found that
+----------------------------------------------------------------------
+
+pubid: 11035130
+GOLD: yes
+PRED: no
+QUESTION:
+Do patients with rheumatoid arthritis established on methotrexate and folic acid 5 mg daily need to continue folic acid supplements long term?
+RAW_DECODED:
+the answer is no. the reason is because the author doesn’t
+----------------------------------------------------------------------
+
+pubid: 19409117
+GOLD: yes
+PRED: no
+QUESTION:
+Can infundibular height predict the clearance of lower pole calyceal stone after extracorporeal shockwave lithotripsy?
+RAW_DECODED:
+the answer is no. the height of the infundibulum
+----------------------------------------------------------------------
+
+pubid: 21900017
+GOLD: yes
+PRED: maybe
+QUESTION:
+Does lung ischemia and reperfusion have an impact on coronary flow?
+RAW_DECODED:
+the answer is maybe. the authors of the study found that the
+----------------------------------------------------------------------
+
+pubid: 16968876
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Is a patient's self-reported health-related quality of life a prognostic factor for survival in non-small-cell lung cancer patients?
+RAW_DECODED:
+the answer is maybe.
+explanation: we think that it is a
+----------------------------------------------------------------------
+
+pubid: 18540901
+GOLD: yes
+PRED: yes
+QUESTION:
+Transient tachypnea of the newborn (TTN): a role for polymorphisms in the beta-adrenergic receptor (ADRB) encoding genes?
+RAW_DECODED:
+the answer is yes, but the scientific question itself is incorrect.
+----------------------------------------------------------------------
+
+pubid: 27448572
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is duration of psychological treatment for depression related to return into treatment?
+RAW_DECODED:
+the answer is maybe, not yes or no.
+
+## discussion
+----------------------------------------------------------------------
+
+pubid: 17621202
+GOLD: maybe
+PRED: no
+QUESTION:
+Does shaving the incision site increase the infection rate after spinal surgery?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 25987398
+GOLD: maybe
+PRED: no
+QUESTION:
+The influence of atmospheric pressure on aortic aneurysm rupture--is the diameter of the aneurysm important?
+RAW_DECODED:
+the answer is no.
+
+explanation: the diameter of the aneur
+----------------------------------------------------------------------
+
+pubid: 16816043
+GOLD: maybe
+PRED: yes
+QUESTION:
+Do French lay people and health professionals find it acceptable to breach confidentiality to protect a patient's wife from a sexually transmitted disease?
+RAW_DECODED:
+the answer is yes, no, or maybe.
+----------------------------------------------------------------------
+
+pubid: 12920330
+GOLD: maybe
+PRED: yes
+QUESTION:
+Do somatic complaints predict subsequent symptoms of depression?
+RAW_DECODED:
+the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 23497210
+GOLD: no
+PRED: maybe
+QUESTION:
+Are women with major depression in pregnancy identifiable in population health data?
+RAW_DECODED:
+the answer is maybe
+
+discussion: the issue of the safe use
+----------------------------------------------------------------------
+
+pubid: 21952349
+GOLD: yes
+PRED: yes
+QUESTION:
+Remote ischemic postconditioning: does it protect against ischemic damage in percutaneous coronary revascularization?
+RAW_DECODED:
+the answer is yes, because the remote ischemic postconditioning
+----------------------------------------------------------------------
+
+pubid: 21712147
+GOLD: no
+PRED: no
+QUESTION:
+Does combining antiretroviral agents in a single dosage form enhance quality of life of HIV/AIDS patients?
+RAW_DECODED:
+the answer is no. the icur of the combined single dose
+----------------------------------------------------------------------
+
+pubid: 25311479
+GOLD: yes
+PRED: maybe
+QUESTION:
+The inverse equity hypothesis: does it apply to coverage of cancer screening in middle-income countries?
+RAW_DECODED:
+the answer is maybe.
+
+comment: this question is meant to be
+----------------------------------------------------------------------
+
+pubid: 20602784
+GOLD: yes
+PRED: no
+QUESTION:
+Identification of racial disparities in breast cancer mortality: does scale matter?
+RAW_DECODED:
+the answer is no.
+
+explanation: yes, it does.
+
+context
+----------------------------------------------------------------------
+
+pubid: 12836106
+GOLD: yes
+PRED: no
+QUESTION:
+Does the leukocyte count correlate with the severity of injury?
+RAW_DECODED:
+the answer is no. the leukocyte count correlates positively with the
+----------------------------------------------------------------------
+
+pubid: 25588461
+GOLD: yes
+PRED: yes
+QUESTION:
+Can transcranial direct current stimulation be useful in differentiating unresponsive wakefulness syndrome from minimally conscious state patients?
+RAW_DECODED:
+the answer is yes, maybe or no. this is not a
+----------------------------------------------------------------------
+
+pubid: 19299238
+GOLD: yes
+PRED: no
+QUESTION:
+Aromatase inhibitor-related musculoskeletal symptoms: is preventing osteoporosis the key to eliminating these symptoms?
+RAW_DECODED:
+the answer is no. this is the key message in the article
+----------------------------------------------------------------------
+
+pubid: 22706226
+GOLD: maybe
+PRED: yes
+QUESTION:
+Could different follow-up modalities play a role in the diagnosis of asymptomatic endometrial cancer relapses?
+RAW_DECODED:
+the answer is yes because the asymptomatic relapses were detected by
+----------------------------------------------------------------------
+
+pubid: 12913878
+GOLD: yes
+PRED: no
+QUESTION:
+Locoregional opening of the rodent blood-brain barrier for paclitaxel using Nd:YAG laser-induced thermo therapy: a new concept of adjuvant glioma therapy?
+RAW_DECODED:
+the answer is no. this is due to the fact that no
+----------------------------------------------------------------------
+
+pubid: 16769333
+GOLD: yes
+PRED: maybe
+QUESTION:
+Preoperative tracheobronchoscopy in newborns with esophageal atresia: does it matter?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: tracheobronchoscopy
+----------------------------------------------------------------------
+
+pubid: 22497340
+GOLD: yes
+PRED: no
+QUESTION:
+Is horizontal semicircular canal ocular reflex influenced by otolith organs input?
+RAW_DECODED:
+the answer is no.
+
+background information:
+
+the semicircular can
+----------------------------------------------------------------------
+
+pubid: 10223070
+GOLD: maybe
+PRED: no
+QUESTION:
+Is perforation of the appendix a risk factor for tubal infertility and ectopic pregnancy?
+RAW_DECODED:
+the answer is no.
+
+explanation: this study has serious limitations.
+----------------------------------------------------------------------
+
+pubid: 8566975
+GOLD: no
+PRED: yes
+QUESTION:
+Serovar specific immunity to Neisseria gonorrhoeae: does it exist?
+RAW_DECODED:
+the answer is yes, but it is not known whether this type
+----------------------------------------------------------------------
+
+pubid: 25186850
+GOLD: yes
+PRED: yes
+QUESTION:
+May student examiners be reasonable substitute examiners for faculty in an undergraduate OSCE on medical emergencies?
+RAW_DECODED:
+the answer is yes. the answer is yes and no.
+
+reason
+----------------------------------------------------------------------
+
+pubid: 9427037
+GOLD: yes
+PRED: yes
+QUESTION:
+Are endothelial cell patterns of astrocytomas indicative of grade?
+RAW_DECODED:
+the answer is yes. there are vascular pattern characteristics of the astro
+----------------------------------------------------------------------
+
+pubid: 28359277
+GOLD: no
+PRED: no
+QUESTION:
+Do healthier lifestyles lead to less utilization of healthcare resources?
+RAW_DECODED:
+the answer is no.
+
+explanation: the utilization of healthcare resources is
+----------------------------------------------------------------------
+
+pubid: 11411430
+GOLD: maybe
+PRED: no
+QUESTION:
+Antral follicle assessment as a tool for predicting outcome in IVF--is it a better predictor than age and FSH?
+RAW_DECODED:
+the answer is no.
+
+• no: because age, follicle
+----------------------------------------------------------------------
+
+pubid: 16956164
+GOLD: yes
+PRED: yes
+QUESTION:
+Do all ethnic groups in New Zealand exhibit socio-economic mortality gradients?
+RAW_DECODED:
+the answer is yes. it is true that some ethnic groups do
+----------------------------------------------------------------------
+
+pubid: 15687156
+GOLD: no
+PRED: no
+QUESTION:
+Can normal knee kinematics be restored with unicompartmental knee replacement?
+RAW_DECODED:
+the answer is no.
+
+no significant differences in tibial axial
+----------------------------------------------------------------------
+
+pubid: 28127977
+GOLD: no
+PRED: yes
+QUESTION:
+Are serum leptin levels a prognostic factor in advanced lung cancer?
+RAW_DECODED:
+the answer is yes. you can tell the instructor that the test
+----------------------------------------------------------------------
+
+pubid: 16809243
+GOLD: no
+PRED: no
+QUESTION:
+Is fetal gender associated with emergency department visits for asthma during pregnancy?
+RAW_DECODED:
+the answer is no. fetal gender was not associated with asthma
+----------------------------------------------------------------------
+
+pubid: 17276182
+GOLD: yes
+PRED: yes
+QUESTION:
+Stretch-sensitive KCNQ1 mutation A link between genetic and environmental factors in the pathogenesis of atrial fibrillation?
+RAW_DECODED:
+the answer is yes. stretch-sensitive kcnq1 mutation is
+----------------------------------------------------------------------
+
+pubid: 21123461
+GOLD: yes
+PRED: yes
+QUESTION:
+Are adult body circumferences associated with height?
+RAW_DECODED:
+the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 22428608
+GOLD: yes
+PRED: no
+QUESTION:
+Would corrected QT dispersion predict left ventricular hypertrophy in hypertensive patients?
+RAW_DECODED:
+the answer is no.
+
+explanation: we have explored whether qt corrected
+----------------------------------------------------------------------
+
+pubid: 27858166
+GOLD: yes
+PRED: maybe
+QUESTION:
+Traumatic aortic injury: does the anatomy of the aortic arch influence aortic trauma severity?
+RAW_DECODED:
+the answer is maybe.
+
+the aortic arch is the major anatom
+----------------------------------------------------------------------
+
+pubid: 23791827
+GOLD: yes
+PRED: no
+QUESTION:
+Inpatient versus outpatient management of neutropenic fever in gynecologic oncology patients: is risk stratification useful?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 18243752
+GOLD: maybe
+PRED: yes
+QUESTION:
+Should chest wall irradiation be included after mastectomy and negative node breast cancer?
+RAW_DECODED:
+the answer is yes.
+
+comment: chest wall irradiation can be
+----------------------------------------------------------------------
+
+pubid: 17279467
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Can bisphosphonate treatment be stopped in a growing child with skeletal fragility?
+RAW_DECODED:
+the answer is maybe, but there are several caveats. bis
+----------------------------------------------------------------------
+
+pubid: 22758782
+GOLD: no
+PRED: yes
+QUESTION:
+Regional anesthesia as compared with general anesthesia for surgery in geriatric patients with hip fracture: does it decrease morbidity, mortality, and health care costs?
+RAW_DECODED:
+the answer is yes.
+
+explanation: the study reported that for patients
+----------------------------------------------------------------------
+
+pubid: 15223725
+GOLD: yes
+PRED: no
+QUESTION:
+Does blood pressure change in treated hypertensive patients depending on whether it is measured by a physician or a nurse?
+RAW_DECODED:
+the answer is no.
+
+discussion: the fact that the differences between
+----------------------------------------------------------------------
+
+pubid: 19482903
+GOLD: yes
+PRED: yes
+QUESTION:
+Treadmill testing of children who have spina bifida and are ambulatory: does peak oxygen uptake reflect maximum oxygen uptake?
+RAW_DECODED:
+the answer is yes. based on our evidence, treadmill testing of
+----------------------------------------------------------------------
+
+pubid: 25752912
+GOLD: no
+PRED: yes
+QUESTION:
+Is the probability of prenatal diagnosis or termination of pregnancy different for fetuses with congenital anomalies conceived following assisted reproductive techniques?
+RAW_DECODED:
+the answer is yes.
+
+explanation: in the article, prenatal diagnosis
+----------------------------------------------------------------------
+
+pubid: 21946341
+GOLD: no
+PRED: no
+QUESTION:
+Is there a relationship between complex fractionated atrial electrograms recorded during atrial fibrillation and sinus rhythm fractionation?
+RAW_DECODED:
+the answer is no. cfae and srf overlap with
+----------------------------------------------------------------------
+
+pubid: 16428354
+GOLD: yes
+PRED: no
+QUESTION:
+Does rural or urban residence make a difference to neonatal outcome in premature birth?
+RAW_DECODED:
+the answer is no because there is a high mortality rate in both
+----------------------------------------------------------------------
+
+pubid: 19302863
+GOLD: yes
+PRED: no
+QUESTION:
+Is the use of cyanoacrylate in intestinal anastomosis a good and reliable alternative?
+RAW_DECODED:
+the answer is no. there is no evidence that cyanoac
+----------------------------------------------------------------------
+
+pubid: 24245816
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is trabecular bone related to primary stability of miniscrews?
+RAW_DECODED:
+the answer is maybe, but the data in this study does not
+----------------------------------------------------------------------
+
+pubid: 24666444
+GOLD: no
+PRED: no
+QUESTION:
+Is there any evidence of a "July effect" in patients undergoing major cancer surgery?
+RAW_DECODED:
+the answer is no.
+
+explanation: no evidence of a july effect
+----------------------------------------------------------------------
+
+pubid: 19913785
+GOLD: no
+PRED: no
+QUESTION:
+Is it necessary to insert a nasobiliary drainage tube routinely after endoscopic clearance of the common bile duct in patients with choledocholithiasis-induced cholangitis?
+RAW_DECODED:
+the answer is no, as described in this article.
+
+this is
+----------------------------------------------------------------------
+
+pubid: 1571683
+GOLD: maybe
+PRED: no
+QUESTION:
+Storage of vaccines in the community: weak link in the cold chain?
+RAW_DECODED:
+the answer is no, the vaccines were stored at the correct temperature
+----------------------------------------------------------------------
+
+pubid: 15631914
+GOLD: no
+PRED: yes
+QUESTION:
+Is the clinically positive axilla in breast cancer really a contraindication to sentinel lymph node biopsy?
+RAW_DECODED:
+the answer is yes. it was not a contraindication
+----------------------------------------------------------------------
+
+pubid: 11970923
+GOLD: yes
+PRED: no
+QUESTION:
+Convulsions and retinal haemorrhage: should we look further?
+RAW_DECODED:
+the answer is no
+
+explanation: this is a case of ret
+----------------------------------------------------------------------
+
+pubid: 20121683
+GOLD: yes
+PRED: no
+QUESTION:
+Are patients willing participants in the new wave of community-based medical education in regional and rural Australia?
+RAW_DECODED:
+the answer is no.
+
+aim: to investigate patients' views
+----------------------------------------------------------------------
+
+pubid: 27281318
+GOLD: yes
+PRED: maybe
+QUESTION:
+Can Flexible Instruments Create Adequate Femoral Tunnel Lengths at 90° of Knee Flexion in Anterior Cruciate Ligament Reconstruction?
+RAW_DECODED:
+the answer is maybe.
+
+aim:
+
+the objective of this cad
+----------------------------------------------------------------------
+
+pubid: 12846929
+GOLD: yes
+PRED: maybe
+QUESTION:
+Quality of life in lung cancer patients: does socioeconomic status matter?
+RAW_DECODED:
+the answer is maybe, or yes, or no.
+
+explanation:
+----------------------------------------------------------------------
+
+pubid: 26505821
+GOLD: maybe
+PRED: no
+QUESTION:
+Are Biochemical Markers of Bone Turnover Representative of Bone Histomorphometry in 370 Postmenopausal Women?
+RAW_DECODED:
+the answer is no, because they were not.
+
+you can get
+----------------------------------------------------------------------
+
+pubid: 25156467
+GOLD: yes
+PRED: yes
+QUESTION:
+Should early extubation be the goal for children after congenital cardiac surgery?
+RAW_DECODED:
+the answer is yes.
+
+explanation: the most common complication of the
+----------------------------------------------------------------------
+
+pubid: 22023714
+GOLD: no
+PRED: no
+QUESTION:
+Does delivery mode affect women's postpartum quality of life in rural China?
+RAW_DECODED:
+the answer is no. delivery mode has no significant influence on women
+----------------------------------------------------------------------
+
+pubid: 16046584
+GOLD: yes
+PRED: no
+QUESTION:
+Menopausal hormone therapy and irregular endometrial bleeding: a potential role for uterine natural killer cells?
+RAW_DECODED:
+the answer is no.
+
+the study did not show a direct link
+----------------------------------------------------------------------
+
+pubid: 16155169
+GOLD: no
+PRED: no
+QUESTION:
+Percutaneous ethanol injection for benign cystic thyroid nodules: is aspiration of ethanol-mixed fluid advantageous?
+RAW_DECODED:
+the answer is no.
+
+in the scientific article, the authors concluded
+----------------------------------------------------------------------
+
+pubid: 19398929
+GOLD: no
+PRED: yes
+QUESTION:
+Can the growth rate of a gallbladder polyp predict a neoplastic polyp?
+RAW_DECODED:
+the answer is yes.
+
+a polyp that grows in size during
+----------------------------------------------------------------------
+
+pubid: 28143468
+GOLD: yes
+PRED: yes
+QUESTION:
+Are performance measurement systems useful?
+RAW_DECODED:
+the answer is yes.
+
+question: how does the pms help
+----------------------------------------------------------------------
+
+pubid: 9483814
+GOLD: yes
+PRED: no
+QUESTION:
+Does para-cervical block offer additional advantages in abortion induction with gemeprost in the 2nd trimester?
+RAW_DECODED:
+the answer is no.
+
+explanation: the block was given to the
+----------------------------------------------------------------------
+
+pubid: 22720085
+GOLD: yes
+PRED: yes
+QUESTION:
+Does insulin resistance drive the association between hyperglycemia and cardiovascular risk?
+RAW_DECODED:
+the answer is yes
+
+explanation: insulin resistance is a risk
+----------------------------------------------------------------------
+
+pubid: 24748473
+GOLD: yes
+PRED: yes
+QUESTION:
+Are there risk factors that increase the rate of staple line leakage in patients undergoing primary sleeve gastrectomy for morbid obesity?
+RAW_DECODED:
+the answer is yes.
+
+staple line leak rate decreased during
+----------------------------------------------------------------------
+
+pubid: 15588538
+GOLD: no
+PRED: no
+QUESTION:
+Chronic functional somatic symptoms: a single syndrome?
+RAW_DECODED:
+the answer is no
+
+explanation: no, the answer is no
+----------------------------------------------------------------------
+
+pubid: 22211919
+GOLD: maybe
+PRED: yes
+QUESTION:
+Actinobaculum schaalii, a cause of urinary tract infections in children?
+RAW_DECODED:
+the answer is yes, since it is mentioned in the results section
+----------------------------------------------------------------------
+
+pubid: 24433626
+GOLD: yes
+PRED: maybe
+QUESTION:
+Prevalence of chronic conditions among Medicare Part A beneficiaries in 2008 and 2010: are Medicare beneficiaries getting sicker?
+RAW_DECODED:
+the answer is maybe, not, or no.
+
+yes: yes
+----------------------------------------------------------------------
+
+pubid: 9542484
+GOLD: no
+PRED: no
+QUESTION:
+Does successful completion of the Perinatal Education Programme result in improved obstetric practice?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 17008699
+GOLD: no
+PRED: yes
+QUESTION:
+Do patients with localized prostate cancer treatment really want more aggressive treatment?
+RAW_DECODED:
+the answer is yes, more than 75%. why? because
+----------------------------------------------------------------------
+
+pubid: 23228527
+GOLD: no
+PRED: no
+QUESTION:
+Does music influence stress in mechanically ventilated patients?
+RAW_DECODED:
+the answer is no.
+
+explanation: musically induced stress is a
+----------------------------------------------------------------------
+
+pubid: 15489384
+GOLD: yes
+PRED: yes
+QUESTION:
+Does reducing spasticity translate into functional benefit?
+RAW_DECODED:
+the answer is yes. the relationship is very strong, and the
+----------------------------------------------------------------------
+
+pubid: 17444776
+GOLD: yes
+PRED: yes
+QUESTION:
+Is the holmium:YAG laser the best intracorporeal lithotripter for the ureter?
+RAW_DECODED:
+the answer is yes. for our patients, the most important consideration
+----------------------------------------------------------------------
+
+pubid: 8422202
+GOLD: no
+PRED: yes
+QUESTION:
+Metered-dose inhalers. Do health care providers know what to teach?
+RAW_DECODED:
+the answer is yes. the answer is probably correct because of the
+----------------------------------------------------------------------
+
+pubid: 23794696
+GOLD: no
+PRED: no
+QUESTION:
+Does the bracket-ligature combination affect the amount of orthodontic space closure over three months?
+RAW_DECODED:
+the answer is no. based on the results of this randomized clinical
+----------------------------------------------------------------------
+
+pubid: 20549895
+GOLD: no
+PRED: yes
+QUESTION:
+Health habits and vaccination status of Lebanese residents: are future doctors applying the rules of prevention?
+RAW_DECODED:
+the answer is yes. they should encourage more healthy habits and they
+----------------------------------------------------------------------
+
+pubid: 18714572
+GOLD: maybe
+PRED: no
+QUESTION:
+Does vaginal intraepithelial neoplasia have the same evolution as cervical intraepithelial neoplasia?
+RAW_DECODED:
+the answer is no. it is important to differentiate between the two
+----------------------------------------------------------------------
+
+pubid: 2224269
+GOLD: yes
+PRED: yes
+QUESTION:
+Should general practitioners call patients by their first names?
+RAW_DECODED:
+the answer is yes. the reason is that first names are not
+----------------------------------------------------------------------
+
+pubid: 8910148
+GOLD: yes
+PRED: yes
+QUESTION:
+Transesophageal echocardiographic assessment of left ventricular function in brain-dead patients: are marginally acceptable hearts suitable for transplantation?
+RAW_DECODED:
+the answer is yes.
+
+explanation: transesophageal echoc
+----------------------------------------------------------------------
+
+pubid: 23899611
+GOLD: yes
+PRED: yes
+QUESTION:
+Attenuation of ischemia/reperfusion-induced ovarian damage in rats: does edaravone offer protection?
+RAW_DECODED:
+the answer is yes. the author has concluded that treatment of rats
+----------------------------------------------------------------------
+
+pubid: 10548670
+GOLD: yes
+PRED: maybe
+QUESTION:
+Does the National Institutes of Health Stroke Scale favor left hemisphere strokes?
+RAW_DECODED:
+the answer is maybe because the national institutes of health stroke scale is
+----------------------------------------------------------------------
+
+pubid: 26907557
+GOLD: yes
+PRED: maybe
+QUESTION:
+Can a Novel Surgical Approach to the Temporomandibular Joint Improve Access and Reduce Complications?
+RAW_DECODED:
+the answer is maybe. the authors describe a novel surgical approach to
+----------------------------------------------------------------------
+
+pubid: 20871246
+GOLD: maybe
+PRED: no
+QUESTION:
+Young-Burgess classification of pelvic ring fractures: does it predict mortality, transfusion requirements, and non-orthopaedic injuries?
+RAW_DECODED:
+the answer is no. the answer is no. the answer is
+----------------------------------------------------------------------
+
+pubid: 22876568
+GOLD: no
+PRED: yes
+QUESTION:
+Is vitamin D deficiency a feature of pediatric celiac disease?
+RAW_DECODED:
+the answer is yes.
+
+explanation: inflammatory bowel diseases (ib
+----------------------------------------------------------------------
+
+pubid: 15280782
+GOLD: no
+PRED: maybe
+QUESTION:
+Is unsafe sexual behaviour increasing among HIV-infected individuals?
+RAW_DECODED:
+the answer is maybe
+
+explanation: the swiss hiv cohort study
+----------------------------------------------------------------------
+
+pubid: 17502203
+GOLD: no
+PRED: no
+QUESTION:
+Cholestasis associated with small bowel atresia: do we always need to investigate?
+RAW_DECODED:
+the answer is no.
+
+explanation: the majority of small bowel at
+----------------------------------------------------------------------
+
+pubid: 26370095
+GOLD: yes
+PRED: yes
+QUESTION:
+Are financial incentives cost-effective to support smoking cessation during pregnancy?
+RAW_DECODED:
+the answer is yes.
+1. is the answer yes or no
+----------------------------------------------------------------------
+
+pubid: 10354335
+GOLD: yes
+PRED: yes
+QUESTION:
+Can medical students contribute to quality assurance programmes in day surgery?
+RAW_DECODED:
+the answer is yes, with a possible no or maybe
+----------------------------------------------------------------------
+
+pubid: 26452334
+GOLD: yes
+PRED: no
+QUESTION:
+Measurement of head and neck paragangliomas: is volumetric analysis worth the effort?
+RAW_DECODED:
+the answer is no. paragangliomas in the head
+----------------------------------------------------------------------
+
+pubid: 15065192
+GOLD: yes
+PRED: yes
+QUESTION:
+Three-dimensional ultrasound-validated large-core needle biopsy: is it a reliable method for the histological assessment of breast lesions?
+RAW_DECODED:
+the answer is yes, as described in the article.
+
+question:
+----------------------------------------------------------------------
+
+pubid: 25488308
+GOLD: no
+PRED: no
+QUESTION:
+Can bone thickness and inter-radicular space affect miniscrew placement in posterior mandibular sites?
+RAW_DECODED:
+the answer is no. miniscrew placement should be determined by
+----------------------------------------------------------------------
+
+pubid: 22449464
+GOLD: yes
+PRED: maybe
+QUESTION:
+Do general practice selection scores predict success at MRCGP?
+RAW_DECODED:
+the answer is maybe
+
+discussion: this paper provides further evidence that
+----------------------------------------------------------------------
+
+pubid: 26222664
+GOLD: yes
+PRED: yes
+QUESTION:
+The Deformity Angular Ratio: Does It Correlate With High-Risk Cases for Potential Spinal Cord Monitoring Alerts in Pediatric 3-Column Thoracic Spinal Deformity Corrective Surgery?
+RAW_DECODED:
+the answer is yes!
+----------------------------------------------------------------------
+
+pubid: 22617083
+GOLD: yes
+PRED: yes
+QUESTION:
+Does age moderate the effect of personality disorder on coping style in psychiatric inpatients?
+RAW_DECODED:
+the answer is yes. the interaction effect was significant at p=.
+----------------------------------------------------------------------
+
+pubid: 9767546
+GOLD: yes
+PRED: no
+QUESTION:
+Autoxidation products of both carbohydrates and lipids are increased in uremic plasma: is there oxidative stress in uremia?
+RAW_DECODED:
+the answer is no, because the answer is no, because the
+----------------------------------------------------------------------
+
+pubid: 21214884
+GOLD: no
+PRED: maybe
+QUESTION:
+Can 'high-risk' human papillomaviruses (HPVs) be detected in human breast milk?
+RAW_DECODED:
+the answer is maybe. however, in this paper, they did
+----------------------------------------------------------------------
+
+pubid: 23321509
+GOLD: yes
+PRED: maybe
+QUESTION:
+Quaternary cytoreductive surgery in ovarian cancer: does surgical effort still matter?
+RAW_DECODED:
+the answer is maybe. this is not only true for women with
+----------------------------------------------------------------------
+
+pubid: 16827975
+GOLD: no
+PRED: no
+QUESTION:
+Chemotherapy and survival in advanced non-small cell lung carcinoma: is pneumologists' skepticism justified?
+RAW_DECODED:
+the answer is no. in this case, the study showed that
+----------------------------------------------------------------------
+
+pubid: 18179827
+GOLD: yes
+PRED: no
+QUESTION:
+Does topical ropivacaine reduce the post-tonsillectomy morbidity in pediatric patients?
+RAW_DECODED:
+the answer is no
+
+explanation: no
+
+the author's concluded
+----------------------------------------------------------------------
+
+pubid: 14872327
+GOLD: yes
+PRED: yes
+QUESTION:
+Is pain a clinically relevant problem in general adult psychiatry?
+RAW_DECODED:
+the answer is yes.
+
+this answer is correct for the following reason
+----------------------------------------------------------------------
+
+pubid: 24809662
+GOLD: no
+PRED: no
+QUESTION:
+Does concomitant anterior/apical repair during midurethral sling improve the overactive bladder component of mixed incontinence?
+RAW_DECODED:
+the answer is no
+
+explanation: this is a retrospective cohort study
+----------------------------------------------------------------------
+
+pubid: 26485091
+GOLD: no
+PRED: yes
+QUESTION:
+Does the use of atypical antipsychotics as adjunctive therapy in depression result in cost savings?
+RAW_DECODED:
+the answer is yes
+
+explanation: atypical antipsychotics
+----------------------------------------------------------------------
+
+pubid: 12805495
+GOLD: maybe
+PRED: no
+QUESTION:
+Can patients be anticoagulated after intracerebral hemorrhage?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 19925761
+GOLD: no
+PRED: no
+QUESTION:
+Diagnostic and therapeutic ureteroscopy: is dilatation of ureteral meatus always necessary?
+RAW_DECODED:
+the answer is no.
+
+explanation: the most common indications for ure
+----------------------------------------------------------------------
+
+pubid: 11458136
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Does managed care enable more low income persons to identify a usual source of care?
+RAW_DECODED:
+the answer is maybe. in this article, the authors examined the
+----------------------------------------------------------------------
+
+pubid: 20382292
+GOLD: yes
+PRED: no
+QUESTION:
+Knee extensor strength, dynamic stability, and functional ambulation: are they related in Parkinson's disease?
+RAW_DECODED:
+the answer is no.
+
+question: can you explain how you came
+----------------------------------------------------------------------
+
+pubid: 22236315
+GOLD: no
+PRED: no
+QUESTION:
+Is distance to provider a barrier to care for medicaid patients with breast, colorectal, or lung cancer?
+RAW_DECODED:
+the answer is no, this statement is correct
+
+explanation: the
+----------------------------------------------------------------------
+
+pubid: 17051586
+GOLD: no
+PRED: maybe
+QUESTION:
+Can folic acid protect against congenital heart defects in Down syndrome?
+RAW_DECODED:
+the answer is maybe.
+
+the question was answered based on the following
+----------------------------------------------------------------------
+
+pubid: 25007420
+GOLD: maybe
+PRED: no
+QUESTION:
+Are there mental health differences between francophone and non-francophone populations in manitoba?
+RAW_DECODED:
+the answer is no, based on the available evidence.
+
+the research
+----------------------------------------------------------------------
+
+pubid: 26556589
+GOLD: no
+PRED: no
+QUESTION:
+Does type 1 diabetes mellitus affect Achilles tendon response to a 10 km run?
+RAW_DECODED:
+the answer is no. although type 1 diabetes mellitus is
+----------------------------------------------------------------------
+
+pubid: 12612531
+GOLD: yes
+PRED: yes
+QUESTION:
+Fragility of the esophageal mucosa: a pathognomonic endoscopic sign of primary eosinophilic esophagitis?
+RAW_DECODED:
+the answer is yes, this is a correct statement.
+
+explanation:
+----------------------------------------------------------------------
+
+pubid: 26194560
+GOLD: yes
+PRED: maybe
+QUESTION:
+Does cup-cage reconstruction with oversized cups provide initial stability in THA for osteoporotic acetabular fractures?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: this study showed initial stability in
+----------------------------------------------------------------------
+
+pubid: 11079675
+GOLD: yes
+PRED: yes
+QUESTION:
+Pulmonary valve replacement in adults late after repair of tetralogy of fallot: are we operating too late?
+RAW_DECODED:
+the answer is yes. in our experience, pvr for pr
+----------------------------------------------------------------------
+
+pubid: 21459725
+GOLD: no
+PRED: no
+QUESTION:
+Xanthogranulomatous cholecystitis: a premalignant condition?
+RAW_DECODED:
+the answer is no. the p53 gene has a 95
+----------------------------------------------------------------------
+
+pubid: 21172844
+GOLD: yes
+PRED: no
+QUESTION:
+Does TDP-43 type confer a distinct pattern of atrophy in frontotemporal lobar degeneration?
+RAW_DECODED:
+the answer is no.
+
+discussion: ftld-tdp is a
+----------------------------------------------------------------------
+
+pubid: 24946973
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Is oncoplastic surgery a contraindication for accelerated partial breast radiation using the interstitial multicatheter brachytherapy method?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: in general, oncoplastic
+----------------------------------------------------------------------
+
+pubid: 17335331
+GOLD: yes
+PRED: yes
+QUESTION:
+Diagnostic characteristics of child bipolar I disorder: does the "Treatment of Early Age Mania (team)" sample generalize?
+RAW_DECODED:
+the answer is yes
+
+explanation: this question addresses the representat
+----------------------------------------------------------------------
+
+pubid: 27581329
+GOLD: yes
+PRED: no
+QUESTION:
+Estimation of basal metabolic rate in Chinese: are the current prediction equations applicable?
+RAW_DECODED:
+the answer is no.
+
+explanation: the current prediction equations are not
+----------------------------------------------------------------------
+
+pubid: 11867487
+GOLD: maybe
+PRED: yes
+QUESTION:
+Does rugby headgear prevent concussion?
+RAW_DECODED:
+the answer is yes. 2
+
+this is an example of
+----------------------------------------------------------------------
+
+pubid: 12765819
+GOLD: yes
+PRED: no
+QUESTION:
+Spinal subdural hematoma: a sequela of a ruptured intracranial aneurysm?
+RAW_DECODED:
+the answer is no. although subarachnoid hemorrhage
+----------------------------------------------------------------------
+
+pubid: 24507422
+GOLD: yes
+PRED: yes
+QUESTION:
+Can shape analysis differentiate free-floating internal carotid artery thrombus from atherosclerotic plaque in patients evaluated with CTA for stroke or transient ischemic attack?
+RAW_DECODED:
+the answer is yes, shape analysis can accurately differentiate free-floating internal
+----------------------------------------------------------------------
+
+pubid: 9854965
+GOLD: yes
+PRED: no
+QUESTION:
+Dementia and aphasia in motor neuron disease: an underrecognised association?
+RAW_DECODED:
+the answer is no.
+
+the question asks if the patients in groups
+----------------------------------------------------------------------
+
+pubid: 21756515
+GOLD: maybe
+PRED: no
+QUESTION:
+Does solid culture for tuberculosis influence clinical decision making in India?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 19131405
+GOLD: yes
+PRED: no
+QUESTION:
+Diffusion-weighted echo-planar MR imaging of primary parotid gland tumors: is a prediction of different histologic subtypes possible?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 18568290
+GOLD: maybe
+PRED: no
+QUESTION:
+Is there a role for endothelin-1 in the hemodynamic changes during hemodialysis?
+RAW_DECODED:
+the answer is no
+
+explanation: the following statements are incorrect:
+----------------------------------------------------------------------
+
+pubid: 18667100
+GOLD: no
+PRED: no
+QUESTION:
+Do risk factors for suicidal behavior differ by affective disorder polarity?
+RAW_DECODED:
+the answer is no. in fact, it is a mistake to
+----------------------------------------------------------------------
+
+pubid: 9191526
+GOLD: yes
+PRED: maybe
+QUESTION:
+Multidisciplinary breast cancer clinics. Do they work?
+RAW_DECODED:
+the answer is maybe. multidisciplinary breast cancer clinics have
+----------------------------------------------------------------------
+
+pubid: 10605400
+GOLD: maybe
+PRED: no
+QUESTION:
+Is the international normalised ratio (INR) reliable?
+RAW_DECODED:
+the answer is no, it is not. the accuracy of in
+----------------------------------------------------------------------
+
+pubid: 17601244
+GOLD: yes
+PRED: no
+QUESTION:
+Are there associations of health status, disease activity and damage in SLE patients?
+RAW_DECODED:
+the answer is no. there are no associations of health status,
+----------------------------------------------------------------------
+
+pubid: 20608141
+GOLD: no
+PRED: yes
+QUESTION:
+PSA repeatedly fluctuating levels are reassuring enough to avoid biopsy?
+RAW_DECODED:
+the answer is yes, if we consider the clinical significance of the
+----------------------------------------------------------------------
+
+pubid: 25986020
+GOLD: yes
+PRED: yes
+QUESTION:
+Is zero central line-associated bloodstream infection rate sustainable?
+RAW_DECODED:
+the answer is yes. the 0 clabsi rate was
+----------------------------------------------------------------------
+
+pubid: 15670262
+GOLD: yes
+PRED: no
+QUESTION:
+Is gastric electrical stimulation superior to standard pharmacologic therapy in improving GI symptoms, healthcare resources, and long-term health care benefits?
+RAW_DECODED:
+the answer is no.
+
+explanation: gastrointestinal (gi)
+----------------------------------------------------------------------
+
+pubid: 22900881
+GOLD: no
+PRED: yes
+QUESTION:
+Should pulp chamber pulpotomy be seen as a permanent treatment?
+RAW_DECODED:
+the answer is yes. it is not a temporary treatment. the
+----------------------------------------------------------------------
+
+pubid: 11413427
+GOLD: no
+PRED: no
+QUESTION:
+Does transverse apex coincide with coronal apex levels (regional or global) in adolescent idiopathic scoliosis?
+RAW_DECODED:
+the answer is no
+
+explanation: in the scoliosis research
+----------------------------------------------------------------------
+
+pubid: 9602458
+GOLD: no
+PRED: maybe
+QUESTION:
+Does the Child Health Computing System adequately identify children with cerebral palsy?
+RAW_DECODED:
+the answer is maybe, which means there are some problems.
+
+background
+----------------------------------------------------------------------
+
+pubid: 24434052
+GOLD: maybe
+PRED: no
+QUESTION:
+Are we seeing the effects of public awareness campaigns?
+RAW_DECODED:
+the answer is no. the most common method of melanoma presentation
+----------------------------------------------------------------------
+
+pubid: 17598882
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is breast cancer prognosis inherited?
+RAW_DECODED:
+the answer is maybe. some breast cancer patients have a poor prognosis
+----------------------------------------------------------------------
+
+pubid: 21190419
+GOLD: no
+PRED: maybe
+QUESTION:
+Does nuchal translucency thickness in the first trimester predict GDM onset during pregnancy?
+RAW_DECODED:
+the answer is maybe, since the nuchal translucency
+----------------------------------------------------------------------
+
+pubid: 16403186
+GOLD: no
+PRED: no
+QUESTION:
+Are the arginine vasopressin V1a receptor microsatellites related to hypersexuality in children with a prepubertal and early adolescent bipolar disorder phenotype?
+RAW_DECODED:
+the answer is no
+
+explanation: in this article, we describe
+----------------------------------------------------------------------
+
+pubid: 11888773
+GOLD: no
+PRED: no
+QUESTION:
+Stage I non-small cell lung carcinoma: really an early stage?
+RAW_DECODED:
+the answer is no, it is not really an early stage,
+----------------------------------------------------------------------
+
+pubid: 25940336
+GOLD: yes
+PRED: no
+QUESTION:
+Does Residency Selection Criteria Predict Performance in Orthopaedic Surgery Residency?
+RAW_DECODED:
+the answer is no, because the selection factors do not correlate with
+----------------------------------------------------------------------
+
+pubid: 24014276
+GOLD: yes
+PRED: maybe
+QUESTION:
+Optimism and survival: does an optimistic outlook predict better survival at advanced ages?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: optimism is associated with better
+----------------------------------------------------------------------
+
+pubid: 18359123
+GOLD: no
+PRED: no
+QUESTION:
+Is it better to be big?
+RAW_DECODED:
+the answer is no, not better. i know that is a
+----------------------------------------------------------------------
+
+pubid: 26113007
+GOLD: no
+PRED: maybe
+QUESTION:
+Is arch form influenced by sagittal molar relationship or Bolton tooth-size discrepancy?
+RAW_DECODED:
+the answer is maybe
+
+explanation: according to the given data,
+----------------------------------------------------------------------
+
+pubid: 11838307
+GOLD: no
+PRED: yes
+QUESTION:
+Cold knife conization vs. LEEP. Are they the same procedure?
+RAW_DECODED:
+the answer is yes.
+
+section labels: response, correct
+----------------------------------------------------------------------
+
+pubid: 18222909
+GOLD: yes
+PRED: yes
+QUESTION:
+Are pectins involved in cold acclimation and de-acclimation of winter oil-seed rape plants?
+RAW_DECODED:
+the answer is yes, because the presence of pectins in
+----------------------------------------------------------------------
+
+pubid: 24747511
+GOLD: yes
+PRED: yes
+QUESTION:
+Updating emotional content in working memory: a depression-specific deficit?
+RAW_DECODED:
+the answer is yes. the evidence is from a study of depression
+----------------------------------------------------------------------
+
+pubid: 12407608
+GOLD: maybe
+PRED: yes
+QUESTION:
+Does ultrasound imaging before puncture facilitate internal jugular vein cannulation?
+RAW_DECODED:
+the answer is yes
+
+explanation: ultrasound imaging before puncture
+----------------------------------------------------------------------
+
+pubid: 19836806
+GOLD: no
+PRED: no
+QUESTION:
+Should prostate specific antigen be adjusted for body mass index?
+RAW_DECODED:
+the answer is no, because there is no evidence that prostate specific
+----------------------------------------------------------------------
+
+pubid: 17076091
+GOLD: maybe
+PRED: no
+QUESTION:
+Does obstructive sleep apnea affect aerobic fitness?
+RAW_DECODED:
+the answer is no. as this question was asked as a clinical
+----------------------------------------------------------------------
+
+pubid: 21801416
+GOLD: yes
+PRED: maybe
+QUESTION:
+The effect of an intracerebroventricular injection of metformin or AICAR on the plasma concentrations of melatonin in the ewe: potential involvement of AMPK?
+RAW_DECODED:
+the answer is maybe, because the data suggests that the injected a
+----------------------------------------------------------------------
+
+pubid: 25819796
+GOLD: yes
+PRED: maybe
+QUESTION:
+Literacy after cerebral hemispherectomy: Can the isolated right hemisphere read?
+RAW_DECODED:
+the answer is maybe.
+
+comment: for this response, a scientific
+----------------------------------------------------------------------
+
+pubid: 18496363
+GOLD: no
+PRED: yes
+QUESTION:
+Characterization of the gender dimorphism after injury and hemorrhagic shock: are hormonal differences responsible?
+RAW_DECODED:
+the answer is yes.
+
+context:
+
+to characterize the gender dimorphism
+----------------------------------------------------------------------
+
+pubid: 14551704
+GOLD: yes
+PRED: yes
+QUESTION:
+Can communication with terminally ill patients be taught?
+RAW_DECODED:
+the answer is yes, because the participants experienced a better sense of
+----------------------------------------------------------------------
+
+pubid: 23234860
+GOLD: no
+PRED: no
+QUESTION:
+Delays in time to primary treatment after a diagnosis of breast cancer: does it impact survival?
+RAW_DECODED:
+it is unclear if delays in
+----------------------------------------------------------------------
+
+pubid: 22532370
+GOLD: yes
+PRED: no
+QUESTION:
+Are increased carotid artery pulsatility and resistance indexes early signs of vascular abnormalities in young obese males?
+RAW_DECODED:
+the answer is: no, the answer is no, the answer
+----------------------------------------------------------------------
+
+pubid: 22656647
+GOLD: yes
+PRED: maybe
+QUESTION:
+Are acceptance rates of a national preventive home visit programme for older people socially imbalanced?
+RAW_DECODED:
+the answer is maybe.
+----------------------------------------------------------------------
+
+pubid: 22683044
+GOLD: yes
+PRED: no
+QUESTION:
+Does open access publishing increase the impact of scientific articles?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 11566686
+GOLD: yes
+PRED: no
+QUESTION:
+In vivo visualization of pyloric mucosal hypertrophy in infants with hypertrophic pyloric stenosis: is there an etiologic role?
+RAW_DECODED:
+the answer is no.
+
+this is a poor quality study because it
+----------------------------------------------------------------------
+
+pubid: 15502995
+GOLD: no
+PRED: no
+QUESTION:
+Does the early adopter of drugs exist?
+RAW_DECODED:
+the answer is no.
+
+explanation: the physician's early adoption of
+----------------------------------------------------------------------
+
+pubid: 24019262
+GOLD: yes
+PRED: no
+QUESTION:
+Does high blood pressure reduce the risk of chronic low back pain?
+RAW_DECODED:
+the answer is no. the association between high blood pressure and chronic
+----------------------------------------------------------------------
+
+pubid: 22867778
+GOLD: maybe
+PRED: no
+QUESTION:
+Does responsibility affect the public's valuation of health care interventions?
+RAW_DECODED:
+the answer is no.
+
+explanation: there are many social determinants
+----------------------------------------------------------------------
+
+pubid: 23348330
+GOLD: yes
+PRED: no
+QUESTION:
+Nasal fractures:  is closed reduction satisfying?
+RAW_DECODED:
+the answer is no, according to the input from the article.
+----------------------------------------------------------------------
+
+pubid: 21658267
+GOLD: yes
+PRED: yes
+QUESTION:
+Do improvements in outreach, clinical, and family and community-based services predict improvements in child survival?
+RAW_DECODED:
+the answer is: yes
+
+explanation: the best way to reduce
+----------------------------------------------------------------------
+
+pubid: 28177278
+GOLD: yes
+PRED: no
+QUESTION:
+Does spontaneous remission occur in polyarteritis nodosa?
+RAW_DECODED:
+the answer is no.
+
+explanation: there is no clear answer to
+----------------------------------------------------------------------
+
+pubid: 18403944
+GOLD: maybe
+PRED: no
+QUESTION:
+Gluten tolerance in adult patients with celiac disease 20 years after diagnosis?
+RAW_DECODED:
+the answer is no. this is a true case report.
+
+the
+----------------------------------------------------------------------
+
+pubid: 20363841
+GOLD: no
+PRED: yes
+QUESTION:
+Do symptoms predict COPD in smokers?
+RAW_DECODED:
+the answer is yes.
+
+question: what is the specificity of spi
+----------------------------------------------------------------------
+
+pubid: 19664156
+GOLD: yes
+PRED: yes
+QUESTION:
+Search engine as a diagnostic tool in difficult immunological and allergologic cases: is Google useful?
+RAW_DECODED:
+the answer is yes. in our case, google was the most
+----------------------------------------------------------------------
+
+pubid: 23356465
+GOLD: yes
+PRED: no
+QUESTION:
+Uniformity of evidence-based treatments in practice?
+RAW_DECODED:
+the answer is no.
+
+explanation: uniformity of evidence-based treatments
+----------------------------------------------------------------------
+
+pubid: 22972546
+GOLD: no
+PRED: yes
+QUESTION:
+Do approved doctors and medical referees in the UK agree when assessing a seafarer's fitness?
+RAW_DECODED:
+the answer is "no" and the reasons for this are given
+----------------------------------------------------------------------
+
+pubid: 21850494
+GOLD: yes
+PRED: yes
+QUESTION:
+Hepatorenal syndrome: are we missing some prognostic factors?
+RAW_DECODED:
+the answer is yes. we don't know why, but the
+----------------------------------------------------------------------
+
+pubid: 26778755
+GOLD: maybe
+PRED: yes
+QUESTION:
+Vaginal dose assessment in image-guided brachytherapy for cervical cancer: Can we really rely on dose-point evaluation?
+RAW_DECODED:
+the answer is yes, we can rely on dose-point evaluation for
+----------------------------------------------------------------------
+
+pubid: 20187289
+GOLD: no
+PRED: maybe
+QUESTION:
+Prescriptions as a proxy for asthma in children: a good choice?
+RAW_DECODED:
+the answer is probably no, the answer is maybe, and the
+----------------------------------------------------------------------
+
+pubid: 27615402
+GOLD: maybe
+PRED: no
+QUESTION:
+Does the familial transmission of drinking patterns persist into young adulthood?
+RAW_DECODED:
+the answer is no. the parental drinking history is not related to
+----------------------------------------------------------------------
+
+pubid: 20297950
+GOLD: yes
+PRED: yes
+QUESTION:
+Proof of concept study: does fenofibrate have a role in sleep apnoea syndrome?
+RAW_DECODED:
+the answer is yes.
+
+1. the statement that the proportion of
+----------------------------------------------------------------------
+
+pubid: 23735520
+GOLD: yes
+PRED: yes
+QUESTION:
+Can mental imagery functional magnetic resonance imaging predict recovery in patients with disorders of consciousness?
+RAW_DECODED:
+the answer is yes.
+
+explanation: disorders of consciousness (dos
+----------------------------------------------------------------------
+
+pubid: 10759659
+GOLD: yes
+PRED: no
+QUESTION:
+The nurse cystoscopist: a feasible option?
+RAW_DECODED:
+the answer is no. the nurse was unable to differentiate between tum
+----------------------------------------------------------------------
+
+pubid: 25592625
+GOLD: no
+PRED: no
+QUESTION:
+Is cardiovascular evaluation necessary prior to and during beta-blocker therapy for infantile hemangiomas?
+RAW_DECODED:
+the answer is no. there was no serious complication of therapy in
+----------------------------------------------------------------------
+
+pubid: 12595848
+GOLD: yes
+PRED: no
+QUESTION:
+Is specialty care associated with improved survival of patients with congestive heart failure?
+RAW_DECODED:
+the answer is no.
+
+a. yes, no, or maybe
+----------------------------------------------------------------------
+
+pubid: 20064872
+GOLD: yes
+PRED: yes
+QUESTION:
+Can the prognosis of polymyalgia rheumatica be predicted at disease onset?
+RAW_DECODED:
+the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 23588461
+GOLD: yes
+PRED: yes
+QUESTION:
+Should ascitis volume and anthropometric measurements be estimated in hospitalized alcoholic cirrotics?
+RAW_DECODED:
+the answer is yes, for the following reasons:
+
+• the information
+----------------------------------------------------------------------
+
+pubid: 18019905
+GOLD: no
+PRED: maybe
+QUESTION:
+The use of audit to identify maternal mortality in different settings: is it just a difference between the rich and the poor?
+RAW_DECODED:
+the answer is maybe because the rich and the poor have different mortality
+----------------------------------------------------------------------
+
+pubid: 25859857
+GOLD: no
+PRED: no
+QUESTION:
+Could the extent of lymphadenectomy be modified by neoadjuvant chemotherapy in cervical cancer?
+RAW_DECODED:
+the answer is no.
+
+explanation: in clinical trials of cervical cancer
+----------------------------------------------------------------------
+
+pubid: 26418796
+GOLD: yes
+PRED: maybe
+QUESTION:
+Do Wound Cultures Give Information About the Microbiology of Blood Cultures in Severe Burn Patients?
+RAW_DECODED:
+the answer is maybe. in patients with severe burns, bsi
+----------------------------------------------------------------------
+
+pubid: 22825590
+GOLD: yes
+PRED: no
+QUESTION:
+Are behavioural risk factors to be blamed for the conversion from optimal blood pressure to hypertensive status in Black South Africans?
+RAW_DECODED:
+the answer is no. rather than the behavioural risk factors being the
+----------------------------------------------------------------------
+
+pubid: 18832500
+GOLD: yes
+PRED: yes
+QUESTION:
+Systematic use of patient-rated depression severity monitoring: is it helpful and feasible in clinical psychiatry?
+RAW_DECODED:
+the answer is yes. the study was the largest clinical trial to
+----------------------------------------------------------------------
+
+pubid: 18955431
+GOLD: yes
+PRED: no
+QUESTION:
+Treadmill training post stroke: are there any secondary benefits?
+RAW_DECODED:
+the answer is no. it is not possible to find secondary benefits
+----------------------------------------------------------------------
+
+pubid: 9550200
+GOLD: yes
+PRED: no
+QUESTION:
+Does lunar position influence the time of delivery?
+RAW_DECODED:
+the answer is no.
+
+explanation: the relationship between the lunar position
+----------------------------------------------------------------------
+
+pubid: 10135926
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is oral endotracheal intubation efficacy impaired in the helicopter environment?
+RAW_DECODED:
+the answer is maybe
+
+explanation: we found a significant increase in
+----------------------------------------------------------------------
+
+pubid: 11296674
+GOLD: maybe
+PRED: no
+QUESTION:
+Prostatic syndrome and pleural effusion: are they different diseases?
+RAW_DECODED:
+the answer is no. they are different diseases because their symptoms,
+----------------------------------------------------------------------
+
+pubid: 24139705
+GOLD: yes
+PRED: maybe
+QUESTION:
+Telemedicine and type 1 diabetes: is technology per se sufficient to improve glycaemic control?
+RAW_DECODED:
+the answer is maybe.
+
+i think the explanation is that the id
+----------------------------------------------------------------------
+
+pubid: 16253970
+GOLD: no
+PRED: no
+QUESTION:
+Is controlled ovarian stimulation in intrauterine insemination an acceptable therapy in couples with unexplained non-conception in the perspective of multiple pregnancies?
+RAW_DECODED:
+the answer is no.
+
+explanation: cos-iui is a treatment
+----------------------------------------------------------------------
+
+pubid: 14745753
+GOLD: yes
+PRED: yes
+QUESTION:
+Is half-dose contrast-enhanced three-dimensional MR angiography sufficient for the abdominal aorta and pelvis?
+RAW_DECODED:
+the answer is yes. the snr and cnr of the
+----------------------------------------------------------------------
+
+pubid: 27078715
+GOLD: yes
+PRED: yes
+QUESTION:
+Digital Tomosynthesis: A Viable Alternative to Noncontrast Computed Tomography for the Follow-Up of Nephrolithiasis?
+RAW_DECODED:
+the answer is yes.
+
+this study was a retrospective review of patients
+----------------------------------------------------------------------
+
+pubid: 15939071
+GOLD: yes
+PRED: maybe
+QUESTION:
+High cumulative insulin exposure: a risk factor of atherosclerosis in type 1 diabetes?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: insulin is an antidi
+----------------------------------------------------------------------
+
+pubid: 11926574
+GOLD: no
+PRED: yes
+QUESTION:
+Are hepatitis G virus and TT virus involved in cryptogenic chronic liver disease?
+RAW_DECODED:
+the answer is yes.
+
+section labels: conclusions, dis
+----------------------------------------------------------------------
+
+pubid: 18594195
+GOLD: yes
+PRED: yes
+QUESTION:
+Do older patients who refuse to participate in a self-management intervention in the Netherlands differ from older patients who agree to participate?
+RAW_DECODED:
+the answer is yes.
+
+comment: the author has provided a list
+----------------------------------------------------------------------
+
+pubid: 25614468
+GOLD: no
+PRED: yes
+QUESTION:
+Preoperative locoregional staging of gastric cancer: is there a place for magnetic resonance imaging?
+RAW_DECODED:
+the answer is yes, according to the literature and according to the
+----------------------------------------------------------------------
+
+pubid: 19653482
+GOLD: yes
+PRED: maybe
+QUESTION:
+Do familiar teammates request and accept more backup?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: this answer is incorrect because the
+----------------------------------------------------------------------
+
+pubid: 11380492
+GOLD: yes
+PRED: no
+QUESTION:
+Transsphenoidal pituitary surgery in Cushing's disease: can we predict outcome?
+RAW_DECODED:
+the answer is no. the most important reason is that the surgical
+----------------------------------------------------------------------
+
+pubid: 16296668
+GOLD: no
+PRED: no
+QUESTION:
+Can bedside assessment reliably exclude aspiration following acute stroke?
+RAW_DECODED:
+the answer is no.
+
+explanation: the authors state that an aspiration
+----------------------------------------------------------------------
+
+pubid: 19520213
+GOLD: no
+PRED: maybe
+QUESTION:
+Are UK radiologists satisfied with the training and support received in suspected child abuse?
+RAW_DECODED:
+the answer is maybe. maybe means that this is not the case
+----------------------------------------------------------------------
+
+pubid: 14992556
+GOLD: maybe
+PRED: no
+QUESTION:
+Artefacts in 24-h pharyngeal and oesophageal pH monitoring: is simplification of pH data analysis feasible?
+RAW_DECODED:
+the answer is no. this statement is correct.
+
+explanation: the
+----------------------------------------------------------------------
+
+pubid: 19931500
+GOLD: yes
+PRED: no
+QUESTION:
+Can the condition of the cell microenvironment of mediastinal lymph nodes help predict the risk of metastases in non-small cell lung cancer?
+RAW_DECODED:
+the answer is no. the presence of metastases correlated with the
+----------------------------------------------------------------------
+
+pubid: 18378554
+GOLD: no
+PRED: no
+QUESTION:
+Are wandering and physically nonaggressive agitation equivalent?
+RAW_DECODED:
+the answer is no. the authors examined two dimensions of agitation.
+----------------------------------------------------------------------
+
+pubid: 17306983
+GOLD: yes
+PRED: yes
+QUESTION:
+Is size-reducing ascending aortoplasty with external reinforcement an option in modern aortic surgery?
+RAW_DECODED:
+the answer is yes.
+
+explanation: in 1997, we
+----------------------------------------------------------------------
+
+pubid: 26879871
+GOLD: yes
+PRED: maybe
+QUESTION:
+Does depression diagnosis and antidepressant prescribing vary by location?
+RAW_DECODED:
+the answer is maybe.
+
+discussion: the results of this study are
+----------------------------------------------------------------------
+
+pubid: 24336869
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Can routinely collected ambulance data about assaults contribute to reduction in community violence?
+RAW_DECODED:
+the answer is maybe. hotspots are at the forefront of these
+----------------------------------------------------------------------
+
+pubid: 16962519
+GOLD: no
+PRED: no
+QUESTION:
+Volume change of uterine myomas during pregnancy: do myomas really grow?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 17704864
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is laparoscopic adrenalectomy safe and effective for adrenal masses larger than 7 cm?
+RAW_DECODED:
+the answer is maybe, the results do not meet the requirements for
+----------------------------------------------------------------------
+
+pubid: 18307476
+GOLD: yes
+PRED: yes
+QUESTION:
+Upstream solutions: does the supplemental security income program reduce disability in the elderly?
+RAW_DECODED:
+the answer is yes.
+
+this study examined whether the federal cash transfer
+----------------------------------------------------------------------
+
+pubid: 15151701
+GOLD: yes
+PRED: no
+QUESTION:
+Profiling quality of care: Is there a role for peer review?
+RAW_DECODED:
+the answer is no. we do not find evidence that peer review
+----------------------------------------------------------------------
+
+pubid: 26399179
+GOLD: yes
+PRED: no
+QUESTION:
+Eyelid-parotid metastasis: do we screen for coexisting masses?
+RAW_DECODED:
+the answer is no. we do not routinely screen for coexisting
+----------------------------------------------------------------------
+
+pubid: 21889895
+GOLD: no
+PRED: yes
+QUESTION:
+Will CT ordering practices change if we educate residents about the potential effects of radiation exposure?
+RAW_DECODED:
+the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 21569408
+GOLD: no
+PRED: yes
+QUESTION:
+Does context matter for the relationship between deprivation and all-cause mortality?
+RAW_DECODED:
+the answer is yes.
+
+explanation: a growing body of research emphasizes
+----------------------------------------------------------------------
+
+pubid: 23025584
+GOLD: no
+PRED: no
+QUESTION:
+Does stress increase imitation of drinking behavior?
+RAW_DECODED:
+the answer is no.
+
+the data in this experiment showed that the
+----------------------------------------------------------------------
+
+pubid: 23587089
+GOLD: yes
+PRED: no
+QUESTION:
+School food policy at Dutch primary schools: room for improvement?
+RAW_DECODED:
+the answer is no. (we do not provide an answer because
+----------------------------------------------------------------------
+
+pubid: 15539888
+GOLD: yes
+PRED: yes
+QUESTION:
+Is the atopy patch test with house dust mites specific for atopic dermatitis?
+RAW_DECODED:
+the answer is yes.
+
+explanation: the statement is correct because the
+----------------------------------------------------------------------
+
+pubid: 23096188
+GOLD: yes
+PRED: yes
+QUESTION:
+Juvenile osteochondritis dissecans: is it a growth disturbance of the secondary physis of the epiphysis?
+RAW_DECODED:
+the answer is yes.
+
+explanation: the answer is yes, because
+----------------------------------------------------------------------
+
+pubid: 21881325
+GOLD: yes
+PRED: yes
+QUESTION:
+Do preoperative statins reduce atrial fibrillation after coronary artery bypass grafting?
+RAW_DECODED:
+the answer is yes.
+
+explanation: statins reduce the risk of
+----------------------------------------------------------------------
+
+pubid: 19542542
+GOLD: maybe
+PRED: yes
+QUESTION:
+Is there a uniform basal endometrial gene expression profile during the implantation window in women who became pregnant in a subsequent ICSI cycle?
+RAW_DECODED:
+the answer is yes.
+
+explanation: this is an example of a
+----------------------------------------------------------------------
+
+pubid: 16872243
+GOLD: no
+PRED: no
+QUESTION:
+Can decisional algorithms replace global introspection in the individual causality assessment of spontaneously reported ADRs?
+RAW_DECODED:
+the answer is no.
+
+explanation: the answer is no. algorithms
+----------------------------------------------------------------------
+
+pubid: 15141797
+GOLD: no
+PRED: yes
+QUESTION:
+Can we rely on arterial line sampling in performing activated plasma thromboplastin time after cardiac surgery?
+RAW_DECODED:
+the answer is yes. the reason is that the aptt
+----------------------------------------------------------------------
+
+pubid: 25394614
+GOLD: maybe
+PRED: no
+QUESTION:
+Does timing of initial surfactant treatment make a difference in rates of chronic lung disease or mortality in premature infants?
+RAW_DECODED:
+the answer is no. early treatment is associated with less duration of
+----------------------------------------------------------------------
+
+pubid: 10381996
+GOLD: no
+PRED: no
+QUESTION:
+Clinician assessment for acute chest syndrome in febrile patients with sickle cell disease: is it accurate enough?
+RAW_DECODED:
+the answer is no
+
+explanation: there is currently a lack of
+----------------------------------------------------------------------
+
+pubid: 26134053
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Outcome Feedback within Emergency Medicine Training Programs: An Opportunity to Apply the Theory of Deliberate Practice?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: outcome feedback is the process of
+----------------------------------------------------------------------
+
+pubid: 25274085
+GOLD: no
+PRED: yes
+QUESTION:
+Can multiple SNP testing in BRCA2 and BRCA1 female carriers be used to improve risk prediction models in conjunction with clinical assessment?
+RAW_DECODED:
+the answer is yes. the survival model performed better with the addition
+----------------------------------------------------------------------
+
+pubid: 12098035
+GOLD: yes
+PRED: yes
+QUESTION:
+Does a special interest in laparoscopy affect the treatment of acute cholecystitis?
+RAW_DECODED:
+the answer is yes.
+
+answer (1) the statements can be
+----------------------------------------------------------------------
+
+pubid: 12963175
+GOLD: yes
+PRED: no
+QUESTION:
+Can progression of valvar aortic stenosis be predicted accurately?
+RAW_DECODED:
+the answer is no. (no data)
+----------------------------------------------------------------------
+
+pubid: 21865668
+GOLD: yes
+PRED: maybe
+QUESTION:
+Does automatic transmission improve driving behavior in older drivers?
+RAW_DECODED:
+the answer is maybe. the older group had more driving errors than
+----------------------------------------------------------------------
+
+pubid: 16510651
+GOLD: no
+PRED: maybe
+QUESTION:
+Birth characteristics and risk of low intellectual performance in early adulthood: are the associations confounded by socioeconomic factors in adolescence or familial effects?
+RAW_DECODED:
+the answer is maybe.
+
+note: for the answer to the question
+----------------------------------------------------------------------
+
+pubid: 24901580
+GOLD: yes
+PRED: no
+QUESTION:
+Is scintigraphy a guideline method in determining amputation levels in diabetic foot?
+RAW_DECODED:
+the answer is no.
+
+explanation: the most distal site displaying
+----------------------------------------------------------------------
+
+pubid: 19468282
+GOLD: maybe
+PRED: no
+QUESTION:
+Is determination between complete and incomplete traumatic spinal cord injury clinically relevant?
+RAW_DECODED:
+the answer is no.
+
+explanation: the purpose of this article is
+----------------------------------------------------------------------
+
+pubid: 21481154
+GOLD: yes
+PRED: no
+QUESTION:
+Improvements in survival of gynaecological cancer in the Anglia region of England: are these an effect of centralisation of care and use of multidisciplinary management?
+RAW_DECODED:
+the answer is no, because:
+there is no evidence that the
+----------------------------------------------------------------------
+
+pubid: 21398266
+GOLD: yes
+PRED: no
+QUESTION:
+Do symptoms matter when considering patients for phase I clinical trials?
+RAW_DECODED:
+the answer is no. older adults (oa) with advanced cancer
+----------------------------------------------------------------------
+
+pubid: 25371231
+GOLD: maybe
+PRED: no
+QUESTION:
+Is vitamin D insufficiency or deficiency related to the development of osteochondritis dissecans?
+RAW_DECODED:
+the answer is no, based on the available data. the mechanism
+----------------------------------------------------------------------
+
+pubid: 23252468
+GOLD: no
+PRED: no
+QUESTION:
+Do episodic migraineurs selectively attend to headache-related visual stimuli?
+RAW_DECODED:
+the answer is no.
+
+background
+
+episodic migraine is characterized
+----------------------------------------------------------------------
+
+pubid: 22440363
+GOLD: no
+PRED: no
+QUESTION:
+Mitral replacement or repair for functional mitral regurgitation in dilated and ischemic cardiomyopathy: is it really the same?
+RAW_DECODED:
+the answer is no, and is explained in the context of the
+----------------------------------------------------------------------
+
+pubid: 12068831
+GOLD: no
+PRED: no
+QUESTION:
+Do nontriploid partial hydatidiform moles exist?
+RAW_DECODED:
+the answer is no. triploid partial hydatidiform mo
+----------------------------------------------------------------------
+
+pubid: 20530150
+GOLD: no
+PRED: maybe
+QUESTION:
+Is cholecystectomy really an indication for concomitant splenectomy in mild hereditary spherocytosis?
+RAW_DECODED:
+the answer is maybe.
+
+this question was presented to the author of
+----------------------------------------------------------------------
+
+pubid: 21618245
+GOLD: yes
+PRED: maybe
+QUESTION:
+Does surgery or radiation therapy impact survival for patients with extrapulmonary small cell cancers?
+RAW_DECODED:
+the answer is maybe. the article makes clear that some of the
+----------------------------------------------------------------------
+
+pubid: 26085176
+GOLD: yes
+PRED: yes
+QUESTION:
+MR Diagnosis of Bone Metastases at 1.5 T and 3 T: Can STIR Imaging Be Omitted?
+RAW_DECODED:
+the answer is yes.
+
+question: is there a difference between mr
+----------------------------------------------------------------------
+
+pubid: 18158048
+GOLD: yes
+PRED: yes
+QUESTION:
+Histologic evaluation of the testicular remnant associated with the vanishing testes syndrome: is surgical management necessary?
+RAW_DECODED:
+the answer is yes, surgical management is necessary.
+----------------------------------------------------------------------
+
+pubid: 21256734
+GOLD: no
+PRED: maybe
+QUESTION:
+Does pain intensity predict a poor opioid response in cancer patients?
+RAW_DECODED:
+the answer is maybe. however, there is no association between pain
+----------------------------------------------------------------------
+
+pubid: 28027677
+GOLD: no
+PRED: no
+QUESTION:
+Do prerecorded lecture VODcasts affect lecture attendance of first-yearpre-clinical Graduate Entry to Medicine students?
+RAW_DECODED:
+the answer is no. the students in this study did not find
+----------------------------------------------------------------------
+
+pubid: 17595200
+GOLD: no
+PRED: maybe
+QUESTION:
+Is there an intrauterine influence on obesity?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: the answer is maybe because the
+----------------------------------------------------------------------
+
+pubid: 26548832
+GOLD: yes
+PRED: yes
+QUESTION:
+Assessing Patient Reported Outcomes Measures via Phone Interviews Versus Patient Self-Survey in the Clinic: Are We Measuring the Same Thing?
+RAW_DECODED:
+the answer is yes.
+
+comment: in the article, there are
+----------------------------------------------------------------------
+
+pubid: 15879722
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is cytokeratin immunoreactivity useful in the diagnosis of short-segment Barrett's oesophagus in Korea?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: the current study evaluated the utility
+----------------------------------------------------------------------
+
+pubid: 27554179
+GOLD: no
+PRED: no
+QUESTION:
+Is routine dissection of the station 9 lymph nodes really necessary for primary lung cancer?
+RAW_DECODED:
+the answer is no.
+
+mesh terms: adult, aged
+----------------------------------------------------------------------
+
+pubid: 15381614
+GOLD: maybe
+PRED: no
+QUESTION:
+Cutaneous melanoma in a multiethnic population: is this a different disease?
+RAW_DECODED:
+the answer is no. the survival is the same between the
+----------------------------------------------------------------------
+
+pubid: 22012962
+GOLD: yes
+PRED: yes
+QUESTION:
+Marital status, living arrangement and mortality: does the association vary by gender?
+RAW_DECODED:
+the answer is yes. marital status, living arrangement and mortality
+----------------------------------------------------------------------
+
+pubid: 18948835
+GOLD: yes
+PRED: no
+QUESTION:
+Does somatostatin confer insulinostatic effects of neuromedin u in the rat pancreas?
+RAW_DECODED:
+the answer is no.
+
+explanation: neuromedin u has an
+----------------------------------------------------------------------
+
+pubid: 18435678
+GOLD: no
+PRED: yes
+QUESTION:
+Kell alloimmunization in pregnancy: associated with fetal thrombocytopenia?
+RAW_DECODED:
+the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 19268855
+GOLD: no
+PRED: yes
+QUESTION:
+Application of computer-aided diagnosis (CAD) in MR-mammography (MRM): do we really need whole lesion time curve distribution analysis?
+RAW_DECODED:
+the answer is yes. we should not accept that a lesion with
+----------------------------------------------------------------------
+
+pubid: 12238307
+GOLD: no
+PRED: no
+QUESTION:
+Vaccine protection in the elderly: are Austrian seniors adequately protected by vaccinations?
+RAW_DECODED:
+the answer is no.
+
+• antibody concentrations against tetanus,
+----------------------------------------------------------------------
+
+pubid: 20684175
+GOLD: yes
+PRED: no
+QUESTION:
+Vitamin D supplementation and regulatory T cells in apparently healthy subjects: vitamin D treatment for autoimmune diseases?
+RAW_DECODED:
+the answer is no.
+
+explanation: vitamin d is essential for normal
+----------------------------------------------------------------------
+
+pubid: 27216167
+GOLD: yes
+PRED: no
+QUESTION:
+Gynecological cancer alarm symptoms: is contact with specialist care associated with lifestyle and socioeconomic status?
+RAW_DECODED:
+the answer is no.
+
+explanation: gynecological alarm symptoms refer
+----------------------------------------------------------------------
+
+pubid: 19852337
+GOLD: yes
+PRED: no
+QUESTION:
+Does elective re-siting of intravenous cannulae decrease peripheral thrombophlebitis?
+RAW_DECODED:
+the answer is no, elective re-siting of intravenous cann
+----------------------------------------------------------------------
+
+pubid: 22680064
+GOLD: yes
+PRED: maybe
+QUESTION:
+Can third trimester ultrasound predict the presentation of the first twin at delivery?
+RAW_DECODED:
+the answer is maybe.
+
+• first, it is important to note
+----------------------------------------------------------------------
+
+pubid: 25417760
+GOLD: no
+PRED: no
+QUESTION:
+Risk factors for major depression during midlife among a community sample of women with and without prior major depression: are they the same or different?
+RAW_DECODED:
+the answer is no. we have to keep in mind that we
+----------------------------------------------------------------------
+
+pubid: 22365295
+GOLD: no
+PRED: no
+QUESTION:
+Totally implantable venous access device placement by interventional radiologists: are prophylactic antibiotics necessary?
+RAW_DECODED:
+the answer is no.
+
+explanation: the number of patients receiving antibiotic
+----------------------------------------------------------------------
+
+pubid: 15125825
+GOLD: yes
+PRED: maybe
+QUESTION:
+Starting insulin in type 2 diabetes: continue oral hypoglycemic agents?
+RAW_DECODED:
+the answer is maybe.
+
+the question is asking whether insulin monotherapy
+----------------------------------------------------------------------
+
+pubid: 24652474
+GOLD: no
+PRED: no
+QUESTION:
+Clinical identifiers for early-stage primary/idiopathic adhesive capsulitis: are we seeing the real picture?
+RAW_DECODED:
+the answer is no. we were not able to detect any clinical
+----------------------------------------------------------------------
+
+pubid: 24947183
+GOLD: yes
+PRED: no
+QUESTION:
+Does delaying surgery in immature adolescent idiopathic scoliosis patients with progressive curve, lead to addition of fusion levels?
+RAW_DECODED:
+the answer is no. delayed surgery does not lead to addition
+----------------------------------------------------------------------
+
+pubid: 25779009
+GOLD: maybe
+PRED: yes
+QUESTION:
+Bactericidal activity of 3 cutaneous/mucosal antiseptic solutions in the presence of interfering substances: Improvement of the NF EN 13727 European Standard?
+RAW_DECODED:
+the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 17105833
+GOLD: maybe
+PRED: no
+QUESTION:
+Empiric treatment of uncomplicated urinary tract infection with fluoroquinolones in older women in Israel: another lost treatment option?
+RAW_DECODED:
+the answer is no, because the resistance rates of e. coli
+----------------------------------------------------------------------
+
+pubid: 27338535
+GOLD: no
+PRED: yes
+QUESTION:
+Do risk calculators accurately predict surgical site occurrences?
+RAW_DECODED:
+the answer is yes. risk calculators are accurate and should be
+----------------------------------------------------------------------
+
+pubid: 27690714
+GOLD: yes
+PRED: yes
+QUESTION:
+Can EMS Providers Provide Appropriate Tidal Volumes in a Simulated Adult-sized Patient with a Pediatric-sized Bag-Valve-Mask?
+RAW_DECODED:
+the answer is yes. the tidal volume was higher for the pediatric
+----------------------------------------------------------------------
+
+pubid: 21346501
+GOLD: yes
+PRED: yes
+QUESTION:
+Can students' scores on preclerkship clinical performance examinations predict that they will fail a senior clinical performance examination?
+RAW_DECODED:
+the answer is yes.
+
+explanation: an examination is considered to be
+----------------------------------------------------------------------
+
+pubid: 24964725
+GOLD: yes
+PRED: maybe
+QUESTION:
+Recovery Outcome Measures: Is There a Place for Culture, Attitudes, and Faith?
+RAW_DECODED:
+the answer is maybe. we need to look at the data and
+----------------------------------------------------------------------
+
+pubid: 18708308
+GOLD: no
+PRED: yes
+QUESTION:
+Can surgeon familiarization with current evidence lead to a change in practice?
+RAW_DECODED:
+the answer is yes. this was the case in this study.
+----------------------------------------------------------------------
+
+pubid: 11759976
+GOLD: no
+PRED: yes
+QUESTION:
+Advanced epithelial ovarian carcinoma in Thai women: should we continue to offer second-look laparotomy?
+RAW_DECODED:
+the answer is yes.
+
+explanation: the response is "yes"
+----------------------------------------------------------------------
+
+pubid: 16319544
+GOLD: no
+PRED: no
+QUESTION:
+Is high-sensitivity C-reactive protein associated with carotid atherosclerosis in healthy Koreans?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 20674150
+GOLD: yes
+PRED: maybe
+QUESTION:
+Validation of the 2009 TNM version in a large multi-institutional cohort of patients treated for renal cell carcinoma: are further improvements needed?
+RAW_DECODED:
+the answer is maybe.
+
+purpose: the tnm staging system for
+----------------------------------------------------------------------
+
+pubid: 25336163
+GOLD: no
+PRED: no
+QUESTION:
+Are interstitial fluid concentrations of meropenem equivalent to plasma concentrations in critically ill patients receiving continuous renal replacement therapy?
+RAW_DECODED:
+the answer is no. in fact, meropenem is administered
+----------------------------------------------------------------------
+
+pubid: 25887165
+GOLD: yes
+PRED: no
+QUESTION:
+Does Sensation Return to the Nasal Tip After Microfat Grafting?
+RAW_DECODED:
+the answer is no.
+
+the reason for no is that we found
+----------------------------------------------------------------------
+
+pubid: 12947068
+GOLD: yes
+PRED: no
+QUESTION:
+Do older men benefit from curative therapy of localized prostate cancer?
+RAW_DECODED:
+the answer is no. the decision is not between ebrt and
+----------------------------------------------------------------------
+
+pubid: 16776337
+GOLD: yes
+PRED: maybe
+QUESTION:
+Pituitary apoplexy: do histological features influence the clinical presentation and outcome?
+RAW_DECODED:
+the answer is maybe.
+
+this question has been viewed 1321
+----------------------------------------------------------------------
+
+pubid: 22668852
+GOLD: no
+PRED: yes
+QUESTION:
+Do African American women require fewer calories to maintain weight?
+RAW_DECODED:
+the answer is yes.
+
+reason: aa women have a lower resting
+----------------------------------------------------------------------
+
+pubid: 25251991
+GOLD: yes
+PRED: yes
+QUESTION:
+Emergency double-balloon enteroscopy combined with real-time viewing of capsule endoscopy: a feasible combined approach in acute overt-obscure gastrointestinal bleeding?
+RAW_DECODED:
+the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 7497757
+GOLD: no
+PRED: no
+QUESTION:
+Cardiopulmonary bypass temperature does not affect postoperative euthyroid sick syndrome?
+RAW_DECODED:
+the answer is no
+
+explanation: "in addition, the patient
+----------------------------------------------------------------------
+
+pubid: 8262881
+GOLD: yes
+PRED: no
+QUESTION:
+Body dysmorphic disorder: does it have a psychotic subtype?
+RAW_DECODED:
+the answer is no. it is difficult to differentiate a bdd
+----------------------------------------------------------------------
+
+pubid: 11943048
+GOLD: yes
+PRED: yes
+QUESTION:
+Does receipt of hospice care in nursing homes improve the management of pain at the end of life?
+RAW_DECODED:
+the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 20306735
+GOLD: yes
+PRED: no
+QUESTION:
+Fulfilling human resources development goal in West Africa: can the training of ophthalmologist diplomates be improved?
+RAW_DECODED:
+the answer is no.
+the reason is the following:
+1.
+----------------------------------------------------------------------
+
+pubid: 23414523
+GOLD: no
+PRED: no
+QUESTION:
+Does binge drinking during early pregnancy increase the risk of psychomotor deficits?
+RAW_DECODED:
+the answer is no.
+
+• 1. what is the potential
+----------------------------------------------------------------------
+
+pubid: 11882828
+GOLD: yes
+PRED: yes
+QUESTION:
+Does tranexamic acid reduce desmopressin-induced hyperfibrinolysis?
+RAW_DECODED:
+the answer is yes.
+
+explanation: in a prospective, randomized,
+----------------------------------------------------------------------
+
+pubid: 24939676
+GOLD: no
+PRED: no
+QUESTION:
+Does ultrasound-scored synovitis depend on the pharmacokinetics of subcutaneous anti-TNF agents in patients with rheumatoid arthritis?
+RAW_DECODED:
+the answer is no.
+
+explanation: if it were yes, then
+----------------------------------------------------------------------
+
+pubid: 17076590
+GOLD: maybe
+PRED: yes
+QUESTION:
+Counter sampling combined with medical provider education: do they alter prescribing behavior?
+RAW_DECODED:
+the answer is yes.
+
+explanation: the medical providers in the intervention
+----------------------------------------------------------------------
+
+pubid: 21745056
+GOLD: yes
+PRED: no
+QUESTION:
+Global Longitudinal Pathway: has medical education curriculum influenced medical students' skills and attitudes toward culturally diverse populations?
+RAW_DECODED:
+the answer is no.
+
+explanation: although students in a medical education
+----------------------------------------------------------------------
+
+pubid: 22979954
+GOLD: yes
+PRED: no
+QUESTION:
+Failed IUD insertions in community practice: an under-recognized problem?
+RAW_DECODED:
+the answer is no, i think that the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 22955530
+GOLD: yes
+PRED: no
+QUESTION:
+Type II supracondylar humerus fractures: can some be treated nonoperatively?
+RAW_DECODED:
+the answer is no. based on our review of the literature,
+----------------------------------------------------------------------
+
+pubid: 18507507
+GOLD: yes
+PRED: yes
+QUESTION:
+The promise of specialty pharmaceuticals: are they worth the price?
+RAW_DECODED:
+the answer is yes. the answer is no. the answer is
+----------------------------------------------------------------------
+
+pubid: 17323047
+GOLD: no
+PRED: maybe
+QUESTION:
+Does invasive diagnosis of nosocomial pneumonia during off-hours delay treatment?
+RAW_DECODED:
+the answer is maybe because of the lack of clear data.
+
+background
+----------------------------------------------------------------------
+
+pubid: 24851767
+GOLD: no
+PRED: yes
+QUESTION:
+Undescended testes: does age at orchiopexy affect survival of the testis?
+RAW_DECODED:
+the answer is "maybe." the optimal age at which to perform
+----------------------------------------------------------------------
+
+pubid: 12006913
+GOLD: no
+PRED: maybe
+QUESTION:
+Do lipids, blood pressure, diabetes, and smoking confer equal risk of myocardial infarction in women as in men?
+RAW_DECODED:
+the answer is maybe.
+
+in conclusion, the study shows that women
+----------------------------------------------------------------------
+
+pubid: 8245806
+GOLD: yes
+PRED: yes
+QUESTION:
+Does family practice at residency teaching sites reflect community practice?
+RAW_DECODED:
+the answer is yes, no, or maybe.
+----------------------------------------------------------------------
+
+pubid: 17691856
+GOLD: maybe
+PRED: maybe
+QUESTION:
+Midwives' competence: is it affected by working in a rural location?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: the question was "midwives
+----------------------------------------------------------------------
+
+pubid: 15222284
+GOLD: yes
+PRED: no
+QUESTION:
+The effective orifice area/patient aortic annulus area ratio: a better way to compare different bioprostheses?
+RAW_DECODED:
+the answer is no, not better. the eoa/paa
+----------------------------------------------------------------------
+
+pubid: 25501465
+GOLD: no
+PRED: no
+QUESTION:
+Evaluation of pediatric VCUG at an academic children's hospital: is the radiographic scout image necessary?
+RAW_DECODED:
+the answer is no
+
+explanation: the radiographic scout image is
+----------------------------------------------------------------------
+
+pubid: 16414216
+GOLD: no
+PRED: maybe
+QUESTION:
+Are endometrial polyps from pre-menopausal women similar to post-menopausal women?
+RAW_DECODED:
+the answer is maybe.
+
+background: pre-menopausal women are
+----------------------------------------------------------------------
+
+pubid: 19155657
+GOLD: maybe
+PRED: no
+QUESTION:
+Does accompanying metabolic syndrome contribute to heart dimensions in hypertensive patients?
+RAW_DECODED:
+the answer is no.
+
+• [1]: https://quizlet
+----------------------------------------------------------------------
+
+pubid: 27050489
+GOLD: yes
+PRED: yes
+QUESTION:
+The Prevalence of Incidentally Detected Idiopathic Misty Mesentery on Multidetector Computed Tomography: Can Obesity Be the Triggering Cause?
+RAW_DECODED:
+the answer is yes.
+
+purpose: to assess the prevalence of
+----------------------------------------------------------------------
+
+pubid: 24977765
+GOLD: yes
+PRED: yes
+QUESTION:
+Are pediatric concussion patients compliant with discharge instructions?
+RAW_DECODED:
+the answer is yes
+
+explanation: concussions are commonly diagnosed in
+----------------------------------------------------------------------
+
+pubid: 19130332
+GOLD: yes
+PRED: yes
+QUESTION:
+Is the zeolite hemostatic agent beneficial in reducing blood loss during arterial injury?
+RAW_DECODED:
+the answer is yes, zeolite hemostatic agents have
+----------------------------------------------------------------------
+
+pubid: 23949294
+GOLD: yes
+PRED: maybe
+QUESTION:
+Treatment as prevention in resource-limited settings: is it feasible to maintain HIV viral load suppression over time?
+RAW_DECODED:
+the answer is maybe
+
+explanation: we found that the proportion of
+----------------------------------------------------------------------
+
+pubid: 18926458
+GOLD: no
+PRED: no
+QUESTION:
+Are octogenarians at high risk for carotid endarterectomy?
+RAW_DECODED:
+the answer is no. carotid endarterectomy is safe
+----------------------------------------------------------------------
+
+pubid: 10749257
+GOLD: yes
+PRED: no
+QUESTION:
+Has the mammography quality standards act affected the mammography quality in North Carolina?
+RAW_DECODED:
+the answer is no.
+
+explanation: the question is a bit complicated
+----------------------------------------------------------------------
+
+pubid: 17610439
+GOLD: yes
+PRED: no
+QUESTION:
+Do hospitals provide lower quality care on weekends?
+RAW_DECODED:
+the answer is no. weekend hospital admissions have similar quality of care
+----------------------------------------------------------------------
+
+pubid: 26859535
+GOLD: no
+PRED: no
+QUESTION:
+Screening History Among Women with Invasive Cervical Cancer in an Academic Medical Center: Will We Miss Cancers Following Updated Guidelines?
+RAW_DECODED:
+the answer is no
+
+why?
+
+screening guidelines for cervical cancer
+----------------------------------------------------------------------
+
+pubid: 25446909
+GOLD: yes
+PRED: no
+QUESTION:
+Oral mucocele/ranula: Another human immunodeficiency virus-related salivary gland disease?
+RAW_DECODED:
+the answer is no.
+
+the following statement is incorrect, or is
+----------------------------------------------------------------------
+
+pubid: 17220021
+GOLD: yes
+PRED: yes
+QUESTION:
+Is there an increase in the incidence of gbs carrier rates among pregnant women in northern Israel?
+RAW_DECODED:
+the answer is yes.
+
+the study found an increased prevalence of g
+----------------------------------------------------------------------
+
+pubid: 10158597
+GOLD: yes
+PRED: no
+QUESTION:
+Does a dedicated discharge coordinator improve the quality of hospital discharge?
+RAW_DECODED:
+the answer is no
+
+explanation: the article's data suggests that
+----------------------------------------------------------------------
+
+pubid: 21198823
+GOLD: no
+PRED: yes
+QUESTION:
+Can dobutamine stress echocardiography induce cardiac troponin elevation?
+RAW_DECODED:
+the answer is yes.
+
+explanation: 
+
+we included 57 patients
+----------------------------------------------------------------------
+
+pubid: 17259061
+GOLD: yes
+PRED: yes
+QUESTION:
+Cigarettes and cinema: does parental restriction of R-rated movie viewing reduce adolescent smoking susceptibility?
+RAW_DECODED:
+the answer is yes.
+
+explanation: the study reported a significant correlation
+----------------------------------------------------------------------
+
+pubid: 18375490
+GOLD: no
+PRED: no
+QUESTION:
+Are laboratories reporting serum quantitative hCG results correctly?
+RAW_DECODED:
+the answer is no.
+
+explanation: for a clinical laboratory to accurately
+----------------------------------------------------------------------
+
+pubid: 24142776
+GOLD: yes
+PRED: no
+QUESTION:
+Steroids in aminoglycoside-containing ear drops: do they reduce cochlear toxicity?
+RAW_DECODED:
+the answer is no.
+
+## references
+
+1. hennig
+----------------------------------------------------------------------
+
+pubid: 18388848
+GOLD: yes
+PRED: no
+QUESTION:
+Does having a regular primary care clinician improve quality of preventive care for young children?
+RAW_DECODED:
+the answer is no.
+
+explanation:
+----------------------------------------------------------------------
+
+pubid: 22251324
+GOLD: no
+PRED: no
+QUESTION:
+Does performance in selection processes predict performance as a dental student?
+RAW_DECODED:
+the answer is not clear because the study has not been done yet
+----------------------------------------------------------------------
+
+pubid: 27896825
+GOLD: yes
+PRED: yes
+QUESTION:
+Is it time to reconsider lobectomy in low-risk paediatric thyroid cancer?
+RAW_DECODED:
+the answer is yes! lobectomy is indicated for low-risk wd
+----------------------------------------------------------------------
+
+pubid: 22117569
+GOLD: yes
+PRED: yes
+QUESTION:
+Is an advance care planning model feasible in community palliative care?
+RAW_DECODED:
+the answer is yes. there are some challenges to be aware of
+----------------------------------------------------------------------
+
+pubid: 25787073
+GOLD: no
+PRED: no
+QUESTION:
+Do preoperative serum C-reactive protein levels predict the definitive pathological stage in patients with clinically localized prostate cancer?
+RAW_DECODED:
+the answer is no. a negative crp value does not predict
+----------------------------------------------------------------------
+
+pubid: 14631523
+GOLD: no
+PRED: yes
+QUESTION:
+Sub-classification of low-grade cerebellar astrocytoma: is it clinically meaningful?
+RAW_DECODED:
+the answer is yes.
+
+explanation: cerebellar astrocy
+----------------------------------------------------------------------
+
+pubid: 26717802
+GOLD: no
+PRED: maybe
+QUESTION:
+After CLASS--Is a voluntary public insurance program a realistic way to meet the long-term support and service needs of adults with disabilities?
+RAW_DECODED:
+the answer is maybe, but this is a difficult question to answer
+----------------------------------------------------------------------
+
+pubid: 23810330
+GOLD: yes
+PRED: yes
+QUESTION:
+Is intraoperative neuromonitoring associated with better functional outcome in patients undergoing open TME?
+RAW_DECODED:
+the answer is yes.
+
+references: none.
+
+### references
+
+1
+----------------------------------------------------------------------
+
+pubid: 19027440
+GOLD: yes
+PRED: yes
+QUESTION:
+Can we predict which head and neck cancer survivors develop fears of recurrence?
+RAW_DECODED:
+the answer is yes. the risk of developing fears of recurrence is
+----------------------------------------------------------------------
+
+pubid: 24446763
+GOLD: no
+PRED: maybe
+QUESTION:
+The secular growth acceleration: does it appear during fetal life?
+RAW_DECODED:
+the answer is maybe.
+
+references:
+
+this is one of many scientific
+----------------------------------------------------------------------
+
+pubid: 9444542
+GOLD: no
+PRED: maybe
+QUESTION:
+Does hippocampal atrophy on MRI predict cognitive decline?
+RAW_DECODED:
+the answer is maybe, depending on the context.
+
+contexts:
+----------------------------------------------------------------------
+
+pubid: 23389866
+GOLD: no
+PRED: no
+QUESTION:
+Chemoradiotherapy in the management of locally advanced squamous cell carcinoma esophagus: is surgical resection required?
+RAW_DECODED:
+the answer is no, but the authors should have stated the risk
+----------------------------------------------------------------------
+
+pubid: 19142546
+GOLD: no
+PRED: yes
+QUESTION:
+Does quantitative left ventricular regional wall motion change after fibrous tissue resection in endomyocardial fibrosis?
+RAW_DECODED:
+the answer is yes.
+
+explanation: left ventricular regional wall motion
+----------------------------------------------------------------------
+
+pubid: 9107172
+GOLD: yes
+PRED: maybe
+QUESTION:
+Bridge experience with long-term implantable left ventricular assist devices. Are they an alternative to transplantation?
+RAW_DECODED:
+the answer is maybe. this is a well-designed, prospective study
+----------------------------------------------------------------------
+
+pubid: 9363244
+GOLD: yes
+PRED: no
+QUESTION:
+Does occupational nuclear power plant radiation affect conception and pregnancy?
+RAW_DECODED:
+the answer is not yes. the study does not establish that occupational
+----------------------------------------------------------------------
+
+pubid: 10411439
+GOLD: yes
+PRED: no
+QUESTION:
+Lloyd-Davies position with Trendelenburg--a disaster waiting to happen?
+RAW_DECODED:
+the answer is'maybe'. the answer is not yes because of
+----------------------------------------------------------------------
+
+pubid: 21166749
+GOLD: no
+PRED: no
+QUESTION:
+Is patient outcome compromised during the initial experience with robot-assisted radical cystectomy?
+RAW_DECODED:
+the answer is no.
+
+explanation: surgical skills are difficult to master
+----------------------------------------------------------------------
+
+pubid: 27818079
+GOLD: yes
+PRED: no
+QUESTION:
+Is the Retromandibular Transparotid Approach a Reliable Option for the Surgical Treatment of Condylar Fractures?
+RAW_DECODED:
+the answer is no, according to this study.
+
+the article is
+----------------------------------------------------------------------
+
+pubid: 25982163
+GOLD: no
+PRED: no
+QUESTION:
+Appendectomy timing: Will delayed surgery increase the complications?
+RAW_DECODED:
+the answer is no. this study supports our previous finding that early
+----------------------------------------------------------------------
+
+pubid: 20353735
+GOLD: no
+PRED: maybe
+QUESTION:
+Treatment of vitamin D deficiency in CKD patients with ergocalciferol: are current K/DOQI treatment guidelines adequate?
+RAW_DECODED:
+the answer is maybe.
+
+discussion: based on the available data,
+----------------------------------------------------------------------
+
+pubid: 24630333
+GOLD: no
+PRED: yes
+QUESTION:
+Comparing femoral version after intramedullary nailing performed by trauma-trained and non-trauma trained surgeons: is there a difference?
+RAW_DECODED:
+the answer is yes. the difference was not significant.
+
+key words
+----------------------------------------------------------------------
+
+pubid: 27096199
+GOLD: no
+PRED: no
+QUESTION:
+Does Viral Co-Infection Influence the Severity of Acute Respiratory Infection in Children?
+RAW_DECODED:
+the answer is no. viral co-infection in children with
+----------------------------------------------------------------------
+
+pubid: 22519710
+GOLD: no
+PRED: no
+QUESTION:
+Will clinical studies elucidate the connection between the length of storage of transfused red blood cells and clinical outcomes?
+RAW_DECODED:
+the answer is no, since it has been shown that the length
+----------------------------------------------------------------------
+
+pubid: 12040336
+GOLD: no
+PRED: maybe
+QUESTION:
+Cardiogenic shock complicating acute myocardial infarction in elderly patients: does admission to a tertiary center improve survival?
+RAW_DECODED:
+the answer is maybe, since there was not enough evidence to support
+----------------------------------------------------------------------
+
+pubid: 15918864
+GOLD: yes
+PRED: maybe
+QUESTION:
+Learning needs of postpartum women: does socioeconomic status matter?
+RAW_DECODED:
+the answer is maybe, because of the following points.
+
+1.
+----------------------------------------------------------------------
+
+pubid: 23601294
+GOLD: no
+PRED: maybe
+QUESTION:
+Pitfalls in urinary stone identification using CT attenuation values: are we getting the same information on different scanner models?
+RAW_DECODED:
+the answer is maybe or no, as the answer depends on the
+----------------------------------------------------------------------
+
+pubid: 21361755
+GOLD: no
+PRED: yes
+QUESTION:
+Laminoplasty outcomes: is there a difference between patients with degenerative stenosis and those with ossification of the posterior longitudinal ligament?
+RAW_DECODED:
+the answer is yes. the authors conclude that their study shows that
+----------------------------------------------------------------------
+
+pubid: 9003088
+GOLD: yes
+PRED: no
+QUESTION:
+Immunohistochemical assessment of steroid hormone receptors in tissues of the anal canal. Implications for anal incontinence?
+RAW_DECODED:
+the answer is no. the above is not correct. please check
+----------------------------------------------------------------------
+
+pubid: 23337545
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is acute fibrinous and organizing pneumonia the expression of immune dysregulation?
+RAW_DECODED:
+the answer is maybe. it is possible that afop is a
+----------------------------------------------------------------------
+
+pubid: 10490564
+GOLD: yes
+PRED: no
+QUESTION:
+Hypotension in patients with coronary disease: can profound hypotensive events cause myocardial ischaemic events?
+RAW_DECODED:
+the answer is no. hypotensive events, defined as a
+----------------------------------------------------------------------
+
+pubid: 23375036
+GOLD: yes
+PRED: no
+QUESTION:
+An HIV1/2 point of care test on sputum for screening TB/HIV co-infection in Central India - Will it work?
+RAW_DECODED:
+the answer is no.  this test will not work in
+----------------------------------------------------------------------
+
+pubid: 11555508
+GOLD: yes
+PRED: maybe
+QUESTION:
+Do inhaled corticosteroids affect perception of dyspnea during bronchoconstriction in asthma?
+RAW_DECODED:
+the answer is maybe, since the study did not provide any information
+----------------------------------------------------------------------
+
+pubid: 16778275
+GOLD: no
+PRED: yes
+QUESTION:
+Is routine chest radiography after transbronchial biopsy necessary?
+RAW_DECODED:
+the answer is yes. a chest radiograph should be performed within
+----------------------------------------------------------------------
+
+pubid: 27136599
+GOLD: yes
+PRED: no
+QUESTION:
+Is it safe to perform rectal anastomosis in gynaecological debulking surgery without a diverting stoma?
+RAW_DECODED:
+the answer is no. this would be a potential complication.
+
+why
+----------------------------------------------------------------------
+
+pubid: 27050505
+GOLD: yes
+PRED: maybe
+QUESTION:
+Does angiotensin-converting enzyme-1 (ACE-1) gene polymorphism lead to chronic kidney disease among hypertensive patients?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: ace-1 is the enzyme
+----------------------------------------------------------------------
+
+pubid: 18403945
+GOLD: yes
+PRED: yes
+QUESTION:
+Does laparoscopic antireflux surgery improve quality of life in patients whose gastro-oesophageal reflux disease is well controlled with medical therapy?
+RAW_DECODED:
+the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 11149643
+GOLD: yes
+PRED: no
+QUESTION:
+Is semi-closed endarterectomy of the superficial femoral artery combined with a short venous bypass in case of insufficient venous material an acceptable alternative for limb-threatening ischemia?
+RAW_DECODED:
+the answer is no.
+
+explanation: this study described semi-closed
+----------------------------------------------------------------------
+
+pubid: 26200172
+GOLD: yes
+PRED: no
+QUESTION:
+Can biofeedback training of psychophysiological responses enhance athletes' sport performance?
+RAW_DECODED:
+the answer is no.
+----------------------------------------------------------------------
+
+pubid: 18783922
+GOLD: yes
+PRED: maybe
+QUESTION:
+Do cytokines have any role in epilepsy?
+RAW_DECODED:
+the answer is maybe. there are several cytokines involved in epile
+----------------------------------------------------------------------
+
+pubid: 12684740
+GOLD: yes
+PRED: yes
+QUESTION:
+Cue-induced behavioural activation: a novel model of alcohol craving?
+RAW_DECODED:
+the answer is yes (1/1)
+----------------------------------------------------------------------
+
+pubid: 25155638
+GOLD: yes
+PRED: maybe
+QUESTION:
+Can routine offering of influenza vaccination in office-based settings reduce racial and ethnic disparities in adult influenza vaccination?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: this study estimates that eliminating routine
+----------------------------------------------------------------------
+
+pubid: 26820719
+GOLD: yes
+PRED: no
+QUESTION:
+Colorectal cancer in young patients: is it a distinct clinical entity?
+RAW_DECODED:
+the answer is no, the disease is not a distinct clinical entity
+----------------------------------------------------------------------
+
+pubid: 21080127
+GOLD: maybe
+PRED: no
+QUESTION:
+Can implant retention be recommended for treatment of infected TKA?
+RAW_DECODED:
+the answer is no. there is no study that support retention of
+----------------------------------------------------------------------
+
+pubid: 18086459
+GOLD: yes
+PRED: no
+QUESTION:
+Long-term significance of postictal psychotic episodes II. Are they predictive of interictal psychotic episodes?
+RAW_DECODED:
+the answer is no, and the next question should be why it
+----------------------------------------------------------------------
+
+pubid: 11978239
+GOLD: yes
+PRED: yes
+QUESTION:
+Do primary care physicians underprescribe antibiotics for peptic ulcer disease?
+RAW_DECODED:
+the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 10798511
+GOLD: no
+PRED: no
+QUESTION:
+Blunt trauma in intoxicated patients: is computed tomography of the abdomen always necessary?
+RAW_DECODED:
+the answer is no.
+
+explanation: the study reports the results of
+----------------------------------------------------------------------
+
+pubid: 15477551
+GOLD: yes
+PRED: no
+QUESTION:
+Chronic progressive cervical myelopathy with HTLV-I infection: Variant form of HAM/TSP?
+RAW_DECODED:
+the answer is no. htlv-1 is a retrov
+----------------------------------------------------------------------
+
+pubid: 19327500
+GOLD: yes
+PRED: no
+QUESTION:
+Gender difference in survival of resected non-small cell lung cancer: histology-related phenomenon?
+RAW_DECODED:
+the answer is no. the reason is because the two groups are
+----------------------------------------------------------------------
+
+pubid: 24614789
+GOLD: yes
+PRED: no
+QUESTION:
+Is lumbar drainage of postoperative cerebrospinal fluid fistula after spine surgery effective?
+RAW_DECODED:
+the answer is no.
+
+explanation: the choice of the therapeutic strategy
+----------------------------------------------------------------------
+
+pubid: 23283159
+GOLD: yes
+PRED: no
+QUESTION:
+Is obesity a risk factor for wheezing among adolescents?
+RAW_DECODED:
+the answer is no.
+
+explanation: obesity at the start of adolescence
+----------------------------------------------------------------------
+
+pubid: 16465002
+GOLD: yes
+PRED: no
+QUESTION:
+Dose end-tidal carbon dioxide measurement correlate with arterial carbon dioxide in extremely low birth weight infants in the first week of life?
+RAW_DECODED:
+the answer is no, because this question is based on a retrospective
+----------------------------------------------------------------------
+
+pubid: 24191126
+GOLD: yes
+PRED: yes
+QUESTION:
+Is CA72-4 a useful biomarker in differential diagnosis between ovarian endometrioma and epithelial ovarian cancer?
+RAW_DECODED:
+the answer is yes, it is a useful biomarker.
+
+explanation
+----------------------------------------------------------------------
+
+pubid: 25218577
+GOLD: yes
+PRED: maybe
+QUESTION:
+Preservation of the PCL when performing cruciate-retaining TKA: Is the tibial tuberosity a reliable predictor of the PCL footprint location?
+RAW_DECODED:
+the answer is maybe. there is a lot of evidence that the
+----------------------------------------------------------------------
+
+pubid: 20488985
+GOLD: no
+PRED: yes
+QUESTION:
+The English antibiotic awareness campaigns: did they change the public's knowledge of and attitudes to antibiotic use?
+RAW_DECODED:
+the answer is yes
+
+explanation: we have found no evidence that
+----------------------------------------------------------------------
+
+pubid: 11567820
+GOLD: no
+PRED: maybe
+QUESTION:
+Does increased nerve length within the treatment volume improve trigeminal neuralgia radiosurgery?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: for trigeminal neuralgia
+----------------------------------------------------------------------
+
+pubid: 19100463
+GOLD: yes
+PRED: maybe
+QUESTION:
+Is the affinity column-mediated immunoassay method suitable as an alternative to the microparticle enzyme immunoassay method as a blood tacrolimus assay?
+RAW_DECODED:
+the answer is maybe. the results of the study indicate that the
+----------------------------------------------------------------------
+
+pubid: 12769830
+GOLD: no
+PRED: yes
+QUESTION:
+Should tumor depth be included in prognostication of soft tissue sarcoma?
+RAW_DECODED:
+the answer is yes.
+----------------------------------------------------------------------
+
+pubid: 10331115
+GOLD: yes
+PRED: yes
+QUESTION:
+Is amoxapine an atypical antipsychotic?
+RAW_DECODED:
+the answer is yes. amoxapine does have, at
+----------------------------------------------------------------------
+
+pubid: 17483607
+GOLD: yes
+PRED: maybe
+QUESTION:
+Does topical N-acetylcysteine application after myringotomy cause severe otorrhea?
+RAW_DECODED:
+the answer is maybe. the use of topical n-acetylc
+----------------------------------------------------------------------
+
+pubid: 28056802
+GOLD: yes
+PRED: no
+QUESTION:
+Is non-HDL-cholesterol a better predictor of long-term outcome in patients after acute myocardial infarction compared to LDL-cholesterol?
+RAW_DECODED:
+the answer is no. there is no statistically significant association between non
+----------------------------------------------------------------------
+
+pubid: 11776681
+GOLD: yes
+PRED: no
+QUESTION:
+Is intrapartum vibroacoustic stimulation an effective predictor of fetal acidosis?
+RAW_DECODED:
+the answer is no. there is no evidence that vas is
+----------------------------------------------------------------------
+
+pubid: 24922528
+GOLD: no
+PRED: no
+QUESTION:
+The association of puberty and young adolescent alcohol use: do parents have a moderating role?
+RAW_DECODED:
+the answer is no, because puberty and alcohol use were both statistically
+----------------------------------------------------------------------
+
+pubid: 8200238
+GOLD: no
+PRED: no
+QUESTION:
+Must early postoperative oral intake be limited to laparoscopy?
+RAW_DECODED:
+the answer is no. it is well established that a clear liquid
+----------------------------------------------------------------------
+
+pubid: 10593212
+GOLD: no
+PRED: maybe
+QUESTION:
+Does loss of consciousness predict neuropsychological decrements after concussion?
+RAW_DECODED:
+the answer is maybe.
+
+explanation: the goal of this study was
+----------------------------------------------------------------------
+
+
+
+======================================================================
+=== FINAL METRICS SUMMARY ===
+Accuracy: 0.3900
+Macro-F1: 0.3400
+Macro-F1 95% bootstrap CI (n_boot=1000): [0.2986, 0.3776]
+
+=== Prediction Distribution ===
+  yes: 165 (33.00%)
+  no: 234 (46.80%)
+  maybe: 101 (20.20%)
+
+=== Ground Truth Distribution ===
+  yes: 275 (55.00%)
+  no: 159 (31.80%)
+  maybe: 66 (13.20%)
+
+=== Confusion Matrix (rows=true, cols=pred) ===
+Labels: yes, no, maybe
+[[101 116  58]
+ [ 46  82  31]
+ [ 18  36  12]]
+
+=== Per-class Precision/Recall/F1/Support ===
+  yes: precision=0.6121, recall=0.3673, f1=0.4591, support=275
+  no: precision=0.3504, recall=0.5157, f1=0.4173, support=159
+  maybe: precision=0.1188, recall=0.1818, f1=0.1437, support=66
+
+=== Classification Report ===
+              precision    recall  f1-score   support
+
+         yes       0.61      0.37      0.46       275
+          no       0.35      0.52      0.42       159
+       maybe       0.12      0.18      0.14        66
+
+    accuracy                           0.39       500
+   macro avg       0.36      0.35      0.34       500
+weighted avg       0.46      0.39      0.40       500
+
+
+=== Error Rates per True Label ===
+  yes: 63.27%
+  no: 48.43%
+  maybe: 81.82%

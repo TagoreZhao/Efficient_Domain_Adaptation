@@ -25,9 +25,9 @@ mednli_input_template = (
     "- 'neutral' if the hypothesis could be true or false without certainty.\n"
     "Fully consider all three possibilities and reason carefully before giving your final answer.\n\n"
     "Input:\nPremise: '{sentence1}'\nHypothesis: '{sentence2}'\n\n"
-    "Final Answer:"
+    "Final Answer: Their relationship is"
 )
-mednli_target_template = " Their relationship is {gold_label}"
+mednli_target_template = " {gold_label}"
 
 hqs_input_template = (
         "Below is an instruction that describes a task related to HealthCare, paired with further context. "
