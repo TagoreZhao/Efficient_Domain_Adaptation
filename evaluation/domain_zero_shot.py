@@ -367,10 +367,10 @@ def evaluate_pubmedqa(
             f_out.write("QUESTION:\n")
             f_out.write(question.strip() + "\n")
             f_out.write("RAW_DECODED:\n")
-            matches = list(re.finditer(r"\bresponse\s*:\s*", decoded_output, flags=re.IGNORECASE))
-            if matches:
-                last_match = matches[-1]
-                decoded_output = decoded_output[last_match.end():].strip()
+            # matches = list(re.finditer(r"\bresponse\s*:\s*", decoded_output, flags=re.IGNORECASE))
+            # if matches:
+            #     last_match = matches[-1]
+            #     decoded_output = decoded_output[last_match.end():].strip()
             f_out.write(decoded_output.strip() + "\n")
             f_out.write("-" * 70 + "\n\n")
 
