@@ -18,7 +18,7 @@ model = AutoModelForCausalLM.from_pretrained(
     cache_dir=model_save_dir
 )
 
-acc, maf, cm, predictions = evaluate_mednli(model, tokenizer)
+acc, maf, cm, predictions = evaluate_mednli(model, tokenizer, n_eval=50)
 print(f"MedNLI Accuracy: {acc}, Macro F1: {maf}")
 rouge_scores, summaries = evaluate_hqs(model, tokenizer)
 print(f"HQS ROUGE Scores: {rouge_scores}")
