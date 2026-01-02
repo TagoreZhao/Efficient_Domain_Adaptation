@@ -1,6 +1,6 @@
 import os
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from evaluation.domain_zero_shot import evaluate_pubmedqa
+from evaluation.domain_zero_shot import evaluate_mednli, evaluate_hqs, evaluate_pubmedqa
 import torch
 
 torch.cuda.empty_cache()
@@ -18,6 +18,9 @@ model = AutoModelForCausalLM.from_pretrained(
     cache_dir=model_save_dir
 )
 
+acc, maf, cm, predictions = evaluate_mednli(model, tokenizer)
+print(f"MedNLI Accuracy: {acc}, Macro F1: {maf}")
+rouge_scores, summaries = evaluate_hqs(model, tokenizer)
+print(f"HQS ROUGE Scores: {rouge_scores}")
 acc, maf, cm, predictions = evaluate_pubmedqa(model, tokenizer)
 print(f"PubMedQA Accuracy: {acc}, Macro F1: {maf}")
-

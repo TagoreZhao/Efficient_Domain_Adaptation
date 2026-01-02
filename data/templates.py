@@ -23,7 +23,7 @@ mednli_input_template = (
     "- 'entailment' if the hypothesis must be true given the premise,\n"
     "- 'contradiction' if the hypothesis must be false given the premise,\n"
     "- 'neutral' if the hypothesis could be true or false without certainty.\n"
-    "Fully consider all three possibilities and reason carefully before giving your final answer.\n\n"
+    "Fully consider all three possibilities and reason carefully before giving your final answer. Answer entailment, contradiction, or neutral.\n\n"
     "Input:\nPremise: '{sentence1}'\nHypothesis: '{sentence2}'\n\n"
     "Final Answer: Their relationship is"
 )

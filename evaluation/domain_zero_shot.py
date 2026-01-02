@@ -1,4 +1,5 @@
 import re
+import json
 import random
 import torch
 import pandas as pd 
@@ -71,7 +72,7 @@ def evaluate_mednli(
         return ids[0]
 
     label_token_ids = [first_token_id(lbl) for lbl in expected_labels]
-
+    tokenizer.pad_token = tokenizer.eos_token
     model.to(device)
     model.eval()
 
@@ -119,36 +120,21 @@ def evaluate_mednli(
                         pad_token_id=tokenizer.eos_token_id,
                     )
 
-                decoded_full = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).strip()
-
-                # Save "everything after the prompt" if prompt was echoed; otherwise save full decoded
-                raw_generation = (
-                    decoded_full[len(prompt):].strip() if decoded_full.startswith(prompt) else decoded_full
-                )
-
-                # Parse label primarily from the generated continuation
-                resp_low = raw_generation.lower()
-
+                decoded_output = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).lower()
                 match = re.search(
-                    r"(entailment|contradiction|neutral)\b",
-                    resp_low,
-                    flags=re.IGNORECASE,
-                )
+                            r"\bTheir relationship is\b\s*[:\-]?\s*"
+                            r"(?:\*\*|\*)?\s*"          # optional markdown emphasis opening
+                            r"(?:['\"]{1,2})?\s*"       # optional quote wrapper: ' or " or '' or ""
+                            r"(entailment|contradiction|neutral)"
+                            r"\s*(?:['\"]{1,2})?\s*"    # optional closing quotes
+                            r"(?:\*\*|\*)?\b",          # optional markdown emphasis closing
+                            decoded_output,
+                            flags=re.IGNORECASE
+                        )
                 if match:
-                    candidate = match.group(1).lower().strip()
-                    if candidate in expected_labels:
-                        prediction = candidate
-                        break
+                    prediction = match.group(1).strip()
+                    break
 
-            # Fallback to logits if still unknown
-            if prediction == "unknown":
-                try:
-                    first_token_logits = outputs.scores[0][0]  # (vocab_size,)
-                    masked_logits = first_token_logits[label_token_ids]
-                    predicted_label_idx = int(torch.argmax(masked_logits).item())
-                    prediction = expected_labels[predicted_label_idx]
-                except Exception:
-                    prediction = "unknown"
 
             predictions.append(prediction)
             ground_truth.append(gold_label)
@@ -166,7 +152,7 @@ def evaluate_mednli(
             matches = list(re.finditer(r"\bFinal Answer\s*:\s*", decoded_output, flags=re.IGNORECASE))
             if matches:
                 last_match = matches[-1]
-                raw_generation = raw_generation[last_match.end():].strip()
+                raw_generation = decoded_output[last_match.end():].strip()
             f_out.write(raw_generation.strip() + "\n")
             f_out.write("-" * 70 + "\n\n")
 
@@ -355,20 +341,19 @@ def evaluate_pubmedqa(
                     )
 
                 decoded_output = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).lower()
-                match = re.search(r"the answer is\s*(yes|no|maybe)", decoded_output)
+                match = re.search(
+                            r"\bthe answer is\b\s*[:\-]?\s*"
+                            r"(?:\*\*|\*)?\s*"          # optional markdown emphasis opening
+                            r"(?:['\"]{1,2})?\s*"       # optional quote wrapper: ' or " or '' or ""
+                            r"(yes|no|maybe)"
+                            r"\s*(?:['\"]{1,2})?\s*"    # optional closing quotes
+                            r"(?:\*\*|\*)?\b",          # optional markdown emphasis closing
+                            decoded_output,
+                            flags=re.IGNORECASE
+                        )
                 if match:
                     prediction = match.group(1).strip()
                     break
-
-            # Fallback to logits for first generated token if still unknown
-            if prediction == "unknown":
-                try:
-                    first_token_logits = outputs.scores[0][0]  # (vocab_size,)
-                    masked_logits = first_token_logits[label_token_ids]
-                    predicted_label_idx = int(torch.argmax(masked_logits).item())
-                    prediction = expected_labels[predicted_label_idx]
-                except Exception:
-                    prediction = "unknown"
 
             gold = ground_truth.get(pubid, "unknown")
 
@@ -476,7 +461,7 @@ def evaluate_pubmedqa(
 
     return acc, maf, cm, predictions
 
-def evaluate_HQS_rouge(model, tokenizer, 
+def evaluate_hqs(model, tokenizer, 
                        file_path="data/downloaded/MEDIQA2021-Task1-TestSet-ReferenceSummaries.xlsx",\
                        save_output="assets/HQS_generated_summaries.txt",
                        max_new_tokens=50,
@@ -504,6 +489,10 @@ def evaluate_HQS_rouge(model, tokenizer,
 
     # Open a file to log question/summary pairs
     with open(save_path, "w", encoding="utf-8") as f_out:
+        f_out.write("=== HQS Evaluation Log ===\n")
+        f_out.write(f"seed={seed}, max_new_tokens={max_new_tokens}, max_new_tokens={max_new_tokens}\n")
+        f_out.write(f"device={device}\n")
+        f_out.write("=" * 70 + "\n\n")
         for idx, question in enumerate(tqdm(questions, desc="Generating Summaries")):
             prompt = hqs_input_template.format(input_question=question)
             inputs = tokenizer(
