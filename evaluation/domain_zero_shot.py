@@ -29,6 +29,8 @@ CUT_MARKERS = [
     "Please provide",
 ]
 
+
+
 def evaluate_mednli(
     model,
     tokenizer,
@@ -461,80 +463,125 @@ def evaluate_pubmedqa(
 
     return acc, maf, cm, predictions
 
-def evaluate_hqs(model, tokenizer, 
-                       file_path="data/downloaded/MEDIQA2021-Task1-TestSet-ReferenceSummaries.xlsx",\
-                       save_output="assets/HQS_generated_summaries.txt",
-                       max_new_tokens=50,
-                       device="cuda",
-                       seed=1234):
-    
+def evaluate_hqs(
+    model,
+    tokenizer,
+    file_path="data/downloaded/MEDIQA2021-Task1-TestSet-ReferenceSummaries.xlsx",
+    save_output="assets/HQS_generated_summaries.txt",
+    max_new_tokens=50,
+    enable_thinking=False,
+    device="cuda",
+    n_eval=100,
+    seed=1234,
+):
     random.seed(seed)
     torch.manual_seed(seed)
+
     """
     Summarize each question in an Excel file using a simple prompt and compute ROUGE.
     """
     rouge = load_metric("rouge")
     df = pd.read_excel(file_path)
+
     questions = df["NLM Question"].tolist()
     reference_summaries = df["Summary"].tolist()
+
+    # ---- NEW: cap eval set size via n_eval ----
+    total_available = len(questions)
+    if n_eval is None or (isinstance(n_eval, int) and n_eval <= 0):
+        eval_n = total_available
+    else:
+        eval_n = min(int(n_eval), total_available)
+
+    questions = questions[:eval_n]
+    reference_summaries = reference_summaries[:eval_n]
+    # ------------------------------------------
 
     model.to(device)
     model.eval()
 
     generated_summaries = []
     start_time = time()
-    
+
     save_path = Path(save_output)
     save_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Open a file to log question/summary pairs
     with open(save_path, "w", encoding="utf-8") as f_out:
         f_out.write("=== HQS Evaluation Log ===\n")
-        f_out.write(f"seed={seed}, max_new_tokens={max_new_tokens}, max_new_tokens={max_new_tokens}\n")
+        f_out.write(
+            f"seed={seed}, max_new_tokens={max_new_tokens}, n_eval={eval_n}/{total_available}\n"
+        )
         f_out.write(f"device={device}\n")
         f_out.write("=" * 70 + "\n\n")
+
         for idx, question in enumerate(tqdm(questions, desc="Generating Summaries")):
-            prompt = hqs_input_template.format(input_question=question)
-            inputs = tokenizer(
-                prompt,
-                return_tensors="pt",
-                max_length=1024,
-                truncation=True
-            ).to(device)
+            if enable_thinking:
+                prompt = hqs_input_template.format(input_question=question)
+                prompt = [{"role": "user", "content": prompt}]
+                prompt = tokenizer.apply_chat_template(
+                    prompt,
+                    tokenize=False,
+                    add_generation_prompt=True,
+                    enable_thinking=True,  # Switches between thinking and non-thinking modes. Default is True.
+                )
+                inputs = tokenizer([prompt], return_tensors="pt").to(model.device)
+            else:
+                prompt = hqs_input_template.format(input_question=question)
+                inputs = tokenizer(
+                    prompt,
+                    return_tensors="pt",
+                    max_length=1024,
+                    truncation=True,
+                ).to(device)
 
             with torch.no_grad():
                 output_ids = model.generate(
                     **inputs,
-                    max_new_tokens=max_new_tokens,       # Adjust based on expected summary length
+                    max_new_tokens=max_new_tokens,
                     do_sample=True,
-                    top_k=50,                  # Next-token sampling parameter
-                    top_p=0.9,                 # Next-token sampling parameter
-                    temperature=0.9,           # Next-token sampling parameter
+                    top_k=50,
+                    top_p=0.9,
+                    temperature=0.9,
                     pad_token_id=tokenizer.pad_token_id,
-                    eos_token_id=tokenizer.eos_token_id
+                    eos_token_id=tokenizer.eos_token_id,
                 )
 
-            decoded_text = tokenizer.decode(output_ids[0], skip_special_tokens=True).strip()
-            # Remove the prompt from the output if it is echoed back
-            if decoded_text.startswith(prompt):
-                summary = decoded_text[len(prompt):].strip()
-            else:
-                summary = decoded_text
+            if enable_thinking:
+                output_ids = output_ids[0][len(inputs.input_ids[0]) :].tolist()
+                try:
+                    # rindex finding 151668 (</think>)
+                    index = len(output_ids) - output_ids[::-1].index(151668)
+                except ValueError:
+                    index = 0
 
-            summary = clean_first_sentence(summary)
+                thinking_content = tokenizer.decode(
+                    output_ids[:index], skip_special_tokens=True
+                ).strip("\n")
+                content = tokenizer.decode(
+                    output_ids[index:], skip_special_tokens=True
+                ).strip("\n")
+                summary = clean_first_sentence(content)
+            else:
+                decoded_text = tokenizer.decode(output_ids[0], skip_special_tokens=True).strip()
+                # Remove the prompt from the output if it is echoed back
+                summary = decoded_text[len(prompt) :].strip()
+                summary = clean_first_sentence(summary)
+
             generated_summaries.append(summary)
 
             log_entry = (
                 f"\n=== Generated Summary for Question #{idx+1} ===\n"
                 f"QUESTION:\n{question}\n"
                 f"GENERATED SUMMARY:\n{summary}\n"
-                + "=" * 50 + "\n"
+                + "=" * 50
+                + "\n"
             )
             f_out.write(log_entry)
 
     rouge_scores = rouge.compute(
         predictions=generated_summaries,
-        references=reference_summaries
+        references=reference_summaries,
     )
 
     print("\n=== Final ROUGE SCORES ===")
@@ -546,6 +593,7 @@ def evaluate_hqs(model, tokenizer,
     print(f"\nTotal generation and evaluation time: {total_time:.2f} seconds")
 
     return rouge_scores, generated_summaries
+
 
 def clean_first_sentence(text: str, *, max_words: int = 40, min_chars: int = 15) -> str:
     """
@@ -561,9 +609,18 @@ def clean_first_sentence(text: str, *, max_words: int = 40, min_chars: int = 15)
     # Hard cut at known markers that often begin rambling/meta output
     for m in CUT_MARKERS:
         idx = t.find(m)
-        if idx != -1 and idx > 0:
-            t = t[:idx].strip()
-            break
+        if idx == -1:
+            continue
+
+        if idx == 0:
+            # Marker is at the very start: remove the marker itself, keep the rest
+            t = t[len(m):].lstrip()
+            # keep scanning in case there are multiple leading markers
+            continue
+
+        # Marker appears later: drop everything starting from the marker
+        t = t[:idx].strip()
+        break
 
     # Normalize whitespace
     t = re.sub(r"[ \t]+", " ", t)

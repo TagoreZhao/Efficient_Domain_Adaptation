@@ -35,11 +35,37 @@ hqs_input_template = (
         "Instruction: Summarize the following consumer health question by generating a condensed version that retains all critical information necessary to find correct and complete answers. "
         "Focus on preserving key entities (e.g., conditions, treatments, tests) and the main intent of the question, while omitting unnecessary peripheral details. "
         "Write the summary fluently in natural language and avoid simply shortening without ensuring information completeness.\n\n"
-        "Please provide the shortened version directly.\n\n"
+        "Please provide the shortened version directly. Output MUST be a single question sentence (one line) ending with a '?'.\n\n"
         "Input: {input_question}\n\nShortened Question:"
 )
 
 hqs_target_template = " {sum}"
+
+# hqs_input_template = (
+#     "You are given a consumer health question (often long, informal, and containing extra narrative). "
+#     "Your task is to rewrite it as a SHORT, clinically-relevant QUESTION that preserves all key details needed to answer it correctly.\n\n"
+
+#     "Rewrite rules:\n"
+#     "1) Output MUST be a single question sentence (one line) ending with a '?'.\n"
+#     "2) Preserve critical medical specifics: condition/symptom, body site, duration/timeline, severity qualifiers, exposures/risk factors, "
+#     "diagnoses, test names/results, medications (name + purpose + key constraints like dose if essential), and the core intent (e.g., safety, causes, treatment, prognosis).\n"
+#     "3) Remove non-essential narrative: personal stories, emotions, repetition, irrelevant background, greetings, and unrelated side details.\n"
+#     "4) Do NOT add new facts, do NOT give advice, and do NOT answer the question—ONLY rewrite it.\n"
+#     "5) Keep negations and uncertainty (e.g., 'not alcoholic', 'tested negative', 'might', 'concerned about') because they change meaning.\n"
+#     "6) If the original asks multiple tightly-related subquestions (e.g., safety + side effects), you may keep them as one concise combined question; "
+#     "otherwise keep the primary intent.\n"
+#     "7) Prefer medically standard terms when obvious (e.g., 'flu-like symptoms' is fine), but do not invent diagnoses.\n\n"
+
+#     "Length guidance: aim for ~10–25 words when possible, but prioritize completeness over brevity.\n\n"
+
+#     "Input (NLM Question):\n"
+#     "{input_question}\n\n"
+
+#     "Shortened Question:"
+# )
+
+# hqs_target_template = "{sum}"
+
 
 casehold_input_template = (
     "Below is an instruction that describes a task related to making legal decisions based on a citing prompt. "

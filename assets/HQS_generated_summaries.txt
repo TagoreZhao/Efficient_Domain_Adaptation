@@ -1,5 +1,5 @@
 === HQS Evaluation Log ===
-seed=1234, max_new_tokens=50, max_new_tokens=50
+seed=1234, max_new_tokens=50, n_eval=100/100
 device=cuda
 ======================================================================
 
@@ -8,7 +8,7 @@ device=cuda
 QUESTION:
 23 surgeries and counting......lower lip birthmark, have tried all options out the there and guess what still have it, continues to grow back.....any suggestions? Is there a cure coming in the next few years hopefully?
 GENERATED SUMMARY:
-Please provide the shortened version directly. Please add additional details to the question by clicking on the question box below, and edit the question to ensure the following is included: the condition (surgical birthmark), treatment, and the expected cure for
+the shortened version directly.
 ==================================================
 
 === Generated Summary for Question #2 ===
@@ -78,7 +78,7 @@ What flu-like symptoms such as: hot/cold sweats, chills, diarrhea, nausea, vommi
 QUESTION:
 outbreak of red raise sores on back shoulder and arms from shoulder to wrist with raised bulbs of liquid. treatment and maintenance ?
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+red raise sores on back shoulder and arms from shoulder to wrist with raised bulbs of liquid.
 ==================================================
 
 === Generated Summary for Question #12 ===
@@ -204,7 +204,7 @@ Is there any medicine or any probiotic that can control IBS and cure it.
 QUESTION:
 I have 6 months twin daughter. M one daughter is ok but another one have blood less issue from start. and she required bool every month. after check . of her, her mother and my. result find out that. My report is ok from Thalassemia. Her mother have minor Thalassemia . and she (daughter) have no Thalassemia but my daughter have Anemia. so doctor give her foli acid and mother milk. but she still problem, now he sagest for bone marrow and maybe she have Anemia.. so give me some guideline that what I do.... thank..
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+y child has 6 months twin daughter.
 ==================================================
 
 === Generated Summary for Question #30 ===
@@ -309,14 +309,14 @@ Is it safe to take Relora if I seizure disorder?
 QUESTION:
 I’m 30 years old and when I was 23 my period wasnt coming every month, and I still don’t get my period , last time I got it was 4 months ago and I’m really worried.
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+How can I get my period back?
 ==================================================
 
 === Generated Summary for Question #45 ===
 QUESTION:
 i am 28 height 170 cm ,58 kg tropical area living.my eyes are infected when i watch to a plain surface i can see something moving like a narrow tubes before my eyes.it seems partially burned like half burned worms and i am also seeing something glittering in front of my eyes i checked ASO it is 230 (normal value is 200)i am lean and no increase in body weight for the last 8 years. how can you help me
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+My eyes are infected with worms when I watch to a plain surface and there is something moving.
 ==================================================
 
 === Generated Summary for Question #46 ===
@@ -344,7 +344,7 @@ I have a patchy skin and it has become very dull these days and also i find few 
 QUESTION:
 I had surgery in 2011. I had an injury from a gunshot and the doctors put a stent in my carotid artery. I want to play sports. I am sure basketball is fine. I do not know about football since it is mainly a contact sport. Has anyone ever played football witha a stent in their neck ? I know there are some details I should note before furthering my want of playing sports.
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+I had surgery in 2011.
 ==================================================
 
 === Generated Summary for Question #50 ===
@@ -365,7 +365,7 @@ What do I do as a parent of a child with ODD and ADHD?
 QUESTION:
 three weeks ago I saw the local doctor lady.. she listened to my description of abdominal pain down the left groin area. now the pain is occasionally not nice and there is a swelling which is uncomfortable to touch when I have the pain . The swelling is soft like a liquid pouch. I have undergon Prostrate cancer Radiotherapy which resulted in occasional mucus and blood discharge when passing stool and wind. This mucky bum has settled down and for some months I have not had any accidents (soiled pants). The doctors letter said iI had a friable back passage which bled on contact. I am due for Colonoscopy. What should I do? is it dangerous to undergo the colonoscopy with a friable weakened colon . I  am 68 year old white male. 6ft 4  tall 84 kg. reasonably fit and active.
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+ow can I undergo a Colonoscopy with a friable back passage which bled on contact?
 ==================================================
 
 === Generated Summary for Question #53 ===
@@ -386,14 +386,14 @@ I am seeking information regarding wandering/lazy eye correction.
 QUESTION:
 hello doctor  my frnd is suffered with  chronic myelogenous leukemia (cml) (age 47)..she is treated with a medicine  called Gleevec since 4 months ..doctor said took blood test for every week ..the problem is  platelet count rapidly decreased week by week ...last blood report shows platelet count as 90000,now her count droped to 750000..what should we do...plz help me..
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+at should we do...
 ==================================================
 
 === Generated Summary for Question #56 ===
 QUESTION:
 I have a problem. I am not remember my study always forget .I am not consntrate on study. When i am reading i am thinking any others topic. I am confused Is this a Alhizmer.I think i am loss my memory .Please help me and suggest me.
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+have a problem.
 ==================================================
 
 === Generated Summary for Question #57 ===
@@ -428,7 +428,7 @@ Was I wrong about my aunt?
 QUESTION:
 I have heard about M.M.S. can it help with Barr syndrome/crohns I know about supplements but need more for the hands /feet muscles an diaphragm muscles, using only small dosage of the myatoxin only let's the body build defense to the paralyzed muscles so any information on both M. M. S. ,sodium chloride/citric acid healing curing, everything, to govern. Clinical trials for people suffering severe muscle problems in hands. Feet lungs
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+I have heard about M.M.S.
 ==================================================
 
 === Generated Summary for Question #62 ===
@@ -505,7 +505,7 @@ What is the recommended age at which the infant can be a subject to nerve conduc
 QUESTION:
 SUBJECT: ClinicalTrials.gov - Suggestion. MESSAGE: Hello my name is  [NAME]  and I am a 32  yr old female that has sever problems with abdominal adhesions. I have had several surgeries do to pain and complications. Now I have been vomiting for a year now everytime I eat. I have had several tests done. Nothing obvious shows which leads the dr in Springfield Illinois to believe it's scar tissue pushing on my stomach wall and causing me to expel my food within 30 min of eating. I started out at over 235 pounds and am bouncing around 150-170 now.  I am in severe pain. I am tired of living off pain medicine. I need help!!!!! Please please please!!!! It all started when I had c-section for [PHI] in 2003. I have had to have per 6 abd surgeries since with the last one in 20012 total hystorectomy .   I did well for about a year. And now back to square one just with new problems. I do not want to have surgery to just remove the tissue again. Although it will give me great relief it will cause more. I need something to help inhibit the growth of tissue.  Can anyone help me?? I am very desperate!! I am tired of not being there for [PHI]. In so much pain!! Pain meds are hit and miss on helping and I just hate taking them. I am looking into  essential oils to help with my symptoms. It is a living hell! My e-mail is [CONTACT] please contact me if you can help. Only serious material please.
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+How can I inhibit the growth of abdominal adhesions?
 ==================================================
 
 === Generated Summary for Question #73 ===
@@ -540,7 +540,7 @@ Is there any treatment or remedy for Fire Burn?
 QUESTION:
 SUBJECT: TORCH  INFECTION. MESSAGE: I have torch infection in my body please suggest me. What can I do..  My first baby was very injured..two big hole in heart  and  no wolv,  now my baby no more.. Plz suggest me ... If I will pregnant and it's sure my baby will b born healthy ?
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+hat can I do to prevent a torch infection?
 ==================================================
 
 === Generated Summary for Question #78 ===
@@ -680,7 +680,7 @@ How has my blood thickened as I aged?
 QUESTION:
 MESSAGE: dear doctor i am 22 years old stident from Bhutan , presently studying in India. how ong does it take to develope a tseticular cancer? is this curable? can i have a baby in future? ll this ffect my fertility after the treatment?
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+I am 22 years old.
 ==================================================
 
 === Generated Summary for Question #98 ===
@@ -694,7 +694,7 @@ I have had a fever in the evenings only since [DATE], it is gone in the morning 
 QUESTION:
 SUBJECT: BREATHLESSNESS. MESSAGE: I am 77  , nown case of dibetes 2 & BP both under control with Medication viz Amryl M -1mg ( Sanofi) twice a day & Benitech A for BP .HbA1c being around 5.8-6.2 , sugar fasting around 80-90 , but PP is above 175 to 225, Bp is normal 140/75,pulse 50-64.However Amylase & Lipase are around 150. My TMT and Ultrasound Abdomon are normal , Chest X ray is clear I am 5'6" , wt -70kg , girth at navel 40" These days I am feeling problem of Breathlessness, even on slight exertion , I can walk but only at a very slow pace. Pl. advise can it be on account of any problem with my lungs pl & symptoms/tests for same  These days
 GENERATED SUMMARY:
-Below is an instruction that describes a task related to HealthCare, paired with further context.
+uld be the cause of the problem I am facing?
 ==================================================
 
 === Generated Summary for Question #100 ===
