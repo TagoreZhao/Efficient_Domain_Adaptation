@@ -1,6 +1,6 @@
 import os
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from evaluation.domain_zero_shot import evaluate_billsum, evaluate_hqs
+from evaluation.domain_zero_shot import evaluate_billsum, evaluate_hqs, evaluate_casehold
 import torch
 import pandas as pd
 from data.templates import *
@@ -22,19 +22,30 @@ model = AutoModelForCausalLM.from_pretrained(
     cache_dir=model_save_dir
 )
 
-# Evaluate on BillSum
-rouge_scores, summaries = evaluate_billsum(
+acc, maf, cm, predictions = evaluate_casehold(
     model,
     tokenizer,
-    device="cuda",
-    n_eval=200,
+    n_eval=500,
     seed=1234,
-    max_new_tokens=384,
-    save_output="assets/BillSum_generated_summaries.txt",
-    batch_size=5
+    max_new_tokens=32,
+    device="cuda"
 )
+print(f"CaseHold Accuracy: {acc}, Macro F1: {maf}")
 
-print(f"BillSum ROUGE Scores: {rouge_scores}")
+
+# Evaluate on BillSum
+# rouge_scores, summaries = evaluate_billsum(
+#     model,
+#     tokenizer,
+#     device="cuda",
+#     n_eval=200,
+#     seed=1234,
+#     max_new_tokens=384,
+#     save_output="assets/BillSum_generated_summaries.txt",
+#     batch_size=5
+# )
+
+# print(f"BillSum ROUGE Scores: {rouge_scores}")
 
 # from data.datasets import get_casehold, get_billsum, get_contractnli, construct_legal_data
 # legal_data = construct_legal_data()

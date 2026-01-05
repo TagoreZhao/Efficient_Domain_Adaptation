@@ -1,0 +1,5 @@
+=== CaseHold Evaluation Log ===
+n_eval=500, seed=1234, max_new_tokens=32
+device=cuda
+======================================================================
+

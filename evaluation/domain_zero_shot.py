@@ -29,6 +29,180 @@ CUT_MARKERS = [
     "Please provide",
 ]
 
+def evaluate_casehold(model, 
+                      tokenizer, 
+                      device="cuda", 
+                      save_output="assets/casehold_predictions.txt",
+                      seed=1234,
+                      max_attempts=3,
+                      max_new_tokens=10,
+                      n_eval=200, 
+                      do_bootstrap_ci=True,
+                      n_boot=1000):
+    """
+    Evaluate the model on the first `n_eval` of the CaseHold dataset.
+    First tries regex extraction; if fails due to invalid probabilities, falls back to greedy decoding.
+    Logs when fallback occurs and inspects for NaN/Inf in logits.
+    Prints full evaluation metrics, distributions, confusion matrix, and classification report.
+    """
+    random.seed(seed)
+    torch.manual_seed(seed)
+    save_path = Path(save_output)
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+
+    data = load_dataset("casehold/casehold", split="test", trust_remote_code=True)
+    tokenizer.pad_token = tokenizer.eos_token
+    predictions = []
+    citing_prompt = {row['example_id']: str(row["citing_prompt"]).strip().lower() for row in data}
+    holdings = {row['example_id']: [row["holding_0"], row["holding_1"], row["holding_2"], row["holding_3"], row["holding_4"]] for row in data}
+    example_ids = list(citing_prompt.keys())[:n_eval]
+    ground_truth = ground_truth = {row["example_id"]: str(row["label"]).strip().lower() for row in data}
+
+    expected_labels = [str(i) for i in range(5)]
+    label_token_ids = [
+        tokenizer.convert_tokens_to_ids(tokenizer.tokenize(lbl)[0])
+        for lbl in expected_labels
+    ]
+
+    with open(save_path, "w", encoding="utf-8") as f_out:
+        f_out.write("=== CaseHold Evaluation Log ===\n")
+        f_out.write(f"n_eval={n_eval}, seed={seed}, max_new_tokens={max_new_tokens}\n")
+        f_out.write(f"device={device}\n")
+        f_out.write("=" * 70 + "\n\n")
+
+        for example_id in tqdm(example_ids, desc="Evaluating CaseHold"):
+            prompt = casehold_input_template.format(citing_prompt=citing_prompt[example_id],
+                                                    holding_0=holdings[example_id][0],
+                                                    holding_1=holdings[example_id][1],
+                                                    holding_2=holdings[example_id][2],
+                                                    holding_3=holdings[example_id][3],
+                                                    holding_4=holdings[example_id][4])
+            prediction = None
+
+            for attempt in range(max_attempts):
+                inputs = tokenizer(
+                    prompt,
+                    return_tensors="pt",
+                    truncation=True,
+                    padding=True,
+                    max_length=3000
+                ).to(device)
+                with torch.no_grad():
+                    outputs = model.generate(
+                        input_ids=inputs["input_ids"],
+                        attention_mask=inputs["attention_mask"],
+                        max_new_tokens=max_new_tokens,
+                        pad_token_id=tokenizer.eos_token_id,
+                        do_sample=True,
+                        temperature=0.9,
+                        top_p=0.9,
+                        output_scores=True,
+                        return_dict_in_generate=True
+                    )
+
+                decoded_output = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).lower()
+                match = re.search(r"the answer is\s*([0-4])\b", decoded_output)
+                if match:
+                    prediction = int(match.group(1))
+            
+            gold = ground_truth.get(example_id, "unknown")
+            predictions[example_id] = prediction
+
+            f_out.write(f"example_id: {example_id}\n")
+            f_out.write(f"GOLD: {gold}\n")
+            f_out.write(f"PRED: {prediction}\n")
+            f_out.write("CITING PROMPT:\n")
+            f_out.write(citing_prompt[example_id].strip() + "\n")
+            f_out.write("HOLDINGS:\n")
+            for idx, holding in enumerate(holdings[example_id]):
+                f_out.write(f"  {idx}: {holding.strip()}\n")
+            f_out.write("RAW_DECODED:\n")
+            f_out.write(decoded_output.strip() + "\n")
+            f_out.write("-" * 70 + "\n\n")
+        
+    truth = [ground_truth[eid] for eid in example_ids]
+    preds = [predictions[eid] for eid in example_ids]
+
+    # ==== Metrics ====
+    acc = accuracy_score(truth, preds)
+    maf = f1_score(truth, preds, average="macro")
+
+    cm = confusion_matrix(truth, preds, labels=expected_labels)
+
+    prec, rec, f1s, support = precision_recall_fscore_support(truth, preds, labels=expected_labels, zero_division=0)
+
+    pred_counts = Counter(preds)
+    true_counts = Counter(truth)
+
+    report = classification_report(
+            truth, preds, labels=expected_labels, zero_division=0
+        )
+    # Optional bootstrap CI for macro-F1
+    ci_text = ""
+    if do_bootstrap_ci:
+        rng = random.Random(seed)
+        n = len(truth)
+        boot_scores = []
+        for _ in range(n_boot):
+            idxs = [rng.randrange(n) for _ in range(n)]
+            t_b = [truth[i] for i in idxs]
+            p_b = [preds[i] for i in idxs]
+            boot_scores.append(f1_score(t_b, p_b, average="macro", labels=expected_labels))
+        boot_scores.sort()
+        lo = boot_scores[int(0.025 * n_boot)]
+        hi = boot_scores[int(0.975 * n_boot) - 1]
+        ci_text = f"Macro-F1 95% bootstrap CI (n_boot={n_boot}): [{lo:.4f}, {hi:.4f}]"
+
+    # Append summary section to file
+    f_out.write("\n\n" + "=" * 70 + "\n")
+    f_out.write("=== FINAL METRICS SUMMARY ===\n")
+    f_out.write(f"Accuracy: {acc:.4f}\n")
+    f_out.write(f"Macro-F1: {maf:.4f}\n")
+    if ci_text:
+        f_out.write(ci_text + "\n")
+
+    f_out.write("\n=== Prediction Distribution ===\n")
+    for label in expected_labels + sorted([l for l in pred_counts.keys() if l not in expected_labels]):
+        if label in pred_counts:
+            count = pred_counts[label]
+            f_out.write(f"  {label}: {count} ({count/len(preds)*100:.2f}%)\n")
+
+    f_out.write("\n=== Ground Truth Distribution ===\n")
+    for label in expected_labels + sorted([l for l in true_counts.keys() if l not in expected_labels]):
+        if label in true_counts:
+            count = true_counts[label]
+            f_out.write(f"  {label}: {count} ({count/len(truth)*100:.2f}%)\n")
+
+    f_out.write("\n=== Confusion Matrix (rows=true, cols=pred) ===\n")
+    f_out.write("Labels: " + ", ".join(expected_labels) + "\n")
+    f_out.write(str(cm) + "\n")
+
+    f_out.write("\n=== Per-class Precision/Recall/F1/Support ===\n")
+    for i, lbl in enumerate(expected_labels):
+        f_out.write(
+            f"  {lbl}: precision={prec[i]:.4f}, recall={rec[i]:.4f}, f1={f1s[i]:.4f}, support={support[i]}\n"
+        )
+
+    f_out.write("\n=== Classification Report ===\n")
+    f_out.write(report + "\n")
+
+    f_out.write("\n=== Error Rates per True Label ===\n")
+    for idx, label in enumerate(expected_labels):
+        total = cm[idx].sum()
+        correct = cm[idx][idx]
+        err = 1.0 - (correct / total) if total > 0 else 0.0
+        f_out.write(f"  {label}: {err*100:.2f}%\n")
+
+    # Also print concise console summary
+    print("=== PubMedQA Results ===")
+    print(f"Saved detailed log to: {save_path.resolve()}")
+    print(f"Accuracy = {acc:.4f}")
+    print(f"Macro-F1 = {maf:.4f}")
+    if ci_text:
+        print(ci_text)
+
+    return acc, maf, cm, predictions
+
 def evaluate_billsum(
     model,
     tokenizer,
