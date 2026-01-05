@@ -77,7 +77,7 @@ def evaluate_casehold(model,
                                                     holding_2=holdings[example_id][2],
                                                     holding_3=holdings[example_id][3],
                                                     holding_4=holdings[example_id][4])
-            prediction = None
+            prediction = "unknown"
 
             for attempt in range(max_attempts):
                 inputs = tokenizer(
