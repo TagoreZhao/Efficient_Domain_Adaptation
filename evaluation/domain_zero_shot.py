@@ -120,81 +120,81 @@ def evaluate_casehold(model,
             f_out.write(decoded_output.strip() + "\n")
             f_out.write("-" * 70 + "\n\n")
         
-    truth = [str(ground_truth[eid]) for eid in example_ids]
-    preds = [str(predictions[eid]) for eid in example_ids]
+        truth = [str(ground_truth[eid]) for eid in example_ids]
+        preds = [str(predictions[eid]) for eid in example_ids]
 
-    print("length of truth:", len(truth))
-    print("length of preds:", len(preds))
+        print("length of truth:", len(truth))
+        print("length of preds:", len(preds))
 
-    # ==== Metrics ====
-    acc = accuracy_score(truth, preds)
-    maf = f1_score(truth, preds, average="macro")
+        # ==== Metrics ====
+        acc = accuracy_score(truth, preds)
+        maf = f1_score(truth, preds, average="macro")
 
-    cm = confusion_matrix(truth, preds, labels=expected_labels)
+        cm = confusion_matrix(truth, preds, labels=expected_labels)
 
-    prec, rec, f1s, support = precision_recall_fscore_support(truth, preds, labels=expected_labels, zero_division=0)
+        prec, rec, f1s, support = precision_recall_fscore_support(truth, preds, labels=expected_labels, zero_division=0)
 
-    pred_counts = Counter(preds)
-    true_counts = Counter(truth)
+        pred_counts = Counter(preds)
+        true_counts = Counter(truth)
 
-    report = classification_report(
-            truth, preds, labels=expected_labels, zero_division=0
-        )
-    # Optional bootstrap CI for macro-F1
-    ci_text = ""
-    if do_bootstrap_ci:
-        rng = random.Random(seed)
-        n = len(truth)
-        boot_scores = []
-        for _ in range(n_boot):
-            idxs = [rng.randrange(n) for _ in range(n)]
-            t_b = [truth[i] for i in idxs]
-            p_b = [preds[i] for i in idxs]
-            boot_scores.append(f1_score(t_b, p_b, average="macro", labels=expected_labels))
-        boot_scores.sort()
-        lo = boot_scores[int(0.025 * n_boot)]
-        hi = boot_scores[int(0.975 * n_boot) - 1]
-        ci_text = f"Macro-F1 95% bootstrap CI (n_boot={n_boot}): [{lo:.4f}, {hi:.4f}]"
+        report = classification_report(
+                truth, preds, labels=expected_labels, zero_division=0
+            )
+        # Optional bootstrap CI for macro-F1
+        ci_text = ""
+        if do_bootstrap_ci:
+            rng = random.Random(seed)
+            n = len(truth)
+            boot_scores = []
+            for _ in range(n_boot):
+                idxs = [rng.randrange(n) for _ in range(n)]
+                t_b = [truth[i] for i in idxs]
+                p_b = [preds[i] for i in idxs]
+                boot_scores.append(f1_score(t_b, p_b, average="macro", labels=expected_labels))
+            boot_scores.sort()
+            lo = boot_scores[int(0.025 * n_boot)]
+            hi = boot_scores[int(0.975 * n_boot) - 1]
+            ci_text = f"Macro-F1 95% bootstrap CI (n_boot={n_boot}): [{lo:.4f}, {hi:.4f}]"
 
-    # Append summary section to file
-    f_out.write("\n\n" + "=" * 70 + "\n")
-    f_out.write("=== FINAL METRICS SUMMARY ===\n")
-    f_out.write(f"Accuracy: {acc:.4f}\n")
-    f_out.write(f"Macro-F1: {maf:.4f}\n")
-    if ci_text:
-        f_out.write(ci_text + "\n")
+        # Append summary section to file
+        f_out.write("\n\n" + "=" * 70 + "\n")
+        f_out.write("=== FINAL METRICS SUMMARY ===\n")
+        f_out.write(f"Accuracy: {acc:.4f}\n")
+        f_out.write(f"Macro-F1: {maf:.4f}\n")
+        if ci_text:
+            f_out.write(ci_text + "\n")
 
-    f_out.write("\n=== Prediction Distribution ===\n")
-    for label in expected_labels + sorted([l for l in pred_counts.keys() if l not in expected_labels]):
-        if label in pred_counts:
-            count = pred_counts[label]
-            f_out.write(f"  {label}: {count} ({count/len(preds)*100:.2f}%)\n")
+        f_out.write("\n=== Prediction Distribution ===\n")
+        for label in expected_labels + sorted([l for l in pred_counts.keys() if l not in expected_labels]):
+            if label in pred_counts:
+                count = pred_counts[label]
+                f_out.write(f"  {label}: {count} ({count/len(preds)*100:.2f}%)\n")
 
-    f_out.write("\n=== Ground Truth Distribution ===\n")
-    for label in expected_labels + sorted([l for l in true_counts.keys() if l not in expected_labels]):
-        if label in true_counts:
-            count = true_counts[label]
-            f_out.write(f"  {label}: {count} ({count/len(truth)*100:.2f}%)\n")
+        f_out.write("\n=== Ground Truth Distribution ===\n")
+        for label in expected_labels + sorted([l for l in true_counts.keys() if l not in expected_labels]):
+            if label in true_counts:
+                count = true_counts[label]
+                f_out.write(f"  {label}: {count} ({count/len(truth)*100:.2f}%)\n")
 
-    f_out.write("\n=== Confusion Matrix (rows=true, cols=pred) ===\n")
-    f_out.write("Labels: " + ", ".join(expected_labels) + "\n")
-    f_out.write(str(cm) + "\n")
+        f_out.write("\n=== Confusion Matrix (rows=true, cols=pred) ===\n")
+        f_out.write("Labels: " + ", ".join(expected_labels) + "\n")
+        f_out.write(str(cm) + "\n")
 
-    f_out.write("\n=== Per-class Precision/Recall/F1/Support ===\n")
-    for i, lbl in enumerate(expected_labels):
-        f_out.write(
-            f"  {lbl}: precision={prec[i]:.4f}, recall={rec[i]:.4f}, f1={f1s[i]:.4f}, support={support[i]}\n"
-        )
+        f_out.write("\n=== Per-class Precision/Recall/F1/Support ===\n")
+        for i, lbl in enumerate(expected_labels):
+            f_out.write(
+                f"  {lbl}: precision={prec[i]:.4f}, recall={rec[i]:.4f}, f1={f1s[i]:.4f}, support={support[i]}\n"
+            )
 
-    f_out.write("\n=== Classification Report ===\n")
-    f_out.write(report + "\n")
+        f_out.write("\n=== Classification Report ===\n")
+        f_out.write(report + "\n")
 
-    f_out.write("\n=== Error Rates per True Label ===\n")
-    for idx, label in enumerate(expected_labels):
-        total = cm[idx].sum()
-        correct = cm[idx][idx]
-        err = 1.0 - (correct / total) if total > 0 else 0.0
-        f_out.write(f"  {label}: {err*100:.2f}%\n")
+        f_out.write("\n=== Error Rates per True Label ===\n")
+        for idx, label in enumerate(expected_labels):
+            total = cm[idx].sum()
+            correct = cm[idx][idx]
+            err = 1.0 - (correct / total) if total > 0 else 0.0
+            f_out.write(f"  {label}: {err*100:.2f}%\n")
 
     # Also print concise console summary
     print("=== PubMedQA Results ===")
