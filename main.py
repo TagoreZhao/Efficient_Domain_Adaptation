@@ -23,18 +23,18 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 
 # Evaluate on BillSum
-# rouge_scores, summaries = evaluate_billsum(
-#     model,
-#     tokenizer,
-#     device="cuda",
-#     n_eval=4,
-#     seed=1234,
-#     max_new_tokens=384,
-#     save_output="assets/BillSum_generated_summaries.txt",
-#     batch_size=2
-# )
+rouge_scores, summaries = evaluate_billsum(
+    model,
+    tokenizer,
+    device="cuda",
+    n_eval=200,
+    seed=1234,
+    max_new_tokens=384,
+    save_output="assets/BillSum_generated_summaries.txt",
+    batch_size=5
+)
 
-# print(f"BillSum ROUGE Scores: {rouge_scores}")
+print(f"BillSum ROUGE Scores: {rouge_scores}")
 
 # from data.datasets import get_casehold, get_billsum, get_contractnli, construct_legal_data
 # legal_data = construct_legal_data()
@@ -45,8 +45,8 @@ model = AutoModelForCausalLM.from_pretrained(
 #     print("Output:", legal_data[i]['target_text'])
 #     print("-----")
 
-rouge_scores, summaries = evaluate_hqs(model, tokenizer, enable_thinking=False)
-print(f"HQS ROUGE Scores: {rouge_scores}")
+# rouge_scores, summaries = evaluate_hqs(model, tokenizer, enable_thinking=False)
+# print(f"HQS ROUGE Scores: {rouge_scores}")
 # acc, maf, cm, predictions = evaluate_pubmedqa(model, tokenizer)
 # print(f"PubMedQA Accuracy: {acc}, Macro F1: {maf}")
 # acc, maf, cm, predictions = evaluate_mednli(model, tokenizer, n_eval=50)
