@@ -62,6 +62,8 @@ def evaluate_billsum(
         if tokenizer.eos_token_id is None:
             raise ValueError("tokenizer has no pad_token_id and no eos_token_id; cannot pad safely.")
         tokenizer.pad_token_id = tokenizer.eos_token_id
+    
+    tokenizer.padding_side = "left"  # for causal LMs, left padding is safer
 
     generated_summaries = []
     start_time = time()
