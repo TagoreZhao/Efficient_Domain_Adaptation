@@ -22,13 +22,14 @@ torch.cuda.empty_cache()
 #     cache_dir=model_save_dir
 # )
 
-from data.datasets import get_casehold, get_billsum, get_contractnli
-billsum = get_billsum()
-contractNLI = get_contractnli()
-print("billsum example:", billsum[0])
-print("Total samples in billsum dataset:", len(billsum))
-print("contractNLI example:", contractNLI[0])
-print("Total samples in contractNLI dataset:", len(contractNLI))
+from data.datasets import get_casehold, get_billsum, get_contractnli, construct_legal_data
+legal_data = construct_legal_data()
+print (f"Total legal data instances: {len(legal_data)}")
+for i in range(5):
+    print("Instruction:", legal_data[i]["source"])
+    print("Input:", legal_data[i]["input_text"])
+    print("Output:", legal_data[i]['target_text'])
+    print("-----")
 # import datasets
 # print(datasets.__version__)
 

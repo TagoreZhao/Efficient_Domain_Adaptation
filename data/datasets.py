@@ -107,6 +107,68 @@ def construct_med_data(pubmed_count=7000,
     
     return finetune_data
 
+def construct_legal_data(casehold_count=13000, 
+                         casehold_prop = [1/5, 1/5, 1/5, 1/5, 1/5], 
+                         billsum_count=2000, 
+                         contractnli_count=7000,
+                         entailment_prop=0.35, 
+                         contradiction_prop=0.2,  
+                         c4_count=0, 
+                         seed=1234):
+    """
+    Constructs a list of fine-tuning examples from three sources for the legal domain.
+    
+    The data instances follow the Alpaca (Taori et al., 2023) template so that models are 
+    trained to predict the responses.
+    
+    Sources:
+      - CaseHOLD: 13000 training instances.
+      - BillSum: 2000 training instances.
+      - C4: a configurable number of examples from the general domain.
+    
+    Each example is a dict with keys: 'source', 'input_text', and 'target_text'.
+    """
+    finetune_data = []
+    random.seed(seed)
+    
+    # --- CaseHOLD (Alpaca-style) ---
+    # Load streaming dataset; iterate and collect 13000 examples.
+    casehold_dataset = get_casehold(casehold_count=casehold_count, 
+                                    choice_prop = casehold_prop, 
+                                    seed=seed)
+
+    # --- BillSum (Alpaca-style) ---
+    billsum_dataset = get_billsum(billsum_count=billsum_count, 
+                                  seed=seed)
+
+    # --- ContractNLI (Alpaca-style) ---
+    contractnli = get_contractnli(contractnli_count=contractnli_count,
+                                    entailment_prop=entailment_prop, 
+                                    contradiction_prop=contradiction_prop,  
+                                    seed=seed)
+
+    # --- C4 Dataset (Standard format) ---
+    c4_dataset = load_dataset('allenai/c4', 'en', split='train', streaming=True)
+    c4_examples = 0
+    for example in c4_dataset:
+        text = example.get('text', "")
+        if len(text) < 100:
+            continue
+        finetune_data.append({
+            "source": "C4",
+            "input_text": text,  # Raw text.
+            "target_text": ""    # No additional formatting.
+        })
+        c4_examples += 1
+        if c4_examples >= c4_count:
+            break
+    finetune_data.extend(casehold_dataset)
+    finetune_data.extend(billsum_dataset)
+    finetune_data.extend(contractnli)
+    random.shuffle(finetune_data)
+
+    return finetune_data
+
 def get_wikitext2(nsamples, seed, seqlen, tokenizer):
     # Load train and test datasets
     traindata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='train')
@@ -742,3 +804,4 @@ def get_contractnli(contractnli_count=7000,
         })
         
     return finetune_data
+
