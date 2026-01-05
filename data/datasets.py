@@ -128,6 +128,74 @@ def get_wikitext2(nsamples, seed, seqlen, tokenizer):
         trainloader.append((inp, tar))
     return trainloader, testenc
 
+def get_casehold(casehold_count=7000, 
+                 choice_prop=[1/5, 1/5, 1/5, 1/5, 1/5],
+                 seed=1234):
+    random.seed(seed)
+    
+    finetune_data = []
+    casehold_dataset = load_dataset('casehold/casehold', split='train', trust_remote_code=True)
+    
+    # Assume the labels are strings "0", "1", "2", "3", "4".
+    labels = ["0", "1", "2", "3", "4"]
+    
+    # Normalize the proportions (in case they do not sum to 1) and determine quotas per label.
+    total_prop = sum(choice_prop)
+    normalized_props = [p/total_prop for p in choice_prop]
+    designated_counts = {label: int(round(casehold_count * normalized_props[i])) for i, label in enumerate(labels)}
+    
+    # Adjust if rounding caused a mismatch in total count.
+    current_sum = sum(designated_counts.values())
+    diff = casehold_count - current_sum
+    for i in range(diff):
+        designated_counts[labels[i % len(labels)]] += 1
+
+    # Initialize counters for each label.
+    counts = {label: 0 for label in labels}
+    total_added = 0
+    
+    for example in casehold_dataset:
+        try:
+            citing_prompt = example['citing_prompt']
+            holding_0 = example.get('holding_0', "")
+            holding_1 = example.get('holding_1', "")
+            holding_2 = example.get('holding_2', "")
+            holding_3 = example.get('holding_3', "")
+            holding_4 = example.get('holding_4', "")
+            label = example['label']  # label is expected to be a string like "0", "1", etc.
+        except KeyError:
+            continue
+        
+        # Only add if the label is one of our designated labels and its quota is not met.
+        if label not in counts:
+            continue
+        
+        if counts[label] < designated_counts[label]:
+            formatted_text = casehold_template.format(
+                citing_prompt=citing_prompt,
+                holding_0=holding_0,
+                holding_1=holding_1,
+                holding_2=holding_2,
+                holding_3=holding_3,
+                holding_4=holding_4,
+            )
+            target_text = casehold_target_template.format(label=label)
+            finetune_data.append({
+                "source": "CaseHOLD",
+                "input_text": formatted_text,
+                "target_text": target_text  # The model predicts the response.
+            })
+            counts[label] += 1
+            total_added += 1
+            if total_added >= casehold_count:
+                break
+        
+        # Optionally, break early if all quotas are met.
+        if all(counts[l] >= designated_counts[l] for l in labels):
+            break
+
+    return finetune_data
+
 def get_Harrison(nsamples, seed, seqlen, tokenizer):
     """
     Prepare the Harrison dataset for perplexity evaluation.
