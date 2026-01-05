@@ -47,10 +47,11 @@ def evaluate_contractnli(
     tokenizer.pad_token = tokenizer.eos_token
     data = load_dataset("kiddothe2b/contract-nli", "contractnli_a", split="test")
     expected_labels = ["entailment", "contradiction", "neutral"]
-    labels = data["label"]
-    premises = data["premise"]
-    hypotheses = data["hypothesis"]
+    labels = data["label"][:n_eval] if n_eval is not None else data["label"]
+    premises = data["premise"][:n_eval] if n_eval is not None else data["premise"]
+    hypotheses = data["hypothesis"][:n_eval] if n_eval is not None else data["hypothesis"]
     predictions, ground_truth = [], []
+    
     with open(save_output, "w", encoding="utf-8") as f_out:
         f_out.write("=== ContractNLI Evaluation Log ===\n")
         f_out.write(
@@ -87,8 +88,8 @@ def evaluate_contractnli(
                         return_dict_in_generate=True,
                         pad_token_id=tokenizer.eos_token_id,
                     )
-
-                decoded_output = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).lower()
+                outputs = outputs.sequences[0][len(inputs.input_ids[0]) :].tolist()
+                decoded_output = tokenizer.decode(outputs, skip_special_tokens=True).lower()
                 match = re.search(
                             r"\bTheir relationship is\b\s*[:\-]?\s*"
                             r"(?:\*\*|\*)?\s*"          # optional markdown emphasis opening
@@ -179,7 +180,7 @@ def evaluate_contractnli(
             f_out.write(f"  {lbl}: {err*100:.2f}%\n")
 
     print("=== ContractNLI Results ===")
-    print(f"Saved detailed log to: {save_output.resolve()}")
+    print(f"Saved detailed log to: {save_output}")
     print(f"Accuracy = {accuracy:.4f}")
     print(f"Macro-F1 = {macro_f1:.4f}")
     if ci_text:
@@ -821,7 +822,6 @@ def evaluate_pubmedqa(
                         return_dict_in_generate=True,
                         pad_token_id=tokenizer.eos_token_id,
                     )
-
                 decoded_output = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).lower()
                 match = re.search(
                             r"\bthe answer is\b\s*[:\-]?\s*"
