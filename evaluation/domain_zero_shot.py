@@ -52,7 +52,7 @@ def evaluate_casehold(model,
 
     data = load_dataset("casehold/casehold", split="test", trust_remote_code=True)
     tokenizer.pad_token = tokenizer.eos_token
-    predictions = []
+    predictions = {}
     citing_prompt = {row['example_id']: str(row["citing_prompt"]).strip().lower() for row in data}
     holdings = {row['example_id']: [row["holding_0"], row["holding_1"], row["holding_2"], row["holding_3"], row["holding_4"]] for row in data}
     example_ids = list(citing_prompt.keys())[:n_eval]
@@ -120,8 +120,11 @@ def evaluate_casehold(model,
             f_out.write(decoded_output.strip() + "\n")
             f_out.write("-" * 70 + "\n\n")
         
-    truth = [ground_truth[eid] for eid in example_ids]
-    preds = [predictions[eid] for eid in example_ids]
+    truth = [str(ground_truth[eid]) for eid in example_ids]
+    preds = [str(predictions[eid]) for eid in example_ids]
+
+    print("length of truth:", len(truth))
+    print("length of preds:", len(preds))
 
     # ==== Metrics ====
     acc = accuracy_score(truth, preds)

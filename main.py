@@ -25,7 +25,7 @@ model = AutoModelForCausalLM.from_pretrained(
 acc, maf, cm, predictions = evaluate_casehold(
     model,
     tokenizer,
-    n_eval=500,
+    n_eval=200,
     seed=1234,
     max_new_tokens=32,
     device="cuda"
