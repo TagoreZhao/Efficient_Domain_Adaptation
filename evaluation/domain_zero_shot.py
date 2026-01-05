@@ -37,25 +37,31 @@ def evaluate_billsum(
     seed=1234,
     max_new_tokens=384,
     enable_thinking=False,
+    batch_size=1,
+    max_length=3000,  # IMPORTANT: define it
     save_output="assets/BillSum_generated_summaries.txt",
+    think_token_id=151668,             # </think> token id (adjust if different)
 ):
-    """
-    Evaluate BillSum with ROUGE.  If sampling fails due to invalid probabilities,
-    logs the error, inspects the logits for NaN/Inf, then falls back to greedy decoding.
-    """
+    rouge = load_metric("rouge")
     random.seed(seed)
     torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
 
-    rouge = load_metric("rouge")
     billsum_dataset = load_dataset("billsum", split="ca_test")
 
-    # Truncate to max_instances
     texts = billsum_dataset["text"][:n_eval]
     titles = billsum_dataset["title"][:n_eval]
     reference_summaries = billsum_dataset["summary"][:n_eval]
 
     model.to(device)
     model.eval()
+
+    # Ensure padding token exists for batched tokenization / generation
+    if tokenizer.pad_token_id is None:
+        if tokenizer.eos_token_id is None:
+            raise ValueError("tokenizer has no pad_token_id and no eos_token_id; cannot pad safely.")
+        tokenizer.pad_token_id = tokenizer.eos_token_id
 
     generated_summaries = []
     start_time = time()
@@ -64,38 +70,57 @@ def evaluate_billsum(
     save_path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(save_path, "w", encoding="utf-8") as f_out:
-        f_out.write("=== billsum Evaluation Log ===\n")
-        f_out.write(
-            f"seed={seed}, max_new_tokens={max_new_tokens}, n_eval={n_eval}\n"
-        )
-        f_out.write(f"device={device}\n")
+        f_out.write("=== BillSum Evaluation Log ===\n")
+        f_out.write(f"seed={seed}, max_new_tokens={max_new_tokens}, n_eval={n_eval}\n")
+        f_out.write(f"device={device}, batch_size={batch_size}, max_length={max_length}\n")
         f_out.write("=" * 70 + "\n\n")
 
-        for idx, text in enumerate(tqdm(texts, desc="Generating Summaries")):
+        for start in tqdm(range(0, n_eval, batch_size), desc="Generating Summaries (batched)"):
+            end = min(start + batch_size, n_eval)
+            batch_texts = texts[start:end]
+            batch_titles = titles[start:end]
+
+            # Build prompts
             if enable_thinking:
-                prompt = billsum_input_template.format(title=titles[idx], input_text=text)
-                prompt = [{"role": "user", "content": prompt}]
-                prompt = tokenizer.apply_chat_template(
-                    prompt,
-                    tokenize=False,
-                    add_generation_prompt=True,
-                    enable_thinking=True,  # Switches between thinking and non-thinking modes. Default is True.
-                )
-                inputs = tokenizer([prompt], return_tensors="pt").to(model.device)
-            else:
-                prompt = billsum_input_template.format(title=titles[idx], input_text=text)
+                batch_prompts = []
+                for t, x in zip(batch_titles, batch_texts):
+                    p = billsum_input_template.format(title=t, input_text=x)
+                    conv = [{"role": "user", "content": p}]
+                    batch_prompts.append(
+                        tokenizer.apply_chat_template(
+                            conv,
+                            tokenize=False,
+                            add_generation_prompt=True,
+                            enable_thinking=True,
+                        )
+                    )
                 inputs = tokenizer(
-                    prompt,
+                    batch_prompts,
                     return_tensors="pt",
-                    max_length=3000,
+                    padding=True,
                     truncation=True,
+                    max_length=max_length,
+                ).to(model.device)
+            else:
+                batch_prompts = [
+                    billsum_input_template.format(title=t, input_text=x)
+                    for t, x in zip(batch_titles, batch_texts)
+                ]
+                inputs = tokenizer(
+                    batch_prompts,
+                    return_tensors="pt",
+                    padding=True,
+                    truncation=True,
+                    max_length=max_length,
                 ).to(device)
 
-            with torch.no_grad():
-                output_ids = model.generate(
+            prompt_lens = inputs["attention_mask"].sum(dim=1)  # (B,)
+
+            with torch.inference_mode():
+                out = model.generate(
                     **inputs,
                     max_new_tokens=max_new_tokens,
-                    do_sample=True,
+                    do_sample= True,
                     top_k=50,
                     top_p=0.9,
                     temperature=0.9,
@@ -103,45 +128,44 @@ def evaluate_billsum(
                     eos_token_id=tokenizer.eos_token_id,
                 )
 
-            if enable_thinking:
-                output_ids = output_ids[0][len(inputs.input_ids[0]) :].tolist()
-                try:
-                    # rindex finding 151668 (</think>)
-                    index = len(output_ids) - output_ids[::-1].index(151668)
-                except ValueError:
-                    index = 0
+            B, T = out.shape
 
-                thinking_content = tokenizer.decode(
-                    output_ids[:index], skip_special_tokens=True
-                ).strip("\n")
-                content = tokenizer.decode(
-                    output_ids[index:], skip_special_tokens=True
-                ).strip("\n")
-                summary = content
+            if not enable_thinking:
+                # Slice off prompts (ragged); batch_decode handles decoding efficiently
+                gen_seqs = [out[i, int(prompt_lens[i]):] for i in range(B)]
+                batch_summaries = tokenizer.batch_decode(gen_seqs, skip_special_tokens=True)
+                batch_summaries = [s.strip() for s in batch_summaries]
             else:
-                decoded_text = tokenizer.decode(output_ids[0], skip_special_tokens=True).strip()
-                # Remove the prompt from the output if it is echoed back
-                print (f"Decoded Text: {decoded_text}")
-                summary = decoded_text[len(prompt) :].strip()
+                # Vectorized find of last </think> token in generated continuation
+                pos = torch.arange(T, device=out.device).unsqueeze(0).expand(B, T)
+                gen_mask = pos >= prompt_lens.unsqueeze(1)
+                is_think = (out == think_token_id) & gen_mask
+                think_pos = torch.where(is_think, pos, torch.full_like(pos, -1))
+                last_think_pos = think_pos.max(dim=1).values
+                content_start = torch.where(last_think_pos >= 0, last_think_pos + 1, prompt_lens)
 
-            generated_summaries.append(summary)
+                gen_seqs = [out[i, int(content_start[i]):] for i in range(B)]
+                batch_summaries = tokenizer.batch_decode(gen_seqs, skip_special_tokens=True)
+                batch_summaries = [s.strip() for s in batch_summaries]
 
-            log_entry = (
-                f"\n=== Generated Summary for Question #{idx+1} ===\n"
-                f"title:\n{titles[idx]}\n"
-                f"text:\n{text}\n"
-                f"reference summary:\n{reference_summaries[idx]}\n"
-                f"GENERATED SUMMARY:\n{summary}\n"
-                + "=" * 50
-                + "\n"
-            )
-            f_out.write(log_entry)
+            generated_summaries.extend(batch_summaries)
 
-    rouge_scores = rouge.compute(
-        predictions=generated_summaries,
-        references=reference_summaries,
-    )
+            # Optional: per-example logging (correctly batched)
+            for i, summary in enumerate(batch_summaries):
+                global_idx = start + i
+                f_out.write(f"\n=== Example #{global_idx} ===\n")
+                f_out.write(f"TITLE:\n{titles[global_idx]}\n\n")
+                # Uncomment if you want full text logging (files get huge)
+                # f_out.write(f"TEXT:\n{texts[global_idx]}\n\n")
+                f_out.write(f"REFERENCE SUMMARY:\n{reference_summaries[global_idx]}\n\n")
+                f_out.write(f"GENERATED SUMMARY:\n{summary}\n")
+                f_out.write("=" * 50 + "\n")
 
+    # ROUGE compute
+    rouge_scores = rouge.compute(predictions=generated_summaries, 
+                                references=reference_summaries)
+
+    # Robust printing across evaluate vs datasets.load_metric implementations
     print("\n=== Final ROUGE SCORES ===")
     print(f"ROUGE-1: {rouge_scores['rouge1']:.4f}")
     print(f"ROUGE-2: {rouge_scores['rouge2']:.4f}")
@@ -151,6 +175,7 @@ def evaluate_billsum(
     print(f"\nTotal generation and evaluation time: {total_time:.2f} seconds")
 
     return rouge_scores, generated_summaries
+
 
 def evaluate_mednli(
     model,

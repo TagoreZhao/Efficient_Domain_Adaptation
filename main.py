@@ -27,10 +27,11 @@ rouge_scores, summaries = evaluate_billsum(
     model,
     tokenizer,
     device="cuda",
-    n_eval=10,
+    n_eval=200,
     seed=1234,
-    max_new_tokens=1024,
+    max_new_tokens=384,
     save_output="assets/BillSum_generated_summaries.txt",
+    batch_size=5
 )
 
 print(f"BillSum ROUGE Scores: {rouge_scores}")
