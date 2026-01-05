@@ -27,7 +27,7 @@ acc, maf, cm, predictions = evaluate_casehold(
     tokenizer,
     n_eval=200,
     seed=1234,
-    max_new_tokens=10,
+    max_new_tokens=15,
     device="cuda"
 )
 print(f"CaseHold Accuracy: {acc}, Macro F1: {maf}")

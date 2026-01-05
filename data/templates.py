@@ -81,6 +81,31 @@ casehold_input_template = (
 )
 casehold_target_template = " {label}"
 
+# casehold_input_template = (
+#     "You are given a citing passage from a U.S. judicial opinion and five candidate holding statements.\n"
+#     "The citing passage contains the literal token <HOLDING> (sometimes shown as (<HOLDING>)), which marks where the cited case’s holding (a short parenthetical proposition) should appear.\n\n"
+#     "Task:\n"
+#     "Select the ONE candidate holding statement (0–4) that best fills the <HOLDING> slot and matches how the citation is being used in the passage.\n\n"
+#     "How to decide (important):\n"
+#     "- Treat this as a cloze test: mentally substitute each candidate into the <HOLDING> position and pick the one that makes the passage legally and logically consistent.\n"
+#     "- Focus on the specific legal rule/proposition supported by the surrounding context (issue, standard, posture, and implication), not just topic similarity.\n"
+#     "- The four incorrect options are intentionally similar; choose the best contextual fit.\n\n"
+#     "Output requirements:\n"
+#     "- Reply with exactly ONE digit: 0, 1, 2, 3, or 4.\n"
+#     "- Do not add any other words, punctuation, or explanation.\n\n"
+#     "Citing passage:\n"
+#     "{citing_prompt}\n\n"
+#     "Candidate holdings:\n"
+#     "0. {holding_0}\n"
+#     "1. {holding_1}\n"
+#     "2. {holding_2}\n"
+#     "3. {holding_3}\n"
+#     "4. {holding_4}\n\n"
+#     "Response: The answer is "
+# )
+# casehold_target_template = "{label}"
+
+
 billsum_input_template = (
     "You are a nonpartisan legislative analyst. Write a California Legislative Counsel–style digest summary.\n"
     "Be accurate and faithful to the bill text. Do not guess or add information not supported by the text.\n\n"

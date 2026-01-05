@@ -85,7 +85,7 @@ def evaluate_casehold(model,
                     return_tensors="pt",
                     truncation=True,
                     padding=True,
-                    max_length=3000
+                    max_length=3500
                 ).to(device)
                 with torch.no_grad():
                     outputs = model.generate(
@@ -197,7 +197,7 @@ def evaluate_casehold(model,
             f_out.write(f"  {label}: {err*100:.2f}%\n")
 
     # Also print concise console summary
-    print("=== PubMedQA Results ===")
+    print("=== CaseHold Results ===")
     print(f"Saved detailed log to: {save_path.resolve()}")
     print(f"Accuracy = {acc:.4f}")
     print(f"Macro-F1 = {maf:.4f}")
