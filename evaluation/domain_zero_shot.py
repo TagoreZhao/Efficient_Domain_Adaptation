@@ -29,7 +29,128 @@ CUT_MARKERS = [
     "Please provide",
 ]
 
+def evaluate_billsum(
+    model,
+    tokenizer,
+    device="cuda",
+    n_eval=200,
+    seed=1234,
+    max_new_tokens=256,
+    enable_thinking=False,
+    save_output="assets/BillSum_generated_summaries.txt",
+):
+    """
+    Evaluate BillSum with ROUGE.  If sampling fails due to invalid probabilities,
+    logs the error, inspects the logits for NaN/Inf, then falls back to greedy decoding.
+    """
+    random.seed(seed)
+    torch.manual_seed(seed)
 
+    rouge = load_metric("rouge")
+    billsum_dataset = load_dataset("billsum", split="ca_test")
+
+    # Truncate to max_instances
+    texts = billsum_dataset["text"][:n_eval]
+    titles = billsum_dataset["title"][:n_eval]
+    reference_summaries = billsum_dataset["summary"][:n_eval]
+
+    model.to(device)
+    model.eval()
+
+    generated_summaries = []
+    start_time = time()
+
+    save_path = Path(save_output)
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(save_path, "w", encoding="utf-8") as f_out:
+        f_out.write("=== billsum Evaluation Log ===\n")
+        f_out.write(
+            f"seed={seed}, max_new_tokens={max_new_tokens}, n_eval={n_eval}\n"
+        )
+        f_out.write(f"device={device}\n")
+        f_out.write("=" * 70 + "\n\n")
+
+        for idx, text in enumerate(tqdm(texts, desc="Generating Summaries")):
+            if enable_thinking:
+                prompt = billsum_input_template.format(title=titles[idx], input_text=text)
+                prompt = [{"role": "user", "content": prompt}]
+                prompt = tokenizer.apply_chat_template(
+                    prompt,
+                    tokenize=False,
+                    add_generation_prompt=True,
+                    enable_thinking=True,  # Switches between thinking and non-thinking modes. Default is True.
+                )
+                inputs = tokenizer([prompt], return_tensors="pt").to(model.device)
+            else:
+                prompt = billsum_input_template.format(title=titles[idx], input_text=text)
+                inputs = tokenizer(
+                    prompt,
+                    return_tensors="pt",
+                    max_length=2048,
+                    truncation=True,
+                ).to(device)
+
+            with torch.no_grad():
+                output_ids = model.generate(
+                    **inputs,
+                    max_new_tokens=max_new_tokens,
+                    do_sample=True,
+                    top_k=50,
+                    top_p=0.9,
+                    temperature=0.9,
+                    pad_token_id=tokenizer.pad_token_id,
+                    eos_token_id=tokenizer.eos_token_id,
+                )
+
+            if enable_thinking:
+                output_ids = output_ids[0][len(inputs.input_ids[0]) :].tolist()
+                try:
+                    # rindex finding 151668 (</think>)
+                    index = len(output_ids) - output_ids[::-1].index(151668)
+                except ValueError:
+                    index = 0
+
+                thinking_content = tokenizer.decode(
+                    output_ids[:index], skip_special_tokens=True
+                ).strip("\n")
+                content = tokenizer.decode(
+                    output_ids[index:], skip_special_tokens=True
+                ).strip("\n")
+                summary = content
+            else:
+                decoded_text = tokenizer.decode(output_ids[0], skip_special_tokens=True).strip()
+                # Remove the prompt from the output if it is echoed back
+                print (f"Decoded Text: {decoded_text}")
+                summary = decoded_text[len(prompt) :].strip()
+
+            generated_summaries.append(summary)
+
+            log_entry = (
+                f"\n=== Generated Summary for Question #{idx+1} ===\n"
+                f"title:\n{titles[idx]}\n"
+                f"text:\n{text}\n"
+                f"reference summary:\n{reference_summaries[idx]}\n"
+                f"GENERATED SUMMARY:\n{summary}\n"
+                + "=" * 50
+                + "\n"
+            )
+            f_out.write(log_entry)
+
+    rouge_scores = rouge.compute(
+        predictions=generated_summaries,
+        references=reference_summaries,
+    )
+
+    print("\n=== Final ROUGE SCORES ===")
+    print(f"ROUGE-1: {rouge_scores['rouge1']:.4f}")
+    print(f"ROUGE-2: {rouge_scores['rouge2']:.4f}")
+    print(f"ROUGE-L: {rouge_scores['rougeL']:.4f}")
+
+    total_time = time() - start_time
+    print(f"\nTotal generation and evaluation time: {total_time:.2f} seconds")
+
+    return rouge_scores, generated_summaries
 
 def evaluate_mednli(
     model,

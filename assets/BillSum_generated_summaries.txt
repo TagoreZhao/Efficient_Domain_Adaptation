@@ -1,0 +1,141 @@
+=== billsum Evaluation Log ===
+seed=1234, max_new_tokens=256, n_eval=10
+device=cuda
+======================================================================
+
+
+=== Generated Summary for Question #1 ===
+title:
+An act to amend Section 215.1 of the Revenue and Taxation Code, relating to taxation, to take effect immediately, tax levy.
+text:
+The people of the State of California do enact as follows:
+
+
+SECTION 1.
+The Legislature finds and declares all of the following:
+(a) (1) Since 1899 congressionally chartered veterans’ organizations have provided a valuable service to our nation’s returning service members. These organizations help preserve the memories and incidents of the great hostilities fought by our nation, and preserve and strengthen comradeship among members.
+(2) These veterans’ organizations also own and manage various properties including lodges, posts, and fraternal halls. These properties act as a safe haven where veterans of all ages and their families can gather together to find camaraderie and fellowship, share stories, and seek support from people who understand their unique experiences. This aids in the healing process for these returning veterans, and ensures their health and happiness.
+(b) As a result of congressional chartering of these veterans’ organizations, the United States Internal Revenue Service created a special tax exemption for these organizations under Section 501(c)(19) of the Internal Revenue Code.
+(c) Section 501(c)(19) of the Internal Revenue Code and related federal regulations provide for the exemption for posts or organizations of war veterans, or an auxiliary unit or society of, or a trust or foundation for, any such post or organization that, among other attributes, carries on programs to perpetuate the memory of deceased veterans and members of the Armed Forces and to comfort their survivors, conducts programs for religious, charitable, scientific, literary, or educational purposes, sponsors or participates in activities of a patriotic nature, and provides social and recreational activities for their members.
+(d) Section 215.1 of the Revenue and Taxation Code stipulates that all buildings, support and so much of the real property on which the buildings are situated as may be required for the convenient use and occupation of the buildings, used exclusively for charitable purposes, owned by a veterans’ organization that has been chartered by the Congress of the United States, organized and operated for charitable purposes, when the same are used solely and exclusively for the purpose of the organization, if not conducted for profit and no part of the net earnings of which ensures to the benefit of any private individual or member thereof, are exempt from taxation.
+(e) The Chief Counsel of the State Board of Equalization concluded, based on a 1979 appellate court decision, that only parts of American Legion halls are exempt from property taxation and that other parts, such as billiard rooms, card rooms, and similar areas, are not exempt.
+(f) In a 1994 memorandum, the State Board of Equalization’s legal division further concluded that the areas normally considered eligible for exemptions are the office areas used to counsel veterans and the area used to store veterans’ records, but that the meeting hall and bar found in most of the facilities are not considered used for charitable purposes.
+(g) Tax-exempt status is intended to provide economic incentive and support to veterans’ organizations to provide for the social welfare of the community of current and former military personnel.
+(h) The State Board of Equalization’s constriction of the tax exemption has resulted in an onerous tax burden on California veteran service organizations posts or halls, hinders the posts’ ability to provide facilities for veterans, and threatens the economic viability of many local organizations.
+(i) The charitable activities of a veteran service organizations post or hall are much more than the counseling of veterans. The requirements listed for qualification for the federal tax exemption clearly dictate a need for more than just an office.
+(j) Programs to perpetuate the memory of deceased veterans and members of the Armed Forces and to comfort their survivors require the use of facilities for funerals and receptions.
+(k) Programs for religious, charitable, scientific, literary, or educational purposes require space for more than 50 attendees.
+(l) Activities of a patriotic nature need facilities to accommodate hundreds of people.
+(m) Social and recreational activities for members require precisely those areas considered “not used for charitable purposes” by the State Board of Equalization.
+(n) The State Board of Equalization’s interpretation of the Revenue and Taxation Code reflects a lack of understanding of the purpose and programs of the veterans service organizations posts or halls and is detrimental to the good works performed in support of our veteran community.
+SECTION 1.
+SEC. 2.
+Section 215.1 of the Revenue and Taxation Code is amended to read:
+215.1.
+(a) All buildings, and so much of the real property on which the buildings are situated as may be required for the convenient use and occupation of the buildings, used exclusively for charitable purposes, owned by a veterans’ organization that has been chartered by the Congress of the United States, organized and operated for charitable purposes, and exempt from federal income tax as an organization described in Section 501(c)(19) of the Internal Revenue Code when the same are used solely and exclusively for the purpose of the organization, if not conducted for profit and no part of the net earnings of which inures to the benefit of any private individual or member thereof, shall be exempt from taxation.
+(b) The exemption provided for in this section shall apply to the property of all organizations meeting the requirements of this section, subdivision (b) of Section 4 of Article XIII of the California Constitution, and paragraphs (1) to (4), inclusive, (6), and (7) of subdivision (a) of Section 214.
+(c) (1) The exemption specified by subdivision (a) shall not be denied to a property on the basis that the property is used for fraternal, lodge, or social club purposes.
+(2) With regard to this subdivision, the Legislature finds and declares all of the following:
+(A) The exempt activities of a veterans’ organization as described in subdivision (a) qualitatively differ from the exempt activities of other nonprofit entities that use property for fraternal, lodge, or social club purposes in that the exempt purpose of the veterans’ organization is to conduct programs to perpetuate the memory of deceased veterans and members of the Armed Forces and to comfort their survivors, to conduct programs for religious, charitable, scientific, literary, or educational purposes, to sponsor or participate in activities of a patriotic nature, and to provide social and recreational activities for their members.
+(B) In light of this distinction, the use of real property by a veterans’ organization as described in subdivision (a), for fraternal, lodge, or social club purposes is central to that organization’s exempt purposes and activities.
+(C) In light of the factors set forth in subparagraphs (A) and (B), the use of real property by a veterans’ organization as described in subdivision (a) for fraternal, lodge, or social club purposes, constitutes the exclusive use of that property for a charitable purpose within the meaning of subdivision (b) of Section 4 of Article XIII of the California Constitution.
+(d) The exemption provided for in this section shall not apply to any portion of a property that consists of a bar where alcoholic beverages are served. The portion of the property ineligible for the veterans’ organization exemption shall be that area used primarily to prepare and serve alcoholic beverages.
+(e) An organization that files a claim for the exemption provided for in this section shall file with the assessor a valid organizational clearance certificate issued pursuant to Section 254.6.
+(f) This exemption shall be known as the “veterans’ organization exemption.”
+SEC. 2.
+SEC. 3.
+Notwithstanding Section 2229 of the Revenue and Taxation Code, no appropriation is made by this act and the state shall not reimburse any local agency for any property tax revenues lost by it pursuant to this act.
+SEC. 3.
+SEC. 4.
+This act provides for a tax levy within the meaning of Article IV of the Constitution and shall go into immediate effect.
+reference summary:
+Existing property tax law establishes a veterans’ organization exemption under which property is exempt from taxation if, among other things, that property is used exclusively for charitable purposes and is owned by a veterans’ organization.
+This bill would provide that the veterans’ organization exemption shall not be denied to a property on the basis that the property is used for fraternal, lodge, or social club purposes, and would make specific findings and declarations in that regard. The bill would also provide that the exemption shall not apply to any portion of a property that consists of a bar where alcoholic beverages are served.
+Section 2229 of the Revenue and Taxation Code requires the Legislature to reimburse local agencies annually for certain property tax revenues lost as a result of any exemption or classification of property for purposes of ad valorem property taxation.
+This bill would provide that, notwithstanding Section 2229 of the Revenue and Taxation Code, no appropriation is made and the state shall not reimburse local agencies for property tax revenues lost by them pursuant to the bill.
+This bill would take effect immediately as a tax levy.
+GENERATED SUMMARY:
+I think that this is a pretty standard way of writing an instruction for summarizing a bill.
+
+1. The title is very broad and vague. It is almost a generic term for legislation.
+2. The body of the instruction is fairly straight-forward and includes the major actions of the bill. The legislative purpose is clearly stated, as well as the effects of the bill. I think this is a good overview of the bill.
+
+The legislative title seems to be a bit long. I think the instructions should be a bit shorter. It seems that the instruction could be condensed into two to three lines.
+
+1. The instruction could be broken down into several smaller instructions.
+
+a. The title should not be very long or vague. I think it is too vague and generic.
+
+b. The title of the bill is too long and vague. I think it should be condensed.
+
+c. The legislative title is vague and generic. I think it should be shortened.
+
+d. The title is too long and generic. I think it should be shortened.
+
+3. The title seems to be vague and generic. I think it should be shortened.
+
+4. The instructions could be shortened.
+
+1. The instructions could be condensed into three or four lines.
+
+2. The title could be shortened.
+
+3.
+==================================================
+
+=== Generated Summary for Question #2 ===
+title:
+An act to amend Section 3550 of, and to add Section 1170.02 to, the Penal Code, relating to parole.
+text:
+The people of the State of California do enact as follows:
+
+
+SECTION 1.
+Section 1170.02 is added to the Penal Code, to read:
+1170.02.
+A prisoner is not eligible for resentence or recall pursuant to subdivision (e) of Section 1170 if he or she was convicted of first-degree murder if the victim was a peace officer, as defined in Section 830.1, 830.2, 830.3, 830.31, 830.32, 830.33, 830.34, 830.35, 830.36, 830.37, 830.4, 830.5, 830.6, 830.10, 830.11, or 830.12, who was killed while engaged in the performance of his or her duties, and the individual knew, or reasonably should have known, that the victim was a peace officer engaged in the performance of his or her duties, or the victim was a peace officer or a former peace officer under any of the above-enumerated sections, and was intentionally killed in retaliation for the performance of his or her official duties.
+SEC. 2.
+Section 3550 of the Penal Code is amended to read:
+3550.
+(a) Notwithstanding any other law, except as provided in subdivision (b), if the head physician of an institution in which a prisoner is incarcerated determines, as provided in this section, that the prisoner is permanently medically incapacitated with a medical condition that renders him or her permanently unable to perform activities of basic daily living, and results in the prisoner requiring 24-hour care, and that incapacitation did not exist at the time of sentencing, the prisoner shall be granted medical parole if the Board of Parole Hearings determines that the conditions under which he or she would be released would not reasonably pose a threat to public safety.
+(b) This section does not alter or diminish the rights conferred under the Victims’ Bill of Rights Act of 2008 (Marsy’s Law). Subdivision (a) does not apply to any of the following:
+(1) A prisoner sentenced to death or life in prison without possibility of parole.
+(2) A prisoner who is serving a sentence for which parole, pursuant to subdivision (a), is prohibited by any initiative statute.
+(3) A prisoner who was convicted of first-degree murder if the victim was a peace officer, as defined in Section 830.1, 830.2, 830.3, 830.31, 830.32, 830.33, 830.34, 830.35, 830.36, 830.37, 830.4, 830.5, 830.6, 830.10, 830.11, or 830.12, who was killed while engaged in the performance of his or her duties, and the individual knew, or reasonably should have known, that the victim was a peace officer engaged in the performance of his or her duties, or the victim was a peace officer or a former peace officer under any of the above-enumerated sections, and was intentionally killed in retaliation for the performance of his or her official duties.
+(c) When a physician employed by the Department of Corrections and Rehabilitation who is the primary care provider for a prisoner identifies a prisoner that he or she believes meets the medical criteria for medical parole specified in subdivision (a), the primary care physician shall recommend to the head physician of the institution where the prisoner is located that the prisoner be referred to the Board of Parole Hearings for consideration for medical parole. Within 30 days of receiving that recommendation, if the head physician of the institution concurs in the recommendation of the primary care physician, he or she shall refer the matter to the Board of Parole Hearings using a standardized form and format developed by the department, and if the head physician of the institution does not concur in the recommendation, he or she shall provide the primary care physician with a written explanation of the reasons for denying the referral.
+(d) Notwithstanding any other provisions of this section, the prisoner or his or her family member or designee may independently request consideration for medical parole by contacting the head physician at the prison or the department. Within 30 days of receiving the request, the head physician of the institution shall, in consultation with the prisoner’s primary care physician, make a determination regarding whether the prisoner meets the criteria for medical parole as specified in subdivision (a) and, if the head physician of the institution determines that the prisoner satisfies the criteria set forth in subdivision (a), he or she shall refer the matter to the Board of Parole Hearings using a standardized form and format developed by the department. If the head physician of the institution does not concur in the recommendation, he or she shall provide the prisoner or his or her family member or designee with a written explanation of the reasons for denying the application.
+(e) The Department of Corrections and Rehabilitation shall complete parole plans for inmates referred to the Board of Parole Hearings for medical parole consideration. The parole plans shall include, but not be limited to, the inmate’s plan for residency and medical care.
+(f) Notwithstanding any other law, medical parole hearings shall be conducted by two-person panels consisting of at least one commissioner. In the event of a tie vote, the matter shall be referred to the full board for a decision. Medical parole hearings may be heard in absentia.
+(g) Upon receiving a recommendation from the head physician of the institution where a prisoner is located for the prisoner to be granted medical parole pursuant to subdivision (c) or (d), the board, as specified in subdivision (f), shall make an independent judgment regarding whether the conditions under which the inmate would be released pose a reasonable threat to public safety, and make written findings related thereto.
+(h) Notwithstanding any other law, the board or the Division of Adult Parole Operations shall have the authority to impose any reasonable conditions on prisoners subject to medical parole supervision pursuant to subdivision (a), including, but not limited to, the requirement that the parolee submit to electronic monitoring. As a further condition of medical parole, pursuant to subdivision (a), the parolee may be required to submit to an examination by a physician selected by the board for the purpose of diagnosing the parolee’s current medical condition. In the event such an examination takes place, a report of the examination and diagnosis shall be submitted to the board by the examining physician. If the board determines, based on that medical examination, that the person’s medical condition has improved to the extent that the person no longer qualifies for medical parole, the board shall return the person to the custody of the department.
+(1) Notwithstanding any other law establishing maximum periods for parole, a prisoner sentenced to a determinate term who is placed on medical parole supervision prior to the earliest possible release date and who remains eligible for medical parole, shall remain on medical parole, pursuant to subdivision (a), until that earliest possible release date, at which time the parolee shall commence serving that period of parole provided by, and under the provisions of, Chapter 8 (commencing with Section 3000) of Title 1.
+(2) Notwithstanding any other law establishing maximum periods for parole, a prisoner sentenced to an indeterminate term who is placed on medical parole supervision prior to the prisoner’s minimum eligible parole date, and who remains eligible for medical parole, shall remain on medical parole pursuant to subdivision (a) until that minimum eligible parole date, at which time the parolee shall be eligible for parole consideration under all other provisions of Chapter 8 (commencing with Section 3000) of Title 1.
+(i) The Department of Corrections and Rehabilitation shall, at the time a prisoner is placed on medical parole supervision pursuant to subdivision (a), ensure that the prisoner has applied for any federal entitlement programs for which the prisoner is eligible, and has in his or her possession a discharge medical summary, full medical records, parole medications, and all property belonging to the prisoner that was under the control of the department. Any additional records shall be sent to the prisoner’s forwarding address after release to health care-related parole supervision.
+(j) The provisions for medical parole set forth in this title shall not affect an inmate’s eligibility for any other form of parole or release provided by law.
+(k) (1) Notwithstanding any other law, the Department of Corrections and Rehabilitation shall give notice to the county of commitment and the proposed county of release, if that county is different than the county of commitment, of any medical parole hearing as described in subdivision (f), and of any medical parole release as described in subdivision (g).
+(2) Notice shall be made at least 30 days, or as soon as feasible, prior to the time any medical parole hearing or medical parole release is scheduled for an inmate receiving medical parole consideration, regardless of whether the inmate is sentenced either determinately or indeterminately.
+reference summary:
+Existing law provides that the Board of Parole Hearings or its successor in interest shall be the state’s parole authority. Existing law requires that a prisoner who is found to be permanently medically incapacitated, as specified, be granted medical parole, if the Board of Parole Hearings determines that the conditions under which the prisoner would be released would not reasonably pose a threat to public safety. Existing law exempts a prisoner sentenced to death, a prisoner sentenced to life without the possibility of parole, and a prisoner who is serving a sentence for which parole is prohibited by initiative statute, from medical parole eligibility.
+Existing law authorizes a court to resentence or recall the sentence of a prisoner if the court finds that the prisoner is terminally ill, as specified, or the prisoner is permanently medically incapacitated, as specified, and, in either case, the conditions under which the prisoner would be released or receive treatment do not pose a threat to public safety. Existing law exempts a prisoner sentenced to death or a term of life without the possibility of parole from eligibility for compassionate release pursuant to these provisions.
+This bill would additionally exempt from medical parole eligibility and compassionate release eligibility a prisoner who was convicted of the first-degree murder of a peace officer or a person who had been a peace officer, as provided.
+GENERATED SUMMARY:
+In the People of the State of California, against the State. Respondent
+
+Respondent is charged with the crime of murder in the second degree. 
+
+Respondent’s attorney, John Doe, informs the court that the state intends to proceed with a trial in accordance with the standard legal procedures outlined in California Rules of Court, rule 3.300.
+
+Respondent is represented by John Doe and is present in court.
+
+Respondent is charged with the crime of first-degree murder. He is represented by John Doe and is present in court.
+
+Respondent is represented by John Doe and is present in court.
+
+The following is the bill summary.
+
+In the people of the State of California, against the State of California.
+
+This bill would amend section 3550 of the Penal Code to provide that, if the head physician of an institution in which a prisoner is incarcerated determines that the prisoner is permanently medically incapacitated with a medical condition that renders him or her permanently unable to perform activities of basic daily living, and that incapacitation did not exist at the time of sentencing, the prisoner shall be granted medical parole if the Board of Parole Hearings determines that the conditions under which he or she would be released would not reasonably pose a threat to public safety.
+
+This bill also specifies that
+==================================================
