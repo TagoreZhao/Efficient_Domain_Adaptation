@@ -1,0 +1,5 @@
+=== ContractNLI Evaluation Log ===
+n_eval=200, seed=1234, max_new_tokens=10, max_attempts=3
+device=cuda
+======================================================================
+

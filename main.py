@@ -1,6 +1,6 @@
 import os
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from evaluation.domain_zero_shot import evaluate_billsum, evaluate_hqs, evaluate_casehold
+from evaluation.domain_zero_shot import evaluate_billsum, evaluate_hqs, evaluate_casehold, evaluate_contractnli
 import torch
 import pandas as pd
 from data.templates import *
@@ -22,7 +22,7 @@ model = AutoModelForCausalLM.from_pretrained(
     cache_dir=model_save_dir
 )
 
-acc, maf, cm, predictions = evaluate_casehold(
+acc, maf, cm, predictions = evaluate_contractnli(
     model,
     tokenizer,
     n_eval=200,
@@ -30,7 +30,7 @@ acc, maf, cm, predictions = evaluate_casehold(
     max_new_tokens=10,
     device="cuda"
 )
-print(f"CaseHold Accuracy: {acc}, Macro F1: {maf}")
+print(f"ContractNLI Accuracy: {acc}, Macro F1: {maf}")
 
 
 # Evaluate on BillSum

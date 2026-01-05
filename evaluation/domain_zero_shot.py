@@ -29,6 +29,165 @@ CUT_MARKERS = [
     "Please provide",
 ]
 
+def evaluate_contractnli(
+    model,
+    tokenizer,
+    device="cuda",
+    save_output="assets/contractnli_predictions.txt",
+    seed=1234,
+    max_attempts=3,
+    max_new_tokens=10,
+    n_eval=200,              # optional: limit number of examples
+    do_bootstrap_ci=True,
+    n_boot=1000,
+):
+    random.seed(seed)
+    torch.manual_seed(seed)
+    model.to(device)
+    tokenizer.pad_token = tokenizer.eos_token
+    data = load_dataset("kiddothe2b/contract-nli", "contractnli_a", split="test")
+    expected_labels = ["entailment", "contradiction", "neutral"]
+    labels = data["label"]
+    premises = data["premise"]
+    hypotheses = data["hypothesis"]
+    predictions, ground_truth = [], []
+    with open(save_output, "w", encoding="utf-8") as f_out:
+        f_out.write("=== ContractNLI Evaluation Log ===\n")
+        f_out.write(
+            f"n_eval={len(data) if n_eval is None else n_eval}, "
+            f"seed={seed}, max_new_tokens={max_new_tokens}, max_attempts={max_attempts}\n"
+        )
+        f_out.write(f"device={device}\n")
+        f_out.write("=" * 70 + "\n\n")
+
+        for idx, premise in enumerate(tqdm(premises, desc="Evaluating ContractNLI")):
+            hypothesis = hypotheses[idx]
+            gold_label = {1: "entailment", 2: "neutral", 0: "contradiction"}.get(labels[idx], "unknown")
+            ground_truth.append(gold_label)
+            prompt = mednli_input_template.format(sentence1=premise, sentence2=hypothesis)
+            prediction = "unknown"
+            for attempt in range(max_attempts):
+                inputs = tokenizer(
+                    prompt,
+                    return_tensors="pt",
+                    truncation=True,
+                    padding=True,
+                    max_length=2048,
+                ).to(device)
+
+                with torch.no_grad():
+                    outputs = model.generate(
+                        **inputs,
+                        max_new_tokens=max_new_tokens,
+                        do_sample=True,
+                        top_k=50,
+                        top_p=0.9,
+                        temperature=0.9,
+                        output_scores=True,
+                        return_dict_in_generate=True,
+                        pad_token_id=tokenizer.eos_token_id,
+                    )
+
+                decoded_output = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).lower()
+                match = re.search(
+                            r"\bTheir relationship is\b\s*[:\-]?\s*"
+                            r"(?:\*\*|\*)?\s*"          # optional markdown emphasis opening
+                            r"(?:['\"]{1,2})?\s*"       # optional quote wrapper: ' or " or '' or ""
+                            r"(entailment|contradiction|neutral)"
+                            r"\s*(?:['\"]{1,2})?\s*"    # optional closing quotes
+                            r"(?:\*\*|\*)?\b",          # optional markdown emphasis closing
+                            decoded_output,
+                            flags=re.IGNORECASE
+                        )
+                if match:
+                    prediction = match.group(1).strip()
+                    break
+
+            predictions.append(prediction)
+
+            f_out.write(f"ID: {idx}\n")
+            f_out.write(f"GOLD: {gold_label}\n")
+            f_out.write(f"PRED: {prediction}\n")
+            f_out.write(f"PREMISE:\n")
+            f_out.write(f"{premise.strip()}\n")
+            f_out.write(f"HYPOTHESIS:\n")
+            f_out.write(f"{hypothesis.strip()}\n")
+            f_out.write(f"RAW_DECODED:\n{decoded_output.strip()}\n")
+            f_out.write("-" * 70 + "\n\n")
+
+        accuracy = accuracy_score(ground_truth, predictions)
+        macro_f1 = f1_score(ground_truth, predictions, average="macro", labels=expected_labels)
+        cm = confusion_matrix(ground_truth, predictions, labels=expected_labels)
+        prec, rec, f1s, support = precision_recall_fscore_support(
+            ground_truth, predictions, labels=expected_labels, zero_division=0
+        )
+        pred_counts = Counter(predictions)
+        true_counts = Counter(ground_truth)
+        report = classification_report(ground_truth, predictions, labels=expected_labels, zero_division=0)
+        ci_text = ""
+        if do_bootstrap_ci:
+            rng = random.Random(seed)
+            n = len(ground_truth)
+            boot_scores = []
+            for _ in range(n_boot):
+                idxs = [rng.randrange(n) for _ in range(n)]
+                t_b = [ground_truth[i] for i in idxs]
+                p_b = [predictions[i] for i in idxs]
+                boot_scores.append(f1_score(t_b, p_b, average="macro", labels=expected_labels))
+            boot_scores.sort()
+            lo = boot_scores[int(0.025 * n_boot)]
+            hi = boot_scores[int(0.975 * n_boot) - 1]
+            ci_text = f"Macro-F1 95% bootstrap CI (n_boot={n_boot}): [{lo:.4f}, {hi:.4f}]"
+        
+        f_out.write("\n\n" + "=" * 70 + "\n")
+        f_out.write("=== FINAL METRICS SUMMARY ===\n")
+        f_out.write(f"Accuracy: {accuracy:.4f}\n")
+        f_out.write(f"Macro-F1: {macro_f1:.4f}\n")
+        if ci_text:
+            f_out.write(ci_text + "\n")
+
+        f_out.write("\n=== Prediction Distribution ===\n")
+        for label in expected_labels + sorted([l for l in pred_counts.keys() if l not in expected_labels]):
+            if label in pred_counts:
+                count = pred_counts[label]
+                f_out.write(f"  {label}: {count} ({count/len(predictions)*100:.2f}%)\n")
+
+        f_out.write("\n=== Ground Truth Distribution ===\n")
+        for label in expected_labels + sorted([l for l in true_counts.keys() if l not in expected_labels]):
+            if label in true_counts:
+                count = true_counts[label]
+                f_out.write(f"  {label}: {count} ({count/len(ground_truth)*100:.2f}%)\n")
+
+        f_out.write("\n=== Confusion Matrix (rows=true, cols=pred) ===\n")
+        f_out.write("Labels: " + ", ".join(expected_labels) + "\n")
+        f_out.write(str(cm) + "\n")
+
+        f_out.write("\n=== Per-class Precision/Recall/F1/Support ===\n")
+        for i, lbl in enumerate(expected_labels):
+            f_out.write(
+                f"  {lbl}: precision={prec[i]:.4f}, recall={rec[i]:.4f}, f1={f1s[i]:.4f}, support={support[i]}\n"
+            )
+
+        f_out.write("\n=== Classification Report ===\n")
+        f_out.write(report + "\n")
+
+        f_out.write("\n=== Error Rates per True Label ===\n")
+        for i, lbl in enumerate(expected_labels):
+            total = cm[i].sum()
+            correct = cm[i][i]
+            err = 1.0 - (correct / total) if total > 0 else 0.0
+            f_out.write(f"  {lbl}: {err*100:.2f}%\n")
+
+    print("=== ContractNLI Results ===")
+    print(f"Saved detailed log to: {save_output.resolve()}")
+    print(f"Accuracy = {accuracy:.4f}")
+    print(f"Macro-F1 = {macro_f1:.4f}")
+    if ci_text:
+        print(ci_text)
+
+    return accuracy, macro_f1, cm, predictions
+
+
 def evaluate_casehold(model, 
                       tokenizer, 
                       device="cuda", 
@@ -59,10 +218,6 @@ def evaluate_casehold(model,
     ground_truth = ground_truth = {row["example_id"]: str(row["label"]).strip().lower() for row in data}
 
     expected_labels = [str(i) for i in range(5)]
-    label_token_ids = [
-        tokenizer.convert_tokens_to_ids(tokenizer.tokenize(lbl)[0])
-        for lbl in expected_labels
-    ]
 
     with open(save_path, "w", encoding="utf-8") as f_out:
         f_out.write("=== CaseHold Evaluation Log ===\n")
