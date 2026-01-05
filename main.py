@@ -22,10 +22,13 @@ torch.cuda.empty_cache()
 #     cache_dir=model_save_dir
 # )
 
-from data.datasets import get_casehold
-casehold_dataset = get_casehold()
-print("example:", casehold_dataset[0])
-print("Total samples in CaseHold dataset:", len(casehold_dataset))
+from data.datasets import get_casehold, get_billsum, get_contractnli
+billsum = get_billsum()
+contractNLI = get_contractnli()
+print("billsum example:", billsum[0])
+print("Total samples in billsum dataset:", len(billsum))
+print("contractNLI example:", contractNLI[0])
+print("Total samples in contractNLI dataset:", len(contractNLI))
 # import datasets
 # print(datasets.__version__)
 
