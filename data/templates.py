@@ -82,17 +82,21 @@ casehold_input_template = (
 casehold_target_template = " {label}"
 
 billsum_input_template = (
-        "Below is an instruction for summarizing a legislative bill.\n\n"
-        "Instruction:\n"
-        "Summarize the following legislative text by clearly identifying and explaining the *major actions, purposes, and effects* of the bill. "
-        "Focus on what the bill aims to achieve rather than technical details or administrative changes. "
-        "Paraphrase the information in a simple and accessible way as if writing for policymakers and the public. "
-        "Avoid copying long passages or citing subsection numbers unless necessary for understanding.\n\n"
-        "Input:\n"
-        "Bill Title: {title}\n\n"
-        "{input_text}\n\n"
-        "Response:"
-    )
+    "You are a nonpartisan legislative analyst. Write a California Legislative Counsel–style digest summary.\n"
+    "Be accurate and faithful to the bill text. Do not guess or add information not supported by the text.\n\n"
+    "TITLE:\n"
+    "{title}\n\n"
+    "BILL TEXT:\n"
+    "{input_text}\n\n"
+    "INSTRUCTIONS:\n"
+    "- Write a concise digest-style summary in 1–3 paragraphs.\n"
+    "- When supported by the text, describe: (1) Existing law/background, then (2) what this bill would do.\n"
+    "- Capture the major actions, requirements, prohibitions, authorizations, and who is affected.\n"
+    "- Keep key thresholds, dates, deadlines, penalties/crimes, appropriations, and reimbursement/mandate notes ONLY if explicitly stated.\n"
+    "- Paraphrase; do not quote long passages or cite section numbers unless essential.\n"
+    "- Use neutral, legislative language. No bullet points. No headings. No preface.\n\n"
+    "SUMMARY:"
+)
 billsum_target_template = "{summary}"
 
 contractNLI_input_template = (

@@ -35,7 +35,7 @@ def evaluate_billsum(
     device="cuda",
     n_eval=200,
     seed=1234,
-    max_new_tokens=256,
+    max_new_tokens=384,
     enable_thinking=False,
     save_output="assets/BillSum_generated_summaries.txt",
 ):
@@ -87,7 +87,7 @@ def evaluate_billsum(
                 inputs = tokenizer(
                     prompt,
                     return_tensors="pt",
-                    max_length=2048,
+                    max_length=3000,
                     truncation=True,
                 ).to(device)
 

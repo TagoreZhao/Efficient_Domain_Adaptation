@@ -1,5 +1,5 @@
 === billsum Evaluation Log ===
-seed=1234, max_new_tokens=256, n_eval=10
+seed=1234, max_new_tokens=1024, n_eval=10
 device=cuda
 ======================================================================
 
@@ -55,32 +55,33 @@ Section 2229 of the Revenue and Taxation Code requires the Legislature to reimbu
 This bill would provide that, notwithstanding Section 2229 of the Revenue and Taxation Code, no appropriation is made and the state shall not reimburse local agencies for property tax revenues lost by them pursuant to the bill.
 This bill would take effect immediately as a tax levy.
 GENERATED SUMMARY:
-I think that this is a pretty standard way of writing an instruction for summarizing a bill.
+This bill requires the Legislature to adopt a new veterans’ organization exemption for real property used by veterans’ organizations, excluding only certain parts of facilities used for the organization’s charitable activities. The bill would provide for a property tax levy in response to the State Board of Equalization’s interpretation of the revenue code to the effect that all buildings used solely and exclusively for the charitable activities of a veterans’ organization are exempt from property taxation.
 
-1. The title is very broad and vague. It is almost a generic term for legislation.
-2. The body of the instruction is fairly straight-forward and includes the major actions of the bill. The legislative purpose is clearly stated, as well as the effects of the bill. I think this is a good overview of the bill.
+The People of the State of California,
+do enact as follows:
 
-The legislative title seems to be a bit long. I think the instructions should be a bit shorter. It seems that the instruction could be condensed into two to three lines.
-
-1. The instruction could be broken down into several smaller instructions.
-
-a. The title should not be very long or vague. I think it is too vague and generic.
-
-b. The title of the bill is too long and vague. I think it should be condensed.
-
-c. The legislative title is vague and generic. I think it should be shortened.
-
-d. The title is too long and generic. I think it should be shortened.
-
-3. The title seems to be vague and generic. I think it should be shortened.
-
-4. The instructions could be shortened.
-
-1. The instructions could be condensed into three or four lines.
-
-2. The title could be shortened.
-
-3.
+SECTION 1.
+The Legislature finds and declares all of the following:
+(a) (1) Since 1899 congressionally chartered veterans’ organizations have provided a valuable service to our nation’s returning service members. These organizations help preserve the memories and incidents of the great hostilities fought by our nation, and preserve and strengthen comradeship among members.
+(2) These veterans’ organizations also own and manage various properties including lodges, posts, and fraternal halls. These properties act as a safe haven where veterans of all ages and their families can gather together to find camaraderie and fellowship, share stories, and seek support from people who understand their unique experiences. This aids in the healing process for these returning veterans, and ensures their health and happiness.
+(b) As a result of congressional chartering of these veterans’ organizations, the United States Internal Revenue Service created a special tax exemption for these organizations under Section 501(c)(19) of the Internal Revenue Code.
+(c) Section 501(c)(19) of the Internal Revenue Code and related federal regulations provide for the exemption for posts or organizations of war veterans, or an auxiliary unit or society of, or a trust or foundation for, any such post or organization that, among other attributes, carries on programs to perpetuate the memory of deceased veterans and members of the Armed Forces and to comfort their survivors, conducts programs for religious, charitable, scientific, literary, or educational purposes, sponsors or participates in activities of a patriotic nature, and provides social and recreational activities for their members.
+(d) Section 215.1 of the Revenue and Taxation Code stipulates that all buildings, support and so much of the real property on which the buildings are situated as may be required for the convenient use and occupation of the buildings, used exclusively for charitable purposes, owned by a veterans’ organization that has been chartered by the Congress of the United States, organized and operated for charitable purposes, when the same are used solely and exclusively for the purpose of the organization, if not conducted for profit and no part of the net earnings of which inures to the benefit of any private individual or member thereof, are exempt from taxation.
+(e) The Chief Counsel of the State Board of Equalization concluded, based on a 1979 appellate court decision, that only parts of American Legion halls are exempt from property taxation and that other parts, such as billiard rooms, card rooms, and similar areas, are not exempt.
+(f) In a 1994 memorandum, the State Board of Equalization’s legal division further concluded that the areas normally considered eligible for exemptions are the office areas used to counsel veterans and the area used to store veterans’ records, but that the meeting hall and bar found in most of the facilities are not considered used for charitable purposes.
+(g) Tax-exempt status is intended to provide economic incentive and support to veterans’ organizations to provide for the social welfare of the community of current and former military personnel.
+(h) The State Board of Equalization’s constriction of the tax exemption has resulted in an onerous tax burden on California veteran service organizations posts or halls, hinders the posts’ ability to provide facilities for veterans, and threatens the economic viability of many local organizations.
+(i) The charitable activities of a veteran service organizations post or hall are much more than the counseling of veterans. The requirements listed for qualification for the federal tax exemption clearly dictate a need for more than just an office.
+(j) Programs to perpetuate the memory of deceased veterans and members of the Armed Forces and to comfort their survivors require the use of facilities for funerals and receptions.
+(k) Programs for religious, charitable, scientific, literary, or educational purposes require space for more than 50 attendees.
+(l) Activities of a patriotic nature need facilities to accommodate hundreds of people.
+(m) Social and recreational activities for members require precisely those areas considered “not used for charitable purposes” by the State Board of Equalization.
+(n) The State Board of Equalization’s interpretation of the Revenue and Taxation Code reflects a lack of understanding of the purpose and programs of the veterans service organizations posts or halls and is detrimental to the good works performed in support of our veteran community.
+SEC. 1.
+SECTION 2.
+Section 215.1 of the Revenue and Taxation Code is amended to read:
+215.1.
+(a) All buildings, and so much of the real property on which the buildings are situated as may be required for the convenient use and occupation of the buildings, used exclusively for charitable purposes, owned by a veterans’ organization that has been chartered by the Congress
 ==================================================
 
 === Generated Summary for Question #2 ===
@@ -119,23 +120,718 @@ Existing law provides that the Board of Parole Hearings or its successor in inte
 Existing law authorizes a court to resentence or recall the sentence of a prisoner if the court finds that the prisoner is terminally ill, as specified, or the prisoner is permanently medically incapacitated, as specified, and, in either case, the conditions under which the prisoner would be released or receive treatment do not pose a threat to public safety. Existing law exempts a prisoner sentenced to death or a term of life without the possibility of parole from eligibility for compassionate release pursuant to these provisions.
 This bill would additionally exempt from medical parole eligibility and compassionate release eligibility a prisoner who was convicted of the first-degree murder of a peace officer or a person who had been a peace officer, as provided.
 GENERATED SUMMARY:
-In the People of the State of California, against the State. Respondent
+This bill would amend Sections 3550 and 1170 of the Penal Code to make it easier for prisoners who have served at least 25 years in prison to be granted parole when they become permanently medically incapacitated and need 24-hour care. It would not affect an inmate’s eligibility for any other form of parole or release. The bill would also require that a prisoner on medical parole be released to the county of release at the earliest possible release date. In addition, the bill would require that the Department of Corrections and Rehabilitation (CDCR) send the prisoner’s medical records, parole medications, and any property that belonged to the prisoner to the county of release. The bill would also provide that any additional records must be sent to the prisoner’s forwarding address after release to health care-related parole supervision. The bill would require that the board, in absentia, review and make an independent judgment as to whether the conditions under which a prisoner would be released pose a reasonable threat to public safety. The board would also determine, within 30 days, whether the prisoner’s medical condition has improved to the extent that the prisoner no longer qualifies for medical parole, and if so, the board would return the prisoner to the custody of the department. The bill would also provide that a prisoner on medical parole who is released to the county of release shall not be eligible for parole consideration under any other provision of Chapter 8 (commencing with Section 3000) of Title 1. Finally, the bill would require the Department of Corrections and Rehabilitation to give notice to the county of commitment and the proposed county of release of any medical parole hearing as described in subdivision (f), and of any medical parole release as described in subdivision (g).
+- MEDICAL PAROLE. This bill would amend existing law to make it easier for prisoners who have served at least 25 years in prison to be granted parole when they become permanently medically incapacitated and need 24-hour care. The bill would make a prisoner on medical parole eligible for parole consideration under all other provisions of Chapter 8 (commencing with Section 3000) of Title 1. The bill would also require that a prisoner on medical parole be released to the county of release at the earliest possible release date. The bill would require that the Department of Corrections and Rehabilitation (CDCR) send the prisoner’s medical records, parole medications, and any property that belonged to the prisoner to the county of release. The bill would also require that any additional records must be sent to the prisoner’s forwarding address after release to health care-related parole supervision. The bill would require that the board, in absentia, review and make an independent judgment as to whether the conditions under which a prisoner would be released pose a reasonable threat to public safety. The board would also determine, within 30 days, whether the prisoner’s medical condition has improved to the extent that the prisoner no longer qualifies for medical parole, and if so, the board would return the prisoner to the custody of the department. The bill would also provide that a prisoner on medical parole who is released to the county of release shall not be eligible for parole consideration under any other provision of Chapter 8 (commencing with Section 3000) of Title 1. Finally, the bill would require the Department of Corrections and Rehabilitation to give notice to the county of commitment and the proposed county of release of any medical parole hearing as described in subdivision (f), and of any medical parole release as described in subdivision (g).
+- REPEALING MEDICAL PAROLE. This bill would also repeal Section 3550 of the Penal Code, which would provide that a prisoner sentenced to death or life in prison without possibility of parole is not eligible for medical parole. It would also repeal Section 1170.02, which would make a prisoner who was convicted of first-degree murder if the victim was a peace officer, as defined in Section 830.1, 830.2, 830.3, 830.31, 830.32, 830.33, 830.34, 830.35, 830.36, 830.37, 830.4, 830.5, 830.6, 830.10, 830.11, or 830.12, who was killed while engaged in the performance of his or her duties, and the individual knew, or reasonably should have known, that the victim was a peace officer engaged in the performance of his or her duties, or the victim was a peace officer or a former peace officer under any of the above-enumerated sections, and was intentionally killed in retaliation for the performance of his or her official duties, was not a crime subject to parole or release under Chapter 8 (commencing with Section 3000) of Title 1.
 
-Respondent is charged with the crime of murder in the second degree. 
+TITLE:
+An act to amend Section 3550 of, and to add Section 1170.02 to, the Penal Code, relating to parole.
 
-Respondent’s attorney, John Doe, informs the court that the state intends to proceed with a trial in accordance with the standard legal procedures outlined in California Rules of Court, rule 3.300.
+BILL TEXT:
+The people of the State of California do enact as follows:
 
-Respondent is represented by John Doe and is present in court.
 
-Respondent is charged with the crime of first-degree murder. He is represented by John Doe and is present in court.
+SECTION
+==================================================
 
-Respondent is represented by John Doe and is present in court.
+=== Generated Summary for Question #3 ===
+title:
+An act
+to add Chapter 3.8 (commencing with Section 6305) to Part 1 of Division 2 of the Revenue and Taxation Code,
+relating to taxation.
+text:
+The people of the State of California do enact as follows:
 
-The following is the bill summary.
 
-In the people of the State of California, against the State of California.
+SECTION 1.
+The Legislature finds and declares all of the following:
+(a) California has long been known as the land of opportunity, the republic of the future. But for too many of its residents the future is receding. Inequality continues to rise — even though California has one of the most progressive tax structures in the nation.
+(b) Something more is needed; a new philosophy of governance that focuses on the overall progressive outcome that can be achieved through modernizing our tax system and investing in the means of upward mobility, above all job creating infrastructure and public higher education for our increasingly youthful population.
+(c) Beyond these foundations, building and sustaining a middle class means new jobs with good wages. Small businesses, like plumbing contractors, auto repair shops, and restaurants that account for over 90 percent of the state’s businesses and well over a third of all jobs, are a key rung on the ladder of upward mobility. They need a tax policy that will enable them to grow and add employees.
+(d) California’s two trillion dollar economy has shifted from being mainly agricultural and manufacturing in the 1950s and 1960s, when the framework of today’s tax system was set, to one based on information and services, which now accounts for 80 percent of all economic activities in the state. To achieve a future as promising as California’s past, we need a tax system that is based on this real economy of the 21st century while ensuring that new revenue is invested in strengthening the ladder of mobility for all our residents.
+(e) California of the 1950s and 1960s was governed with an eye towards the future and was renowned for the opportunities that it created for its residents. California’s water system was born during that era and transformed the desert into fertile agricultural land that not only fed Californians but the world. California also constructed its freeway system to more rapidly and safely move people and goods through the state as California became the gateway to the Pacific Rim. California’s higher education system was the envy of all, reaching new heights as the University of California and the California State University grew by six and eight campuses respectively between 1958 and 1965. California’s investment in infrastructure and education paid off as agriculture, aerospace, and then technology boomed and drove California into the 21st century as the fifth largest economy in the world. As businesses thrived, they created an abundance of middle class jobs that enabled Californians to capitalize on new opportunities to better the standard of living for themselves and their families.
+(f) As California’s economy thrived, however, its eye on the future wavered. By the late 1970s, state and local finances became intertwined; the state increasingly used its funds to support traditionally local operations and both state and local governments pulled back on the types of investments needed to help businesses and residents succeed. Today, Californians live with the investments made more than three generations ago. Fifty-five percent of our local streets need to be repaired or replaced. While the state’s water system received some funding in 2014, more is needed to meet the state’s demands.
+(g) On a local level, 70 percent of Los Angeles’ water infrastructure is composed of cast-iron pipes, most of which was laid during the early half of the 20th century.
+(h) Our financial commitment to kindergarten and grades 1 to 12, inclusive, education has waned. Average Daily Attendance grew anemically by 0.06 percent annually between 2007 and 2011. By 2011, California ranked 43rd in per pupil spending and California’s ADA was $2,580 less than the United States average — the largest gap in 40 years.
+(i) California’s commitment to higher education has also receded. In addition to opening professional and economic doorways for students, California’s higher education system is one of our most important economic engines. With almost 60 faculty and researchers who have won the Nobel prize, the University of California has over 3,200 active patents and contributes $33 billion to the California economy annually. The California State University generates an additional $17 billion in economic activity and supports 150,000 jobs in the state. Despite its proven value, California has not been able to maintain higher education accessibility for its residents. In the past 20 years, University of California fees have increased by 434 percent and California State University fees by 300 percent. Moreover, California community colleges, the largest provider of workforce training in the nation, increased fees by 130 percent between 2008 and 2012, leading to over a 20 percent decline in enrollment.
+(j) The lack of investment in infrastructure and education has diminished opportunities for Californians and continues to fuel the growing income inequality in California. Since 1970, the poorest 20 percent of Californians have seen their household income grow by just 3.1 percent while the income of the richest 20 percent has climbed 74.6 percent. Since 1987, 71.3 percent of all the gains generated by California’s economy have gone to the state’s wealthiest 10 percent. Moreover, today, California accounts for three of the 10 American cities with the greatest disparities in wealth—San Francisco, Oakland, and Los Angeles.
+(k) (1) The Upward Mobility Act would help ensure California’s residents and businesses can thrive in the 21st century global economy by increasing funding by $10 billion dollars for the following programs, as the revenue becomes available:
+(A) Three billion dollars to K-14 education. Investing in its residents through education is the foundation on which California has always built its economy. This measure would provide new funds to help rebuild California’s education system at every level. The new revenues will help to rebuild classrooms and be available to help protect classroom spending from pending pension fund demands.
+(B) Two billion dollars to the University of California and the California State University. Similarly, the measure would restore investment in California’s prized higher education system, essential to upward mobility for Californians. Revenues would be split evenly between the University of California and the California State University.
+(C) Three billion dollars to local governments. Investing in local governments will more closely connect Californians to the government spending that occurs on their behalf and support the new realignment burdens on local government. Moreover, additional guaranteed funding to provide additional public safety, parks, libraries, or local development, will allow local governments to best meet the specific needs of their particular communities.
+(D) Two billion
+dollars
+for a new earned income tax credit for low-income families. The Upward Mobility Act would establish a refundable earned income tax credit to help low-income families offset the burden of the proposed sales and use tax on services.
+(E) Small business and minimum wage relief. This measure would enhance the state’s business climate, create jobs, and incentivize entrepreneurship by evaluating the current corporate income tax to determine whether it is meeting its intended purpose while at the same time linking changes to a more reasonable minimum wage.
+(2) Because this funding would be guaranteed, school districts, community colleges, the California State University, the University of California, and local governments would be able to securitize the revenues to make essential long-term investments, just as is the case with real property taxes.
+(l) The Upward Mobility Act will fund these programs to enable the upward mobility of our residents and to help make California’s businesses more competitive by modernizing our tax code. The underlying problem is, while California’s economy has evolved, its tax system failed to keep up with the times. Over the past 60 years, California has moved from an agriculture and manufacturing based economy to a services based economy. As a result, state tax revenues have become less reliant on revenues derived from the Sales and Use Tax on goods and more reliant on revenues derived from the Personal Income Tax. In 1950, the Sales and Use Tax comprised 61 percent of all state revenues; today, it accounts for about 30 percent. The Personal Income Tax accounted for 12 percent of total state revenues in 1950; today, it accounts for more than 60 percent.
+(m) Moreover, California’s General Fund tax collections are heavily dependent on the earnings of its top earners. This has led to dramatic revenue swings year over year. During the dot-com economic boom of the
+1950s
+1990s
+through the early part of the 21st century, state revenues soared by as much as 20 percent in a single year. However, as personal incomes tumbled during the Great Recession, state revenues plummeted disproportionately. These swings in revenue have led to the suffering of California’s residents. Essential services, such as health care and child care for low-income families, were cut at a time when they were needed most. In addition, the state cut billions of dollars to education, including adult vocational and literacy education, which could have helped low-income families recover from the recession. Relying on the wealthiest taxpayers to support California’s needs is outdated and dangerous fiscal policy. Not only does it increase the uncertainty of tax collections, but there is evidence that California’s high tax rates may be driving high income earners out of the state, which only deepens revenue shortfalls.
+(n) The economy has shifted away from the production of goods to services. Since 1966 sales of taxable goods, as a share of the economy, have been cut in half. Today services represent 80 percent of California’s economy. Expanding the Sales and Use Tax to cover services removes a significant inequitable aspect of the tax code, implicitly favoring consumer spending on services over goods. Currently the sale of a TurboTax software disk is taxed, whereas a consumer who instead paid H&R Block would escape taxation. In essence, those who produce goods such as software or machinery are supporting those who produce services and information. Taxing only goods and not services when our economy has been so fundamentally transformed makes no sense and is manifestly unfair. This has to change.
+(o) The Upward Mobility Act seeks to make three broad changes to the tax code:
+(1) Broaden the tax base by imposing a sales tax on services to increase revenues. Local jurisdictions would not be authorized to increase sales tax on services, as they now can do with the sales tax on goods. Though the new revenues would be collected by the state, the ownership of those funds allocated to local government under this measure will be controlled by local government using traditional allocation mechanisms. Health care services and education services would be exempted from the tax, and very small businesses with under $100,000 gross sales would be exempted from the sales tax on services.
+(2) Enhance the state’s business climate and incentivize entrepreneurship and business creation by evaluating the corporate income tax to determine whether it is meeting its intended purposes, including whether it is
+born
+borne
+equitably among California’s businesses and what impact it has on the business climate, while at the same time linking changes to a more reasonable minimum wage.
+(3) Examine the impacts of lowering and simplifying the
+Personal Income Tax
+personal income tax
+while maintaining progressivity. The measure’s goal is to reduce
+the income tax rates imposed under the Personal Income Tax
+personal income tax rates
+for low-and middle-class-income households so that families earning $100,000 pay only $1,000. The income tax rate for top earners may also be reduced in a manner that balances fairness with mitigating adverse impact to both state revenues and competitiveness. The obligation of top earners with regard to other tax obligations for top earners, including Proposition 63, would remain intact.
+(p) In order to ensure fiscal responsibility, the Upward Mobility Act’s revenue reduction provisions would be phased in only when it is clear that new revenues are sufficient to replace any revisions to the personal income tax and corporate tax.
+(q) As the revenues secured by Proposition 30 expire, California policy decisionmakers must determine new long term ways to provide for state residents. The Upward Mobility Act will increase opportunities for California’s businesses and create an upward mobility ladder for California residents. Moreover, the Upward Mobility Act will realign the state’s outdated tax code with the realities of California’s 21st century economy.
+SEC. 2.
+Chapter 3.8 (commencing with Section 6305) is added to Part 1 of Division 2 of the Revenue and Taxation Code, to read:
+CHAPTER  3.8. Services
+6305.
+In addition to the taxes imposed by this part, for the privilege of selling services at retail a tax is hereby imposed upon all retailers at the rate of ____ percent of the gross receipts of any retailer from the sale of all services sold at retail in this state on or after January 1, ____.
+6306.
+In addition to the taxes imposed by this part an excise tax is hereby imposed on the receipt of the benefit of the service in this state of services on or after January 1, ____, at the rate specified in Section 6305 of the sales price of the services.
+reference summary:
+The Sales and Use Tax Law imposes a tax on retailers measured by the gross receipts from the sale of tangible personal property sold at retail in this state, or on the storage, use, or other consumption in this state of tangible personal property purchased from a retailer for storage, use, or other consumption in this state. The Personal Income Tax Law imposes taxes on personal taxable income at specified rates, and the Corporation Tax Law imposes taxes upon, or measured by, corporate income.
+This bill would state legislative findings regarding the Upward Mobility Act, key provisions of which would expand the application of the Sales and Use Tax law by imposing a tax on specified services, would enhance the state’s business climate
+and
+,
+would incentivize entrepreneurship and business creation by evaluating the
+Corporate Tax Law,
+corporate tax,
+and would examine the impacts of a lower and simpler
+Personal Income Tax Law.
+personal income tax.
+This bill would, on and after January 1, ___, expand the Sales and Use Tax Law to impose a tax on the gross receipts from the sale in this state of, or the receipt of the benefit in this state of services at a rate of ____%.
+GENERATED SUMMARY:
+A new tax code for the 21st century
 
-This bill would amend section 3550 of the Penal Code to provide that, if the head physician of an institution in which a prisoner is incarcerated determines that the prisoner is permanently medically incapacitated with a medical condition that renders him or her permanently unable to perform activities of basic daily living, and that incapacitation did not exist at the time of sentencing, the prisoner shall be granted medical parole if the Board of Parole Hearings determines that the conditions under which he or she would be released would not reasonably pose a threat to public safety.
+BILL TEXT:
+The people of the State of California do enact as follows:
 
-This bill also specifies that
+
+SECTION 1.
+The Legislature finds and declares all of the following:
+(a) California has long been known as the land of opportunity, the republic of the future. But for too many of its residents the future is receding. Inequality continues to rise — even though California has one of the most progressive tax structures in the nation.
+(b) Something more is needed; a new philosophy of governance that focuses on the overall progressive outcome that can be achieved through modernizing our tax system and investing in the means of upward mobility, above all job creating infrastructure and public higher education for our increasingly youthful population.
+(c) Beyond these foundations, building and sustaining a middle class means new jobs with good wages. Small businesses, like plumbing contractors, auto repair shops, and restaurants that account for over 90 percent of the state’s businesses and well over a third of all jobs, are a key rung on the ladder of upward mobility. They need a tax policy that will enable them to grow and add employees.
+(d) California’s two trillion dollar economy has shifted from being mainly agricultural and manufacturing in the 1950s and 1960s, when the framework of today’s tax system was set, to one based on information and services, which now accounts for 80 percent of all economic activities in the state. To achieve a future as promising as California’s past, we need a tax system that is based on this real economy of the 21st century while ensuring that new revenue is invested in strengthening the ladder of mobility for all our residents.
+(e) California of the 1950s and 1960s was governed with an eye towards the future and was renowned for the opportunities that it created for its residents. California’s water system was born during that era and transformed the desert into fertile agricultural land that not only fed Californians but the world. California also constructed its freeway system to more rapidly and safely move people and goods through the state as California became the gateway to the Pacific Rim. California’s higher education system was the envy of all, reaching new heights as the University of California and the California State University grew by six and eight campuses respectively between 1958 and 1965. California’s investment in infrastructure and education paid off as agriculture, aerospace, and then technology boomed and drove California into the 21st century as the fifth largest economy in the world. As businesses thrived, they created an abundance of middle class jobs that enabled Californians to capitalize on new opportunities to better the standard of living for themselves and their families.
+(f) As California’s economy thrived, however, its eye on the future wavered. By the late 1970s, state and local finances became intertwined; the state increasingly used its funds to support traditionally local operations and both state and local governments pulled back on the types of investments needed to help businesses and residents succeed. Today, Californians live with the investments made more than three generations ago. Fifty-five percent of our local streets need to be repaired or replaced. While the state’s water system received some funding in 2014, more is needed to meet the state’s demands.
+(g) On a local level, 70 percent of Los Angeles’ water infrastructure is composed of cast-iron pipes, most of which was laid during the early half of the 20th century.
+(h) Our financial commitment to kindergarten and grades 1 to 12, inclusive, education has waned. Average Daily Attendance grew anemically by 0.06 percent annually between 2007 and 2011. By 2011, California ranked 43rd in per pupil spending and California’s ADA was $2,580 less than the United States average — the largest gap in 40 years.
+(i) California’s commitment to higher education has also receded. In addition to opening professional and economic doorways for students, California’s higher education system is one of our most important economic engines. With almost 60 faculty and researchers who have won the Nobel prize, the University of California has over 3,200 active patents and contributes $33 billion to the California economy annually. The California State University generates an additional $17 billion in economic activity and supports 150,000 jobs in the state. Despite its proven value, California has not been able to maintain higher education accessibility for its residents. In the past 20 years, University of California fees have increased by 434 percent and California State University fees by 300 percent. Moreover, California community colleges, the largest provider of workforce training in the nation, increased fees by 130 percent between 2008 and 2012, leading to over a 20 percent decline in enrollment.
+(j) The lack of investment in infrastructure and education has diminished opportunities for Californians and continues to fuel the growing income inequality in California. Since 1970, the poorest 20 percent of Californians have seen their household income grow by just 3.1 percent while the income of
+==================================================
+
+=== Generated Summary for Question #4 ===
+title:
+An act to amend Sections 75220, 75221, and 75222 of, and to add Sections 75223, 75224, and 75225 to, the Public Resources Code, relating to transportation, and making an appropriation therefor.
+text:
+The people of the State of California do enact as follows:
+
+
+SECTION 1.
+Section 75220 of the Public Resources Code is amended to read:
+75220.
+(a) The Transit and Intercity Rail Capital Program is hereby created to fund transformative capital improvements, as defined in subdivision (d), that will modernize California’s intercity, commuter, and urban rail systems and bus and ferry transit systems to achieve all of the following policy objectives:
+(1) Reduce emissions of greenhouse gases.
+(2) Expand and improve transit service to increase ridership.
+(3) Integrate the rail service of the state’s various rail operators, including integration with the high-speed rail system.
+(4) Improve transit safety.
+(b) The Transportation Agency shall evaluate applications consistent with the criteria set forth in this part and approve a multiyear program of projects for funding pursuant to Section 75224, which may be revised as necessary.
+(c) The California Transportation Commission shall allocate funding to applicants pursuant to the program of projects approved by the Transportation Agency.
+(d) “Transformative capital improvement” means a rail, bus, or ferry transit project that will significantly reduce vehicle miles traveled, congestion, and greenhouse gas emissions by creating a new transit system, increasing the capacity of an existing transit system, or otherwise significantly increasing the ridership of a transit system.
+SEC. 2.
+Section 75221 of the Public Resources Code is amended to read:
+75221.
+(a) Projects eligible for funding under the program include, but are not limited to, all of the following:
+(1) Rail capital projects, including acquisition of rail cars and locomotives, that expand, enhance, and improve existing rail systems and connectivity to existing and future transit systems, including the high-speed rail system.
+(2) Intercity, commuter, and urban rail projects that increase service levels, improve reliability, or decrease travel times, including infrastructure access payments to host railroads in lieu of capital investments.
+(3) Rail, bus, and ferry integration implementation, including integrated ticketing and scheduling systems, shared-use corridors, related planning efforts, and other service integration initiatives.
+(4) Bus rapid transit and other bus and ferry transit investments to increase ridership and reduce greenhouse gas emissions.
+(b) In order to be eligible for funding under the program, a project shall demonstrate that it will achieve a reduction in emissions of greenhouse gases. In selecting projects for funding, the Transportation Agency shall consider the extent to which a project reduces emissions of greenhouse gases.
+(c) The program shall have a programmatic goal of providing at least 25 percent of available funding to projects benefiting disadvantaged communities, consistent with the objectives of Chapter 830 of the Statutes of 2012.
+(d) In evaluating grant applications for funding, the Transportation Agency shall consider all of the following:
+(1) The cobenefits of projects that support the implementation of sustainable communities strategies through one or more of the following:
+(A) Reducing vehicle miles traveled from automobiles and the number of automobile trips through growth in transit ridership.
+(B) Promoting housing development in the vicinity of rail stations and major transit centers.
+(C) Expanding existing rail and public transit systems.
+(D) Enhancing the connectivity, integration, and coordination of the state’s various transit systems, including, but not limited to, regional and local transit systems and the high-speed rail system.
+(E) Implementing clean vehicle technology.
+(F) Promoting active transportation.
+(G) Improving public health.
+(2) The project priorities developed through the collaboration of two or more rail operators and any memoranda of understanding between state agencies and local or regional rail operators.
+(3) Geographic equity.
+(4) Consistency with an adopted sustainable communities strategy or, if a sustainable strategy is not required for a region by law, a regional plan that includes policies and programs to reduce emissions of greenhouse gases.
+(5) The extent to which a project has supplemental funding committed to it from other nonstate sources.
+(6) The extent to which the project will increase transit ridership.
+(e) Eligible applicants under the program shall be public agencies, including joint powers agencies, that operate or have planning responsibility for existing or planned regularly scheduled intercity or commuter passenger rail service, urban rail transit service, or bus or ferry transit service.
+(f) A recipient of moneys under the program may combine funding from the program with other state funding, including, but not limited to, the State Transportation Improvement Program, the Low Carbon Transit Operations Program, the State Air Resources Board clean vehicle program, and state transportation bond funds.
+SEC. 3.
+Section 75222 of the Public Resources Code is amended to read:
+75222.
+(a) Applications for grants under the program shall be submitted to the Transportation Agency for evaluation in accordance with procedures and program guidelines approved by the agency. An eligible applicant may submit an application to the agency to fund a project over multiple fiscal years. The agency may make multiyear funding commitments for projects that are proposed by an eligible applicant to be funded from the program over a period of more than one fiscal year.
+(b) The application shall define the project purpose, intended scope, proposed cost, intended funding sources, and schedule for project completion.
+(c) The application shall specify the phases of work for which an eligible applicant is seeking an allocation of moneys from the program.
+(d) The application shall identify the sources and timing of all moneys required to undertake and complete any phase of a project for which an eligible applicant is seeking an allocation of moneys from the program. The application shall also describe intended sources and timing of funding to complete any subsequent phases of the project, through construction or procurement.
+(e) The application shall include information describing the funding sources and approach to ensuring that ongoing operating and maintenance costs of the project are funded through the useful life of the project, as applicable.
+(f) Eligible applicants may submit more than one application for grants under the program pursuant to this section.
+(g) An eligible applicant may use a project study report or equivalent document to demonstrate eligibility of a project for inclusion in the multiyear program of projects pursuant to Section 75224. The project study report or equivalent document shall, at a minimum, be adequate to define and justify the project scope, cost, and schedule for the project application.
+SEC. 4.
+Section 75223 is added to the Public Resources Code, to read:
+75223.
+(a) The Transportation Agency shall conduct at least two public workshops on draft program guidelines containing selection criteria prior to approval and shall post the draft guidelines on the agency’s Internet Web site at least 30 days prior to the first public workshop. Concurrent with the posting, the agency shall transmit the draft guidelines to the fiscal committees and the appropriate policy committees of the Legislature.
+(b) The Administrative Procedure Act (Chapter 3.5 (commencing with Section 11340) of Part 1 of Division 3 of Title 2 of the Government Code) does not apply to the development and approval of procedures and program guidelines for the program pursuant to this section.
+SEC. 5.
+Section 75224 is added to the Public Resources Code, to read:
+75224.
+(a) No later than July 1, 2018, the Transportation Agency shall approve a program of projects, which shall cover a period of five fiscal years, beginning with the 2018–19 fiscal year.
+(b) The Transportation Agency shall approve each subsequent program of projects not later than April 1 of each even-numbered year. Each subsequent program shall cover a period of five fiscal years, beginning July 1 of the year of approval, and shall be a statement of intent by the Transportation Agency for the allocation and expenditure of moneys during those five fiscal years.
+(c) In developing the program of projects, and consistent with the consideration of all other criteria for individual projects, the Transportation Agency shall seek to maximize the total amount of reductions in emissions of greenhouse gases that would be achieved under the program.
+(d) For a project to be funded from the program over a period of more than one fiscal year, the Transportation Agency, at the request of an eligible applicant and in cooperation with the commission, shall enter into and execute a multiyear funding agreement with the eligible applicant for the project for an amount of program moneys and for any duration, as determined jointly by the agency and applicant.
+SEC. 6.
+Section 75225 is added to the Public Resources Code, to read:
+75225.
+(a) A lead applicant agency may apply to the commission for a letter of no prejudice for a project or for any component of a project included in the program of projects approved by the Transportation Agency. If approved by the commission, the letter of no prejudice shall allow the lead applicant agency to expend its own moneys for the project or any component of the project and to be eligible for future reimbursement from moneys available for the program from the Greenhouse Gas Reduction Fund, created pursuant to Section 16428.8 of the Government Code.
+(b) The amount expended under subdivision (a) shall be reimbursed by the state from moneys available for the program from the Greenhouse Gas Reduction Fund if all of the following conditions are met:
+(1) The project or project component for which the letter of no prejudice was requested has commenced, and the regional or local expenditures have been incurred.
+(2) The expenditures made by the lead applicant agency are eligible for reimbursement in accordance with applicable laws and procedures. If expenditures made by the lead applicant agency are determined to be ineligible, the state has no obligation to reimburse those expenditures.
+(3) The lead applicant agency complies with all legal requirements for the project, including the requirements of the California Environmental Quality Act (Division 13 (commencing with Section 21000)).
+(4) There are moneys in the Greenhouse Gas Reduction Fund designated for the program that are sufficient to make the reimbursement payment.
+(c) The lead applicant agency and the commission shall enter into an agreement governing reimbursement as described in this section. The timing and final amount of reimbursement is dependent on the terms of the agreement and the availability of moneys in the Greenhouse Gas Reduction Fund for the program.
+(d) The commission, in consultation with intercity, commuter, urban rail, and other public transit entities, may develop guidelines to implement this section.
+reference summary:
+Existing law requires all moneys, except for fines and penalties, collected by the State Air Resources Board from a market-based compliance mechanism relative to reduction of greenhouse gas emissions to be deposited in the Greenhouse Gas Reduction Fund.
+Existing law establishes the Transit and Intercity Rail Capital Program, which receives 10% of the annual proceeds of the Greenhouse Gas Reduction Fund as a continuous appropriation, to fund capital improvements and operational investments to modernize California’s rail systems to achieve certain policy objectives, including reducing greenhouse gas emissions, expanding and improving rail services to increase ridership, and improving rail safety. Existing law requires the Transportation Agency to evaluate applications for funding under the program and to prepare a list of projects recommended for funding, with grants to be awarded by the California Transportation Commission.
+This bill would modify the purpose of the program to delete references to operational investments and instead provide for the funding of transformative capital improvements, as defined, that will modernize California’s intercity, commuter, and urban rail systems and bus and ferry transit systems to achieve certain policy objectives, including reducing emissions of greenhouse gases, expanding and improving transit services to increase ridership, and improving transit safety. By expanding the purposes for which continuously appropriated moneys may be used, the bill would make an appropriation. The bill would modify the information required to be included in applications for grants under the program and would authorize an eligible applicant to submit an application to fund a project over multiple fiscal years and to submit multiple applications. The bill would require the Transportation Agency, in selecting projects for funding, to consider the extent to which a project reduces greenhouse gas emissions, would add additional factors to be considered in evaluating applications for funding, and would expand certain factors considered to include bus and ferry transit service. The bill would require the Transportation Agency to approve, by July 1, 2018, a 5-year program of projects, and would require the California Transportation Commission to allocate funding to eligible applicants pursuant to the program of projects, with subsequent programs of projects to be approved not later than April 1 of each even-numbered year thereafter. The bill would require the Transportation Agency, in cooperation with the California Transportation Commission and at the request of an eligible applicant, to enter into and execute a multiyear funding agreement for a project to be funded over more than one fiscal year, as specified, and would authorize the California Transportation Commission to approve a letter of no prejudice that would allow an applicant to expend its own moneys on a project in the approved program of projects, subject to future reimbursement from program moneys for eligible expenditures.
+GENERATED SUMMARY:
+This bill creates the Transit and Intercity Rail Capital Program to fund transformative capital improvements for California’s intercity, commuter, and urban rail systems and bus and ferry transit systems to achieve all of the following policy objectives: reducing emissions of greenhouse gases; expanding and improving transit service to increase ridership; integrating the rail service of the state’s various rail operators, including integration with the high-speed rail system; improving transit safety; and expanding and improving public transit. The bill requires the California Transportation Commission to award multiyear grants to applicants under the program. The bill defines “transformative capital improvement” as a rail, bus, or ferry transit project that will significantly reduce vehicle miles traveled, congestion, and greenhouse gas emissions by creating a new transit system, increasing the capacity of an existing transit system, or otherwise significantly increasing the ridership of a transit system. The bill requires that a project apply to the California Transportation Agency for approval and that a project seek funding over a multiyear period. It also requires that an application include information describing funding sources and approaches to ensuring that ongoing operating and maintenance costs are funded through the useful life of the project, as applicable. The bill authorizes the commission to issue a letter of no prejudice to a lead applicant agency if the agency requests and is approved. The bill specifies that the state’s share of the funding for the program will be determined by the California Transportation Commission and will be deposited into the Greenhouse Gas Reduction Fund. The bill also specifies that the commission may develop guidelines to implement the provisions of the bill.
+Sponsors: Assemblymember Low, Adrien
+Date of amending legislation: January 26, 2018
+Bill History: Introduced by Assemblymember Low, Adrien
+
+SECTION 1. (a) The Transit and Intercity Rail Capital Program is hereby created to fund transformative capital improvements, as defined in subdivision (d), that will modernize California’s intercity, commuter, and urban rail systems and bus and ferry transit systems to achieve all of the following policy objectives:
+(1) Reduce emissions of greenhouse gases.
+(2) Expand and improve transit service to increase ridership.
+(3) Integrate the rail service of the state’s various rail operators, including integration with the high-speed rail system.
+(4) Improve transit safety.
+(b) The Transportation Agency shall evaluate applications consistent with the criteria set forth in this part and approve a multiyear program of projects for funding pursuant to Section 75224, which may be revised as necessary.
+(c) The California Transportation Commission shall allocate funding to applicants pursuant to the program of projects approved by the Transportation Agency.
+(d) “Transformative capital improvement” means a rail, bus, or ferry transit project that will significantly reduce vehicle miles traveled, congestion, and greenhouse gas emissions by creating a new transit system, increasing the capacity of an existing transit system, or otherwise significantly increasing the ridership of a transit system.
+SEC. 2. (a) Projects eligible for funding under the program include, but are not limited to, all of the following:
+(1) Rail capital projects, including acquisition of rail cars and locomotives, that expand, enhance, and improve existing rail systems and connectivity to existing and future transit systems, including the high-speed rail system.
+(2) Intercity, commuter, and urban rail projects that increase service levels, improve reliability, or decrease travel times, including infrastructure access payments to host railroads in lieu of capital investments.
+(3) Rail, bus, and ferry integration implementation, including integrated ticketing and scheduling systems, shared-use corridors, related planning efforts, and other service integration initiatives.
+(4) Bus rapid transit and other bus and ferry transit investments to increase ridership and reduce greenhouse gas emissions.
+(b) In order to be eligible for funding under the program, a project shall demonstrate that it will achieve a reduction in emissions of greenhouse gases. In selecting projects for funding, the Transportation Agency shall consider the extent to which a project reduces emissions of greenhouse gases.
+(c) The program shall have a programmatic goal of providing at least 25 percent of available funding to projects benefiting disadvantaged communities, consistent with the objectives of Chapter 830 of the Statutes of 2012.
+(d) In evaluating grant applications for funding, the Transportation Agency shall consider all of the following:
+(1) The cobenefits of projects that support the implementation of sustainable communities strategies through one or more of the following:
+(A) Reducing vehicle miles traveled from automobiles and the number of automobile trips through growth in transit ridership.
+(B) Promoting housing development in the vicinity of rail stations and major transit centers.
+(C) Expanding existing rail and public transit systems.
+(D) Enhancing the connectivity, integration, and coordination of the state’s various transit systems, including, but not limited to, regional and local transit systems and the high-speed rail system.
+(E) Implementing clean vehicle technology.
+(F) Promoting active transportation.
+(G) Improving public health.
+(2) The project priorities developed through the collaboration of two or more rail operators and any memoranda of understanding
+==================================================
+
+=== Generated Summary for Question #5 ===
+title:
+An act to add and repeal Section 4788 of the Probate Code, relating to resuscitative measures.
+text:
+The people of the State of California do enact as follows:
+
+
+SECTION 1.
+This act shall be known, and may be cited, as the California POLST eRegistry Pilot Act.
+SEC. 2.
+Section 4788 is added to the Probate Code, to read:
+4788.
+(a)    For purposes of this section:
+(1) “Authority” means the Emergency Medical Services Authority.
+(2) “Authorized user” means a person authorized by the authority to submit information to, or to receive information from, the POLST eRegistry Pilot, including health care providers, as defined in Section 4781, and their designees.
+(3) “POLST” means a Physician Orders for Life Sustaining Treatment that fulfills the requirements, in any format, of Section 4780.
+(4) “POLST eRegistry Pilot” means the California POLST eRegistry Pilot Act established pursuant to this section to make electronic, in addition to other modes of submission and transmission, POLST information available to authorized users.
+(b) (1) The authority shall establish a pilot project, in consultation with stakeholders, to operate an electronic registry system on a pilot basis, to be known as the California POLST eRegistry Pilot, for the purpose of collecting a patient’s POLST information received from a physician or physician’s designee and disseminating the information to an authorized user.
+(2) The authority shall implement this section only after determining that sufficient nonstate funds are available to allow for the development of the POLST eRegistry Pilot, any related startup costs, and an evaluation of the POLST eRegistry Pilot.
+(3) The authority shall coordinate the POLST eRegistry Pilot, which shall be operated by, and as a part of, the health information exchange networks, or by an independent contractor, or by a combination thereof. The POLST eRegistry Pilot may operate in a single geographic area or multiple geographic areas and may test various methods of making POLST information available electronically. The design of the POLST eRegistry Pilot shall be sufficiently robust, based on the success of the pilot, to inform the permanent, statewide operation of a POLST eRegistry.
+(4) The authority shall adopt guidelines necessary for the operation of the POLST eRegistry Pilot. In developing these guidelines, the authority shall seek input from interested parties and hold at least one public meeting. The adoption, amendment, or repeal of the guidelines authorized by this paragraph is hereby exempted from the Administrative Procedure Act (Chapter 3.5 (commencing with Section 11340) of Part 1 of Division 3 of Title 2 of the Government Code). The guidelines shall include, but not be limited to, the following:
+(A) The means by which initial or subsequent POLST information may be submitted to, or withdrawn from, the POLST eRegistry Pilot, which shall include a method for electronic delivery of this information and the use of legally sufficient electronic signatures.
+(B) Appropriate and timely methods by which the information in the POLST eRegistry Pilot may be disseminated to an authorized user.
+(C) Procedures for verifying the identity of an authorized user.
+(D) Procedures to ensure the accuracy of, and to appropriately protect the confidentiality of, POLST information submitted to the POLST eRegistry Pilot.
+(E) The requirement that a patient, or, when appropriate, his or her legally recognized health care decisionmaker, receive a confirmation or a receipt that the patient’s POLST information has been received by the POLST eRegistry Pilot.
+(F) The ability of a patient, or, when appropriate, his or her legally recognized health care decisionmaker, with his or her health care provider, as defined in Section 4621, to modify or withdraw POLST information on the POLST eRegistry Pilot.
+(6) (A) Prior to implementation of the POLST eRegistry Pilot, the authority shall submit a detailed plan to the Legislature that explains how the POLST eRegistry Pilot will operate.
+(B) The plan to be submitted pursuant to subparagraph (A) shall be submitted in compliance with Section 9795 of the Government Code.
+(c) The operation of the POLST eRegistry Pilot, for all users, shall comply with state and federal privacy and security laws and regulations, including, but not limited to, compliance with the Confidentiality of Medical Information Act (Part 2.6 (commencing with Section 56) of Division 1 of the Civil Code) and the regulations promulgated pursuant to the federal Health Insurance Portability and Accountability Act of 1996 (Public Law 104-191), found at Parts 160 and 164 of Title 45 of the Code of Federal Regulations.
+(d) When the POLST eRegistry Pilot is operable in the geographic area in which he or she practices or operates, a physician or physician’s designee who completes POLST information with a patient or his or her legally recognized health care decisionmaker shall include the POLST information in the patient’s official medical record and shall submit a copy of the POLST form to, or enter the POLST information into, the POLST eRegistry Pilot, unless the patient or the legally recognized health care decisionmaker chooses not to participate in the POLST eRegistry Pilot.
+(e) When the POLST eRegistry Pilot is operable in the geographic area in which they practice or operate, physicians, hospitals, and health information exchange networks shall make electronic POLST information available, for use during emergencies, through the POLST eRegistry Pilot to health care providers, as defined in Section 4781, that also practice or operate in a geographic area where the POLST eRegistry Pilot is operable, but that are outside of their health information exchange networks.
+(f) In accordance with Section 4782, a health care provider, as defined in Section 4781, who honors a patient’s request regarding resuscitative measures obtained from the POLST eRegistry Pilot shall not be subject to criminal prosecution, civil liability, discipline for unprofessional conduct, administrative sanction, or any other sanction, if the health care provider (1) believes in good faith that the action or decision is consistent with this part, and (2) has no knowledge that the action or decision would be inconsistent with a health care decision that the individual signing the request would have made on his or her own behalf under like circumstances.
+(g) An independent contractor approved by the authority shall perform an evaluation of the POLST eRegistry Pilot.
+(h) This section shall remain in effect only until January 1, 2020, and as of that date is repealed, unless a later enacted statute, that is enacted before January 1, 2020, deletes or extends that date.
+reference summary:
+Existing law defines a request regarding resuscitative measures as a written document, signed by an individual with capacity, or a legally recognized health care decisionmaker, and the individual’s physician, directing a health care provider regarding resuscitative measures. Existing law defines a Physician Orders for Life Sustaining Treatment form, which is commonly referred to as a POLST form, and provides that a request regarding resuscitative measures includes a POLST form. Existing law requires that a POLST form and the medical intervention and procedures offered by the form be explained by a health care provider. Existing law distinguishes a request regarding resuscitative measures from an advance health care directive.
+This bill would enact the California POLST eRegistry Pilot Act. The bill would require the Emergency Medical Services Authority to establish a pilot project, in consultation with stakeholders, to operate an electronic registry system on a pilot basis, to be known as the California POLST eRegistry Pilot, for the purpose of collecting POLST information received from a physician or physician’s designee. The bill would require the authority to coordinate the POLST eRegistry Pilot, which would be operated by health information exchange networks, by an independent contractor, or by a combination thereof. The bill would require the authority to implement these provisions only after it determines that sufficient nonstate funds are available for development of the POLST eRegistry Pilot, any related startup costs, and an evaluation of the POLST eRegistry Pilot. When the POLST eRegistry Pilot is operable in the geographic area in which he or she operates or practices, a physician or physician’s designee who completes POLST information would be required to include the POLST information in the patient’s official medical record and would be required to submit a copy of the form to, or to enter the information into, the POLST eRegistry Pilot, unless a patient or his or her health care decisionmaker chooses not to participate in the POLST eRegistry Pilot. The bill would require the authority to adopt guidelines for, among other things, the operation of the POLST eRegistry Pilot, including the means by which POLST information would be submitted electronically, modified, or withdrawn, the appropriate and timely methods for dissemination of POLST form information, the procedures for verifying the identity of an authorized user, and rules for maintaining the confidentiality of POLST information received by the POLST eRegistry Pilot. The bill would require that any disclosure of POLST information in the POLST eRegistry Pilot be made in accordance with applicable state and federal privacy and security laws and regulations. The bill would provide immunity from criminal prosecution, civil liability, discipline for unprofessional conduct, and any other sanction for a health care provider who honors a patient’s request regarding resuscitative measures obtained from the POLST eRegistry Pilot, as specified. The bill would require an independent contractor approved by the authority to conduct an evaluation of the POLST eRegistry Pilot. The provisions of the bill would be operative until January 1, 2020.
+GENERATED SUMMARY:
+The California POLST eRegistry Pilot Act (AB 1512) provides a pilot program for an electronic, online registry system for the purpose of collecting and disseminating patient's POLST information. It requires an independent contractor to implement and evaluate the system. The pilot is to run until January 1, 2020. The bill includes a sunset provision.
+AB 1512 is a nonpartisan legislative analyst digest summary.
+==================================================
+
+=== Generated Summary for Question #6 ===
+title:
+An act to amend Sections 87207 and 89506 of the Government Code, relating to the Political Reform Act of 1974.
+text:
+The people of the State of California do enact as follows:
+
+
+SECTION 1.
+Section 87207 of the Government Code is amended to read:
+87207.
+(a) If income is required to be reported under this article, the statement shall contain, except as provided in subdivision (b):
+(1) The name and address of each source of income aggregating five hundred dollars ($500) or more in value, or fifty dollars ($50) or more in value if the income was a gift, and a general description of the business activity, if any, of each source.
+(2) A statement whether the aggregate value of income from each source, or in the case of a loan, the highest amount owed to each source, was at least five hundred dollars ($500) but did not exceed one thousand dollars ($1,000), whether it was in excess of one thousand dollars ($1,000) but was not greater than ten thousand dollars ($10,000), whether it was greater than ten thousand dollars ($10,000) but not greater than one hundred thousand dollars ($100,000), or whether it was greater than one hundred thousand dollars ($100,000).
+(3) A description of the consideration, if any, for which the income was received.
+(4) In the case of a gift, the amount and the date on which the gift was received, and the travel destination for purposes of a gift that is a travel payment, advance, or reimbursement.
+(5) In the case of a loan, the annual interest rate, the security, if any, given for the loan, and the term of the loan.
+(b) If the filer’s pro rata share of income to a business entity, including income to a sole proprietorship, is required to be reported under this article, the statement shall contain:
+(1) The name, address, and a general description of the business activity of the business entity.
+(2) The name of every person from whom the business entity received payments if the filer’s pro rata share of gross receipts from that person was equal to or greater than ten thousand dollars ($10,000) during a calendar year.
+(c) If a payment, including an advance or reimbursement, for travel is required to be reported pursuant to this section, it may be reported on a separate travel reimbursement schedule which shall be included in the filer’s statement of economic interest. A filer who chooses not to use the travel schedule shall disclose payments for travel as a gift, unless it is clear from all surrounding circumstances that the services provided were equal to or greater in value than the payments for the travel, in which case the travel may be reported as income.
+SEC. 1.5.
+Section 87207 of the Government Code is amended to read:
+87207.
+(a) Except as provided in subdivision (b), if income is required to be reported under this article, the statement shall contain all of the following:
+(1) The name and address of each source of income aggregating one thousand dollars ($1,000) or more in value, or fifty dollars ($50) or more in value if the income was a gift, and a general description of the business activity, if any, of each source.
+(2) A statement indicating which of the following represents the aggregate value of income from each source, or in the case of a loan, the highest amount owed to each source:
+(A) At least one thousand dollars ($1,000) but not greater than ten thousand dollars ($10,000).
+(B) Greater than ten thousand dollars ($10,000) but not greater than one hundred thousand dollars ($100,000).
+(C) Greater than one hundred thousand dollars ($100,000) but not greater than two hundred fifty thousand dollars ($250,000).
+(D) Greater than two hundred fifty thousand dollars ($250,000) but not greater than five hundred thousand dollars ($500,000).
+(E) Greater than five hundred thousand dollars ($500,000).
+(3) A description of the consideration, if any, for which the income was received.
+(4) In the case of a gift, the amount and the date on which the gift was received, and the travel destination for purposes of a gift that is a travel payment, advance, or reimbursement.
+(5) In the case of a loan, the annual interest rate, the security, if any, given for the loan, and the term of the loan.
+(b) If the filer’s pro rata share of income to a business entity, including income to a sole proprietorship, is required to be reported under this article, the statement shall contain the following:
+(1) (A) The name, address, and, except as provided in subparagraph (B), a thorough and detailed description of the business activity of the business entity based on criteria established by the commission.
+(B) A filer is not required to provide a thorough and detailed description of the business activity of the business entity if the business entity is publicly traded.
+(2) The name of every person from whom the business entity received payments if the filer’s pro rata share of gross receipts from that person was equal to or greater than ten thousand dollars ($10,000) during a calendar year.
+(c) If a payment, including an advance or reimbursement, for travel is required to be reported pursuant to this section, it may be reported on a separate travel reimbursement schedule, which shall be included in the filer’s statement of economic interest. A filer who chooses not to use the travel schedule shall disclose payments for travel as a gift, unless it is clear from all surrounding circumstances that the services provided were equal to or greater in value than the payments for the travel, in which case the travel may be reported as income.
+SEC. 2.
+Section 89506 of the Government Code is amended to read:
+89506.
+(a) Payments, advances, or reimbursements for travel, including actual transportation and related lodging and subsistence that is reasonably related to a legislative or governmental purpose, or to an issue of state, national, or international public policy, are not prohibited or limited by this chapter if either of the following applies:
+(1) The travel is in connection with a speech given by the elected state officer, local elected officeholder, candidate for elective state office or local elective office, an individual specified in Section 87200, member of a state board or commission, or designated employee of a state or local government agency, the lodging and subsistence expenses are limited to the day immediately preceding, the day of, and the day immediately following the speech, and the travel is within the United States.
+(2) The travel is provided by a government, a governmental agency, a foreign government, a governmental authority, a bona fide public or private educational institution, as defined in Section 203 of the Revenue and Taxation Code, a nonprofit organization that is exempt from taxation under Section 501(c)(3) of the Internal Revenue Code, or by a person domiciled outside the United States who substantially satisfies the requirements for tax-exempt status under Section 501(c)(3) of the Internal Revenue Code.
+(b) Gifts of travel not described in subdivision (a) are subject to the limits in Section 89503.
+(c) Subdivision (a) applies only to travel that is reported on the recipient’s statement of economic interests.
+(d) For purposes of this section, a gift of travel does not include any of the following:
+(1) Travel that is paid for from campaign funds, as permitted by Article 4 (commencing with Section 89510), or that is a contribution.
+(2) Travel that is provided by the agency of a local elected officeholder, an elected state officer, member of a state board or commission, an individual specified in Section 87200, or a designated employee.
+(3) Travel that is reasonably necessary in connection with a bona fide business, trade, or profession and that satisfies the criteria for federal income tax deduction for business expenses in Sections 162 and 274 of the Internal Revenue Code, unless the sole or predominant activity of the business, trade, or profession is making speeches.
+(4) Travel that is excluded from the definition of a gift by any other provision of this title.
+(e) This section does not apply to payments, advances, or reimbursements for travel and related lodging and subsistence permitted or limited by Section 170.9 of the Code of Civil Procedure.
+(f) (1) A nonprofit organization that regularly organizes and hosts travel for elected officials and that makes payments, advances, or reimbursements that total more than ten thousand dollars ($10,000) in a calendar year, or that total more than five thousand dollars ($5,000) in a calendar year for a single person, for travel by an elected state officer or local elected officeholder as described in subdivision (a) shall disclose to the Commission the names of donors who did both of the following in the preceding year:
+(A) Donated one thousand dollars ($1,000) or more to the nonprofit organization.
+(B) Accompanied an elected state officer or local elected officeholder, either personally or through an agent, employee, or representative, for any portion of travel described in subdivision (a).
+(2) For purposes of this subdivision, an organization “regularly organizes and hosts travel for elected officials” if the sum of the organization’s expenses that relate to any of the following types of activities with regard to elected officials was greater than one-third of its total expenses reflected on the organization’s Internal Revenue Service Form 990, or the equivalent, filed most recently within the last 12 months:
+(A) Travel.
+(B) Study tours.
+(C) Conferences, conventions, and meetings.
+(3) This subdivision does not preclude a finding that a nonprofit organization is acting as an intermediary or agent of the donor. If the nonprofit organization is acting as an intermediary or agent of the donor, all of the following apply:
+(A) The donor to the nonprofit organization is the source of the gift.
+(B) The donor shall be identified as a financial interest under Section 87103.
+(C) The gift shall be reported as required by Section 87207.
+(D) The gift shall be subject to the limitations on gifts specified in Section 89503.
+(4) For purposes of this subdivision, a nonprofit organization includes an organization that is exempt from taxation under Section 501(c)(3) or Section 501(c)(4) of the Internal Revenue Code.
+SEC. 3.
+Section 1.5 of this bill incorporates amendments to Section 87207 of the Government Code proposed by both this bill and Assembly Bill 10. It shall only become operative if (1) both bills are enacted and become effective on or before January 1, 2016, (2) each bill amends Section 87207 of the Government Code, and (3) this bill is enacted after Assembly Bill 10, in which case Section 1 of this bill shall not become operative.
+SEC. 4.
+No reimbursement is required by this act pursuant to Section 6 of Article XIII B of the California Constitution because the only costs that may be incurred by a local agency or school district will be incurred because this act creates a new crime or infraction, eliminates a crime or infraction, or changes the penalty for a crime or infraction, within the meaning of Section 17556 of the Government Code, or changes the definition of a crime within the meaning of Section 6 of Article XIII B of the California Constitution.
+SEC. 5.
+The Legislature finds and declares that this bill furthers the purposes of the Political Reform Act of 1974 within the meaning of subdivision (a) of Section 81012 of the Government Code.
+reference summary:
+The Political Reform Act of 1974 provides for the comprehensive regulation of campaign financing and related matters, including the reporting of gifts, as defined. The act prohibits specified officers from receiving gifts in excess of $440 in value from a single source in a calendar year. The act exempts gift payments for the actual costs of specified types of travel that are reasonably related to a legislative or governmental purpose, or to an issue of state, national, or international public policy, from the annual limit on the value of gifts from a single source.
+This bill would require a nonprofit organization that regularly organizes and hosts travel for elected officials, as specified, and that pays for these types of travel for an elected state officer or local elected officeholder to disclose the names of donors who, in the preceding year, both donated to the nonprofit organization and accompanied an elected officer or officeholder for any portion of the travel, as specified. The bill would require a person who receives a gift of a travel payment from any source to report the travel destination on his or her statement of economic interests.
+This bill would incorporate additional changes to Section 87207 of the Government Code proposed by both this bill and AB 10, which would become operative only if both bills are enacted and become effective on or before January 1, 2016, and this bill is chaptered last.
+A violation of the act’s provisions is punishable as a misdemeanor. By expanding the scope of an existing crime, this bill would impose a state-mandated local program.
+The California Constitution requires the state to reimburse local agencies and school districts for certain costs mandated by the state. Statutory provisions establish procedures for making that reimbursement.
+This bill would provide that no reimbursement is required by this act for a specified reason.
+The Political Reform Act of 1974, an initiative measure, provides that the Legislature may amend the act to further the act’s purposes upon a
+2/3
+vote of each house and compliance with specified procedural requirements.
+This bill would declare that it furthers the purposes of the act.
+GENERATED SUMMARY:
+To amend Sections 87207 and 89506 of the Government Code to require the Political Reform Act of 1974 to apply to nonpartisan legislative analysts.  (AB 8/10)
+==================================================
+
+=== Generated Summary for Question #7 ===
+title:
+An act
+to add Article 7 (commencing with Section 128590) to Chapter 5 of Part 3 of Division 107 of the Health and Safety Code,
+relating to health care, and making an appropriation therefor.
+text:
+The people of the State of California do enact as follows:
+
+
+SECTION 1.
+The Legislature finds and declares as follows:
+(a) More than $40 million of funding for the training of California’s primary care physicians is expiring in 2016.
+(b) Each year in California, only 368 slots are available to the thousands of medical students seeking to train in family medicine. If the funding is not replaced, 158 of those slots will be lost, creating a terrible deficit of primary care physicians in California’s underserved communities.
+(c) Only 36 percent of California’s active patient care physicians practice primary care. Twenty-three of California’s 58 counties fall below the minimum required primary care physician to population ratio.
+(d) As of 2010, California needed an estimated additional 8,243 primary care physicians by 2030 to prevent projected shortages in the state, which is about 412 new primary care physicians per year.
+(e) More than 32 percent of California’s practicing primary care physicians are 60 years of age or older – only four other states have a larger percentage of soon-to-retire physicians.
+(f) States with higher ratios of primary care physicians to population have better health outcomes, including decreased mortality from cancer, heart disease, and stroke.
+(g) The Song-Brown program provides an existing state infrastructure to support an increase in the number of primary care providers serving California’s underserved populations. By investing in Song-Brown, California will realize an immediate return on investment as each primary care resident provides an average of 600 additional patient visits per physician per year during training alone.
+(h) California’s long-term workforce will also grow significantly as the vast majority of physicians who train in a region stay there to practice. California leads all fifty states in the percentage of residency program graduates who stay in the state in which they are trained.
+SEC. 2.
+Notwithstanding Section 13340 of the Government Code, there is hereby continuously appropriated from the General Fund the sum of three hundred million dollars ($300,000,000) to the Director of Statewide Health Planning and Development, for the purpose of funding new and existing graduate medical education physician residency positions, and supporting training faculty, pursuant to the Song-Brown Health Care Workforce Training Act (Article 1 (commencing with Section 128200) of Chapter 4 of Part 3 of Division 107 of the Health and Safety Code). The moneys shall be expended as follows:
+(a) The sum of one hundred million dollars ($100,000,000) shall be expended in the 2016–17 fiscal year.
+(b) The sum of one hundred million dollars ($100,000,000) shall be expended in the 2017–18 fiscal year.
+(c) The sum of one hundred million dollars ($100,000,000) shall be expended in the 2018–19 fiscal year.
+SECTION 1.
+Article 7 (commencing with Section 128590) is added to Chapter 5 of Part 3 of Division 107 of the
+Health and Safety Code
+, to read:
+7.
+California Medical Residency Training Program
+128590.
+As used in this article:
+(a)“Director” means the Director of Statewide Health Planning and Development.
+(b)“Foundation” means the Health Professions Education Foundation.
+(c)“Fund” means the Medical Residency Training Fund.
+(d)“Office” means the Office of Statewide Health Planning and Development.
+(e)“Panel” means the Medical Residency Training Advisory Panel, established pursuant to Section 128591.
+(f)“Primary care” means the medical practice areas of family medicine, general surgery, internal medicine, obstetrics and gynecology, pediatrics, psychiatry, and related specialties and subspecialties as the office deems appropriate.
+(g)“Residency position” means a graduate medical education residency position in the field of primary care.
+128591.
+(a)(1)There is established within the foundation the Medical Residency Training Advisory Panel.
+(2)The panel shall consist of 13 members. Seven members shall be appointed by the Governor, one member shall be appointed by the Speaker of the Assembly, one member shall be appointed by the Senate Committee on Rules, two members of the Medical Board of California shall be appointed by the Medical Board of California, and two members of the Osteopathic Medical Board of California shall be appointed by the Osteopathic Medical Board of California.
+(3)The members of the panel appointed by the Governor, the Speaker of the Assembly, and the Senate Committee on Rules shall consist of representatives of designated and nondesignated public hospitals, private hospitals, community clinics, public and private health insurance providers, the pharmaceutical industry, associations of health care practitioners, and other appropriate members of health or related professions.
+(4)All persons considered for appointment shall have an interest in increasing the number of medical residencies in the state, an interest in increasing access to health care in underserved areas of California, and the ability and desire to solicit funds for the purposes of this article, as determined by the appointing power.
+(b)The Governor shall appoint the president of the panel from among those members appointed by the Governor, the Speaker of the Assembly, the Senate Committee on Rules, the Medical Board of California, and the Osteopathic Medical Board of California.
+(c)(1)Of the members of the panel first appointed by the Governor, three members shall be appointed to serve a one-year term, three members shall be appointed to serve a two-year term, and one member shall be appointed to serve a three-year term.
+(2)Each member of the panel first appointed by the Speaker of the Assembly and the Senate Committee on Rules shall be appointed to serve a three-year term.
+(3)Each member of the panel appointed by the Medical Board of California and the Osteopathic Medical Board of California shall be appointed to serve a four-year term.
+(4)Upon the expiration of the initial appointments to the panel by the Governor, the Speaker of the Assembly, the Senate Committee on Rules, the Medical Board of California, and the Osteopathic Medical Board of California, each member shall be appointed to serve a four-year term.
+(d)(1)Members of the panel appointed by the Governor, the Speaker of the Assembly, and the Senate Committee on Rules shall serve without compensation, but shall be reimbursed for any actual and necessary expenses incurred in connection with their duties as members of the panel.
+(2)The members appointed by the Medical Board of California and the Osteopathic Medical Board of California shall serve without compensation, but shall be reimbursed by the Medical Board of California and the Osteopathic Medical Board of California, respectively, for any actual and necessary expenses incurred in connection with their duties as members of the panel.
+(e)Notwithstanding any law relating to incompatible activities, no member of the panel shall be considered to be engaged in activities inconsistent and incompatible with his or her duties solely as a result of membership on the Medical Board of California or the Osteopathic Medical Board of California.
+(f)The panel shall be subject to the Nonprofit Public Benefit Corporation Law (Part 2 (commencing with Section 5110) of Division 2 of Title 2 of the Corporations Code), except that if there is a conflict with this article and the Nonprofit Public Benefit Corporation Law (Part 2 (commencing with Section 5110) of Division 2 of Title 2 of the Corporations Code), this article shall prevail.
+128592.
+The panel shall do all of the following:
+(a)Solicit and accept funds from business, industry, foundations, and other private or public sources for the purpose of establishing and funding new residency positions in areas of the state described in subdivision (c).
+(b)Encourage public and private sector institutions, including hospitals, colleges, universities, community clinics, and other health agencies and organizations to identify and provide locations for the establishment of new residency positions in areas of the state described in subdivision (c). The panel shall solicit proposals for medical residency programs, as described in subdivision (c), and shall provide to the foundation a copy of all proposals it receives.
+(c)Upon the sufficient solicitation of funds and at the panel’s discretion, recommend to the foundation the establishment of new residency positions. A recommendation shall include all pertinent information required to enter into the necessary contracts to establish the residency positions. The panel shall only approve and recommend to the foundation proposals that would establish residency positions that will serve in any of the following medical service areas:
+(1)A service area that is designated as a primary care shortage area by the office.
+(2)A service area that is designated as a health professional shortage area for primary care, by either population or geographic designation, by the Health Resources and Services Administration of the United States Department of Health and Human Services.
+(3)A service area that is designated as a medically underserved area or medically underserved population by the Health Resources and Services Administration of the United States Department of Health and Human Services.
+(d)Upon foundation approval of a recommendation, deposit into the fund necessary moneys required to establish and fund the residency position.
+(e)Recommend to the director that a portion of the funds solicited from the private sector be used for the administrative requirements of the panel and the foundation.
+(f)Prepare and submit an annual report to the Legislature documenting the amount of money solicited, the amount of money deposited by the panel into the fund, the recommendations for the location and fields of practice of residency positions, total expenditures for the year, and prospective fundraising goals.
+128593.
+The foundation shall do all of the following:
+(a)Provide technical and staff support to the panel in meeting all of its responsibilities.
+(b)Upon receipt of a recommendation made by the panel pursuant to subdivision (c) of Section 128592, approve the recommendation if the recommendation fulfills the requirements of subdivision (c) of Section 128592 and the recommendation fulfills the goals of this article. Upon sufficient funds being available, an approval shall be sent to the office for implementation pursuant to Section 128594.
+128594.
+The office shall do all of the following:
+(a)Establish a uniform process by which the panel may solicit proposals from public and private sector institutions, including hospitals, colleges, universities, community clinics, and other health agencies and organizations that train primary care residents. The office shall require that the proposals contain all necessary and pertinent information, including, but not limited to, all of the following:
+(1)The location of the proposed residency position.
+(2)The medical practice area of the proposed residency position.
+(3)Information that demonstrates the area’s need for the proposed residency position and for additional primary care practitioners.
+(4)The amount of funding required to establish and operate the residency position.
+(b)Enter into contracts with public and private sector institutions, including hospitals, colleges, universities, community clinics, and other health agencies and organizations in order to fund and establish residency positions at, or in association with, these institutions.
+(c)Ensure that the residency position has been, or will be, approved by the Accreditation Council for Graduate Medical Education.
+(d)Provide all of the following information to the panel and the foundation as requested:
+(1)The areas of the state that are deficient in primary care services.
+(2)The areas of the state that have the highest number of Medi-Cal enrollees and persons eligible to enroll in Medi-Cal, by proportion of population.
+(3)Other information relevant to assist the panel and the foundation in making recommendations on possible locations for new residency positions.
+(e)Monitor the residencies established pursuant to this article.
+(f)(1)Prepare and submit an annual report to the panel, the foundation, and the Legislature documenting the amount of money contributed to the fund by the panel, the amount of money expended from the fund, the purposes of those expenditures, the number and location of residency positions established and funded, and recommendations for the location of future residency positions.
+(2)The report pursuant to paragraph (1) shall be made to the Legislature pursuant to Section 9795 of the Government Code.
+128595.
+(a)The Medical Residency Training Fund is hereby created within the State Treasury.
+(b)The primary purpose of the fund is to allocate funding for new residency positions throughout the state. Money in the fund shall also be used to pay for the cost of administering the goals of the panel and the foundation as established by this article, and for any other purpose authorized by this article.
+(c)The level of expenditure by the office for the administrative support of the panel and the foundation is subject to review and approval annually through the state budget process.
+(d)In addition to funds raised by the panel, the office and the foundation may solicit and accept public and private donations to be deposited into the fund. All money in the fund is continuously appropriated to the office for the purposes of this article. The office shall manage this fund prudently in accordance with applicable laws.
+128596.
+Any regulations the office adopts to implement this article shall be adopted as emergency regulations in accordance with Section 11346.1 of the Government Code, except that the regulations shall be exempt from the requirements of subdivisions (e), (f), and (g) of that section. The regulations shall be deemed to be emergency regulations for the purposes of Section 11346.1 of the Government Code.
+128597.
+Notwithstanding any other law, the office may exempt from public disclosure any document in the possession of the office that pertains to a donation made pursuant to this article if the donor has requested anonymity.
+128598.
+(a)The Governor may include in the annual budget proposal an amount, as he or she deems reasonable, to be appropriated to the office to be used as provided in this article.
+(b)If the Legislature appropriates money for purposes of this article, the money shall be appropriated to the office, which shall hold the money for distribution to the fund.
+(c)Funds appropriated to the office shall be paid into the fund, upon request of the panel, in an amount matching the amount deposited into the fund by the panel or by the foundation and office pursuant to subdivision (d) of Section 128595 for the purposes of this article. Any money that was appropriated to the office and that has not been distributed to the fund at the end of each fiscal year shall be returned to the General Fund.
+SEC. 2.
+The Legislature finds and declares that Section 1 of this act, which adds Article 7 (commencing with Section 128590) to Chapter 5 of Part 3 of Division 107 of the Health and Safety Code, imposes a limitation on the public’s right of access to the meetings of public bodies or the writings of public officials and agencies within the meaning of Section 3 of Article I of the California Constitution. Pursuant to that constitutional provision, the Legislature makes the following findings to demonstrate the interest protected by this limitation and the need for protecting that interest:
+The need to protect individual privacy of donations made by a donor to fund new medical residency positions in underserved areas of the state outweighs the interest in the public disclosure of that information.
+reference summary:
+The Song-Brown Health Care Workforce Training Act creates a state medical contract program to increase the number of students and residents receiving quality education and training in specified primary care specialties or in nursing, and to maximize the delivery of primary care and family physician services to specific areas of California where there is a recognized unmet priority need for those services. The act requires the Director of Statewide Health Planning and Development to, among other things, contract with accredited medical schools, teaching health centers, training programs, hospitals, and other health care delivery systems for those purposes, based on recommendations of the California Healthcare Workforce Policy Commission and in conformity with the contract criteria and program standards established by the commission.
+This bill would appropriate $300,000,000 from the General Fund to the director for the purpose of funding new and existing graduate medical education physician residency positions, and supporting training faculty, pursuant to the act, for expenditure as specified. The bill would also make related findings and declarations.
+Existing law, the Song-Brown Health Care Workforce Training Act, declares the intent of the Legislature to increase the number of students and residents receiving quality education and training in the specialty of family practice and as primary care physician’s assistants and primary care nurse practitioners. Existing law establishes, for this purpose, a state medical contract program with accredited medical schools, programs that train primary care physician’s assistants, programs that train primary care nurse practitioners, registered nurses, hospitals, and other health care delivery systems.
+Existing law requires the Office of Statewide Health Planning and Development to establish the Health Professions Education Foundation to solicit and receive funds for the purpose of providing financial assistance in the form of scholarships or loans to medical students from underrepresented groups. Under existing law, the foundation also administers other programs for the advancement of health professions, including the Registered Nurse Education Program.
+This bill would establish the Medical Residency Training Advisory Panel, consisting of a total of 13 members to be appointed as specified, within the Health Professions Education Foundation.
+The bill would create the Medical Residency Training Fund in the State Treasury, a continuously appropriated fund, and would require the panel to solicit and accept funds from business, industry, foundations, and other private or public sources for the purpose of establishing and funding new graduate medical residency training programs in specified areas of the state, including medically underserved areas. By creating a continuously appropriated fund, the bill would make an appropriation. The bill would require the foundation to provide technical support and financial management for the panel and to approve and send panel recommendations for new residency programs to the Office of Statewide Health Planning and Development for implementation if specified requirements are met, including sufficient funding. The bill would require the office to enter into contracts with public and private sector institutions and other health agencies and organizations in order to fund and establish recommended residency positions. The bill would authorize the Governor to include in the annual budget proposal an amount, as he or she deems reasonable, to be appropriated for this purpose. The bill, if the Legislature appropriates money for this purpose, would require the office to hold the funds and distribute them into the fund, upon request of the panel, in an amount matching the amount deposited into the fund, as specified. The bill would require money that was appropriated, but that has not been distributed to the fund at the end of each fiscal year, to be returned to the General Fund.
+Existing constitutional provisions require that a statute that limits the right of access to the meetings of public bodies or the writings of public officials and agencies be adopted with findings demonstrating the interest protected by the limitation and the need for protecting that interest.
+This bill would make legislative findings to that effect.
+GENERATED SUMMARY:
+dent trainee to be admitted to any program of study or degree that would not be available to him or her without a residency position.
+(c)Nothing in this article affects the right of a student to be admitted to a program of study or degree for the purposes of training as a resident trainee in the area of primary care.
+(d)Nothing in this article affects the ability of a resident trainee to be admitted to any program of study or degree for the purposes of training as a resident trainee in the area of primary care.
+(e)Nothing in this article affects the right of a person to be admitted to a program of study or degree, including any program of study or degree offered by an institution of higher education or any program of study or degree offered by an accredited private or public postsecondary institution of higher learning.
+128600.
+Any contract between a public or private institution and the office or the foundation, or between the office and the foundation and an institution of higher education, shall be made in accordance with the provisions of this article.
+128601.
+Any contract between a public or private institution and the office or the foundation or between the office and the foundation and an institution of higher education, or between the foundation and an institution of higher education, shall be subject to the following conditions:
+(a)The institution shall not limit the number of residency positions it may offer pursuant to this article.
+(b)The institution shall provide residency positions that are required to be approved by the office or the foundation, or by both, pursuant to this article.
+(c)The institution shall provide residency positions that are required to be approved by the office or the foundation or by both, pursuant to this article, at a location that is identified by the office or the foundation, or by both, pursuant to this article.
+(d)The institution shall provide residency positions that are required to be approved by the office or the foundation, or by both, pursuant to this article, at a location that is identified by the office or the foundation, or by both, pursuant to this article.
+128602.
+(a)The office may, from time to time, provide grants, gifts, or other funds to public or private institutions of higher education in order to establish new residency positions.
+(b)Each public or private institution of higher education shall agree to support and maintain the residency positions it has established pursuant to this article. If an institution of higher education violates this requirement, the office may withhold funds from the institution.
+(c)The office may require that any institution of higher education that has violated this requirement restore any funds withheld pursuant to this section.
+128603.
+(a)The office and the foundation may enter into any contracts necessary to carry out the purposes of this article.
+(b)All contracts entered into pursuant to this article shall be subject to the Public Contract Code (Part 3 (commencing with Section 20000) of Division 5 of Title 2 of the Government Code).
+(c)All contracts entered into pursuant to this article shall be subject to the provisions of Article 4 (commencing with Section 20100) of Chapter 2 of Part 2 of Division 9 of Title 2 of the Government Code, except that any contract entered into pursuant to this article shall be exempt from the provisions of that section.
+(d)All contracts entered into pursuant to this article shall be subject to the provisions of Section 11245 of the Government Code.
+(e)All contracts entered into pursuant to this article shall be subject to the provisions of Section 11246 of the Government Code.
+128604.
+(a)A resident trainee may participate in the residency program in a residency position at a public or private institution of higher education, unless the institution has violated this
+==================================================
+
+=== Generated Summary for Question #8 ===
+title:
+An act to add Section 11270.5 to, and to repeal Section 11450.04 of, the Welfare and Institutions Code, relating to CalWORKs.
+text:
+The people of the State of California do enact as follows:
+
+
+SECTION 1.
+The Legislature finds and declares all of the following:
+(a) Scientific research has demonstrated that young children living in deep poverty experience lifelong cognitive impairments limiting their ability to be prepared for, and succeed in, school.
+(b) Academic research has documented an increase in missed days of school and an increase in visits to hospital emergency rooms by children who live in deep poverty.
+(c) The Maximum Family Grant rule was adopted to limit the length of time a family could receive basic needs assistance, and to limit the amount of assistance a family could receive, through the Aid to Families with Dependent Children (AFDC) program before the implementation of welfare reform. At the time the rule was adopted, there was no limit on the length of time a family could receive aid, no work requirements, and the benefits provided were approximately 80 percent of the federal poverty level.
+(d) Since the implementation of the Maximum Family Grant rule, AFDC has been replaced with the California Work Opportunity and Responsibility to Kids Act (CalWORKs), which imposes lifetime limits on aid and requires adult CalWORKs participants to meet work requirements in order to receive a maximum benefit of approximately 40 percent of the federal poverty level.
+(e) The Maximum Family Grant rule makes poor children poorer, reducing the income of families with infants to below 30 percent of the federal poverty level.
+(f) This act is necessary to protect infants born to families receiving CalWORKs from experiencing lifelong cognitive impairments due to the toxic stress of deep poverty and to ready those children for participation in California’s public school system.
+(g) This act is also necessary to protect the reproductive and privacy rights of all applicants for, and recipients of, aid under CalWORKs.
+SEC. 2.
+Section 11270.5 is added to the Welfare and Institutions Code, immediately following Section 11270, to read:
+11270.5.
+(a) An applicant for, or recipient of, aid under this chapter shall not be required, as a condition of eligibility, to do any of the following:
+(1) Divulge that any member of the assistance unit is a victim of rape or incest.
+(2) Share confidential medical records related to any member of the assistance unit’s rape or incest.
+(3) Use contraception, choose a particular method of contraception, or divulge the method of contraception that any member of the assistance unit uses.
+(b) An applicant for, or recipient of, aid under this chapter shall not be denied aid, nor denied an increase in the maximum aid payment, for a child born into the applicant’s or recipient’s family during a period in which the applicant’s or recipient’s family was receiving aid under this chapter.
+(c) An applicant for, or recipient of, aid under this chapter shall not be entitled to an increased benefit payment for any month prior to January 1, 2016, as a result of the repeal of former Section 11450.04 (as added by Section 1 of Chapter 196 of the Statutes of 1994) or the enactment of this section.
+SEC. 3.
+Section 11450.04 of the Welfare and Institutions Code is repealed.
+11450.04.
+(a)For purposes of determining the maximum aid payment specified in subdivision (a) of Section 11450 and for no other purpose, the number of needy persons in the same family shall not be increased for any child born into a family that has received aid under this chapter continuously for the 10 months prior to the birth of the child. For purposes of this section, aid shall be considered continuous unless the family does not receive aid during two consecutive months. This subdivision shall not apply to applicants for, or recipients of, aid unless notification is provided pursuant to this section.
+(b)This section shall not apply with respect to any of the following children:
+(1)Any child who was conceived as a result of an act of rape, as defined in Sections 261 and 262 of the Penal Code, if the rape was reported to a law enforcement agency, medical or mental health professional or social services agency prior to, or within three months after, the birth of the child.
+(2)Any child who was conceived as a result of an incestuous relationship if the relationship was reported to a medical or mental health professional or a law enforcement agency or social services agency prior to, or within three months after, the birth of the child, or if paternity has been established.
+(3)Any child who was conceived as a result of contraceptive failure if the parent was using an intrauterine device, a Norplant, or the sterilization of either parent.
+(c)This section shall not apply to any child born on or before November 1, 1995.
+(d)(1)This section shall not apply to any child to whom it would otherwise apply if the family has not received aid for 24 consecutive months while the child was living with the family.
+(2)This section shall not apply to any child conceived when either parent was a nonneedy caretaker relative.
+(3)This section shall not apply to any child who is no longer living in the same home with either parent.
+(e)One hundred percent of any child support payment received for a child born into the family, but for whom the maximum aid payment is not increased pursuant to this section, shall be paid to the assistance unit. Any such child support payment shall not be considered as income to the family for the purpose of calculating the amount of aid for which the family is eligible under this article.
+(f)Commencing January 1, 1995, each county welfare department shall notify applicants for assistance under this chapter, in writing, of the provisions of this section. The notification shall also be provided to recipients of aid under this chapter, in writing, at the time of recertification, or sooner. The notification required by this section shall set forth the provisions of this section and shall state explicitly the impact these provisions would have on the future aid to the assistance unit. This section shall not apply to any recipient’s child earlier than 12 months after the mailing of an informational notice as required by this subdivision.
+(g)(1)The department shall seek all appropriate federal waivers for the implementation of this section.
+(2)The department shall implement this section commencing on the date the Director of Social Services executes a declaration, that shall be retained by the director, stating that the administrative actions required by paragraph (1) as a condition of implementation of this section have been taken by the United States Secretary of Health and Human Services.
+(h)Subdivisions (a) to (g), inclusive, shall become operative on January 1, 1995.
+SEC. 4.
+No appropriation pursuant to Section 15200 of the Welfare and Institutions Code shall be made for the purposes of this act.
+SEC. 5.
+If the Commission on State Mandates determines that this act contains costs mandated by the state, reimbursement to local agencies and school districts for those costs shall be made pursuant to Part 7 (commencing with Section 17500) of Division 4 of Title 2 of the Government Code.
+reference summary:
+Existing law requires each county to provide cash assistance and other social services to needy families through the California Work Opportunity and Responsibility to Kids (CalWORKs) program using federal Temporary Assistance to Needy Families (TANF) block grant program, state, and county funds. Under existing law, for purposes of determining a family’s maximum aid payment under the CalWORKs program, the number of needy persons in the same family is not increased for any child born into a family that has received aid under the CalWORKs program continuously for the 10 months prior to the birth of the child, with specified exceptions.
+This bill would repeal that exclusion for purposes of determining the family’s maximum aid payment and would expressly prohibit the denial of aid, or the denial of an increase in the maximum aid payment, if a child, on whose behalf aid or an increase in aid is being requested, was born into an applicant’s or recipient’s family while the applicant’s or recipient’s family was receiving aid under the CalWORKs program. The bill would specify that an applicant or recipient is not entitled to an increased benefit payment for any month prior to January 1, 2016, as a result of the repeal of that exclusion or the enactment of that express prohibition. The bill would also prohibit the department from conditioning an applicant’s or recipient’s eligibility for aid on the applicant’s or recipient’s disclosure of information regarding rape, incest, or contraception, as specified, or the applicant’s or recipient’s use of contraception.
+Existing law continuously appropriates moneys from the General Fund to defray a portion of county aid grant costs under the CalWORKs program.
+This bill would declare that no appropriation would be made for purposes of the bill.
+To the extent that this bill affects eligibility under the CalWORKs program, the bill would create a state-mandated local program.
+The California Constitution requires the state to reimburse local agencies and school districts for certain costs mandated by the state. Statutory provisions establish procedures for making that reimbursement.
+This bill would provide that, if the Commission on State Mandates determines that the bill contains costs mandated by the state, reimbursement for those costs shall be made pursuant to these statutory provisions.
+GENERATED SUMMARY:
+
+==================================================
+
+=== Generated Summary for Question #9 ===
+title:
+An act to amend Section 7522.02 of the Government Code, relating to public employees’ retirement.
+text:
+The people of the State of California do enact as follows:
+
+
+SECTION 1.
+Section 7522.02 of the Government Code is amended to read:
+7522.02.
+(a) (1) Notwithstanding any other law, except as provided in this article, on and after January 1, 2013, this article shall apply to all state and local public retirement systems and to their participating employers, including the Public Employees’ Retirement System, the State Teachers’ Retirement System, the Legislators’ Retirement System, the Judges’ Retirement System, the Judges’ Retirement System II, county and district retirement systems created pursuant to the County Employees Retirement Law of 1937 (Chapter 3 (commencing with Section 31450) of Part 3 of Division 4 of Title 3), independent public retirement systems, and to individual retirement plans offered by public employers. However, this article shall be subject to the Internal Revenue Code and Section 17 of Article XVI of the California Constitution. The administration of the requirements of this article shall comply with applicable provisions of the Internal Revenue Code and the Revenue and Taxation Code.
+(2) Notwithstanding paragraph (1), this article shall not apply to the entities described in Section 9 of Article IX of, and Sections 4 and 5 of Article XI of, the California Constitution, except to the extent that these entities continue to be participating employers in any retirement system governed by state statute. Accordingly, any retirement plan approved before January 1, 2013, by the voters of any entity excluded from coverage by this section shall not be affected by this article.
+(3) (A) Notwithstanding paragraph (1), this article shall not apply to a public employee whose interests are protected under Section 5333(b) of Title 49 of the United States Code until a federal district court rules that the United States Secretary of Labor, or his or her designee, erred in determining that the application of this article precludes certification under that section, or until January 1, 2016, whichever is sooner.
+(B) If a federal district court upholds the determination of the United States Secretary of Labor, or his or her designee, that application of this article precludes him or her from providing a certification under Section 5333(b) of Title 49 of the United States Code, this article shall not apply to a public employee specified in subparagraph (A).
+(4) Notwithstanding paragraph (1), this article shall not apply to a multiemployer plan authorized by Section 302(c)(5) of the federal Taft-Hartley Act (29 U.S.C. Sec. 186(c)(5)) if the public employer began participation in that plan prior to January 1, 2013, and the plan is regulated by the federal Employee Retirement Income Security Act of 1974 (29 U.S.C. Sec. 1001 et seq.).
+(b) The benefit plan required by this article shall apply to public employees who are new members as defined in Section 7522.04.
+(c) (1) Individuals who were employed by any public employer before January 1, 2013, and who became employed by a subsequent public employer for the first time on or after January 1, 2013, shall be subject to the retirement plan that would have been available to employees of the subsequent employer who were first employed by the subsequent employer on or before December 31, 2012, if the individual was subject to concurrent membership for which creditable service was performed in the previous six months or reciprocity established under any of the following provisions:
+(A) Article 5 (commencing with Section 20350) of Chapter 3 of Part 3 of Division 5 of Title 2.
+(B) Chapter 3 (commencing with Section 31450) of Part 3 of Division 4 of Title 3.
+(C) Any agreement between public retirement systems to provide reciprocity to members of the systems.
+(D) Section 22115.2 of the Education Code.
+(2) An individual who was employed before January 1, 2013, and who, without a separation from employment, changed employment positions and became subject to a different defined benefit plan in a different public retirement system offered by his or her employer shall be subject to that defined benefit plan as it would have been available to employees who were first employed on or before December 31, 2012.
+(d) If a public employer, before January 1, 2013, offers a defined benefit pension plan that provides a defined benefit formula with a lower benefit factor at normal retirement age and results in a lower normal cost than the defined benefit formula required by this article, that employer may continue to offer that defined benefit formula instead of the defined benefit formula required by this article, and shall not be subject to the requirements of Section 7522.10 for pensionable compensation subject to that formula. However, if the employer adopts a new defined benefit formula on or after January 1, 2013, that formula must conform to the requirements of this article or must be determined and certified by the retirement system’s chief actuary and the retirement board to have no greater risk and no greater cost to the employer than the defined benefit formula required by this article and must be approved by the Legislature. New members of the defined benefit plan may only participate in the lower cost defined benefit formula that was in place before January 1, 2013, or a defined benefit formula that conforms to the requirements of this article or is approved by the Legislature as provided in this subdivision.
+(e) If a public employer, before January 1, 2013, offers a retirement benefit plan that consists solely of a defined contribution plan, that employer may continue to offer that plan instead of the defined benefit pension plan required by this article. However, if the employer adopts a new defined benefit pension plan or defined benefit formula on or after January 1, 2013, that plan or formula must conform to the requirements of this article or must be determined and certified by the retirement system’s chief actuary and the system’s board to have no greater risk and no greater cost to the employer than the defined benefit formula required by this article and must be approved by the Legislature. New members of the employer’s plan may only participate in the defined contribution plan that was in place before January 1, 2013, or a defined contribution plan or defined benefit formula that conforms to the requirements of this article. This subdivision shall not be construed to prohibit an employer from offering a defined contribution plan on or after January 1, 2013, either with or without a defined benefit plan, whether or not the employer offered a defined contribution plan prior to that date.
+(f) (1) If, on or after January 1, 2013, the Cities of Brea and Fullerton form a joint powers authority pursuant to the provisions of the Joint Exercise of Powers Act (Article 1 (commencing with Section 6500) of Chapter 5), that joint powers authority may provide employees the defined benefit plan or formula that those employees received from their respective employers prior to the exercise of a common power, to which the employee is associated, by the joint powers authority to any employee of the City of Brea, the City of Fullerton, or a city described in paragraph (2) who is not a new member and subsequently is employed by the joint powers authority within 180 days of the city providing for the exercise of a common power, to which the employee was associated, by the joint powers authority.
+(2) On or before January 1, 2017, a city in Orange County that is contiguous to the City of Brea or the City of Fullerton may join the joint powers authority described in paragraph (1) but not more than three cities shall be permitted to join.
+(3) The formation of a joint powers authority on or after January 1, 2013, shall not act in a manner as to exempt a new employee or a new member, as defined by Section 7522.04, from the requirements of this article. New members may only participate in a defined benefit plan or formula that conforms to the requirements of this article.
+(g) (1) If, on or after January 1, 2013, the Belmont Fire Protection District, the Estero Municipal Improvement District, and the City of San Mateo form a joint powers authority pursuant to the provisions of the Joint Exercise of Powers Act (Article 1 (commencing with Section 6500) of Chapter 5), that joint powers authority may provide employees the defined benefit plan or formula that those employees received from their respective employers prior to the exercise of a common power, to which the employee is associated, by the joint powers authority to any employee of the Belmont Fire Protection District, the Estero Municipal Improvement District, and the City of San Mateo who is not a new member and subsequently is employed by the joint powers authority within 180 days of the agency providing for the exercise of a common power, to which the employee was associated, by the joint powers authority.
+(2) The formation of a joint powers authority on or after January 1, 2013, shall not act in a manner as to exempt a new employee or a new member, as defined by Section 7522.04, from the requirements of this article. New members may only participate in a defined benefit plan or formula that conforms to the requirements of this article.
+(h) The Judges’ Retirement System and the Judges’ Retirement System II shall not be required to adopt the defined benefit formula required by Section 7522.20 or 7522.25 or the compensation limitations defined in Section 7522.10.
+(i) This article shall not be construed to provide membership in any public retirement system for an individual who would not otherwise be eligible for membership under that system’s applicable rules or laws.
+(j) On and after January 1, 2013, each public retirement system shall modify its plan or plans to comply with the requirements of this article and may adopt regulations or resolutions for this purpose.
+SEC. 2.
+The Legislature finds and declares that a special law is necessary and that a general law cannot be made applicable within the meaning of Section 16 of Article IV of the California Constitution because of the need to clarify the benefit eligibility rules under the California Public Employees’ Pension Reform Act of 2013 and maintain the integrity of that act and further its purpose.
+reference summary:
+The California Public Employees’ Pension Reform Act of 2013 (PEPRA) requires a public retirement system, as defined, to modify its plan or plans to comply with the act and, among other provisions, establishes new retirement formulas that may not be exceeded by a public employer offering a defined benefit pension plan for employees first hired on or after January 1, 2013. Existing law, the Joint Exercise of Powers Act, generally authorizes 2 or more public agencies, by agreement, to jointly exercise any common power, which may include hiring employees and establishing retirement systems. PEPRA authorizes a joint powers authority formed by the Cities of Brea and Fullerton on or after January 1, 2013, to provide its employees the defined benefit plan or formula that those employees received from their respective employers prior to the exercise of a common power, to which the employee is associated, by the joint powers authority to any employee of specified cities who is not a new member and subsequently is employed by the joint powers authority within 180 days of the city providing for the exercise of a common power, to which the employee was associated, by the joint powers authority.
+This bill would authorize a joint powers authority formed by the Belmont Fire Protection District, the Estero Municipal Improvement District, and the City of San Mateo on or after January 1, 2013, to provide employees who are not new members under PEPRA with the defined benefit plan or formula that was received by those employees from their respective employers on December 31, 2012, if they are employed by the joint powers authority within 180 days of the agency providing for the exercise of a common power, to which the employee was associated, by the joint powers authority. The bill would prohibit the formation of a joint powers authority on or after January 1, 2013, in a manner that would exempt a new employee or a new member from the requirements of PEPRA.
+This bill would make legislative findings and declarations as to the necessity of a special statute for the Belmont Fire Protection District, the Estero Municipal Improvement District, and the City of San Mateo.
+GENERATED SUMMARY:
+(Relevant sections of existing law and analysis are included, if applicable.)
+This bill would enact the California Public Employees’ Retirement Reform Act of 2013 (the Act) by modifying the benefit eligibility rules under the California Public Employees’ Pension Reform Act of 2013 (PEPRA), thereby clarifying the law and providing a stable retirement plan for employees of the state and local governments.
+
+SUPPORTING ANALYSIS:
+This bill would clarify the definition of “new member” under the California Public Employees’ Pension Reform Act of 2013 (PEPRA). The new definition would provide that new members are individuals who have at least 40 hours of qualifying service in any of the public retirement systems, as determined by the chief actuary of the respective retirement system.
+
+SUMMARY: (Relevant sections of existing law and analysis are included, if applicable.)
+This bill would enact the California Public Employees’ Retirement Reform Act of 2013 (PEPRA) by modifying the benefit eligibility rules under the California Public Employees’ Pension Reform Act of 2013 (PEPRA), thereby clarifying the law and providing a stable retirement plan for employees of the state and local governments.
+
+SUPPORTING ANALYSIS:
+This bill would clarify the definition of “new member” under the California Public Employees’ Pension Reform Act of 2013 (PEPRA). The new definition would provide that new members are individuals who have at least 40 hours of qualifying service in any of the public retirement systems, as determined by the chief actuary of the respective retirement system.
+
+SUMMARY: (Relevant sections of existing law and analysis are included, if applicable.)
+This bill would enact the California Public Employees’ Retirement Reform Act of 2013 (PEPRA) by modifying the benefit eligibility rules under the California Public Employees’ Pension Reform Act of 2013 (PEPRA), thereby clarifying the law and providing a stable retirement plan for employees of the state and local governments.
+
+SUPPORTING ANALYSIS:
+This bill would clarify the definition of “new member” under the California Public Employees’ Pension Reform Act of 2013 (PEPRA). The new definition would provide that new members are individuals who have at least 40 hours of qualifying service in any of the public retirement systems, as determined by the chief actuary of the respective retirement system.
+
+SUMMARY: (Relevant sections of existing law and analysis are included, if applicable.)
+This bill would enact the California Public Employees’ Retirement Reform Act of 2013 (PEPRA) by modifying the benefit eligibility rules under the California Public Employees’ Pension Reform Act of 2013 (PEPRA), thereby clarifying the law and providing a stable retirement plan for employees of the state and local governments.
+
+SUPPORTING ANALYSIS:
+This bill would clarify the definition of “new member” under the California Public Employees’ Pension Reform Act of 2013 (PEPRA). The new definition would provide that new members are individuals who have at least 40 hours of qualifying service in any of the public retirement systems, as determined by the chief actuary of the respective retirement system.
+
+SUMMARY: (Relevant sections of existing law and analysis are included, if applicable.)
+This bill would enact the California Public Employees’ Retirement Reform Act of 2013 (PEPRA) by modifying the benefit eligibility rules under the California Public Employees’ Pension Reform Act of 2013 (PEPRA), thereby clarifying the law and providing a stable retirement plan for employees of the state and local governments.
+
+SUPPORTING ANALYSIS:
+This bill would clarify the definition of “new member” under the California Public Employees’ Pension Reform Act of 2013 (PEPRA). The new definition would provide that new members are individuals who have at least 40 hours of qualifying service in any of the public retirement systems, as determined by the chief actuary of the respective retirement system.
+
+SUMMARY: (Relevant sections of existing law and analysis are included, if applicable.)
+This bill would enact the California Public Employees’ Retirement Reform Act of 2013 (PEPRA) by modifying the benefit eligibility rules under the California Public Employees’ Pension Reform Act of 2013 (PEPRA), thereby clarifying the law and providing a stable retirement plan for employees of the state and local governments.
+
+SUPPORTING ANALYSIS:
+This bill would clarify the definition of “new member” under the California Public Employees’ Pension Reform Act of 2013 (PEPRA). The new definition would provide that new members are individuals who have at least 40 hours of qualifying service in any of the public retirement systems, as determined by the chief actuary of the respective retirement system.
+
+SUMMARY: (Relevant sections of existing law and analysis are included, if applicable.)
+This bill would enact the California Public Employees’ Retirement Reform Act of 2013 (PEPRA) by modifying the benefit eligibility rules under the California Public Employees’ Pension Reform Act of 2013 (PEPRA), thereby clarifying the law and providing a stable retirement plan
+==================================================
+
+=== Generated Summary for Question #10 ===
+title:
+An act to add Chapter 4.5 (commencing with Section 14400) to Division 7 of the Food and Agricultural Code, relating to livestock.
+text:
+The people of the State of California do enact as follows:
+
+
+SECTION 1.
+Chapter 4.5 (commencing with Section 14400) is added to Division 7 of the Food and Agricultural Code, to read:
+CHAPTER  4.5. Livestock: Use of Antimicrobial Drugs
+14400.
+For purposes of this chapter, the following definitions apply:
+(a) “Medically important antimicrobial drug” means an antimicrobial drug listed in Appendix A of the federal Food and Drug Administration’s Guidance for Industry #152, including critically important, highly important, and important antimicrobial drugs, as that appendix may be amended.
+(b) “Livestock” means all animals and poultry, including aquatic and amphibian species, that are raised, kept, or used for profit. Livestock does not include bees or those species that are usually kept as pets, such as dogs, cats, and pet birds.
+(c) “Veterinary feed directive” has the same definition as in Section 558.3 of Title 21 of the Code of Federal Regulations.
+14401.
+Beginning January 1, 2018, a medically important antimicrobial drug shall not be administered to livestock unless ordered by a licensed veterinarian through a prescription or veterinary feed directive, pursuant to a veterinarian-client-patient relationship that meets the requirements of Section 2032.1 of Title 16 of the California Code of Regulations.
+14402.
+(a) Beginning January 1, 2018, a medically important antimicrobial drug may be used when, in the professional judgment of a licensed veterinarian, the medically important antimicrobial drug is any of the following:
+(1) Necessary to treat a disease or infection.
+(2) Necessary to control the spread of a disease or infection.
+(3) Necessary in relation to surgery or a medical procedure.
+(b) A medically important antimicrobial drug may also be used when, in the professional judgment of a licensed veterinarian, it is needed for prophylaxis to address an elevated risk of contraction of a particular disease or infection.
+(c) A person shall not administer a medically important antimicrobial drug to livestock solely for purposes of promoting weight gain or improving feed efficiency.
+(d) Unless the administration is consistent with subdivision (a), a person shall not administer a medically important antimicrobial drug in a regular pattern.
+14403.
+(a) Notwithstanding Sections 14401 and 14402 of this code and Article 15 (commencing with Section 4196) of Chapter 9 of Division 2 of the Business and Professions Code, medically important antimicrobial drugs may be sold by retailers licensed pursuant to Article 5 (commencing with Section 14321) of Chapter 4 of Division 7 with a prescription or veterinary feed directive from a licensed veterinarian.
+(b) This section shall not be construed to invalidate the requirement to obtain a prescription or veterinary feed directive to administer a medically important antimicrobial drug as required by Section 14401.
+(c) The department may promulgate regulations to implement this section.
+14404.
+(a) The department, in consultation with the Veterinary Medical Board, the State Department of Public Health, universities, and cooperative extensions, shall develop antimicrobial stewardship guidelines and best management practices for veterinarians, as well as livestock owners and their employees who are involved with administering medically important antimicrobial drugs, on the proper use of medically important antimicrobial drugs for disease treatment, control, and prevention. The guidelines shall include scientifically validated practical alternatives to the use of medically important antimicrobial drugs, including, but not limited to, the introduction of effective vaccines and good hygiene and management practices.
+(b) The department shall consult with livestock producers, licensed veterinarians, and any other relevant stakeholders on ensuring livestock timely access to treatment for producers in rural areas with limited access to veterinary care.
+(c) For purposes of this section, “antimicrobial stewardship” is a commitment to do all of the following:
+(1) To use medically important antimicrobial drugs only when necessary to treat, control, and, in some cases, prevent, disease.
+(2) To select the appropriate medically important antimicrobial drug and the appropriate dose, duration, and route of administration.
+(3) To use medically important antimicrobial drugs for the shortest duration necessary and to administer them to the fewest animals necessary.
+14405.
+(a) It is the intent of the Legislature that the department coordinate with the United States Department of Agriculture, the federal Food and Drug Administration, and the federal Centers for Disease Control and Prevention to implement the expanded antimicrobial resistance surveillance efforts included in the National Action Plan for Combating Antibiotic-Resistant Bacteria, and that the information gathered through this effort will help lead to a better understanding of the links between antimicrobial use patterns in livestock and the development of antimicrobial resistant bacterial infections.
+(b) (1) The department shall gather information on medically important antimicrobial drug sales and usage, as well as antimicrobial resistant bacteria and livestock management practice data. Monitoring efforts shall not be duplicative of the National Animal Health Monitoring System and the National Antimicrobial Resistance Monitoring System, and, to the extent feasible, the department shall coordinate with the United States Department of Agriculture, the federal Centers for Disease Control and Prevention, and the federal Food and Drug Administration in the development of these efforts.
+(2) In coordinating with the National Animal Health Monitoring System and the National Antimicrobial Resistant Monitoring System, the department shall gather representative samples from all of the following:
+(A) California’s major livestock segments.
+(B) Regions with considerable livestock production.
+(C) Representative segments of the food production chain.
+(c) The department shall work with willing participants to gather samples and shall consult with, and conduct outreach to, livestock producers, licensed veterinarians, and any other relevant stakeholders on the implementation of the monitoring efforts. Participation in this effort shall be done in a manner that does not breach veterinary-client-patient confidentiality laws.
+(d) (1) The department shall report to the Legislature by January 1, 2019, the results of its outreach activities and monitoring efforts. The department shall advise the Legislature as to whether or not participation is sufficient to provide statistically relevant data. The report shall be submitted in compliance with Section 9795 of the Government Code.
+(2) This subdivision is inoperative on January 1, 2023, pursuant to Section 10231.5 of the Government Code.
+(e) The department shall seek funds from federal, state, and other sources to implement this section.
+(f) The department may promulgate regulations to implement this section.
+14406.
+The department has the authority to request and receive copies of veterinary feed directives from the livestock owner, veterinarian, or distributor to fully implement the provisions of this chapter.
+14407.
+Notwithstanding the California Public Records Act (Chapter 3.5 (commencing with Section 6250) of Division 7 of Title 1 of the Government Code), any information provided pursuant to this chapter and Section 14902.5, if that section is added by Senate Bill 770 of the 2015–16 Regular Session of the Legislature, shall be held confidential, and shall not be disclosed to any person or governmental agency, other than the department or the Veterinary Medical Board, for the purposes of enforcing the Veterinary Medicine Practice Act (Chapter 11 (commencing with Section 4800) of Division 2 of the Business and Professions Code), unless the data is aggregated to prevent the identification of an individual farm or business. Information may be shared with federal agencies so long as it is protected by the federal Confidential Information Protection and Statistical Efficiency Act of 2002 (Public Law 107-347).
+14408.
+(a) A person who violates this chapter shall be liable for a civil penalty of not more than two hundred and fifty dollars ($250) for each day a violation occurs.
+(b) (1) For a second or subsequent violation, a person who violates this chapter shall be punishable by an administrative fine, levied by the secretary, in the amount of five hundred dollars ($500) for each day a violation occurs.
+(2) In addition to the administrative fine, the violator shall attend an educational program on the judicious use of medically important antimicrobial drugs that has been approved by the secretary. The violator shall successfully complete the program and provide proof to the secretary within 90 days from the occurrence of the violation.
+(c) Subdivisions (a) and (b) do not apply to licensed veterinarians. If the Veterinary Medical Board determines that a veterinarian is in violation of the Veterinary Medicine Practice Act (Chapter 11 (commencing with Section 4800) of Division 2 of the Business and Professions Code), the veterinarian may be subject to disciplinary sanctions pursuant to the act.
+(d) The moneys collected pursuant to this article shall be deposited into the Department of Food and Agriculture Fund and shall be available for expenditure upon appropriation by the Legislature.
+SEC. 2.
+The Legislature finds and declares that Section 1 of this act, which adds Section 14407 to the Food and Agricultural Code, imposes a limitation on the public’s right of access to the meetings of public bodies or the writings of public officials and agencies within the meaning of Section 3 of Article I of the California Constitution. Pursuant to that constitutional provision, the Legislature makes the following findings to demonstrate the interest protected by this limitation and the need for protecting that interest:
+In order to ensure the confidentiality of the information collected pursuant to this act and the integrity of that information for regulatory and enforcement purposes, it is necessary that this act take effect.
+reference summary:
+(1) Existing law regulates the distribution and use of livestock drugs, as defined, by the Secretary of Food and Agriculture. Existing law also requires a person to obtain a license from the secretary to manufacture, sell, distribute, or store commercial feed, including commercial feed containing drugs.
+This bill would, beginning January 1, 2018, prohibit the administration of medically important antimicrobial drugs, as defined, to livestock unless ordered by a licensed veterinarian through a prescription or veterinary feed directive pursuant to a veterinarian-client-patient relationship, as specified, and would prohibit the administration of a medically important antimicrobial drug to livestock solely for purposes of promoting weight gain or improving feed efficiency. The bill would require the Department of Food and Agriculture, in consultation with the Veterinary Medical Board, the State Department of Public Health, universities, and cooperative extensions, to develop antimicrobial stewardship guidelines and best management practices on the proper use of medically important antimicrobial drugs and would require the department to gather information on medically important antimicrobial drug sales and usage, antimicrobial resistant bacteria, and livestock management practice data. The bill would require information provided pursuant to those provisions to be held confidential, as specified. The bill would authorize the department to request and receive copies of veterinary feed directives from certain persons to implement the bill’s provisions. The bill would make a first violation of the bill’s provisions subject to a civil penalty of up to $250 for each day a violation occurs, and would make second and subsequent violations subject to an administrative fine of $500 for each day a violation occurs, except as specified.
+(2) Existing constitutional provisions require that a statute that limits the right of access to the meetings of public bodies or the writings of public officials and agencies be adopted with findings demonstrating the interest protected by the limitation and the need for protecting that interest.
+This bill would make legislative findings to that effect.
+GENERATED SUMMARY:
+An act to add Chapter 4.5 (commencing with Section 14400) to Division 7 of the Food and Agricultural Code, relating to livestock.
+
+AUTHORITY: Section 2, Article 16, California Constitution.
+BACKGROUND: The Legislature found that (1) veterinarians have a professional responsibility to use medically important antimicrobial drugs judiciously and (2) such use is currently difficult for livestock producers to track.
+OBJECTIVE: The Legislature finds that (1) the department has the authority to request and receive copies of veterinary feed directives from livestock owners, veterinarians, and distributors to fully implement the provisions of this chapter, (2) this chapter shall apply to veterinarians, livestock owners, and livestock distributors, and (3) this act takes effect immediately, without fiscal effect.
+THE CHANGES:
+- Adds Section 14407 to the Food and Agricultural Code.
+- Adds Section 14408 to the Government Code.
+- Adds Section 14902.5 to the Business and Professions Code.
+
+RECOMMENDATION: The Department of Food and Agriculture should coordinate with the United States Department of Agriculture, the federal Food and Drug Administration, and the federal Centers for Disease Control and Prevention to implement the expanded antimicrobial resistance surveillance efforts included in the National Action Plan for Combating Antibiotic-Resistant Bacteria.
+
+SUGGESTIONS:
+
+• State which agencies and entities are affected by the bill.
+• Describe what this bill does and how it will impact those entities.
+• Identify any existing legislation addressing the same or similar issues.
+• Identify any existing agencies, boards, or commissions that may be affected by this legislation.
+• Identify any other agencies, boards, or commissions that may be affected by this legislation.
+• Identify any entities, groups, or stakeholders that are affected by this legislation.
+• Identify any other entities, groups, or stakeholders that are affected by this legislation.
+• Identify any other agencies, boards, or commissions that may be affected by this legislation.
+• Describe why the bill is necessary, including identifying the problem or issues the bill is intended to address.
+
+• For nonpartisan bills: describe why the bill is nonpartisan; identify the sponsoring legislator(s) and committee(s) responsible for the bill.
 ==================================================

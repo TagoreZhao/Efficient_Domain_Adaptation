@@ -29,7 +29,7 @@ rouge_scores, summaries = evaluate_billsum(
     device="cuda",
     n_eval=10,
     seed=1234,
-    max_new_tokens=256,
+    max_new_tokens=1024,
     save_output="assets/BillSum_generated_summaries.txt",
 )
 
