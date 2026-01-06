@@ -1,6 +1,6 @@
 from datasets import Dataset, Features, Value, Sequence
 from typing import Any, Dict, List, Optional
-
+from data.templates import default_prompt_completion_features
 
 def to_prompt_completion(
     dataset: List[Dict[str, Any]],
@@ -63,7 +63,7 @@ def to_prompt_completion(
 
 def to_prompt_completion_hf(
     dataset: List[Dict[str, Any]],
-    features: Features,
+    features: Features = default_prompt_completion_features,
     input_key: str = "input_text",
     target_key: str = "target_text",
     system_prompt: Optional[str] = None,

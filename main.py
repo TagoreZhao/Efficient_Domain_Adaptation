@@ -24,15 +24,11 @@ torch.cuda.empty_cache()
 # )
 
 
-medical_finetune_data = construct_med_data(seed = 1354)
-
-
-medical_finetune_data_prompt_completion = to_prompt_completion(
-    medical_finetune_data,
-    input_key="input_text",
-    target_key="target_text",)
-print(medical_finetune_data_prompt_completion[0])
-
+medical_finetune_data = construct_med_data(
+    pubmed_count=70,
+    mednli_count=70,
+    hqs_count=10,
+    seed = 1354)
 
 medical_finetune_data_hf = to_prompt_completion_hf(
     medical_finetune_data,
