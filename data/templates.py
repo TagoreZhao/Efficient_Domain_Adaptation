@@ -1,3 +1,4 @@
+from datasets import Features, Value, Sequence
 
 pubmed_input_template = (
     "Below is an instruction that describes a task related to HealthCare, "
@@ -41,31 +42,6 @@ hqs_input_template = (
 
 hqs_target_template = " {sum}"
 
-# hqs_input_template = (
-#     "You are given a consumer health question (often long, informal, and containing extra narrative). "
-#     "Your task is to rewrite it as a SHORT, clinically-relevant QUESTION that preserves all key details needed to answer it correctly.\n\n"
-
-#     "Rewrite rules:\n"
-#     "1) Output MUST be a single question sentence (one line) ending with a '?'.\n"
-#     "2) Preserve critical medical specifics: condition/symptom, body site, duration/timeline, severity qualifiers, exposures/risk factors, "
-#     "diagnoses, test names/results, medications (name + purpose + key constraints like dose if essential), and the core intent (e.g., safety, causes, treatment, prognosis).\n"
-#     "3) Remove non-essential narrative: personal stories, emotions, repetition, irrelevant background, greetings, and unrelated side details.\n"
-#     "4) Do NOT add new facts, do NOT give advice, and do NOT answer the question—ONLY rewrite it.\n"
-#     "5) Keep negations and uncertainty (e.g., 'not alcoholic', 'tested negative', 'might', 'concerned about') because they change meaning.\n"
-#     "6) If the original asks multiple tightly-related subquestions (e.g., safety + side effects), you may keep them as one concise combined question; "
-#     "otherwise keep the primary intent.\n"
-#     "7) Prefer medically standard terms when obvious (e.g., 'flu-like symptoms' is fine), but do not invent diagnoses.\n\n"
-
-#     "Length guidance: aim for ~10–25 words when possible, but prioritize completeness over brevity.\n\n"
-
-#     "Input (NLM Question):\n"
-#     "{input_question}\n\n"
-
-#     "Shortened Question:"
-# )
-
-# hqs_target_template = "{sum}"
-
 
 casehold_input_template = (
     "Below is an instruction that describes a task related to making legal decisions based on a citing prompt. "
@@ -80,31 +56,6 @@ casehold_input_template = (
     "Response: The answer is"
 )
 casehold_target_template = " {label}"
-
-# casehold_input_template = (
-#     "You are given a citing passage from a U.S. judicial opinion and five candidate holding statements.\n"
-#     "The citing passage contains the literal token <HOLDING> (sometimes shown as (<HOLDING>)), which marks where the cited case’s holding (a short parenthetical proposition) should appear.\n\n"
-#     "Task:\n"
-#     "Select the ONE candidate holding statement (0–4) that best fills the <HOLDING> slot and matches how the citation is being used in the passage.\n\n"
-#     "How to decide (important):\n"
-#     "- Treat this as a cloze test: mentally substitute each candidate into the <HOLDING> position and pick the one that makes the passage legally and logically consistent.\n"
-#     "- Focus on the specific legal rule/proposition supported by the surrounding context (issue, standard, posture, and implication), not just topic similarity.\n"
-#     "- The four incorrect options are intentionally similar; choose the best contextual fit.\n\n"
-#     "Output requirements:\n"
-#     "- Reply with exactly ONE digit: 0, 1, 2, 3, or 4.\n"
-#     "- Do not add any other words, punctuation, or explanation.\n\n"
-#     "Citing passage:\n"
-#     "{citing_prompt}\n\n"
-#     "Candidate holdings:\n"
-#     "0. {holding_0}\n"
-#     "1. {holding_1}\n"
-#     "2. {holding_2}\n"
-#     "3. {holding_3}\n"
-#     "4. {holding_4}\n\n"
-#     "Response: The answer is "
-# )
-# casehold_target_template = "{label}"
-
 
 billsum_input_template = (
     "You are a nonpartisan legislative analyst. Write a California Legislative Counsel–style digest summary.\n"
@@ -140,3 +91,14 @@ contractNLI_input_template = (
         "Final Answer:"
     )
 contractNLI_target_template = "{summary}"
+
+default_prompt_completion_features = Features({
+    "prompt": Sequence({
+        "role": Value("string"),
+        "content": Value("string"),
+    }),
+    "completion": Sequence({
+        "role": Value("string"),
+        "content": Value("string"),
+    }),
+})
