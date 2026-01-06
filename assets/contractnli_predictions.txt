@@ -13,14 +13,14 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is 'neutral'.
-
-1. what is the information?
+final answer: their relationship is neutral.
+the answer is:
+\boxed{neutral
 ----------------------------------------------------------------------
 
 ID: 1
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 The Recipient shall immediately return and redeliver to the other all tangible material embodying the JEA Confidential Information provided hereunder and all notes, summaries, memoranda, drawings, manuals, records, excerpts or derivative information deriving there from and all other documents or materials ("Notes") (and all copies of any of the foregoing, including "copies" that have been converted to computerized media in the form of image, data or word processing files either manually or by image capture) based on or including any JEA Confidential Information, in whatever form of storage or retrieval, upon the earlier of - I. the completion or termination of the dealings between the parties contemplated hereunder; or II. the termination of this Agreement; or
 HYPOTHESIS:
@@ -28,12 +28,15 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment because the premise (the recipient shall
+final answer: their relationship is neutral.
+
+please explain your reasoning process.
+answer:
 ----------------------------------------------------------------------
 
 ID: 2
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 No other right or license, whether expressed or implied, in the Confidential Information is granted to the Parties hereunder.
 HYPOTHESIS:
@@ -41,8 +44,8 @@ Agreement shall not grant Receiving Party any right to Confidential Information.
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is entailment.
-note: the only way to infer
+final answer: their relationship is neutral.
+the answer should be one of the three
 ----------------------------------------------------------------------
 
 ID: 3
@@ -55,12 +58,16 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is neutral because neither entailment nor contradiction holds and because
+final answer: their relationship is neutral.
+answer:
+neutral
+answer:
+neutral
 ----------------------------------------------------------------------
 
 ID: 4
 GOLD: contradiction
-PRED: entailment
+PRED: neutral
 PREMISE:
 For purposes of this Agreement, "Confidential Information" means any data or information that is proprietary to the Parties and not generally known to the public, whether in tangible or intangible form, whenever and however disclosed, including but not limited to: a. the documents described in the Whereas clause above; b. Critical Infrastructure Information (CII) or Bulk Electric System Information (BCSI) or Security Sensitive Information (SSI) classified by JEA c. Protected Health Information in both physical and electronic form (PHI and ePHI) d. Personal Identifiable Information (PII) e. any protected, non-public information concerning the design or operation of present or future critical infrastructure; f. any information that could be used to compromise or expose the vulnerability of the Parties Cyber systems, processes, programs data, communications, energy and operations systems or structures; g. any Copyright application code, source code, technical design (not released for open use), trade secret, scientific or technical information, invention, design, process, procedure, formula, improvement, technology or method;
 HYPOTHESIS:
@@ -68,13 +75,15 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is entailment.
-the first premise implies that j
+final answer: their relationship is neutral.
+
+the two statements are:
+premise:
 ----------------------------------------------------------------------
 
 ID: 5
 GOLD: contradiction
-PRED: unknown
+PRED: neutral
 PREMISE:
 For purposes of this Agreement, "Confidential Information" means any data or information that is proprietary to the Parties and not generally known to the public, whether in tangible or intangible form, whenever and however disclosed, including but not limited to:
 HYPOTHESIS:
@@ -82,12 +91,12 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is entailed because both statements can be true. the
+final answer: their relationship is neutral because the premises do not provide enough information to
 ----------------------------------------------------------------------
 
 ID: 6
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 b. Notwithstanding the foregoing, the parties' duty to hold in confidence Confidential Information that was disclosed during term shall remain in effect indefinitely.
 HYPOTHESIS:
@@ -95,12 +104,14 @@ Some obligations of Agreement may survive termination of Agreement.
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment
+final answer: their relationship is neutral.
+
+please make sure to follow the instructions and
 ----------------------------------------------------------------------
 
 ID: 7
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 The obligations and restrictions imposed by this Agreement will not apply to any information that: a. The Recipient can demonstrate was already known to the Recipient prior to the disclosure by the Discloser; or, b. has become publicly known through no wrongful act of the Recipient; or, c. was received by the Recipient without breach of this Agreement from a third party without restriction as to the use and disclosure of the Discloser's Confidential Information; or, d. was independently developed by the Recipient without use of the Discloser's Confidential Information; or
 HYPOTHESIS:
@@ -108,14 +119,16 @@ Receiving Party may independently develop information similar to Confidential In
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is:
-    entailment - true
-    contr
+final answer: their relationship is neutral.
+
+answer: neutral
+answer:
+answer:
 ----------------------------------------------------------------------
 
 ID: 8
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 e. Return of Information. on a Party's request, the other Party shall return all Confidential Information of the requesting Party, except for that portion of such Confidential Information that may be found in analyses prepared by, or for, the returning Party (collectively, "Analyses"), and the returning Party and its Representatives shall not retain any copies of such Confidential Information except the returning Party may retain one copy of the Confidential Information as needed to comply with applicable law and/or returning Party's record retention policies.
 HYPOTHESIS:
@@ -123,12 +136,14 @@ Receiving Party may retain some Confidential Information even after the return o
 RAW_DECODED:
 of confidential information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+the first statement in the premise contains a
 ----------------------------------------------------------------------
 
 ID: 9
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 “Confidential Information” means any information, technical data or know-how, including, but not limited to, that which relates to research, product or service plans, business practices, agreement terms, products, services, employees, suppliers, customers, technology or other strategic partners, stockholders, markets, software, know-how, developments, inventions, processes, designs, drawings, engineering, hardware configuration information, marketing, finances, notes, analyses or studies and all tangible and intangible embodiments thereof of any kind whatsoever, whether conveyed in writing or orally by the disclosing party or its Associates to the receiving party or its Associates in connection with the evaluation of a Transaction.
 HYPOTHESIS:
@@ -136,12 +151,14 @@ Confidential Information may include verbally conveyed information.
 RAW_DECODED:
 verbally conveyed information.'
 
-final answer: their relationship is "entailment"
+final answer: their relationship is neutral.
+
+now, analyze carefully whether the second statement
 ----------------------------------------------------------------------
 
 ID: 10
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 In the event that a receiving party or its Associates is or becomes legally compelled under applicable law, regulation or securities exchange listing agreement, or by a competent governmental, administrative or regulatory authority or in a proceeding before a court, arbitrator or administrative agency, whether or not as a result of a Transaction to which the Company has consented, to disclose any portion of the Confidential Information of a disclosing party, that discussions or negotiations between the parties hereto are taking place or have taken place, or any of the terms, conditions or other facts with respect to a Transaction, including the status thereof, the receiving party will, and will direct its  Associates to, provide the disclosing party with prompt written notice (unless prohibited by law) of such legal compulsion, and shall delay disclosure, if and to the extent permitted or practicable, until the disclaiming party has had an opportunity to seek a protective order or other appropriate remedy or to waive compliance by the receiving party and/or its Associates with the relevant provisions of this Agreement.
 HYPOTHESIS:
@@ -149,12 +166,12 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral, the hypothesis could be true or false based
 ----------------------------------------------------------------------
 
 ID: 11
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 The Parties will: a. limit disclosure of any Confidential Information to its directors, officers, employees, agents or representatives (collectively "Representatives") who have a need to know such Confidential Information in connection with the Transaction, and only for that purpose;
 HYPOTHESIS:
@@ -162,12 +179,13 @@ Receiving Party may share some Confidential Information with some third-parties 
 RAW_DECODED:
 professional advisors).'
 
-final answer: their relationship is entailment (since the hypothesis must be true if
+final answer: their relationship is neutral.
+okay, let me try to work through
 ----------------------------------------------------------------------
 
 ID: 12
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 e. Return of Information. on a Party's request, the other Party shall return all Confidential Information of the requesting Party, except for that portion of such Confidential Information that may be found in analyses prepared by, or for, the returning Party (collectively, "Analyses"), and the returning Party and its Representatives shall not retain any copies of such Confidential Information except the returning Party may retain one copy of the Confidential Information as needed to comply with applicable law and/or returning Party's record retention policies.
 HYPOTHESIS:
@@ -175,15 +193,15 @@ Receiving Party may create a copy of some Confidential Information in some circu
 RAW_DECODED:
 in some circumstances.'
 
-final answer: their relationship is entailment.
-
-reasoning:
-the first statement is
+final answer: their relationship is neutral.
+answer:
+neutral
+okay, let's
 ----------------------------------------------------------------------
 
 ID: 13
 GOLD: entailment
-PRED: entailment
+PRED: unknown
 PREMISE:
 a. The Recipient may disclose Confidential Information pursuant to any governmental, judicial, or administrative order, subpoena, discovery request, regulatory request or similar method, provided that the Recipient promptly notifies, to the extent practicable.
 HYPOTHESIS:
@@ -191,12 +209,17 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is 'entailment' because the second statement (
+final answer: their relationship is not well-defined.
+answer:
+
+neutral
+
+the two
 ----------------------------------------------------------------------
 
 ID: 14
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 The obligations and restrictions imposed by this Agreement will not apply to any information that: a. The Recipient can demonstrate was already known to the Recipient prior to the disclosure by the Discloser; or, b. has become publicly known through no wrongful act of the Recipient; or, c. was received by the Recipient without breach of this Agreement from a third party without restriction as to the use and disclosure of the Discloser's Confidential Information; or,
 HYPOTHESIS:
@@ -204,12 +227,14 @@ Receiving Party may acquire information similar to Confidential Information from
 RAW_DECODED:
 a third party.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+now, analyze carefully and determine if the
 ----------------------------------------------------------------------
 
 ID: 15
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 The Parties agree to use the Confidential Information solely in connection with the Transaction and not for any purpose other than as authorized by this Agreement without the prior written consent of an authorized representative of the Parties.  No other right or license, whether expressed or implied, in the Confidential Information is granted to the Parties hereunder.  Title to the Confidential Information will remain solely with the Party.  All use of Confidential Information by the Parties shall be for the benefit of the Parties and any modifications and improvements thereof by the Recipient shall be the sole property of Discloser.  Notwithstanding the foregoing, Confidential Information shall include any proprietary records created in the course of the Recipient's course of engagement such as customized code, configuration, flowcharts or project data that was specifically designed to meet the needs of the Discloser. The Parties agree to ensure that all copyright products, such as source codes, system design data/architecture, and other proprietary information, disclosed during the engagement is protected from any misuse, alteration, modification, sharing, or transfer to any party without express permission of the Discloser.  Such data is provided for the sole use of the Parties, and limited for the use under this agreement. 4. Obligations of Receiving Party. a. No Use.  The Receiving Party agrees not to use the Confidential Information in any way, or to manufacture or test any product embodying Confidential Information, except for the purpose set forth above.
 HYPOTHESIS:
@@ -217,12 +242,14 @@ Receiving Party shall not use any Confidential Information for any purpose other
 RAW_DECODED:
 stated in agreement.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+okay, let's break this down.
 ----------------------------------------------------------------------
 
 ID: 16
 GOLD: entailment
-PRED: entailment
+PRED: unknown
 PREMISE:
 Recipient shall not without Disclosing Party’s prior written consent reverse engineer, disassemble or decompile any prototypes, software or other objects which embody the Disclosing Party’s Confidential Information to obtain access to Disclosing Party’s trade secrets and to the extent such consent is granted Recipient shall receive and hold such Confidential Information subject to the terms of this Agreement.
 HYPOTHESIS:
@@ -230,14 +257,14 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is entailment.
-
-premise: 'recipient shall not
+final answer: their relationship is ___________.
+answer:
+the relationship between the
 ----------------------------------------------------------------------
 
 ID: 17
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Disclosing Party may serve written request on Recipient for return or destruction of its Confidential Information at any time up to six (6) months after the termination or expiry of this Agreement and Recipient shall, within thirty (30) days of such request or termination, return to the Disclosing Party (or its designees) or certify as destroyed all Confidential Information, in whatever form, including written or electronically recorded information and all copies thereof (other than copies retained in automatic back-up and archive systems), provided however that Recipient shall be entitled to retain one copy of the Confidential Information with its legal counsel or other appropriate corporate representative to evidence the exchange of information hereunder and in connection with legal or statutory requirements.
 HYPOTHESIS:
@@ -245,7 +272,10 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment. the second statement (hypothesis
+final answer: their relationship is neutral.
+answer:
+neutral
+the premise states that
 ----------------------------------------------------------------------
 
 ID: 18
@@ -259,11 +289,13 @@ RAW_DECODED:
 to confidential information.'
 
 final answer: their relationship is neutral.
+answer:
+the first statement says that neither
 ----------------------------------------------------------------------
 
 ID: 19
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 The obligations and restrictions imposed by this Agreement will not apply to any information that: a. The Recipient can demonstrate was already known to the Recipient prior to the disclosure by the Discloser; or, b. has become publicly known through no wrongful act of the Recipient; or, c. was received by the Recipient without breach of this Agreement from a third party without restriction as to the use and disclosure of the Discloser's Confidential Information; or,
 HYPOTHESIS:
@@ -271,7 +303,10 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+let me explain and reason carefully.
+the
 ----------------------------------------------------------------------
 
 ID: 20
@@ -284,12 +319,15 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is "entailment".
+final answer: their relationship is entailment.
+
+answer:
+answer: neutral
 ----------------------------------------------------------------------
 
 ID: 21
 GOLD: contradiction
-PRED: entailment
+PRED: unknown
 PREMISE:
 The term “Confidential Information” as used herein means all nonpublic information relating to the Subject Matter that is disclosed by either party, its Affiliates (as defined below), or their agents (where applicable, collectively referred to as the “Disclosing Party”), directly or indirectly, in writing, orally or by inspection of premises or tangible objects to the other party (the “Recipient”) that is:  (i) marked confidential or proprietary, or  (ii) given the nature of the information or the circumstances surrounding its disclosure, reasonably should be deemed confidential.
 HYPOTHESIS:
@@ -297,10 +335,8 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is entailment.
-
-explanation:
-the premise and hypothesis are
+final answer: their relationship is _______________.
+the answer should be in the
 ----------------------------------------------------------------------
 
 ID: 22
@@ -313,12 +349,17 @@ Receiving Party may retain some Confidential Information even after the return o
 RAW_DECODED:
 of confidential information.'
 
-final answer: their relationship is "neutral".
+final answer: their relationship is neutral.
+answer:
+neutral
+
+answer:
+neutral
 ----------------------------------------------------------------------
 
 ID: 23
 GOLD: entailment
-PRED: unknown
+PRED: neutral
 PREMISE:
 The term “Confidential Information” as used herein means all nonpublic information relating to the Subject Matter that is disclosed by either party, its Affiliates (as defined below), or their agents (where applicable, collectively referred to as the “Disclosing Party”), directly or indirectly, in writing, orally or by inspection of premises or tangible objects to the other party (the “Recipient”) that is:
 HYPOTHESIS:
@@ -326,9 +367,8 @@ Confidential Information may include verbally conveyed information.
 RAW_DECODED:
 verbally conveyed information.'
 
-final answer: their relationship is neither entailment nor contradiction.
-
-note: this problem
+final answer: their relationship is neutral.
+the first statement defines the term "conf
 ----------------------------------------------------------------------
 
 ID: 24
@@ -341,9 +381,9 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is neutral. (option 2)
-explanation:
-since
+final answer: their relationship is neutral. 
+
+the answer must be one of the
 ----------------------------------------------------------------------
 
 ID: 25
@@ -358,8 +398,8 @@ professional advisors).'
 
 final answer: their relationship is neutral.
 
-sample data:
-the first statement is a
+now, consider the two statements:
+prem
 ----------------------------------------------------------------------
 
 ID: 26
@@ -373,9 +413,7 @@ RAW_DECODED:
 in some circumstances.'
 
 final answer: their relationship is neutral.
-
-explanation:
-the two statements are not logically
+okay, let's tackle this. so
 ----------------------------------------------------------------------
 
 ID: 27
@@ -388,15 +426,15 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is 'neutral'.
-
-explanation:
-the premise of the first
+final answer: their relationship is neutral.
+answer:
+answer: neutral
+the two
 ----------------------------------------------------------------------
 
 ID: 28
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Recipient agrees to limit disclosure of Confidential Information to employees and employees of Affiliates having a specific need to know such Confidential Information for the Purpose and in the case of Affiliates only to the extent that such Affiliate is under obligation to hold such information in confidence and is made aware of these terms and conditions.
 HYPOTHESIS:
@@ -404,12 +442,13 @@ Receiving Party may share some Confidential Information with some of Receiving P
 RAW_DECODED:
 party's employees.'
 
-final answer: their relationship is 'entailment'
+final answer: their relationship is neutral.
+the two statements have no direct impact on
 ----------------------------------------------------------------------
 
 ID: 29
 GOLD: neutral
-PRED: entailment
+PRED: unknown
 PREMISE:
 The Parties agree to use the Confidential Information solely in connection with the Transaction and not for any purpose other than as authorized by this Agreement without the prior written consent of an authorized representative of the Parties.  No other right or license, whether expressed or implied, in the Confidential Information is granted to the Parties hereunder.  Title to the Confidential Information will remain solely with the Party.  All use of Confidential Information by the Parties shall be for the benefit of the Parties and any modifications and improvements thereof by the Recipient shall be the sole property of Discloser.  Notwithstanding the foregoing, Confidential Information shall include any proprietary records created in the course of the Recipient's course of engagement such as customized code, configuration, flowcharts or project data that was specifically designed to meet the needs of the Discloser. The Parties agree to ensure that all copyright products, such as source codes, system design data/architecture, and other proprietary information, disclosed during the engagement is protected from any misuse, alteration, modification, sharing, or transfer to any party without express permission of the Discloser.  Such data is provided for the sole use of the Parties, and limited for the use under this agreement. 4. Obligations of Receiving Party. a. No Use.  The Receiving Party agrees not to use the Confidential Information in any way, or to manufacture or test any product embodying Confidential Information, except for the purpose set forth above.
 HYPOTHESIS:
@@ -417,12 +456,14 @@ Receiving Party shall not use any Confidential Information for any purpose other
 RAW_DECODED:
 stated in agreement.'
 
-final answer: their relationship is entailment. there is a way the hypothesis could
+final answer: their relationship is entailed by the premises. 
+
+the answer must
 ----------------------------------------------------------------------
 
 ID: 30
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 e. Return of Information. on a Party's request, the other Party shall return all Confidential Information of the requesting Party, except for that portion of such Confidential Information that may be found in analyses prepared by, or for, the returning Party (collectively, "Analyses"), and the returning Party and its Representatives shall not retain any copies of such Confidential Information except the returning Party may retain one copy of the Confidential Information as needed to comply with applicable law and/or returning Party's record retention policies.
 HYPOTHESIS:
@@ -430,14 +471,16 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-premise: 'e. return
+now, let's see.
+
+first,
 ----------------------------------------------------------------------
 
 ID: 31
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 e. Return of Information. on a Party's request, the other Party shall return all Confidential Information of the requesting Party, except for that portion of such Confidential Information that may be found in analyses prepared by, or for, the returning Party (collectively, "Analyses"), and the returning Party and its Representatives shall not retain any copies of such Confidential Information except the returning Party may retain one copy of the Confidential Information as needed to comply with applicable law and/or returning Party's record retention policies.
 HYPOTHESIS:
@@ -445,13 +488,14 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is
-- 'entailment' because you cannot
+final answer: their relationship is neutral.
+
+now, analyze the two statements to determine
 ----------------------------------------------------------------------
 
 ID: 32
 GOLD: entailment
-PRED: contradiction
+PRED: neutral
 PREMISE:
 7. Neither this Agreement nor the supply of any information grants the Recipient any licence, interest or right in respect of any intellectual property rights of the Discloser except the right to copy the Confidential Information solely for the Purpose.
 HYPOTHESIS:
@@ -459,12 +503,13 @@ Agreement shall not grant Receiving Party any right to Confidential Information.
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is 'contradiction'
+final answer: their relationship is neutral.
+okay, let's try to figure this
 ----------------------------------------------------------------------
 
 ID: 33
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 The obligations and restrictions imposed by this Agreement will not apply to any information that: a. The Recipient can demonstrate was already known to the Recipient prior to the disclosure by the Discloser; or, b. has become publicly known through no wrongful act of the Recipient; or, c. was received by the Recipient without breach of this Agreement from a third party without restriction as to the use and disclosure of the Discloser's Confidential Information; or,
 HYPOTHESIS:
@@ -472,12 +517,16 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is entailment. there are many scenarios where the hypothesis
+final answer: their relationship is neutral.
+
+answer: neutral
+answer:
+answer:
 ----------------------------------------------------------------------
 
 ID: 34
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Recipient agrees to limit disclosure of Confidential Information to employees and employees of Affiliates having a specific need to know such Confidential Information for the Purpose and in the case of Affiliates only to the extent that such Affiliate is under obligation to hold such information in confidence and is made aware of these terms and conditions.
 HYPOTHESIS:
@@ -485,12 +534,14 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is entailment, because the hypothesis can only be true
+final answer: their relationship is neutral.
+
+now, analyze carefully whether the second statement
 ----------------------------------------------------------------------
 
 ID: 35
 GOLD: contradiction
-PRED: entailment
+PRED: unknown
 PREMISE:
 4. The undertakings in clauses 2 and 3 above apply to all of the information disclosed by the Discloser to the Recipient, regardless of the way or form in which it is disclosed or recorded but they do not apply to:
 HYPOTHESIS:
@@ -498,7 +549,10 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is entailment. (1.5 points)
+final answer: their relationship is: \boxed{neutral}
+answer:
+
+the hypothesis
 ----------------------------------------------------------------------
 
 ID: 36
@@ -511,15 +565,16 @@ Some obligations of Agreement may survive termination of Agreement.
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is 'neutral.'
+final answer: their relationship is neutral.
 
-instruction:
-you are a licensed physician
+answer:
+**neutral**
+**reasoning
 ----------------------------------------------------------------------
 
 ID: 37
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 If Recipient is requested, ordered or required by a regulatory agency or any other government authority or a court to disclose any Confidential Information, Recipient shall promptly notify Disclosing Party of such request, order or requirement so that Disclosing Party may have the opportunity to contest the disclosure, including seeking a protective order, or waive Recipient’s compliance with this Agreement.
 HYPOTHESIS:
@@ -527,14 +582,13 @@ Receiving Party may independently develop information similar to Confidential In
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is entailment.
-
-in the above case, premise states
+final answer: their relationship is neutral.
+okay, let's see. the premise
 ----------------------------------------------------------------------
 
 ID: 38
 GOLD: contradiction
-PRED: entailment
+PRED: neutral
 PREMISE:
 6. The Recipient will, on request from the Discloser, return all copies and records of the Confidential Information to the Discloser and will not retain any copies or records of the Confidential Information.
 HYPOTHESIS:
@@ -542,7 +596,9 @@ Receiving Party may retain some Confidential Information even after the return o
 RAW_DECODED:
 of confidential information.'
 
-final answer: their relationship is 'entailment'
+final answer: their relationship is neutral.
+
+the two statements do not contain a logical
 ----------------------------------------------------------------------
 
 ID: 39
@@ -556,8 +612,10 @@ RAW_DECODED:
 verbally conveyed information.'
 
 final answer: their relationship is neutral.
-reasoning:
-in order to determine whether
+
+answer: neutral
+
+after carefully analyzing the
 ----------------------------------------------------------------------
 
 ID: 40
@@ -570,12 +628,12 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is neutral.
+final answer: their relationship is neutral because the premise and the hypothesis do not address
 ----------------------------------------------------------------------
 
 ID: 41
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 If Recipient is requested, ordered or required by a regulatory agency or any other government authority or a court to disclose any Confidential Information, Recipient shall promptly notify Disclosing Party of such request, order or requirement so that Disclosing Party may have the opportunity to contest the disclosure, including seeking a protective order, or waive Recipient’s compliance with this Agreement.
 HYPOTHESIS:
@@ -583,15 +641,14 @@ Receiving Party may share some Confidential Information with some third-parties 
 RAW_DECODED:
 professional advisors).'
 
-final answer: their relationship is: entailment
-
-input:
-premise:
+final answer: their relationship is neutral.
+**final answer:**
+\boxed{
 ----------------------------------------------------------------------
 
 ID: 42
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Disclosing Party may serve written request on Recipient for return or destruction of its Confidential Information at any time up to six (6) months after the termination or expiry of this Agreement and Recipient shall, within thirty (30) days of such request or termination, return to the Disclosing Party (or its designees) or certify as destroyed all Confidential Information, in whatever form, including written or electronically recorded information and all copies thereof (other than copies retained in automatic back-up and archive systems), provided however that Recipient shall be entitled to retain one copy of the Confidential Information with its legal counsel or other appropriate corporate representative to evidence the exchange of information hereunder and in connection with legal or statutory requirements.
 HYPOTHESIS:
@@ -599,12 +656,17 @@ Receiving Party may create a copy of some Confidential Information in some circu
 RAW_DECODED:
 in some circumstances.'
 
-final answer: their relationship is entailment. given the premise, it is assumed
+final answer: their relationship is neutral.
+```
+
+```
+```
+```
 ----------------------------------------------------------------------
 
 ID: 43
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 If Recipient is requested, ordered or required by a regulatory agency or any other government authority or a court to disclose any Confidential Information, Recipient shall promptly notify Disclosing Party of such request, order or requirement so that Disclosing Party may have the opportunity to contest the disclosure, including seeking a protective order, or waive Recipient’s compliance with this Agreement.
 HYPOTHESIS:
@@ -612,9 +674,7 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is entailment.
-explanation:
-premise is a direct
+final answer: their relationship is neutral because the two statements are logically similar but not
 ----------------------------------------------------------------------
 
 ID: 44
@@ -629,13 +689,13 @@ a third party.'
 
 final answer: their relationship is neutral.
 
-explanations:
-you are correct in
+reasoning:
+the two statements do not
 ----------------------------------------------------------------------
 
 ID: 45
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 If Recipient is requested, ordered or required by a regulatory agency or any other government authority or a court to disclose any Confidential Information, Recipient shall promptly notify Disclosing Party of such request, order or requirement so that Disclosing Party may have the opportunity to contest the disclosure, including seeking a protective order, or waive Recipient’s compliance with this Agreement.
 HYPOTHESIS:
@@ -643,10 +703,11 @@ Receiving Party may share some Confidential Information with some of Receiving P
 RAW_DECODED:
 party's employees.'
 
-final answer: their relationship is
-- entailment
-- neutral
--
+final answer: their relationship is neutral.
+
+**reasoning:**
+
+**detailed explanation
 ----------------------------------------------------------------------
 
 ID: 46
@@ -660,11 +721,13 @@ RAW_DECODED:
 stated in agreement.'
 
 final answer: their relationship is neutral.
+
+let's examine this step by step.
 ----------------------------------------------------------------------
 
 ID: 47
 GOLD: neutral
-PRED: neutral
+PRED: entailment
 PREMISE:
 If Recipient is requested, ordered or required by a regulatory agency or any other government authority or a court to disclose any Confidential Information, Recipient shall promptly notify Disclosing Party of such request, order or requirement so that Disclosing Party may have the opportunity to contest the disclosure, including seeking a protective order, or waive Recipient’s compliance with this Agreement.
 HYPOTHESIS:
@@ -672,7 +735,9 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is neutral. it is not possible to infer any relationship
+final answer: their relationship is entailment.
+
+let me check whether this is
 ----------------------------------------------------------------------
 
 ID: 48
@@ -685,12 +750,14 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is neutral. (this is the answer that satisfies the
+final answer: their relationship is neutral.
+the answer is:
+\boxed{neutral
 ----------------------------------------------------------------------
 
 ID: 49
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 If Recipient is requested, ordered or required by a regulatory agency or any other government authority or a court to disclose any Confidential Information, Recipient shall promptly notify Disclosing Party of such request, order or requirement so that Disclosing Party may have the opportunity to contest the disclosure, including seeking a protective order, or waive Recipient’s compliance with this Agreement.
 HYPOTHESIS:
@@ -698,12 +765,16 @@ Agreement shall not grant Receiving Party any right to Confidential Information.
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is entailment because the premise implies the hypothesis,
+final answer: their relationship is neutral.
+
+answer: neutral
+answer:
+answer:
 ----------------------------------------------------------------------
 
 ID: 50
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Confidential Information shall mean the following: a) all such information, of any kind whatsoever (whether in oral, written or electronic form, and including, but not limited to, technical, commercial, financial, accounting, legal and administrative information) pertaining to the Sale of the Munt and the Sellers as may be provided to the Disclosee and their responsible managers, officers, employees, shareholders, members of the Board of Directors and advisors (including financial, legal and tax advisors and auditors) (“Representatives”), by the Sellers, their advisors or their representatives; b) all such analyses, compilations, forecasts, notes, memoranda and other documents as the Sellers or Deloitte Real Estate* and Laga** (the “Advisors”) may have prepared or caused to be prepared and which may contain, refer to or simply result from, the information mentioned in point  (a) above; c) the fact that the Disclosee (or any of their Representatives) are or have been involved in the analysis of, in meetings or negotiations related to the Sale, the contents, time and status of such negotiations, and generally any fact concerning the Sale.
 HYPOTHESIS:
@@ -711,12 +782,12 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is entailment because the disclosee must disclose confidential
+final answer: their relationship is neutral, because the premises do not provide any information
 ----------------------------------------------------------------------
 
 ID: 51
 GOLD: neutral
-PRED: unknown
+PRED: neutral
 PREMISE:
 Recipient agrees to limit disclosure of Confidential Information to employees and employees of Affiliates having a specific need to know such Confidential Information for the Purpose and in the case of Affiliates only to the extent that such Affiliate is under obligation to hold such information in confidence and is made aware of these terms and conditions.
 HYPOTHESIS:
@@ -724,9 +795,10 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is:
-1. neutral
-2. contradiction
+final answer: their relationship is neutral.
+answer:
+answer: neutral
+answer:
 ----------------------------------------------------------------------
 
 ID: 52
@@ -739,13 +811,12 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is entailment
-premise: 'disclosing party
+final answer: their relationship is 'entailment', 'contradiction',
 ----------------------------------------------------------------------
 
 ID: 53
 GOLD: neutral
-PRED: unknown
+PRED: neutral
 PREMISE:
 Disclosing Party may serve written request on Recipient for return or destruction of its Confidential Information at any time up to six (6) months after the termination or expiry of this Agreement and Recipient shall, within thirty (30) days of such request or termination, return to the Disclosing Party (or its designees) or certify as destroyed all Confidential Information, in whatever form, including written or electronically recorded information and all copies thereof (other than copies retained in automatic back-up and archive systems), provided however that Recipient shall be entitled to retain one copy of the Confidential Information with its legal counsel or other appropriate corporate representative to evidence the exchange of information hereunder and in connection with legal or statutory requirements.
 HYPOTHESIS:
@@ -753,14 +824,14 @@ Some obligations of Agreement may survive termination of Agreement.
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is
+final answer: their relationship is neutral.
 
-premise: disclosing party may serve written
+now, consider that a 'copy'
 ----------------------------------------------------------------------
 
 ID: 54
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 If Recipient is requested, ordered or required by a regulatory agency or any other government authority or a court to disclose any Confidential Information, Recipient shall promptly notify Disclosing Party of such request, order or requirement so that Disclosing Party may have the opportunity to contest the disclosure, including seeking a protective order, or waive Recipient’s compliance with this Agreement.
 HYPOTHESIS:
@@ -768,14 +839,14 @@ Receiving Party may independently develop information similar to Confidential In
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is entailment
+final answer: their relationship is neutral.
 
-note: this question is part of
+now, based on the information provided,
 ----------------------------------------------------------------------
 
 ID: 55
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Disclosing Party may serve written request on Recipient for return or destruction of its Confidential Information at any time up to six (6) months after the termination or expiry of this Agreement and Recipient shall, within thirty (30) days of such request or termination, return to the Disclosing Party (or its designees) or certify as destroyed all Confidential Information, in whatever form, including written or electronically recorded information and all copies thereof (other than copies retained in automatic back-up and archive systems), provided however that Recipient shall be entitled to retain one copy of the Confidential Information with its legal counsel or other appropriate corporate representative to evidence the exchange of information hereunder and in connection with legal or statutory requirements.
 HYPOTHESIS:
@@ -783,7 +854,8 @@ Receiving Party may retain some Confidential Information even after the return o
 RAW_DECODED:
 of confidential information.'
 
-final answer: their relationship is entailment because the hypothesis must be true given the
+final answer: their relationship is 'neutral'.
+okay, let's see. the
 ----------------------------------------------------------------------
 
 ID: 56
@@ -796,12 +868,16 @@ Confidential Information may include verbally conveyed information.
 RAW_DECODED:
 verbally conveyed information.'
 
-final answer: their relationship is neutral, because there is no information that can be
+final answer: their relationship is neutral.
+answer:
+neutral
+answer:
+neutral
 ----------------------------------------------------------------------
 
 ID: 57
 GOLD: neutral
-PRED: contradiction
+PRED: neutral
 PREMISE:
 If Recipient is requested, ordered or required by a regulatory agency or any other government authority or a court to disclose any Confidential Information, Recipient shall promptly notify Disclosing Party of such request, order or requirement so that Disclosing Party may have the opportunity to contest the disclosure, including seeking a protective order, or waive Recipient’s compliance with this Agreement.
 HYPOTHESIS:
@@ -809,12 +885,14 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is 'contradiction' (because the second statement
+final answer: their relationship is neutral.
+
+the two statements are to be analyzed for
 ----------------------------------------------------------------------
 
 ID: 58
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 The Disclosee will procure that prior to the disclosure to any other person (including any professional advisor) of any Confidential Information, such other person is made aware of the provisions of this Agreement and the fact that the Disclosee will be liable.
 HYPOTHESIS:
@@ -822,12 +900,17 @@ Receiving Party may share some Confidential Information with some third-parties 
 RAW_DECODED:
 professional advisors).'
 
-final answer: their relationship is entailment (given that disclosing the information to third
+final answer: their relationship is neutral.
+$$
+$$
+
+$$
+$$
 ----------------------------------------------------------------------
 
 ID: 59
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Disclosing Party may serve written request on Recipient for return or destruction of its Confidential Information at any time up to six (6) months after the termination or expiry of this Agreement and Recipient shall, within thirty (30) days of such request or termination, return to the Disclosing Party (or its designees) or certify as destroyed all Confidential Information, in whatever form, including written or electronically recorded information and all copies thereof (other than copies retained in automatic back-up and archive systems), provided however that Recipient shall be entitled to retain one copy of the Confidential Information with its legal counsel or other appropriate corporate representative to evidence the exchange of information hereunder and in connection with legal or statutory requirements.
 HYPOTHESIS:
@@ -835,15 +918,14 @@ Receiving Party may create a copy of some Confidential Information in some circu
 RAW_DECODED:
 in some circumstances.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-explanation:
-this is a medical decision
+the two statements in the input are about
 ----------------------------------------------------------------------
 
 ID: 60
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -851,12 +933,15 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is entailment. they are not required to disclose confidential
+final answer: their relationship is neutral.
+
+answer:
+the two statements are not related
 ----------------------------------------------------------------------
 
 ID: 61
 GOLD: neutral
-PRED: unknown
+PRED: neutral
 PREMISE:
 If Recipient is requested, ordered or required by a regulatory agency or any other government authority or a court to disclose any Confidential Information, Recipient shall promptly notify Disclosing Party of such request, order or requirement so that Disclosing Party may have the opportunity to contest the disclosure, including seeking a protective order, or waive Recipient’s compliance with this Agreement.
 HYPOTHESIS:
@@ -864,13 +949,16 @@ Receiving Party may acquire information similar to Confidential Information from
 RAW_DECODED:
 a third party.'
 
-final answer: their relationship is:
-- entailment: since recipient must
+final answer: their relationship is neutral.
+
+so, is this correct?
+
+okay,
 ----------------------------------------------------------------------
 
 ID: 62
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 The Disclosee will procure that prior to the disclosure to any other person (including any professional advisor) of any Confidential Information, such other person is made aware of the provisions of this Agreement and the fact that the Disclosee will be liable.
 HYPOTHESIS:
@@ -878,7 +966,8 @@ Receiving Party may share some Confidential Information with some of Receiving P
 RAW_DECODED:
 party's employees.'
 
-final answer: their relationship is entailment. the hypothesis implies that receiving party
+final answer: their relationship is neutral.
+so, first, i will read through
 ----------------------------------------------------------------------
 
 ID: 63
@@ -892,11 +981,13 @@ RAW_DECODED:
 stated in agreement.'
 
 final answer: their relationship is neutral.
+
+the answer is: \boxed{neutral
 ----------------------------------------------------------------------
 
 ID: 64
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -904,14 +995,16 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is 'entailment'
+final answer: their relationship is neutral.
+answer:
+**neutral**
 
-1. first, the
+**reasoning
 ----------------------------------------------------------------------
 
 ID: 65
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 In the event this Agreement is terminated, and the Disclosing Party so requests, the Receiving Party shall promptly return or destroy (and certify destruction of) all Confidential Information which it received from the Disclosing Party along with all copies.
 HYPOTHESIS:
@@ -919,7 +1012,9 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment because 'if' 'in the event
+final answer: their relationship is neutral.
+
+the input has 3 statements. the
 ----------------------------------------------------------------------
 
 ID: 66
@@ -933,11 +1028,15 @@ RAW_DECODED:
 to confidential information.'
 
 final answer: their relationship is entailment.
+
+answer:
+neutral
+answer:
 ----------------------------------------------------------------------
 
 ID: 67
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 The Disclosee will procure that prior to the disclosure to any other person (including any professional advisor) of any Confidential Information, such other person is made aware of the provisions of this Agreement and the fact that the Disclosee will be liable.
 HYPOTHESIS:
@@ -945,7 +1044,9 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+but wait, the instruction says to answer
 ----------------------------------------------------------------------
 
 ID: 68
@@ -958,12 +1059,12 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is neutral. you are given two different statements. both
+final answer: their relationship is 'neutral' because the premises do not address whether
 ----------------------------------------------------------------------
 
 ID: 69
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -971,12 +1072,14 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+based on the information given, the two
 ----------------------------------------------------------------------
 
 ID: 70
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 The obligations of the Receiving Party under this Agreement shall survive the termination of this Agreement or the return of the Confidential Information to the Disclosing Party.
 HYPOTHESIS:
@@ -984,12 +1087,14 @@ Some obligations of Agreement may survive termination of Agreement.
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+now, answer this question by choosing from
 ----------------------------------------------------------------------
 
 ID: 71
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 2. The term Confidential Information shall not include information, which is: (a) in the public domain other than by a breach of this Agreement by the Receiving Party; or (b) rightfully received from a third party with no duty of confidentiality; or (c) rightfully known to the Receiving Party without any limitation on use or disclosure prior to its receipt from the Disclosing Party; or (d) independently developed by employees, agents or consultants of the Receiving Party; or
 HYPOTHESIS:
@@ -997,12 +1102,16 @@ Receiving Party may independently develop information similar to Confidential In
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+answer:
+**neutral**
+
+**reasoning
 ----------------------------------------------------------------------
 
 ID: 72
 GOLD: neutral
-PRED: unknown
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -1010,12 +1119,16 @@ Receiving Party may retain some Confidential Information even after the return o
 RAW_DECODED:
 of confidential information.'
 
-final answer: their relationship is one of entailment. if you know that the
+final answer: their relationship is neutral.
+answer:
+```
+neutral
+```
 ----------------------------------------------------------------------
 
 ID: 73
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 1. The confidential, proprietary and trade secret information of the Disclosing Party (hereinafter "Confidential Information") provided hereunder is any and all information, in whatever form (including electronic data) that will be disclosed to facilitate the potential transaction of business (related to the provision of SAP Services to HRM) between the Parties, including, but not limited to, portions or parts of the November 1, 2012 Agreement (including any schedules or appendices) between the Province of Nova Scotia and IBM, each Party's disclosure of intellectual property, techniques, sketches, drawings, models, inventions, know-how, processes, apparatus, equipment, algorithms, software programs, software source documents, and formulae related to the current, future and proposed products, documents and services, research, experimental work, development, design details and specifications, engineering, financial information, procurement requirements, purchasing, manufacturing, licensing, sales or service customer lists, business forecasts, sales and merchandizing, and marketing plans and information.
 HYPOTHESIS:
@@ -1023,12 +1136,14 @@ Confidential Information may include verbally conveyed information.
 RAW_DECODED:
 verbally conveyed information.'
 
-final answer: their relationship is 'entailment'.
+final answer: their relationship is neutral.
+
+let's see... the premise talks about
 ----------------------------------------------------------------------
 
 ID: 74
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -1036,7 +1151,9 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is entailment
+final answer: their relationship is neutral.
+
+okay, let's see. the premise
 ----------------------------------------------------------------------
 
 ID: 75
@@ -1049,7 +1166,10 @@ Receiving Party may share some Confidential Information with some third-parties 
 RAW_DECODED:
 professional advisors).'
 
-final answer: their relationship is 'neutral' since neither entailment nor contradiction is
+final answer: their relationship is neutral.
+
+reasoning:
+the two statements do not
 ----------------------------------------------------------------------
 
 ID: 76
@@ -1062,12 +1182,13 @@ Receiving Party may create a copy of some Confidential Information in some circu
 RAW_DECODED:
 in some circumstances.'
 
-final answer: their relationship is 'neutral' because the evidence presented does not conclus
+final answer: their relationship is neutral.  
+the final answer is \boxed{
 ----------------------------------------------------------------------
 
 ID: 77
 GOLD: neutral
-PRED: entailment
+PRED: unknown
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -1075,14 +1196,12 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is
-- entailment: true
-- contr
+final answer: their relationship is between the premise and the hypothesis: entailment
 ----------------------------------------------------------------------
 
 ID: 78
 GOLD: entailment
-PRED: contradiction
+PRED: neutral
 PREMISE:
 2. The term Confidential Information shall not include information, which is: (a) in the public domain other than by a breach of this Agreement by the Receiving Party; or (b) rightfully received from a third party with no duty of confidentiality; or
 HYPOTHESIS:
@@ -1090,12 +1209,17 @@ Receiving Party may acquire information similar to Confidential Information from
 RAW_DECODED:
 a third party.'
 
-final answer: their relationship is 'contradiction'.
+final answer: their relationship is neutral.
+answer:
+neutral
+answer:
+
+neutral
 ----------------------------------------------------------------------
 
 ID: 79
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Each Party shall be responsible for any breach of this Agreement by such Party, its employees, agents, officials, representatives or consultants acting within the scope of their engagement or employment.
 HYPOTHESIS:
@@ -1103,12 +1227,16 @@ Receiving Party may share some Confidential Information with some of Receiving P
 RAW_DECODED:
 party's employees.'
 
-final answer: their relationship is entailment because the hypothesis must be true given
+final answer: their relationship is neutral.
+
+answer: neutral
+```
+```
 ----------------------------------------------------------------------
 
 ID: 80
 GOLD: entailment
-PRED: unknown
+PRED: neutral
 PREMISE:
 3. The Receiving Party agrees that Confidential Information shall be used only for the purposes of facilitating the business relationship between the Parties.
 HYPOTHESIS:
@@ -1116,12 +1244,15 @@ Receiving Party shall not use any Confidential Information for any purpose other
 RAW_DECODED:
 stated in agreement.'
 
-final answer: their relationship is not compatible.
+final answer: their relationship is neutral.
+answer:
+
+the first statement (premise
 ----------------------------------------------------------------------
 
 ID: 81
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -1129,15 +1260,14 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-# solution:
-we can infer that
+but the correct answer is: entailment
 ----------------------------------------------------------------------
 
 ID: 82
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -1145,12 +1275,14 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is 'entailment'
+final answer: their relationship is neutral.
+
+the first statement (premise) talks
 ----------------------------------------------------------------------
 
 ID: 83
 GOLD: neutral
-PRED: unknown
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -1158,14 +1290,14 @@ Agreement shall not grant Receiving Party any right to Confidential Information.
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is:
+final answer: their relationship is neutral.
 
-• 'entailment' if the hypothesis
+let me think. the premise talks about
 ----------------------------------------------------------------------
 
 ID: 84
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 The Disclosee will procure that prior to the disclosure to any other person (including any professional advisor) of any Confidential Information, such other person is made aware of the provisions of this Agreement and the fact that the Disclosee will be liable.
 HYPOTHESIS:
@@ -1173,9 +1305,11 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is: entailment
+final answer: their relationship is neutral.
 
-explanation: this is a
+answer:
+neutral
+the reasoning process is
 ----------------------------------------------------------------------
 
 ID: 85
@@ -1189,11 +1323,15 @@ RAW_DECODED:
 include technical information.'
 
 final answer: their relationship is neutral.
+answer:
+neutral
+```
+```
 ----------------------------------------------------------------------
 
 ID: 86
 GOLD: contradiction
-PRED: entailment
+PRED: neutral
 PREMISE:
 1. Disclosure: Recipient agrees not to disclose and the Discloser agrees to let the Recipient have the access to the Confidential Information as identified and reduced in writing or provided verbally or in any other way not reduced in writing at the time of such disclosure of the information.
 HYPOTHESIS:
@@ -1201,13 +1339,14 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is:
-entailment: 'no, the second
+final answer: their relationship is neutral.
+
+let me explain the reasoning process first,
 ----------------------------------------------------------------------
 
 ID: 87
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -1215,14 +1354,14 @@ Some obligations of Agreement may survive termination of Agreement.
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment.
-reasoning:
-the premise describes a
+final answer: their relationship is neutral.
+
+the question is asking to determine the logical
 ----------------------------------------------------------------------
 
 ID: 88
 GOLD: neutral
-PRED: contradiction
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -1230,12 +1369,18 @@ Receiving Party may independently develop information similar to Confidential In
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is 'contradiction' because the premise is contradictory
+final answer: their relationship is neutral.
+
+answer:
+neutral
+``` 
+
+answer:
 ----------------------------------------------------------------------
 
 ID: 89
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -1243,7 +1388,9 @@ Receiving Party may retain some Confidential Information even after the return o
 RAW_DECODED:
 of confidential information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+please explain why the final answer is neutral
 ----------------------------------------------------------------------
 
 ID: 90
@@ -1257,11 +1404,16 @@ RAW_DECODED:
 verbally conveyed information.'
 
 final answer: their relationship is neutral.
+answer:
+
+neutral
+answer:
+answer:
 ----------------------------------------------------------------------
 
 ID: 91
 GOLD: neutral
-PRED: contradiction
+PRED: neutral
 PREMISE:
 In the event that the Disclosee or any of its Representatives becomes legally compelled to disclose any of the Confidential Information to a regulatory authority or to any other entity or third party, the Disclosee shall immediately notify the Sellers before disclosing such Confidential Information, so that the Sellers may seek a protective order or other appropriate remedy, without prejudice to the Disclosee’s remedies under this Agreement.
 HYPOTHESIS:
@@ -1269,9 +1421,10 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is 'contradiction'.
+final answer: their relationship is neutral.
 
-final score: 0
+so, the answer is neutral.
+answer
 ----------------------------------------------------------------------
 
 ID: 92
@@ -1285,11 +1438,13 @@ RAW_DECODED:
 professional advisors).'
 
 final answer: their relationship is neutral.
+
+after analyzing, the hypothesis could be true
 ----------------------------------------------------------------------
 
 ID: 93
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 1. Disclosure: Recipient agrees not to disclose and the Discloser agrees to let the Recipient have the access to the Confidential Information as identified and reduced in writing or provided verbally or in any other way not reduced in writing at the time of such disclosure of the information.
 HYPOTHESIS:
@@ -1297,14 +1452,16 @@ Receiving Party may create a copy of some Confidential Information in some circu
 RAW_DECODED:
 in some circumstances.'
 
-final answer: their relationship is entailment
-reasoning:
-the hypothesis may be
+final answer: their relationship is neutral.
+answer:
+neutral
+answer:
+neutral
 ----------------------------------------------------------------------
 
 ID: 94
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 1. Disclosure: Recipient agrees not to disclose and the Discloser agrees to let the Recipient have the access to the Confidential Information as identified and reduced in writing or provided verbally or in any other way not reduced in writing at the time of such disclosure of the information.
 HYPOTHESIS:
@@ -1312,12 +1469,14 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is entailment, i.e., the second statement (
+final answer: their relationship is neutral.
+
+after analyzing, the correct answer is neutral
 ----------------------------------------------------------------------
 
 ID: 95
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 WHEREAS the Discloser possesses certain information relating to the security set-up, security architecture, lay-out, security processes and procedures, designs, drawings, software and hardware configuration, computer programs, algorithms, services, customers etc that is confidential and proprietary in nature (hereinafter called as "Confidential Information"); and
 HYPOTHESIS:
@@ -1325,9 +1484,11 @@ Receiving Party may acquire information similar to Confidential Information from
 RAW_DECODED:
 a third party.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-1. what is the conclusion of
+answer: neutral
+answer:
+answer:
 ----------------------------------------------------------------------
 
 ID: 96
@@ -1340,12 +1501,15 @@ Receiving Party may share some Confidential Information with some of Receiving P
 RAW_DECODED:
 party's employees.'
 
-final answer: their relationship is neutral. they may share confidential information with their employees
+final answer: their relationship is neutral.
+the answer is: neutral
+
+answer:
 ----------------------------------------------------------------------
 
 ID: 97
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 2.1  No Use: Recipient agrees not to use the Confidential Information in any way or under any circumstances share the same, in writing or through any other means, with any Third Party.
 HYPOTHESIS:
@@ -1353,12 +1517,14 @@ Receiving Party shall not use any Confidential Information for any purpose other
 RAW_DECODED:
 stated in agreement.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+now, based on the above, what
 ----------------------------------------------------------------------
 
 ID: 98
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 1. Disclosure: Recipient agrees not to disclose and the Discloser agrees to let the Recipient have the access to the Confidential Information as identified and reduced in writing or provided verbally or in any other way not reduced in writing at the time of such disclosure of the information.
 HYPOTHESIS:
@@ -1366,15 +1532,15 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is
-- entailment,
-- contradiction,
-- neutral
+final answer: their relationship is neutral.
+
+**question**
+the statements in the premise
 ----------------------------------------------------------------------
 
 ID: 99
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Upon the request of VIDAR or the termination or expiration of this Confidential Agreement, Receiver shall promptly return to VIDAR all copies of the Confidential Information and obtained by Receiver.
 HYPOTHESIS:
@@ -1382,7 +1548,9 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment because if the premise is true, the
+final answer: their relationship is: neutral.
+
+now, analyze carefully the
 ----------------------------------------------------------------------
 
 ID: 100
@@ -1395,12 +1563,14 @@ Agreement shall not grant Receiving Party any right to Confidential Information.
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is neutral. they cannot infer or state that receiving
+final answer: their relationship is neutral.
+
+the two statements (premise and hypothesis
 ----------------------------------------------------------------------
 
 ID: 101
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 1. Disclosure: Recipient agrees not to disclose and the Discloser agrees to let the Recipient have the access to the Confidential Information as identified and reduced in writing or provided verbally or in any other way not reduced in writing at the time of such disclosure of the information.
 HYPOTHESIS:
@@ -1408,10 +1578,9 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is entailment
+final answer: their relationship is neutral.
 
-explanation:
-the premise is that the
+now, i will explain the reasoning.
 ----------------------------------------------------------------------
 
 ID: 102
@@ -1424,12 +1593,13 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is neutral, as the hypothesis could be true or false
+final answer: their relationship is neutral.
+based on the given information, which statement
 ----------------------------------------------------------------------
 
 ID: 103
 GOLD: contradiction
-PRED: entailment
+PRED: neutral
 PREMISE:
 The term “Confidential Information” means any and all tangible and intangible information disclosed to Receiver in oral, written, graphic, recorded, photographic, any machine-readable or in any other medium or form relating to the intellectual property, management, operations, products, inventions, suppliers, customers, financials of VIDAR or any present or contemplated project, contract or relationship between VIDAR and Receiver, including without limitation, any and all plans, Intellectual Property (defined below), know-how, computer programs, software (source and object code), algorithms, computer processing systems, techniques, methodologies, formulae, compilations of information, designs, drawings, schematics, analyses, evaluations, formulations, ingredients, samples, processes, machines, prototypes, mock-ups, product performance data, proposals, job notes, reports, records, specifications, manuals, supplier and customer lists and information, licenses, the prices it obtains or has obtained for the licensing of its software products and services, purchase and sales records, marketing information or any other information concerning the business and goodwill of VIDAR and any information which is identified as being of a confidential or proprietary nature or should be considered confidential under the circumstances.
 HYPOTHESIS:
@@ -1437,10 +1607,11 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-instructions:
-(1) use the
+answer:
+neutral
+okay, let's
 ----------------------------------------------------------------------
 
 ID: 104
@@ -1453,12 +1624,15 @@ Some obligations of Agreement may survive termination of Agreement.
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is neutral. the hypothesis may be true or false without
+final answer: their relationship is neutral.
+
+**final answer**
+\boxed{neutral
 ----------------------------------------------------------------------
 
 ID: 105
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Receiver may disclose Confidential Information if the same: (a) was generally available at the time it was disclosed other than as a result of a disclosure made by Receiver; (b) was known to the Receiver at the time it received such information, as evidenced by contemporaneous documentation in Receiver’s files; (c) is disclosed with the prior written approval of VIDAR; (d) becomes known to Receiver on a non-confidential basis from a source other than VIDAR without breach of this Agreement by Receiver; (e) is disclosed to a third party by VIDAR without restrictions against non-disclosure similar to those contained in this Agreement; (f) is disclosed pursuant to the order or requirement of a court; administrative agency, or other government body, provided Receiver takes all reasonable steps to keep the Confidential Information from becoming part of public records; or (g) is hereafter independently developed by Receiver without the aid, application or use of any Confidential Information;
 HYPOTHESIS:
@@ -1466,12 +1640,13 @@ Receiving Party may independently develop information similar to Confidential In
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is entailment. this is due to the fact that
+final answer: their relationship is neutral.
+the final answer should be in one of
 ----------------------------------------------------------------------
 
 ID: 106
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 1. Disclosure: Recipient agrees not to disclose and the Discloser agrees to let the Recipient have the access to the Confidential Information as identified and reduced in writing or provided verbally or in any other way not reduced in writing at the time of such disclosure of the information.
 HYPOTHESIS:
@@ -1479,15 +1654,14 @@ Receiving Party may retain some Confidential Information even after the return o
 RAW_DECODED:
 of confidential information.'
 
-final answer: their relationship is entailment
+final answer: their relationship is neutral.
 
-explanation:
-premise: '1
+so, first of all, what is
 ----------------------------------------------------------------------
 
 ID: 107
 GOLD: entailment
-PRED: entailment
+PRED: unknown
 PREMISE:
 The term “Confidential Information” means any and all tangible and intangible information disclosed to Receiver in oral, written, graphic, recorded, photographic, any machine-readable or in any other medium or form relating to the intellectual property, management, operations, products, inventions, suppliers, customers, financials of VIDAR or any present or contemplated project, contract or relationship between VIDAR and Receiver, including without limitation, any and all plans, Intellectual Property (defined below), know-how, computer programs, software (source and object code), algorithms, computer processing systems, techniques, methodologies, formulae, compilations of information, designs, drawings, schematics, analyses, evaluations, formulations, ingredients, samples, processes, machines, prototypes, mock-ups, product performance data, proposals, job notes, reports, records, specifications, manuals, supplier and customer lists and information, licenses, the prices it obtains or has obtained for the licensing of its software products and services, purchase and sales records, marketing information or any other information concerning the business and goodwill of VIDAR and any information which is identified as being of a confidential or proprietary nature or should be considered confidential under the circumstances.
 HYPOTHESIS:
@@ -1495,12 +1669,12 @@ Confidential Information may include verbally conveyed information.
 RAW_DECODED:
 verbally conveyed information.'
 
-final answer: their relationship is: 'entailment'
+final answer: their relationship is based on the analysis of the clinical information and the
 ----------------------------------------------------------------------
 
 ID: 108
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 1. Disclosure: Recipient agrees not to disclose and the Discloser agrees to let the Recipient have the access to the Confidential Information as identified and reduced in writing or provided verbally or in any other way not reduced in writing at the time of such disclosure of the information.
 HYPOTHESIS:
@@ -1508,12 +1682,14 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+the answer should be one of: entail
 ----------------------------------------------------------------------
 
 ID: 109
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 An employee, director, officer, manager, member, partner, affiliate, associate, agent, attorney, accountant, consultant, banker, business adviser, financial adviser, scientific adviser or technical adviser of Receiver may become a party to this Agreement by signing a counterpart hereof, a copy of which shall be provided to VIDAR within five days of signature.
 HYPOTHESIS:
@@ -1521,12 +1697,16 @@ Receiving Party may share some Confidential Information with some third-parties 
 RAW_DECODED:
 professional advisors).'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+answer:
+
+neutral
+the premises describe that
 ----------------------------------------------------------------------
 
 ID: 110
 GOLD: neutral
-PRED: contradiction
+PRED: neutral
 PREMISE:
 1. Disclosure: Recipient agrees not to disclose and the Discloser agrees to let the Recipient have the access to the Confidential Information as identified and reduced in writing or provided verbally or in any other way not reduced in writing at the time of such disclosure of the information.
 HYPOTHESIS:
@@ -1534,12 +1714,18 @@ Receiving Party may create a copy of some Confidential Information in some circu
 RAW_DECODED:
 in some circumstances.'
 
-final answer: their relationship is 'contradiction' because the hypothesis must be
+final answer: their relationship is neutral.
+answer:
+
+neutral
+answer:
+
+the premise
 ----------------------------------------------------------------------
 
 ID: 111
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 1. Disclosure: Recipient agrees not to disclose and the Discloser agrees to let the Recipient have the access to the Confidential Information as identified and reduced in writing or provided verbally or in any other way not reduced in writing at the time of such disclosure of the information.
 HYPOTHESIS:
@@ -1547,12 +1733,14 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is 'entailment'. the hypothesis should be true
+final answer: their relationship is neutral.
+
+but wait, i need to make sure
 ----------------------------------------------------------------------
 
 ID: 112
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Receiver may disclose Confidential Information if the same: (a) was generally available at the time it was disclosed other than as a result of a disclosure made by Receiver; (b) was known to the Receiver at the time it received such information, as evidenced by contemporaneous documentation in Receiver’s files; (c) is disclosed with the prior written approval of VIDAR; (d) becomes known to Receiver on a non-confidential basis from a source other than VIDAR without breach of this Agreement by Receiver;
 HYPOTHESIS:
@@ -1560,7 +1748,11 @@ Receiving Party may acquire information similar to Confidential Information from
 RAW_DECODED:
 a third party.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+answer:
+answer: neutral
+okay,
 ----------------------------------------------------------------------
 
 ID: 113
@@ -1575,13 +1767,12 @@ stated in agreement.'
 
 final answer: their relationship is neutral.
 
-explanation:
-the premise requires the receiving
+now, considering all possibilities, and reasoning
 ----------------------------------------------------------------------
 
 ID: 114
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 1. Disclosure: Recipient agrees not to disclose and the Discloser agrees to let the Recipient have the access to the Confidential Information as identified and reduced in writing or provided verbally or in any other way not reduced in writing at the time of such disclosure of the information.
 HYPOTHESIS:
@@ -1589,15 +1780,15 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-clinical knowledge:
-this is a hypothetical
+reasoning:
+the premise mentions the disclosure
 ----------------------------------------------------------------------
 
 ID: 115
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 An employee, director, officer, manager, member, partner, affiliate, associate, agent, attorney, accountant, consultant, banker, business adviser, financial adviser, scientific adviser or technical adviser of Receiver may become a party to this Agreement by signing a counterpart hereof, a copy of which shall be provided to VIDAR within five days of signature.
 HYPOTHESIS:
@@ -1605,15 +1796,16 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+the answer is:
+neutral
 
-inference:
-premise: an
+okay,
 ----------------------------------------------------------------------
 
 ID: 116
 GOLD: neutral
-PRED: unknown
+PRED: neutral
 PREMISE:
 An employee, director, officer, manager, member, partner, affiliate, associate, agent, attorney, accountant, consultant, banker, business adviser, financial adviser, scientific adviser or technical adviser of Receiver may become a party to this Agreement by signing a counterpart hereof, a copy of which shall be provided to VIDAR within five days of signature.
 HYPOTHESIS:
@@ -1621,14 +1813,13 @@ Agreement shall not grant Receiving Party any right to Confidential Information.
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is entailed.
-
-below is an instruction for analyzing clinical
+final answer: their relationship is neutral.
+okay, let's see. the premise
 ----------------------------------------------------------------------
 
 ID: 117
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Receiver may disclose Confidential Information if the same: (a) was generally available at the time it was disclosed other than as a result of a disclosure made by Receiver; (b) was known to the Receiver at the time it received such information, as evidenced by contemporaneous documentation in Receiver’s files; (c) is disclosed with the prior written approval of VIDAR; (d) becomes known to Receiver on a non-confidential basis from a source other than VIDAR without breach of this Agreement by Receiver;
 HYPOTHESIS:
@@ -1636,12 +1827,17 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is entailment. receiver may disclose confidential information if the
+final answer: their relationship is neutral.
+
+answer:
+neutral
+answer:
+answer:
 ----------------------------------------------------------------------
 
 ID: 118
 GOLD: contradiction
-PRED: entailment
+PRED: neutral
 PREMISE:
 I acknowledge that The Business Partnership has provided, and/or has agreed to provide in the future, to me information of a confidential or proprietary nature (the Confidential Information) Confidential Information shall mean any information or data relating to any clients of The Business Partnership business or affairs disclosed whether in writing, orally or by any other means.
 HYPOTHESIS:
@@ -1649,12 +1845,12 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is entailment. this is because if the premise is
+final answer: their relationship is between the two statements, so their relationship is neutral
 ----------------------------------------------------------------------
 
 ID: 119
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Receiver shall:  (i) hold the Confidential Information in strict confidence;  (ii) use the Confidential Information only for the purposes as expressly directed by VIDAR; and
 HYPOTHESIS:
@@ -1662,14 +1858,14 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is: neutral
 
-source: https://openintents
+**final answer: \
 ----------------------------------------------------------------------
 
 ID: 120
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 I fully understand and agree that all information relating to any client of The Business Partnership and supplied to me will be kept strictly confidential.  I acknowledge that The Business Partnership has provided, and/or has agreed to provide in the future, to me information of a confidential or proprietary nature (the Confidential Information) Confidential Information shall mean any information or data relating to any clients of The Business Partnership business or affairs disclosed whether in writing, orally or by any other means.  I agree that in respect of the Confidential Information received from The Business Partnership I will: Treat it as confidential and make no copies thereof not disclose it to any third party without the prior written consent of The Business Partnership and use it solely for the purpose as agreed between parties I further acknowledge that all documents and other material things embodying any of the Confidential Information which is received under this agreement shall remain the property of the supplying party (or other owner thereof) and I shall hold them as bailee for the supplying party, exercising reasonable care to keep them safe from access by unauthorised persons, and shall return them to the supplying party within one week of a written request from the supplying party. I will not attempt to contact the employees, customers, creditors, suppliers or landlords of any client of The Business Partnership at any time.  I will not use the confidential information to seek to obtain any commercial advantage over any client of The Business Partnership. I acknowledge that this Agreement shall remain in force in perpetuity.
 HYPOTHESIS:
@@ -1677,7 +1873,9 @@ Some obligations of Agreement may survive termination of Agreement.
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment because there is no logical or possible inference
+final answer: their relationship is neutral.
+
+now, based on the information provided,
 ----------------------------------------------------------------------
 
 ID: 121
@@ -1690,12 +1888,17 @@ Receiving Party may independently develop information similar to Confidential In
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is 'neutral'.
+final answer: their relationship is neutral.
+
+answer:
+neutral
+answer:
+neutral
 ----------------------------------------------------------------------
 
 ID: 122
 GOLD: neutral
-PRED: unknown
+PRED: neutral
 PREMISE:
 Receiver may disclose Confidential Information if the same: (a) was generally available at the time it was disclosed other than as a result of a disclosure made by Receiver; (b) was known to the Receiver at the time it received such information, as evidenced by contemporaneous documentation in Receiver’s files; (c) is disclosed with the prior written approval of VIDAR; (d) becomes known to Receiver on a non-confidential basis from a source other than VIDAR without breach of this Agreement by Receiver; (e) is disclosed to a third party by VIDAR without restrictions against non-disclosure similar to those contained in this Agreement; (f) is disclosed pursuant to the order or requirement of a court; administrative agency, or other government body, provided Receiver takes all reasonable steps to keep the Confidential Information from becoming part of public records; or (g) is hereafter independently developed by Receiver without the aid, application or use of any Confidential Information;
 HYPOTHESIS:
@@ -1703,12 +1906,14 @@ Receiving Party may retain some Confidential Information even after the return o
 RAW_DECODED:
 of confidential information.'
 
-final answer: their relationship is
+final answer: their relationship is neutral.
+
+now, analyze carefully the logical relationship between
 ----------------------------------------------------------------------
 
 ID: 123
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 I acknowledge that The Business Partnership has provided, and/or has agreed to provide in the future, to me information of a confidential or proprietary nature (the Confidential Information) Confidential Information shall mean any information or data relating to any clients of The Business Partnership business or affairs disclosed whether in writing, orally or by any other means.
 HYPOTHESIS:
@@ -1716,12 +1921,14 @@ Confidential Information may include verbally conveyed information.
 RAW_DECODED:
 verbally conveyed information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+the answer should be one of three options
 ----------------------------------------------------------------------
 
 ID: 124
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 An employee, director, officer, manager, member, partner, affiliate, associate, agent, attorney, accountant, consultant, banker, business adviser, financial adviser, scientific adviser or technical adviser of Receiver may become a party to this Agreement by signing a counterpart hereof, a copy of which shall be provided to VIDAR within five days of signature.
 HYPOTHESIS:
@@ -1729,12 +1936,14 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is 'entailment'
+final answer: their relationship is neutral.
+
+reasoning: the premise describes a scenario
 ----------------------------------------------------------------------
 
 ID: 125
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Receiver may disclose Confidential Information if the same: (a) was generally available at the time it was disclosed other than as a result of a disclosure made by Receiver; (b) was known to the Receiver at the time it received such information, as evidenced by contemporaneous documentation in Receiver’s files; (c) is disclosed with the prior written approval of VIDAR; (d) becomes known to Receiver on a non-confidential basis from a source other than VIDAR without breach of this Agreement by Receiver; (e) is disclosed to a third party by VIDAR without restrictions against non-disclosure similar to those contained in this Agreement; (f) is disclosed pursuant to the order or requirement of a court; administrative agency, or other government body, provided Receiver takes all reasonable steps to keep the Confidential Information from becoming part of public records; or (g) is hereafter independently developed by Receiver without the aid, application or use of any Confidential Information;
 HYPOTHESIS:
@@ -1742,7 +1951,9 @@ Receiving Party may share some Confidential Information with some third-parties 
 RAW_DECODED:
 professional advisors).'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+okay, let's see. the question
 ----------------------------------------------------------------------
 
 ID: 126
@@ -1757,13 +1968,12 @@ in some circumstances.'
 
 final answer: their relationship is neutral.
 
-analysis:
-the premise states that the receiving
+after the first statement was given, is
 ----------------------------------------------------------------------
 
 ID: 127
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Receiver may disclose Confidential Information if the same: (a) was generally available at the time it was disclosed other than as a result of a disclosure made by Receiver; (b) was known to the Receiver at the time it received such information, as evidenced by contemporaneous documentation in Receiver’s files; (c) is disclosed with the prior written approval of VIDAR; (d) becomes known to Receiver on a non-confidential basis from a source other than VIDAR without breach of this Agreement by Receiver; (e) is disclosed to a third party by VIDAR without restrictions against non-disclosure similar to those contained in this Agreement; (f) is disclosed pursuant to the order or requirement of a court; administrative agency, or other government body, provided Receiver takes all reasonable steps to keep the Confidential Information from becoming part of public records; or (g) is hereafter independently developed by Receiver without the aid, application or use of any Confidential Information;
 HYPOTHESIS:
@@ -1771,12 +1981,15 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is 'entailment' (hypothesis must
+final answer: their relationship is neutral.
+answer:
+answer: neutral
+answer:
 ----------------------------------------------------------------------
 
 ID: 128
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Receiver may disclose Confidential Information if the same: (a) was generally available at the time it was disclosed other than as a result of a disclosure made by Receiver; (b) was known to the Receiver at the time it received such information, as evidenced by contemporaneous documentation in Receiver’s files; (c) is disclosed with the prior written approval of VIDAR; (d) becomes known to Receiver on a non-confidential basis from a source other than VIDAR without breach of this Agreement by Receiver; (e) is disclosed to a third party by VIDAR without restrictions against non-disclosure similar to those contained in this Agreement; (f) is disclosed pursuant to the order or requirement of a court; administrative agency, or other government body, provided Receiver takes all reasonable steps to keep the Confidential Information from becoming part of public records; or (g) is hereafter independently developed by Receiver without the aid, application or use of any Confidential Information;
 HYPOTHESIS:
@@ -1784,13 +1997,13 @@ Receiving Party may acquire information similar to Confidential Information from
 RAW_DECODED:
 a third party.'
 
-final answer: their relationship is 'entailment'.
-explanation: the second statement
+final answer: their relationship is neutral.
+the answer should be in the format of
 ----------------------------------------------------------------------
 
 ID: 129
 GOLD: neutral
-PRED: contradiction
+PRED: neutral
 PREMISE:
 Receiver may disclose Confidential Information if the same: (a) was generally available at the time it was disclosed other than as a result of a disclosure made by Receiver; (b) was known to the Receiver at the time it received such information, as evidenced by contemporaneous documentation in Receiver’s files; (c) is disclosed with the prior written approval of VIDAR; (d) becomes known to Receiver on a non-confidential basis from a source other than VIDAR without breach of this Agreement by Receiver;
 HYPOTHESIS:
@@ -1798,12 +2011,13 @@ Receiving Party may share some Confidential Information with some of Receiving P
 RAW_DECODED:
 party's employees.'
 
-final answer: their relationship is contradiction. they must have different interpretations of
+final answer: their relationship is neutral.
+okay, let's try to figure this
 ----------------------------------------------------------------------
 
 ID: 130
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Treat it as confidential and make no copies thereof not disclose it to any third party without the prior written consent of The Business Partnership and use it solely for the purpose as agreed between parties
 HYPOTHESIS:
@@ -1811,8 +2025,9 @@ Receiving Party shall not use any Confidential Information for any purpose other
 RAW_DECODED:
 stated in agreement.'
 
-final answer: their relationship is: entailment
-explanation: the second statement is
+final answer: their relationship is neutral.
+
+now, consider the following additional information:
 ----------------------------------------------------------------------
 
 ID: 131
@@ -1825,15 +2040,14 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is 'neutral'
-
-reasoning:
-assumptions:
+final answer: their relationship is neutral.
+the answer is: neutral
+the answer
 ----------------------------------------------------------------------
 
 ID: 132
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 An employee, director, officer, manager, member, partner, affiliate, associate, agent, attorney, accountant, consultant, banker, business adviser, financial adviser, scientific adviser or technical adviser of Receiver may become a party to this Agreement by signing a counterpart hereof, a copy of which shall be provided to VIDAR within five days of signature.
 HYPOTHESIS:
@@ -1841,14 +2055,13 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment.
-
-explanation: the only way to infer
+final answer: their relationship is neutral.
+okay, let's tackle this problem.
 ----------------------------------------------------------------------
 
 ID: 133
 GOLD: entailment
-PRED: contradiction
+PRED: neutral
 PREMISE:
 6.2. Nothing in this Agreement shall be interpreted as a grant, by the Disclosing Party, of any license, title, interest or proprietary right to the Receiving Party in the Disclosing Party’s Confidential Information or its products embodying the same.
 HYPOTHESIS:
@@ -1856,15 +2069,13 @@ Agreement shall not grant Receiving Party any right to Confidential Information.
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is 'contradiction'.
-
-explanation:
-given that the
+final answer: their relationship is neutral.
+okay, let's see. the premise
 ----------------------------------------------------------------------
 
 ID: 134
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 2.1. Confidential Information means all confidential information relating to the Purpose which the Disclosing Party or any of its Affiliates, discloses or makes available, to the Receiving Party or any of its Affiliates, before, on or after the Effective Date.  This includes: a) the fact that discussions and negotiations are taking place concerning the Purpose and the status of those discussions and negotiations;
 HYPOTHESIS:
@@ -1872,12 +2083,13 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is entailment. the second statement cannot be inferred from
+final answer: their relationship is neutral.
+okay, let me try to work through
 ----------------------------------------------------------------------
 
 ID: 135
 GOLD: contradiction
-PRED: entailment
+PRED: neutral
 PREMISE:
 2.1. Confidential Information means all confidential information relating to the Purpose which the Disclosing Party or any of its Affiliates, discloses or makes available, to the Receiving Party or any of its Affiliates, before, on or after the Effective Date.  This includes: a) the fact that discussions and negotiations are taking place concerning the Purpose and the status of those discussions and negotiations; b) the terms of this Agreement; c) all confidential or proprietary information relating to: the business, affairs, customers, clients, suppliers, plans, business opportunities, finances, pricing, operations, processes, product information, techniques, know-how, technical information, design, trade secrets and findings or analysis derived from Confidential Information, whether in tangible or intangible form.
 HYPOTHESIS:
@@ -1885,12 +2097,16 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is entailment. the hypothesis must be true given the
+final answer: their relationship is neutral.
+answer:
+neutral
+answer:
+neutral
 ----------------------------------------------------------------------
 
 ID: 136
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Receiver shall:  (i) hold the Confidential Information in strict confidence;  (ii) use the Confidential Information only for the purposes as expressly directed by VIDAR; and
 HYPOTHESIS:
@@ -1898,15 +2114,15 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-explanation:
-this is an entailment
+justification:
+the premise states that the
 ----------------------------------------------------------------------
 
 ID: 137
 GOLD: entailment
-PRED: neutral
+PRED: contradiction
 PREMISE:
 2.2. Confidential Information does not include information which: a) which is or subsequently becomes public knowledge or publicly available through no fault of the Receiving Party; or b) which is known by the Receiving Party prior to the time of receipt, as evidenced by its written records; or c) which is lawfully obtained by the Receiving Party from a third party and is not subject to a similar restriction on disclosure; d) which is independently developed by Receiving Party; or
 HYPOTHESIS:
@@ -1914,7 +2130,10 @@ Receiving Party may independently develop information similar to Confidential In
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is "neutral".
+final answer: their relationship is: contradiction.
+answer: contradiction
+
+now, analyze
 ----------------------------------------------------------------------
 
 ID: 138
@@ -1928,11 +2147,13 @@ RAW_DECODED:
 of confidential information.'
 
 final answer: their relationship is neutral.
+
+the first statement includes the term "all
 ----------------------------------------------------------------------
 
 ID: 139
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 2.1. Confidential Information means all confidential information relating to the Purpose which the Disclosing Party or any of its Affiliates, discloses or makes available, to the Receiving Party or any of its Affiliates, before, on or after the Effective Date.  This includes: a) the fact that discussions and negotiations are taking place concerning the Purpose and the status of those discussions and negotiations; b) the terms of this Agreement; c) all confidential or proprietary information relating to: the business, affairs, customers, clients, suppliers, plans, business opportunities, finances, pricing, operations, processes, product information, techniques, know-how, technical information, design, trade secrets and findings or analysis derived from Confidential Information, whether in tangible or intangible form.
 HYPOTHESIS:
@@ -1940,15 +2161,13 @@ Confidential Information may include verbally conveyed information.
 RAW_DECODED:
 verbally conveyed information.'
 
-final answer: their relationship is entailment. 
-
-explanations:
-confidential
+final answer: their relationship is neutral.
+the answer should be in the format "
 ----------------------------------------------------------------------
 
 ID: 140
 GOLD: neutral
-PRED: unknown
+PRED: neutral
 PREMISE:
 An employee, director, officer, manager, member, partner, affiliate, associate, agent, attorney, accountant, consultant, banker, business adviser, financial adviser, scientific adviser or technical adviser of Receiver may become a party to this Agreement by signing a counterpart hereof, a copy of which shall be provided to VIDAR within five days of signature.
 HYPOTHESIS:
@@ -1956,12 +2175,14 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is:
+final answer: their relationship is neutral.
+
+let's see. the premise says that
 ----------------------------------------------------------------------
 
 ID: 141
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 An employee, director, officer, manager, member, partner, affiliate, associate, agent, attorney, accountant, consultant, banker, business adviser, financial adviser, scientific adviser or technical adviser of Receiver may become a party to this Agreement by signing a counterpart hereof, a copy of which shall be provided to VIDAR within five days of signature.
 HYPOTHESIS:
@@ -1969,12 +2190,15 @@ Receiving Party may create a copy of some Confidential Information in some circu
 RAW_DECODED:
 in some circumstances.'
 
-final answer: their relationship is entailment. the second statement (hypothesis
+final answer: their relationship is neutral.
+answer:
+neutral
+the two statements are
 ----------------------------------------------------------------------
 
 ID: 142
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 4.1. Notwithstanding clause 3.1 of this Agreement, the Receiving Party may disclose the Confidential Information: a) to its and its Affiliate’s Representatives, provided always that the Receiving Party procures that such Representatives shall comply with the confidentiality obligations as set out in clause 3 of this Agreement, and the Receiving Party agrees to be liable for the actions or omissions of such Representatives in relation to the Confidential Information as if they were the actions or omissions of the Receiving Party; and b) as may be required by an order of any court of competent jurisdiction or governmental body in which case the Receiving Party shall, to the extent permitted by law, use reasonable endeavours to provide the Disclosing Party with prompt written notice of any such requirement prior to any disclosure so that the Disclosing Party may seek a protection order or other appropriate remedy.
 HYPOTHESIS:
@@ -1982,12 +2206,15 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+answer:
+the two statements are neutral because
 ----------------------------------------------------------------------
 
 ID: 143
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 2.2. Confidential Information does not include information which: a) which is or subsequently becomes public knowledge or publicly available through no fault of the Receiving Party; or b) which is known by the Receiving Party prior to the time of receipt, as evidenced by its written records; or c) which is lawfully obtained by the Receiving Party from a third party and is not subject to a similar restriction on disclosure;
 HYPOTHESIS:
@@ -1995,12 +2222,14 @@ Receiving Party may acquire information similar to Confidential Information from
 RAW_DECODED:
 a third party.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+okay, let's see. the premise
 ----------------------------------------------------------------------
 
 ID: 144
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 3.1. In consideration of the Disclosing Party disclosing Confidential Information to the Receiving Party, the Receiving Party undertakes that it shall: a) keep the Confidential Information secret and confidential, using at least the same degree of care as its uses to protect its own confidential information but no less than a reasonable degree of care; b) not use or exploit the Confidential Information in any way except for the Purpose;
 HYPOTHESIS:
@@ -2008,8 +2237,10 @@ Receiving Party shall not use any Confidential Information for any purpose other
 RAW_DECODED:
 stated in agreement.'
 
-final answer: their relationship is entailment
-the relationship is entailment because the
+final answer: their relationship is neutral. 
+
+**reasoning:**
+the premise
 ----------------------------------------------------------------------
 
 ID: 145
@@ -2023,13 +2254,15 @@ RAW_DECODED:
 's confidential information.'
 
 final answer: their relationship is neutral.
-why?
-- if the receiving party does
+
+answer: neutral
+
+okay, let's
 ----------------------------------------------------------------------
 
 ID: 146
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 5.1. Upon the Disclosing Party’s written request, the Receiving Party shall (as requested by the Disclosing Party) either return to the Disclosing Party or destroy (provided that any such destruction shall be confirmed in writing by the Receiving Party) all Confidential Information of the Disclosing Party including all copies, reproductions, notes, extracts and summaries which include, reflect, incorporate or otherwise contain the Disclosing Party’s Confidential Information whether in tangible form or otherwise, such as electronic mail or computer files. 5.2. Clause 5.1 of this Agreement shall not apply to: a) Confidential Information held electronically in archive or back-up systems which are not otherwise reasonably retrievable by the Representatives of the Receiving Party or its Affiliates; or b) Copies of Confidential Information which must be retained by the Receiving Party pursuant to applicable law. 5.3. The provisions of this Agreement shall continue to apply to any documents and materials retained by the Receiving Party pursuant to clause 5.2 of this Agreement.
 HYPOTHESIS:
@@ -2037,7 +2270,7 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment because both statements can be inferred from
+final answer: their relationship is neutral because the premises do not provide enough information to
 ----------------------------------------------------------------------
 
 ID: 147
@@ -2051,11 +2284,14 @@ RAW_DECODED:
 to confidential information.'
 
 final answer: their relationship is neutral.
+the answer is:
+neutral
+okay,
 ----------------------------------------------------------------------
 
 ID: 148
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 2.1. Confidential Information means all confidential information relating to the Purpose which the Disclosing Party or any of its Affiliates, discloses or makes available, to the Receiving Party or any of its Affiliates, before, on or after the Effective Date.  This includes: a) the fact that discussions and negotiations are taking place concerning the Purpose and the status of those discussions and negotiations;
 HYPOTHESIS:
@@ -2063,14 +2299,14 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is entailment
+final answer: their relationship is neutral.
 
-1) if you accept that a
+now, let's see what's the
 ----------------------------------------------------------------------
 
 ID: 149
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Confidential Information - information of whatever kind and in whatever form contained (and includes in particular but without prejudice to the generality of the foregoing, documents, drawings, computerized information, films, tapes, specifications, designs, models, equipment or data of any kind) which is clearly identified by the Disclosing Party as confidential by an appropriate legend or if orally disclosed then upon disclosure or within 30 days of such oral disclosure identified in writing by the Disclosing Party as confidential.
 HYPOTHESIS:
@@ -2078,14 +2314,17 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is 'entailment'
-reasoning:
-confidential
+final answer: their relationship is neutral.
+answer:
+
+answer:
+$$
+\boxed
 ----------------------------------------------------------------------
 
 ID: 150
 GOLD: entailment
-PRED: neutral
+PRED: unknown
 PREMISE:
 Confidential Information - information of whatever kind and in whatever form contained (and includes in particular but without prejudice to the generality of the foregoing, documents, drawings, computerized information, films, tapes, specifications, designs, models, equipment or data of any kind) which is clearly identified by the Disclosing Party as confidential by an appropriate legend or if orally disclosed then upon disclosure or within 30 days of such oral disclosure identified in writing by the Disclosing Party as confidential.
 HYPOTHESIS:
@@ -2093,9 +2332,10 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is neutral.
+final answer: their relationship is __________.
 
-explanation: both the premise
+answer in the box.
+- entail
 ----------------------------------------------------------------------
 
 ID: 151
@@ -2108,12 +2348,13 @@ Receiving Party may independently develop information similar to Confidential In
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is 'neutral'.
+final answer: their relationship is neutral.
+the information in the premise and hypothesis is
 ----------------------------------------------------------------------
 
 ID: 152
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 5.1. Upon the Disclosing Party’s written request, the Receiving Party shall (as requested by the Disclosing Party) either return to the Disclosing Party or destroy (provided that any such destruction shall be confirmed in writing by the Receiving Party) all Confidential Information of the Disclosing Party including all copies, reproductions, notes, extracts and summaries which include, reflect, incorporate or otherwise contain the Disclosing Party’s Confidential Information whether in tangible form or otherwise, such as electronic mail or computer files. 5.2. Clause 5.1 of this Agreement shall not apply to: a) Confidential Information held electronically in archive or back-up systems which are not otherwise reasonably retrievable by the Representatives of the Receiving Party or its Affiliates; or b) Copies of Confidential Information which must be retained by the Receiving Party pursuant to applicable law. 5.3. The provisions of this Agreement shall continue to apply to any documents and materials retained by the Receiving Party pursuant to clause 5.2 of this Agreement.
 HYPOTHESIS:
@@ -2121,14 +2362,18 @@ Receiving Party may retain some Confidential Information even after the return o
 RAW_DECODED:
 of confidential information.'
 
-final answer: their relationship is: entailment
-(reasoning):
-a
+final answer: their relationship is neutral.
+answer:
+
+neutral
+answer:
+
+neutral
 ----------------------------------------------------------------------
 
 ID: 153
 GOLD: entailment
-PRED: entailment
+PRED: unknown
 PREMISE:
 Confidential Information - information of whatever kind and in whatever form contained (and includes in particular but without prejudice to the generality of the foregoing, documents, drawings, computerized information, films, tapes, specifications, designs, models, equipment or data of any kind) which is clearly identified by the Disclosing Party as confidential by an appropriate legend or if orally disclosed then upon disclosure or within 30 days of such oral disclosure identified in writing by the Disclosing Party as confidential.
 HYPOTHESIS:
@@ -2136,13 +2381,15 @@ Confidential Information may include verbally conveyed information.
 RAW_DECODED:
 verbally conveyed information.'
 
-final answer: their relationship is entailment.
-explanation: given the premise, "
+final answer: their relationship is __________.
+answer:
+entailment
+explanation
 ----------------------------------------------------------------------
 
 ID: 154
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 5.1. Upon the Disclosing Party’s written request, the Receiving Party shall (as requested by the Disclosing Party) either return to the Disclosing Party or destroy (provided that any such destruction shall be confirmed in writing by the Receiving Party) all Confidential Information of the Disclosing Party including all copies, reproductions, notes, extracts and summaries which include, reflect, incorporate or otherwise contain the Disclosing Party’s Confidential Information whether in tangible form or otherwise, such as electronic mail or computer files. 5.2. Clause 5.1 of this Agreement shall not apply to: a) Confidential Information held electronically in archive or back-up systems which are not otherwise reasonably retrievable by the Representatives of the Receiving Party or its Affiliates; or b) Copies of Confidential Information which must be retained by the Receiving Party pursuant to applicable law. 5.3. The provisions of this Agreement shall continue to apply to any documents and materials retained by the Receiving Party pursuant to clause 5.2 of this Agreement.
 HYPOTHESIS:
@@ -2150,7 +2397,9 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is entailment. both statements are logically implied from the
+final answer: their relationship is neutral.
+
+reasoning: the premise describes the procedures
 ----------------------------------------------------------------------
 
 ID: 155
@@ -2164,13 +2413,16 @@ RAW_DECODED:
 professional advisors).'
 
 final answer: their relationship is neutral.
+answer:
 
-justification: the premise clearly says that
+neutral
+answer:
+neutral
 ----------------------------------------------------------------------
 
 ID: 156
 GOLD: entailment
-PRED: unknown
+PRED: neutral
 PREMISE:
 Subject to the terms of the NDA the Receiving Party hereby undertakes to the Disclosing Party: a) that it shall treat the Confidential Information directly or indirectly disclosed to it by the Disclosing Party as strictly confidential and will not without obtaining the prior written consent of the Disclosing Party disclose any part of the Confidential Information to any third party, except where compelled by law or regulation; b) that it shall not make use of any part of the Confidential Information disclosed to it by the Disclosing Party, except for LOA purposes; c) that it shall give access to the Confidential Information only,to those of its employees who need access to the Confidential Information for LOA purposes and will ensure that such employees adhere to the obligations and restrictions contained in the NDA; d) that it shall not copy or reproduce in any form any of the Confidential Information disclosed to it by the Disclosing Party, except to the extent necessary for the LOA purposes; and
 HYPOTHESIS:
@@ -2178,12 +2430,15 @@ Receiving Party may create a copy of some Confidential Information in some circu
 RAW_DECODED:
 in some circumstances.'
 
-final answer: their relationship is entailed, since there are no assumptions involved in
+final answer: their relationship is neutral.
+
+the two statements are:
+premise:
 ----------------------------------------------------------------------
 
 ID: 157
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 The Receiving Party shall notify the Disclosing Party immediately if it becomes aware that Confidential Information has been disclosed to or is in the possession of any person who is not authorized by the NDA to receive Confidential Information.
 HYPOTHESIS:
@@ -2191,12 +2446,14 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is entailment. you cannot determine whether the hypothesis is
+final answer: their relationship is neutral.
+
+now, check whether the hypothesis is a
 ----------------------------------------------------------------------
 
 ID: 158
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 The obligations under the NDA do not apply to information of the Disclosing Party which is: a) at the time of disclosure or thereafter available to the public generally through no failure on the part of the Receiving Party; b) known to the Receiving Party at the time of its disclosure; c) disclosed to the Receiving Party by a third party having the right to disclose Confidential Information and without restrictions as to use or disclosure; or
 HYPOTHESIS:
@@ -2204,15 +2461,14 @@ Receiving Party may acquire information similar to Confidential Information from
 RAW_DECODED:
 a third party.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-explanation:
-it is a valid
+because the information in the document is not
 ----------------------------------------------------------------------
 
 ID: 159
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Subject to the terms of the NDA the Receiving Party hereby undertakes to the Disclosing Party: a) that it shall treat the Confidential Information directly or indirectly disclosed to it by the Disclosing Party as strictly confidential and will not without obtaining the prior written consent of the Disclosing Party disclose any part of the Confidential Information to any third party, except where compelled by law or regulation; b) that it shall not make use of any part of the Confidential Information disclosed to it by the Disclosing Party, except for LOA purposes; c) that it shall give access to the Confidential Information only,to those of its employees who need access to the Confidential Information for LOA purposes and will ensure that such employees adhere to the obligations and restrictions contained in the NDA;
 HYPOTHESIS:
@@ -2220,15 +2476,14 @@ Receiving Party may share some Confidential Information with some of Receiving P
 RAW_DECODED:
 party's employees.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-instructions:
-consider all three possibilities,
+now, let's look at the clinical
 ----------------------------------------------------------------------
 
 ID: 160
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Subject to the terms of the NDA the Receiving Party hereby undertakes to the Disclosing Party: a) that it shall treat the Confidential Information directly or indirectly disclosed to it by the Disclosing Party as strictly confidential and will not without obtaining the prior written consent of the Disclosing Party disclose any part of the Confidential Information to any third party, except where compelled by law or regulation; b) that it shall not make use of any part of the Confidential Information disclosed to it by the Disclosing Party, except for LOA purposes;
 HYPOTHESIS:
@@ -2236,12 +2491,14 @@ Receiving Party shall not use any Confidential Information for any purpose other
 RAW_DECODED:
 stated in agreement.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+okay, let's see. the premise
 ----------------------------------------------------------------------
 
 ID: 161
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Subject to the terms of the NDA the Receiving Party hereby undertakes to the Disclosing Party: a) that it shall treat the Confidential Information directly or indirectly disclosed to it by the Disclosing Party as strictly confidential and will not without obtaining the prior written consent of the Disclosing Party disclose any part of the Confidential Information to any third party, except where compelled by law or regulation; b) that it shall not make use of any part of the Confidential Information disclosed to it by the Disclosing Party, except for LOA purposes;
 HYPOTHESIS:
@@ -2249,14 +2506,15 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-explanation: there is an entailment
+the answer is: neutral.
+answer:
 ----------------------------------------------------------------------
 
 ID: 162
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 The Receiving Party shall notify the Disclosing Party immediately if it becomes aware that Confidential Information has been disclosed to or is in the possession of any person who is not authorized by the NDA to receive Confidential Information.
 HYPOTHESIS:
@@ -2264,14 +2522,12 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment.
-
-1. premise: the re
+final answer: their relationship is neutral because the two statements are about different things related
 ----------------------------------------------------------------------
 
 ID: 163
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 5.3.2. The disclosure of Confidential Information to Recipient or its Representatives shall not give Recipient or its Representatives any licence or other rights in relation to that Confidential Information beyond the rights contained in this Agreement.
 HYPOTHESIS:
@@ -2279,15 +2535,13 @@ Agreement shall not grant Receiving Party any right to Confidential Information.
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is:
-* entailment
-* neutral
-*
+final answer: their relationship is neutral.
+the premise is that the agreement shall not
 ----------------------------------------------------------------------
 
 ID: 164
 GOLD: entailment
-PRED: unknown
+PRED: neutral
 PREMISE:
 3.5. "Confidential information" means any information of whatever form relating to the Project or Discloser or any of its Affiliates or Clients, supplied or made available by Discloser or on its behalf to recipient or Recipient Representatives, copies of any such information regardless of whether such information is identified as confidential or not; and information regarding: 3.5.1. The existence of the Project; 3.5.2. The identity of the Discloser and the willingness of the Discloser to enter into discussions and/or negotiations regarding the Project; 3.5.3. Any information including those parts of analyses, compilations, studies and other documents which contain, reflect or are derived from such information referred to in this Clause 3.4 or discussions and negotiations relating to the project.
 HYPOTHESIS:
@@ -2295,12 +2549,13 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is neither entailment, nor contradiction, nor neutral.
+final answer: their relationship is neutral.
+okay, let me try to work through
 ----------------------------------------------------------------------
 
 ID: 165
 GOLD: contradiction
-PRED: entailment
+PRED: neutral
 PREMISE:
 7.3.1. The obligations of confidentiality, non-disclosure and non-use set forth in this Confidentiality Agreement shall survive the termination or expiration of this Confidentiality Agreement  (i) with respect to any Confidential Information that constitutes a trade secret under applicable law, for so long as such item shall continue to constitute a trade secret under applicable law, and
 HYPOTHESIS:
@@ -2308,7 +2563,12 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is entailment because if 7.3.1
+final answer: their relationship is neutral.
+answer:
+neutral
+
+answer:
+neutral
 ----------------------------------------------------------------------
 
 ID: 166
@@ -2321,10 +2581,10 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is neutral
+final answer: their relationship is neutral.
+answer: neutral
 
-example solution:
-assuming that
+**reasoning:
 ----------------------------------------------------------------------
 
 ID: 167
@@ -2338,11 +2598,12 @@ RAW_DECODED:
 termination of agreement.'
 
 final answer: their relationship is neutral.
+the premises do not provide enough information to
 ----------------------------------------------------------------------
 
 ID: 168
 GOLD: neutral
-PRED: contradiction
+PRED: neutral
 PREMISE:
 The obligations under the NDA do not apply to information of the Disclosing Party which is: a) at the time of disclosure or thereafter available to the public generally through no failure on the part of the Receiving Party; b) known to the Receiving Party at the time of its disclosure; c) disclosed to the Receiving Party by a third party having the right to disclose Confidential Information and without restrictions as to use or disclosure; or
 HYPOTHESIS:
@@ -2350,12 +2611,16 @@ Receiving Party may independently develop information similar to Confidential In
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is 'contradiction' (hyp) is the
+final answer: their relationship is neutral.
+```
+```
+```
+```
 ----------------------------------------------------------------------
 
 ID: 169
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 8.1.2. Clause 8.1 shall not apply to Confidential Information which  i) must be stored by Recipient according to provisions of mandatory law or  ii) was made as a matter of routine backup provided that such Confidential Information and copies thereof shall be subject to an indefinite confidential obligation according to the terms and conditions set forth herein until returned and/or destroyed, as the case may be. 9. OTHER PROVISIONS
 HYPOTHESIS:
@@ -2363,12 +2628,16 @@ Receiving Party may retain some Confidential Information even after the return o
 RAW_DECODED:
 of confidential information.'
 
-final answer: their relationship is: entailment.
+final answer: their relationship is neutral.
+
+let me process this. 
+
+first,
 ----------------------------------------------------------------------
 
 ID: 170
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Subject to the terms of the NDA the Receiving Party hereby undertakes to the Disclosing Party: a) that it shall treat the Confidential Information directly or indirectly disclosed to it by the Disclosing Party as strictly confidential and will not without obtaining the prior written consent of the Disclosing Party disclose any part of the Confidential Information to any third party, except where compelled by law or regulation; b) that it shall not make use of any part of the Confidential Information disclosed to it by the Disclosing Party, except for LOA purposes; c) that it shall give access to the Confidential Information only,to those of its employees who need access to the Confidential Information for LOA purposes and will ensure that such employees adhere to the obligations and restrictions contained in the NDA;
 HYPOTHESIS:
@@ -2376,7 +2645,11 @@ Confidential Information may include verbally conveyed information.
 RAW_DECODED:
 verbally conveyed information.'
 
-final answer: their relationship is entailment. the second statement, "confidential
+final answer: their relationship is neutral.
+
+answer: neutral
+
+okay, let's
 ----------------------------------------------------------------------
 
 ID: 171
@@ -2389,7 +2662,11 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is neutral. the hypothesis can be true or false without
+final answer: their relationship is neutral.
+
+###
+
+the two statements do not provide enough
 ----------------------------------------------------------------------
 
 ID: 172
@@ -2402,12 +2679,17 @@ Receiving Party may share some Confidential Information with some third-parties 
 RAW_DECODED:
 professional advisors).'
 
-final answer: their relationship is 'neutral', because neither entailment nor contradiction.
+final answer: their relationship is neutral.
+answer:
+neutral
+
+answer:
+neutr
 ----------------------------------------------------------------------
 
 ID: 173
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 Subject to the terms of the NDA the Receiving Party hereby undertakes to the Disclosing Party: a) that it shall treat the Confidential Information directly or indirectly disclosed to it by the Disclosing Party as strictly confidential and will not without obtaining the prior written consent of the Disclosing Party disclose any part of the Confidential Information to any third party, except where compelled by law or regulation; b) that it shall not make use of any part of the Confidential Information disclosed to it by the Disclosing Party, except for LOA purposes; c) that it shall give access to the Confidential Information only,to those of its employees who need access to the Confidential Information for LOA purposes and will ensure that such employees adhere to the obligations and restrictions contained in the NDA; d) that it shall not copy or reproduce in any form any of the Confidential Information disclosed to it by the Disclosing Party, except to the extent necessary for the LOA purposes; and
 HYPOTHESIS:
@@ -2415,15 +2697,14 @@ Receiving Party may create a copy of some Confidential Information in some circu
 RAW_DECODED:
 in some circumstances.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is 'neutral'.
 
-explanation:
-if the hypothesis must be
+the input is a clinical statement,
 ----------------------------------------------------------------------
 
 ID: 174
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 5.2. The obligations in Clause 5.1 shall not apply for Confidential Information that: 5.2.1. was, at the time of its disclosure, in the public domain or which, after Discloser's disclosure, comes into the public domain, unless it is in the public domain as a result of: a) a breach by Recipient of its obligations contained in this Agreement (or by any person to whom disclosure of information is made as permitted under this Agreement); or b) a breach by a third party of any other obligation or duty of confidentiality or non-disclosure relating to that information that Recipient is or ought to be aware of; 5.2.2. was or becomes available to Recipient on a non-confidential basis provided that the source is not known to Recipient to be bound by a confidentiality agreement and is not otherwise in breach of any obligation of confidentiality or restricted use; 5.2.3. is otherwise agreed in writing by Discloser to no longer being confidential and/or restricted; or 5.2.4. is required to be disclosed by law, regulation or any competent governmental, judicial or regulatory authority, or by a recognized stock exchange, or in response to a request from a regulatory body with a supervisory role over Recipient or any of its Affiliates, in which case Recipient will (or, if Recipient's Representative is subject to the disclosure obligation, Recipient will procure that such Representative will), in each case to the extent permitted by law, regulation or the relevant authority: a) inform  Discloser of the circumstances of the disclosure and the information that will be disclosed as soon as reasonably practicable;
 HYPOTHESIS:
@@ -2431,12 +2712,12 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral because the premise and the hypothesis are about the
 ----------------------------------------------------------------------
 
 ID: 175
 GOLD: entailment
-PRED: entailment
+PRED: unknown
 PREMISE:
 5.2. The obligations in Clause 5.1 shall not apply for Confidential Information that: 5.2.1. was, at the time of its disclosure, in the public domain or which, after Discloser's disclosure, comes into the public domain, unless it is in the public domain as a result of: a) a breach by Recipient of its obligations contained in this Agreement (or by any person to whom disclosure of information is made as permitted under this Agreement); or b) a breach by a third party of any other obligation or duty of confidentiality or non-disclosure relating to that information that Recipient is or ought to be aware of; 5.2.2. was or becomes available to Recipient on a non-confidential basis provided that the source is not known to Recipient to be bound by a confidentiality agreement and is not otherwise in breach of any obligation of confidentiality or restricted use;
 HYPOTHESIS:
@@ -2444,12 +2725,15 @@ Receiving Party may acquire information similar to Confidential Information from
 RAW_DECODED:
 a third party.'
 
-final answer: their relationship is entailment
+final answer: their relationship is: \boxed{neutral}
+```
+
+```
 ----------------------------------------------------------------------
 
 ID: 176
 GOLD: entailment
-PRED: entailment
+PRED: unknown
 PREMISE:
 3.8. "Representatives" means, in relation to a Party to the extent involved in the Project,  (a) its Affiliates;  (b) its contractors / suppliers of any tier and  (c) all of the aforementioned entities' employees, directors, senior executives, professional advisors and consultants. 4. BACKGROUND 4.1. The Parties intend to engage in a Project/Projects where the Discloser will facilitate consultation(s) (in-person or remote, e.g. via telephone conference) between its Client and the Recipient ("Subject-matter expert consultations").  The Parties will as part of the Project disclose to each other certain non-public Confidential Information, subject to the terms and conditions set out in this Agreement, which both Parties hereby accept. 5. CONFIDENTIALITY AND RESTRICTED USE 5.1. Recipient shall: 5.1.1. hold Confidential Information in confidence and protect it by using at least the same degree of care, but no less than a reasonable degree of care, as Recipient uses to safeguard its own confidential or proprietary information of a like nature from unauthorized use, disclosure or dissemination; 5.1.2. use Confidential Information only for the Project; 5.1.3. not copy or reproduce (or permit to be copied or reproduced) any Confidential Information, or directly or indirectly disclose or distribute any of it to any person other than those of its Representatives who are strictly required to perform Recipient's work in relation to the Project.
 HYPOTHESIS:
@@ -2457,12 +2741,13 @@ Receiving Party may share some Confidential Information with some of Receiving P
 RAW_DECODED:
 party's employees.'
 
-final answer: their relationship is entailment, because if they are both true then
+final answer: their relationship is [ ].
+answer: entailing, contradiction,
 ----------------------------------------------------------------------
 
 ID: 177
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 5.1. Recipient shall: 5.1.1. hold Confidential Information in confidence and protect it by using at least the same degree of care, but no less than a reasonable degree of care, as Recipient uses to safeguard its own confidential or proprietary information of a like nature from unauthorized use, disclosure or dissemination; 5.1.2. use Confidential Information only for the Project;
 HYPOTHESIS:
@@ -2470,12 +2755,12 @@ Receiving Party shall not use any Confidential Information for any purpose other
 RAW_DECODED:
 stated in agreement.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral because the two statements do not address the same
 ----------------------------------------------------------------------
 
 ID: 178
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 3.8. "Representatives" means, in relation to a Party to the extent involved in the Project,  (a) its Affiliates;  (b) its contractors / suppliers of any tier and  (c) all of the aforementioned entities' employees, directors, senior executives, professional advisors and consultants. 4. BACKGROUND 4.1. The Parties intend to engage in a Project/Projects where the Discloser will facilitate consultation(s) (in-person or remote, e.g. via telephone conference) between its Client and the Recipient ("Subject-matter expert consultations").  The Parties will as part of the Project disclose to each other certain non-public Confidential Information, subject to the terms and conditions set out in this Agreement, which both Parties hereby accept. 5. CONFIDENTIALITY AND RESTRICTED USE 5.1. Recipient shall: 5.1.1. hold Confidential Information in confidence and protect it by using at least the same degree of care, but no less than a reasonable degree of care, as Recipient uses to safeguard its own confidential or proprietary information of a like nature from unauthorized use, disclosure or dissemination; 5.1.2. use Confidential Information only for the Project; 5.1.3. not copy or reproduce (or permit to be copied or reproduced) any Confidential Information, or directly or indirectly disclose or distribute any of it to any person other than those of its Representatives who are strictly required to perform Recipient's work in relation to the Project.
 HYPOTHESIS:
@@ -2483,13 +2768,14 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is:
-* entailment (the hypothesis must be true
+final answer: their relationship is neutral.
+
+based on the information provided, the answer
 ----------------------------------------------------------------------
 
 ID: 179
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 3.8. "Representatives" means, in relation to a Party to the extent involved in the Project,  (a) its Affiliates;  (b) its contractors / suppliers of any tier and  (c) all of the aforementioned entities' employees, directors, senior executives, professional advisors and consultants. 4. BACKGROUND 4.1. The Parties intend to engage in a Project/Projects where the Discloser will facilitate consultation(s) (in-person or remote, e.g. via telephone conference) between its Client and the Recipient ("Subject-matter expert consultations").  The Parties will as part of the Project disclose to each other certain non-public Confidential Information, subject to the terms and conditions set out in this Agreement, which both Parties hereby accept. 5. CONFIDENTIALITY AND RESTRICTED USE 5.1. Recipient shall: 5.1.1. hold Confidential Information in confidence and protect it by using at least the same degree of care, but no less than a reasonable degree of care, as Recipient uses to safeguard its own confidential or proprietary information of a like nature from unauthorized use, disclosure or dissemination; 5.1.2. use Confidential Information only for the Project; 5.1.3. not copy or reproduce (or permit to be copied or reproduced) any Confidential Information, or directly or indirectly disclose or distribute any of it to any person other than those of its Representatives who are strictly required to perform Recipient's work in relation to the Project.
 HYPOTHESIS:
@@ -2497,12 +2783,15 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is entailment since 3.8. represents the
+final answer: their relationship is neutral.
+
+**final answer:**
+the relationship is
 ----------------------------------------------------------------------
 
 ID: 180
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 2.2  The disclosure of Conﬁdential Information by the Disclosing Party to the Receiving Party shall in no way be construed to imply any transfer of rights connected with the Conﬁdential Information including, without limitation, any trade marks or business secrets.
 HYPOTHESIS:
@@ -2510,13 +2799,13 @@ Agreement shall not grant Receiving Party any right to Confidential Information.
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is entailment.
-note: a correct answer is provided
+final answer: their relationship is neutral. 
+so, the answer should be one
 ----------------------------------------------------------------------
 
 ID: 181
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 5.1  Save as otherwise permitted herein, a Receiving Party shall not, and shall procure that its  Personnel do not, at any time without the Disclosing Party’s prior written consent: (a) disclose the Conﬁdential Information to any third party, either directly or indirectly; or (b) disclose to any person:  - (i) the fact that discussions or negotiations are taking place between the Parties;
 HYPOTHESIS:
@@ -2524,14 +2813,14 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-the two clinical statements can be analyzed
+now, consider the statements as a whole
 ----------------------------------------------------------------------
 
 ID: 182
 GOLD: contradiction
-PRED: entailment
+PRED: neutral
 PREMISE:
 Conﬁdential Information means:- (a) information relating to the Disclosing Party regarding its business, partners, customers or ﬁnancial aﬀairs (including details relating to any software the copyright in respect of which is vested in the Disclosing Party) which is obtained by the Receiving Party, either before or after this undertaking is entered into and either in writing or orally from or pursuant to the discussions with the Personnel of the Disclosing Party; (b) those portions of analyses, compilations, studies, reports and other documents prepared by the Disclosing Party which contain or otherwise reﬂect or are generated from any such information as is speciﬁed in paragraph  (a) above; (c) information of a commercially sensitive nature relating to the Disclosing Party obtained by observation during any visits to the Disclosing Party’s premises but subject always to the proviso set out in clause.
 HYPOTHESIS:
@@ -2539,12 +2828,16 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
+
+answer: neutral
+
+based on the information
 ----------------------------------------------------------------------
 
 ID: 183
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 3.8. "Representatives" means, in relation to a Party to the extent involved in the Project,  (a) its Affiliates;  (b) its contractors / suppliers of any tier and  (c) all of the aforementioned entities' employees, directors, senior executives, professional advisors and consultants. 4. BACKGROUND 4.1. The Parties intend to engage in a Project/Projects where the Discloser will facilitate consultation(s) (in-person or remote, e.g. via telephone conference) between its Client and the Recipient ("Subject-matter expert consultations").  The Parties will as part of the Project disclose to each other certain non-public Confidential Information, subject to the terms and conditions set out in this Agreement, which both Parties hereby accept. 5. CONFIDENTIALITY AND RESTRICTED USE 5.1. Recipient shall: 5.1.1. hold Confidential Information in confidence and protect it by using at least the same degree of care, but no less than a reasonable degree of care, as Recipient uses to safeguard its own confidential or proprietary information of a like nature from unauthorized use, disclosure or dissemination; 5.1.2. use Confidential Information only for the Project; 5.1.3. not copy or reproduce (or permit to be copied or reproduced) any Confidential Information, or directly or indirectly disclose or distribute any of it to any person other than those of its Representatives who are strictly required to perform Recipient's work in relation to the Project.
 HYPOTHESIS:
@@ -2552,12 +2845,12 @@ All Confidential Information shall be expressly identified by the Disclosing Par
 RAW_DECODED:
 disclosing party.'
 
-final answer: their relationship is 'entailment'.
+final answer: their relationship is neutral because the premises provide information about the recipient
 ----------------------------------------------------------------------
 
 ID: 184
 GOLD: entailment
-PRED: contradiction
+PRED: neutral
 PREMISE:
 2.3 A Receiving Party’s obligations in respect of Conﬁdential Information made available by the Disclosing Party pursuant to this Agreement shall continue notwithstanding the termination of the Purpose. 3 Safekeeping 3.1 A Receiving Party shall treat and safeguard as private and conﬁdential all of the Conﬁdential Information and will take all reasonable precautions in dealing with any Conﬁdential Information so as to prevent any third party from having access to the Conﬁdential Information.
 HYPOTHESIS:
@@ -2565,12 +2858,14 @@ Some obligations of Agreement may survive termination of Agreement.
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is: contradiction. in order for the second statement (
+final answer: their relationship is neutral.
+
+now, analyze carefully the two statements to
 ----------------------------------------------------------------------
 
 ID: 185
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 7.1  These terms and conditions will not apply to any Conﬁdential Information which: (a) is in or becomes part of the public domain or is or otherwise becomes public knowledge by any means other than by breach by a Receiving Party or their Personnel of any obligation contained herein; (b) was previously or is at any time hereafter disclosed to a Receiving Party by any third Party having the right to disclose the same provided that such source is not known to the Receiving Party to be bound by a conﬁdentiality agreement with, or other obligation to secrecy to, the Disclosing Party; (c) is released from the provisions of this undertaking by prior written consent given by a director or authorised representative of the Disclosing Party; or (d) was otherwise independently acquired or developed by the Receiving Party without violating its obligations hereunder.
 HYPOTHESIS:
@@ -2578,7 +2873,10 @@ Receiving Party may independently develop information similar to Confidential In
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is 'entailment'.
+final answer: their relationship is neutral.
+
+now, analyze the two statements.
+based
 ----------------------------------------------------------------------
 
 ID: 186
@@ -2593,12 +2891,15 @@ of confidential information.'
 
 final answer: their relationship is neutral.
 
-source: https://www.investop
+answer:
+neutral
+
+the answer is:
 ----------------------------------------------------------------------
 
 ID: 187
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Conﬁdential Information means:- (a) information relating to the Disclosing Party regarding its business, partners, customers or ﬁnancial aﬀairs (including details relating to any software the copyright in respect of which is vested in the Disclosing Party) which is obtained by the Receiving Party, either before or after this undertaking is entered into and either in writing or orally from or pursuant to the discussions with the Personnel of the Disclosing Party;
 HYPOTHESIS:
@@ -2606,15 +2907,14 @@ Confidential Information may include verbally conveyed information.
 RAW_DECODED:
 verbally conveyed information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-explanation:
-premise (hypo
+please explain why the reasoning steps are correct
 ----------------------------------------------------------------------
 
 ID: 188
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 3.8. "Representatives" means, in relation to a Party to the extent involved in the Project,  (a) its Affiliates;  (b) its contractors / suppliers of any tier and  (c) all of the aforementioned entities' employees, directors, senior executives, professional advisors and consultants. 4. BACKGROUND 4.1. The Parties intend to engage in a Project/Projects where the Discloser will facilitate consultation(s) (in-person or remote, e.g. via telephone conference) between its Client and the Recipient ("Subject-matter expert consultations").  The Parties will as part of the Project disclose to each other certain non-public Confidential Information, subject to the terms and conditions set out in this Agreement, which both Parties hereby accept. 5. CONFIDENTIALITY AND RESTRICTED USE 5.1. Recipient shall: 5.1.1. hold Confidential Information in confidence and protect it by using at least the same degree of care, but no less than a reasonable degree of care, as Recipient uses to safeguard its own confidential or proprietary information of a like nature from unauthorized use, disclosure or dissemination; 5.1.2. use Confidential Information only for the Project; 5.1.3. not copy or reproduce (or permit to be copied or reproduced) any Confidential Information, or directly or indirectly disclose or distribute any of it to any person other than those of its Representatives who are strictly required to perform Recipient's work in relation to the Project.
 HYPOTHESIS:
@@ -2622,12 +2922,15 @@ Receiving Party shall not solicit some of Disclosing Party's representatives.
 RAW_DECODED:
 party's representatives.'
 
-final answer: their relationship is: entailment. 3.8. "
+final answer: their relationship is neutral.
+
+### the answer:
+the correct answer is
 ----------------------------------------------------------------------
 
 ID: 189
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 Personnel means any and all staﬀ, employees, directors, oﬃcers and professional advisors of a Party Purpose means any and all discussions and negotiations relating to a potential agreement between the Parties hereto as more particularly set out in Recital  (A) Receiving Party means the Party who is in receipt of Conﬁdential Information 2 The Commitment 2.1  In consideration of each Party agreeing to supply the other Party with Conﬁdential Information for the Purpose, and in consideration of the mutual undertakings set out herein the Parties each hereby separately agree and irrevocably undertake to each other that they will only use Conﬁdential Information for the Purpose and otherwise to act in accordance with the terms and conditions hereinafter contained. 2.2  The disclosure of Conﬁdential Information by the Disclosing Party to the Receiving Party shall in no way be construed to imply any transfer of rights connected with the Conﬁdential Information including, without limitation, any trade marks or business secrets. 2.3 A Receiving Party’s obligations in respect of Conﬁdential Information made available by the Disclosing Party pursuant to this Agreement shall continue notwithstanding the termination of the Purpose. 3 Safekeeping 3.1 A Receiving Party shall treat and safeguard as private and conﬁdential all of the Conﬁdential Information and will take all reasonable precautions in dealing with any Conﬁdential Information so as to prevent any third party from having access to the Conﬁdential Information. 4 Limited internal dissemination 4.1 A Receiving Party shall only disclose or reveal any Conﬁdential Information disclosed to it to those of its Personnel who are required in the course of their duties to receive and consider the same in so far as is necessary to fulﬁl the Purpose.
 HYPOTHESIS:
@@ -2635,9 +2938,9 @@ Receiving Party may share some Confidential Information with some third-parties 
 RAW_DECODED:
 professional advisors).'
 
-final answer: their relationship is entailment
+final answer: their relationship is neutral.
 
-the correct answer is entailment.
+now, analyze the logical relationship between the
 ----------------------------------------------------------------------
 
 ID: 190
@@ -2650,12 +2953,12 @@ Receiving Party may create a copy of some Confidential Information in some circu
 RAW_DECODED:
 in some circumstances.'
 
-final answer: their relationship is neutral.
+final answer: their relationship is neutral because the statement could be true or false without
 ----------------------------------------------------------------------
 
 ID: 191
 GOLD: neutral
-PRED: entailment
+PRED: unknown
 PREMISE:
 3.8. "Representatives" means, in relation to a Party to the extent involved in the Project,  (a) its Affiliates;  (b) its contractors / suppliers of any tier and  (c) all of the aforementioned entities' employees, directors, senior executives, professional advisors and consultants. 4. BACKGROUND 4.1. The Parties intend to engage in a Project/Projects where the Discloser will facilitate consultation(s) (in-person or remote, e.g. via telephone conference) between its Client and the Recipient ("Subject-matter expert consultations").  The Parties will as part of the Project disclose to each other certain non-public Confidential Information, subject to the terms and conditions set out in this Agreement, which both Parties hereby accept. 5. CONFIDENTIALITY AND RESTRICTED USE 5.1. Recipient shall: 5.1.1. hold Confidential Information in confidence and protect it by using at least the same degree of care, but no less than a reasonable degree of care, as Recipient uses to safeguard its own confidential or proprietary information of a like nature from unauthorized use, disclosure or dissemination; 5.1.2. use Confidential Information only for the Project; 5.1.3. not copy or reproduce (or permit to be copied or reproduced) any Confidential Information, or directly or indirectly disclose or distribute any of it to any person other than those of its Representatives who are strictly required to perform Recipient's work in relation to the Project.
 HYPOTHESIS:
@@ -2663,12 +2966,14 @@ Receiving Party shall notify Disclosing Party in case Receiving Party is require
 RAW_DECODED:
 any confidential information.'
 
-final answer: their relationship is entailment. there is a relation between the two
+final answer: their relationship is not clear.
+
+wait, that's not correct.
 ----------------------------------------------------------------------
 
 ID: 192
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 7.1  These terms and conditions will not apply to any Conﬁdential Information which: (a) is in or becomes part of the public domain or is or otherwise becomes public knowledge by any means other than by breach by a Receiving Party or their Personnel of any obligation contained herein; (b) was previously or is at any time hereafter disclosed to a Receiving Party by any third Party having the right to disclose the same provided that such source is not known to the Receiving Party to be bound by a conﬁdentiality agreement with, or other obligation to secrecy to, the Disclosing Party; (c) is released from the provisions of this undertaking by prior written consent given by a director or authorised representative of the Disclosing Party; or (d) was otherwise independently acquired or developed by the Receiving Party without violating its obligations hereunder.
 HYPOTHESIS:
@@ -2676,7 +2981,11 @@ Receiving Party may acquire information similar to Confidential Information from
 RAW_DECODED:
 a third party.'
 
-final answer: their relationship is entailment. the premise that the receiving party
+final answer: their relationship is neutral.
+answer:
+neutral
+answer:
+neutral
 ----------------------------------------------------------------------
 
 ID: 193
@@ -2690,11 +2999,14 @@ RAW_DECODED:
 party's employees.'
 
 final answer: their relationship is neutral.
+
+the answer is:
+\boxed{neutral
 ----------------------------------------------------------------------
 
 ID: 194
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 In consideration of each Party agreeing to supply the other Party with Conﬁdential Information for the Purpose, and in consideration of the mutual undertakings set out herein the Parties each hereby separately agree and irrevocably undertake to each other that they will only use Conﬁdential Information for the Purpose and otherwise to act in accordance with the terms and conditions hereinafter contained.
 HYPOTHESIS:
@@ -2702,7 +3014,8 @@ Receiving Party shall not use any Confidential Information for any purpose other
 RAW_DECODED:
 stated in agreement.'
 
-final answer: their relationship is entailment. the first statement (hypo
+final answer: their relationship is neutral.
+the answer is: \boxed{neutral
 ----------------------------------------------------------------------
 
 ID: 195
@@ -2715,9 +3028,9 @@ Receiving Party shall not reverse engineer any objects which embody Disclosing P
 RAW_DECODED:
 's confidential information.'
 
-final answer: their relationship is 'neutral'.
-explanation:
-we can say the hypothesis
+final answer: their relationship is neutral.
+
+let's see... the hypothesis is about
 ----------------------------------------------------------------------
 
 ID: 196
@@ -2730,13 +3043,15 @@ Receiving Party shall destroy or return some Confidential Information upon the t
 RAW_DECODED:
 termination of agreement.'
 
-final answer: their relationship is 'neutral' given the following reasons:
-given the
+final answer: their relationship is neutral.
+
+answer:
+the answer is: neutral.
 ----------------------------------------------------------------------
 
 ID: 197
 GOLD: entailment
-PRED: entailment
+PRED: neutral
 PREMISE:
 The Information, relating to the other party, shall remain the property of such other party (as Disclosing Party) and its disclosure shall not confer on the other party (as Receiving Party) any rights.
 HYPOTHESIS:
@@ -2744,15 +3059,14 @@ Agreement shall not grant Receiving Party any right to Confidential Information.
 RAW_DECODED:
 to confidential information.'
 
-final answer: their relationship is entailment.
+final answer: their relationship is neutral.
 
-solution:
-the first premise is
+let's look at it. the premise
 ----------------------------------------------------------------------
 
 ID: 198
 GOLD: neutral
-PRED: entailment
+PRED: neutral
 PREMISE:
 3.8. "Representatives" means, in relation to a Party to the extent involved in the Project,  (a) its Affiliates;  (b) its contractors / suppliers of any tier and  (c) all of the aforementioned entities' employees, directors, senior executives, professional advisors and consultants. 4. BACKGROUND 4.1. The Parties intend to engage in a Project/Projects where the Discloser will facilitate consultation(s) (in-person or remote, e.g. via telephone conference) between its Client and the Recipient ("Subject-matter expert consultations").  The Parties will as part of the Project disclose to each other certain non-public Confidential Information, subject to the terms and conditions set out in this Agreement, which both Parties hereby accept. 5. CONFIDENTIALITY AND RESTRICTED USE 5.1. Recipient shall: 5.1.1. hold Confidential Information in confidence and protect it by using at least the same degree of care, but no less than a reasonable degree of care, as Recipient uses to safeguard its own confidential or proprietary information of a like nature from unauthorized use, disclosure or dissemination; 5.1.2. use Confidential Information only for the Project; 5.1.3. not copy or reproduce (or permit to be copied or reproduced) any Confidential Information, or directly or indirectly disclose or distribute any of it to any person other than those of its Representatives who are strictly required to perform Recipient's work in relation to the Project.
 HYPOTHESIS:
@@ -2760,12 +3074,12 @@ Receiving Party shall not disclose the fact that Agreement was agreed or negotia
 RAW_DECODED:
 agreed or negotiated.'
 
-final answer: their relationship is 'entailment' because a necessary condition of
+final answer: their relationship is neutral because the answer could be true or false without
 ----------------------------------------------------------------------
 
 ID: 199
 GOLD: neutral
-PRED: unknown
+PRED: neutral
 PREMISE:
 5.1. Recipient shall: 5.1.1. hold Confidential Information in confidence and protect it by using at least the same degree of care, but no less than a reasonable degree of care, as Recipient uses to safeguard its own confidential or proprietary information of a like nature from unauthorized use, disclosure or dissemination; 5.1.2. use Confidential Information only for the Project;
 HYPOTHESIS:
@@ -2773,23 +3087,23 @@ Confidential Information shall only include technical information.
 RAW_DECODED:
 include technical information.'
 
-final answer: their relationship is not entailment.
-confidential information does not include
+final answer: their relationship is neutral.
+based on the information in the two statements
 ----------------------------------------------------------------------
 
 
 
 ======================================================================
 === FINAL METRICS SUMMARY ===
-Accuracy: 0.3800
-Macro-F1: 0.2659
-Macro-F1 95% bootstrap CI (n_boot=1000): [0.2207, 0.3081]
+Accuracy: 0.4550
+Macro-F1: 0.2232
+Macro-F1 95% bootstrap CI (n_boot=1000): [0.1973, 0.2520]
 
 === Prediction Distribution ===
-  entailment: 129 (64.50%)
-  contradiction: 10 (5.00%)
-  neutral: 47 (23.50%)
-  unknown: 14 (7.00%)
+  entailment: 4 (2.00%)
+  contradiction: 1 (0.50%)
+  neutral: 183 (91.50%)
+  unknown: 12 (6.00%)
 
 === Ground Truth Distribution ===
   entailment: 86 (43.00%)
@@ -2798,28 +3112,28 @@ Macro-F1 95% bootstrap CI (n_boot=1000): [0.2207, 0.3081]
 
 === Confusion Matrix (rows=true, cols=pred) ===
 Labels: entailment, contradiction, neutral
-[[57  4 21]
- [11  0  7]
- [61  6 19]]
+[[ 1  1 77]
+ [ 1  0 16]
+ [ 2  0 90]]
 
 === Per-class Precision/Recall/F1/Support ===
-  entailment: precision=0.4419, recall=0.6628, f1=0.5302, support=86
+  entailment: precision=0.2500, recall=0.0116, f1=0.0222, support=86
   contradiction: precision=0.0000, recall=0.0000, f1=0.0000, support=19
-  neutral: precision=0.4043, recall=0.2000, f1=0.2676, support=95
+  neutral: precision=0.4918, recall=0.9474, f1=0.6475, support=95
 
 === Classification Report ===
                precision    recall  f1-score   support
 
-   entailment       0.44      0.66      0.53        86
+   entailment       0.25      0.01      0.02        86
 contradiction       0.00      0.00      0.00        19
-      neutral       0.40      0.20      0.27        95
+      neutral       0.49      0.95      0.65        95
 
-    micro avg       0.41      0.38      0.39       200
-    macro avg       0.28      0.29      0.27       200
- weighted avg       0.38      0.38      0.36       200
+    micro avg       0.48      0.46      0.47       200
+    macro avg       0.25      0.32      0.22       200
+ weighted avg       0.34      0.46      0.32       200
 
 
 === Error Rates per True Label ===
-  entailment: 30.49%
+  entailment: 98.73%
   contradiction: 100.00%
-  neutral: 77.91%
+  neutral: 2.17%

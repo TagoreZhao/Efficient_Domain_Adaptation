@@ -256,7 +256,8 @@ def evaluate_casehold(model,
                         return_dict_in_generate=True
                     )
 
-                decoded_output = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).lower()
+                outputs = outputs.sequences[0][len(inputs.input_ids[0])-10:].tolist()
+                decoded_output = tokenizer.decode(outputs, skip_special_tokens=True).lower()
                 match = re.search(r"the answer is\s*([0-4])\b", decoded_output)
                 if match:
                     prediction = int(match.group(1))
@@ -603,7 +604,8 @@ def evaluate_mednli(
                         pad_token_id=tokenizer.eos_token_id,
                     )
 
-                decoded_output = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).lower()
+                outputs = outputs.sequences[0][len(inputs.input_ids[0])-10:].tolist()
+                decoded_output = tokenizer.decode(outputs, skip_special_tokens=True).lower()
                 match = re.search(
                             r"\bTheir relationship is\b\s*[:\-]?\s*"
                             r"(?:\*\*|\*)?\s*"          # optional markdown emphasis opening
@@ -822,7 +824,8 @@ def evaluate_pubmedqa(
                         return_dict_in_generate=True,
                         pad_token_id=tokenizer.eos_token_id,
                     )
-                decoded_output = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True).lower()
+                outputs = outputs.sequences[0][len(inputs.input_ids[0])-10:].tolist()
+                decoded_output = tokenizer.decode(outputs, skip_special_tokens=True).lower()
                 match = re.search(
                             r"\bthe answer is\b\s*[:\-]?\s*"
                             r"(?:\*\*|\*)?\s*"          # optional markdown emphasis opening
