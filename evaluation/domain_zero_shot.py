@@ -88,7 +88,7 @@ def evaluate_contractnli(
                         return_dict_in_generate=True,
                         pad_token_id=tokenizer.eos_token_id,
                     )
-                outputs = outputs.sequences[0][len(inputs.input_ids[0]) :].tolist()
+                outputs = outputs.sequences[0][len(inputs.input_ids[0])-10:].tolist()
                 decoded_output = tokenizer.decode(outputs, skip_special_tokens=True).lower()
                 match = re.search(
                             r"\bTheir relationship is\b\s*[:\-]?\s*"
