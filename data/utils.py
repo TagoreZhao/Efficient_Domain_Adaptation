@@ -1,7 +1,8 @@
 from datasets import Dataset, Features, Value, Sequence
 from typing import Any, Dict, List, Optional
+from trl import apply_chat_template
 
-def to_prompt_completion(
+def to_prompt_completion_conversation(
     dataset: List[Dict[str, Any]],
     input_key: str = "input_text",
     target_key: str = "target_text",
@@ -28,7 +29,8 @@ def to_prompt_completion(
     return normalized
 
 def to_prompt_completion_hf(
-    dataset: List[Dict[str, Any]],
+    raw_data: List[Dict[str, Any]],
+    tokenizer: Any,
     input_key: str = "input_text",
     target_key: str = "target_text",
     drop_invalid: bool = True,
@@ -43,8 +45,8 @@ def to_prompt_completion_hf(
         }
 
     Args:
-        dataset: Raw records (list/sequence of dicts).
-        features: Hugging Face Features schema for the output dataset.
+        raw_data: Raw records (list/sequence of dicts).
+        tokenizer: Tokenizer to use for applying chat template.
         input_key: Key in each record containing the user prompt text/messages.
         target_key: Key in each record containing the assistant completion text/messages.
         system_prompt: Optional system message to prepend to each prompt.
@@ -53,8 +55,8 @@ def to_prompt_completion_hf(
     Returns:
         A `datasets.Dataset` with the provided `features`.
     """
-    formatted = to_prompt_completion(
-        dataset,
+    formatted = to_prompt_completion_conversation(
+        raw_data,
         input_key=input_key,
         target_key=target_key,
     )
@@ -65,4 +67,5 @@ def to_prompt_completion_hf(
             if "prompt" not in ex or "completion" not in ex:
                 raise ValueError(f"Formatted example {i} missing 'prompt'/'completion' keys: {ex!r}")
 
-    return Dataset.from_list(formatted)
+    dataset = Dataset.from_list(formatted)
+    return dataset.map(apply_chat_template, fn_kwargs={"tokenizer": tokenizer})

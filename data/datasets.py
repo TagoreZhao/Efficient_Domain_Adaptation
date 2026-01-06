@@ -22,6 +22,7 @@ def get_loaders(
     Dynamically choose which dataset to load. 
     'padding' argument is passed to those loaders that support it.
     """
+    tokenizer.padding_side = "left"
     if 'wikitext2' in name:
         # wikitext2 does not have a padding argument
         return get_wikitext2(nsamples, seed, seqlen, tokenizer)
@@ -173,7 +174,6 @@ def get_wikitext2(nsamples, seed, seqlen, tokenizer):
     # Load train and test datasets
     traindata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='train')
     testdata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='test')
-
     # Encode datasets
     trainenc = tokenizer(" ".join(traindata['text']), return_tensors='pt')
     testenc = tokenizer(" ".join(testdata['text']), return_tensors='pt')

@@ -1,49 +1,71 @@
-from ast import List
+
 import os
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from evaluation.domain_zero_shot import *
 import torch
-import pandas as pd
-from data.templates import *
-from tqdm import tqdm
-from data.datasets import construct_med_data
-from data.utils import *
-from trl import apply_chat_template
+from datasets import load_from_disk
+from trl import  SFTConfig, SFTTrainer
+from peft import LoraConfig, get_peft_model
 
 torch.cuda.empty_cache()
 
 model_name = "Qwen/Qwen3-0.6B"
-# model_save_dir = "model/downloaded"
+model_save_dir = "model/downloaded"
+peft_model_save_dir = os.path.join(model_save_dir, "test_qwen3_medical_lora")
+dataset_path = 'data/downloaded/test_medical_data'
 # os.makedirs(model_save_dir, exist_ok=True)
 
 # # load the tokenizer and the model
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-# model = AutoModelForCausalLM.from_pretrained(
-#     model_name,
-#     dtype="auto",
-#     device_map="auto",
-#     cache_dir=model_save_dir
-# )
+tokenizer.pad_token = tokenizer.eos_token
+tokenizer.padding_side = "left"
 
-
-medical_finetune_data = construct_med_data(
-    pubmed_count=70,
-    mednli_count=70,
-    hqs_count=10,
-    seed = 1354)
-
-
-medical_finetune_data_hf = to_prompt_completion_hf(
-    medical_finetune_data,
-    input_key="input_text",
-    target_key="target_text",
+peft_config = LoraConfig(
+    r= 8,
+    lora_alpha=16,
+    lora_dropout=0,
+    bias="none" ,
+    target_modules=["q_proj","v_proj"],
 )
 
+sft_config = SFTConfig(
+    output_dir=peft_model_save_dir,
+)
+
+model = AutoModelForCausalLM.from_pretrained(
+    model_name,
+    dtype="auto",
+    device_map="cuda",
+    cache_dir=model_save_dir
+)
+
+peft_model = get_peft_model(model, peft_config)
+
+peft_model.to(device=torch.device("cuda"))
+dataset = load_from_disk(dataset_path)
+
+print("Dataset loaded. Starting training...")
+trainer = SFTTrainer(
+    model=peft_model,
+    train_dataset=dataset,
+    args=sft_config
+)
+
+trainer.train()
+print("Training completed. Saving the model...")
+merged_model = peft_model.merge_and_unload()
+merged_model.save_pretrained(peft_model_save_dir)
 
 
-print(medical_finetune_data_hf[0])
-print("\n")
+print("Model saved to", peft_model_save_dir)
 
-
-medical_standard_data = medical_finetune_data_hf.map(apply_chat_template, fn_kwargs={"tokenizer": tokenizer})
-print(medical_standard_data[0])
+model = AutoModelForCausalLM.from_pretrained(
+    model_name,
+    dtype="auto",
+    device_map="cuda",
+    cache_dir=model_save_dir
+)
+acc, maf, cm, predictions = evaluate_pubmedqa(model, tokenizer)
+print(f"PubMedQA Accuracy before fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
+acc, maf, cm, predictions = evaluate_pubmedqa(merged_model, tokenizer)
+print(f"PubMedQA Accuracy after fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}") 
