@@ -91,14 +91,3 @@ contractNLI_input_template = (
         "Final Answer:"
     )
 contractNLI_target_template = "{summary}"
-
-default_prompt_completion_features = Features({
-    "prompt": Sequence(feature={
-        "role": Value("string"),
-        "content": Value("string"),
-    }),
-    "completion": Sequence(feature={
-        "role": Value("string"),
-        "content": Value("string"),
-    }),
-})

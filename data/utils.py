@@ -1,6 +1,5 @@
 from datasets import Dataset, Features, Value, Sequence
 from typing import Any, Dict, List, Optional
-from data.templates import default_prompt_completion_features
 
 def to_prompt_completion(
     dataset: List[Dict[str, Any]],
@@ -30,7 +29,6 @@ def to_prompt_completion(
 
 def to_prompt_completion_hf(
     dataset: List[Dict[str, Any]],
-    features: Features = default_prompt_completion_features,
     input_key: str = "input_text",
     target_key: str = "target_text",
     drop_invalid: bool = True,
@@ -67,4 +65,4 @@ def to_prompt_completion_hf(
             if "prompt" not in ex or "completion" not in ex:
                 raise ValueError(f"Formatted example {i} missing 'prompt'/'completion' keys: {ex!r}")
 
-    return Dataset.from_list(formatted, features=features)
+    return Dataset.from_list(formatted)

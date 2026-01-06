@@ -32,31 +32,9 @@ medical_finetune_data = construct_med_data(
     hqs_count=10,
     seed = 1354)
 
-medical_finetune_data_hf = to_prompt_completion(
-    medical_finetune_data,
-    input_key="input_text",
-    target_key="target_text",
-)
-
-print(medical_finetune_data_hf[0])
-print("\n")
-
-
-default_prompt_completion_features = Features({
-    "prompt": Sequence(feature={
-        "role": Value("string"),
-        "content": Value("string"),
-    }),
-    "completion": Sequence(feature={
-        "role": Value("string"),
-        "content": Value("string"),
-    }),
-})
-
 
 medical_finetune_data_hf = to_prompt_completion_hf(
     medical_finetune_data,
-    features=default_prompt_completion_features,
     input_key="input_text",
     target_key="target_text",
 )
@@ -67,5 +45,5 @@ print(medical_finetune_data_hf[0])
 print("\n")
 
 
-# medical_standard_data = medical_finetune_data_hf.map(apply_chat_template, fn_kwargs={"tokenizer": tokenizer})
-# print(medical_standard_data[0])
+medical_standard_data = medical_finetune_data_hf.map(apply_chat_template, fn_kwargs={"tokenizer": tokenizer})
+print(medical_standard_data[0])
