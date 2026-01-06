@@ -6,7 +6,6 @@ def to_prompt_completion(
     dataset: List[Dict[str, Any]],
     input_key: str = "input_text",
     target_key: str = "target_text",
-    system_prompt: Optional[str] = None,
 ) -> List[Dict[str, Any]]:
     """
     Convert a list of dicts with keys like input_text/target_text into:
@@ -21,42 +20,10 @@ def to_prompt_completion(
     normalized: List[Dict[str, Any]] = []
 
     for i, data in enumerate(dataset):
-        if input_key not in data or target_key not in data:
-            continue
-
-        prompt_raw = data[input_key]
-        completion_raw = data[target_key]
-
-        # Build prompt
-        if isinstance(prompt_raw, list):
-            # Assume already like [{"role": "...", "content": "..."}]
-            prompt_msgs = prompt_raw
-        else:
-            prompt_msgs = []
-            if system_prompt:
-                prompt_msgs.append({"role": "system", "content": str(system_prompt)})
-            prompt_msgs.append({"role": "user", "content": str(prompt_raw)})
-
-        # Build completion
-        if isinstance(completion_raw, list):
-            completion_msgs = completion_raw
-        else:
-            completion_msgs = [{"role": "assistant", "content": str(completion_raw)}]
-
-        # Minimal validation: must have required keys
-        def valid_msgs(msgs: Any) -> bool:
-            return (
-                isinstance(msgs, list)
-                and all(isinstance(m, dict) and "role" in m and "content" in m for m in msgs)
-                and len(msgs) > 0
-            )
-
-        if not valid_msgs(prompt_msgs) or not valid_msgs(completion_msgs):
-            continue
 
         normalized.append({
-            "prompt": [{"role": str(m["role"]), "content": str(m["content"])} for m in prompt_msgs],
-            "completion": [{"role": str(m["role"]), "content": str(m["content"])} for m in completion_msgs],
+            "prompt": [{"role": str("user"), "content": str(data[input_key])}],
+            "completion": [{"role": str("assistant"), "content": str(data[target_key])}],
         })
  
     return normalized
@@ -66,7 +33,6 @@ def to_prompt_completion_hf(
     features: Features = default_prompt_completion_features,
     input_key: str = "input_text",
     target_key: str = "target_text",
-    system_prompt: Optional[str] = None,
     drop_invalid: bool = True,
 ) -> Dataset:
     """
@@ -90,10 +56,9 @@ def to_prompt_completion_hf(
         A `datasets.Dataset` with the provided `features`.
     """
     formatted = to_prompt_completion(
-        list(dataset),
+        dataset,
         input_key=input_key,
         target_key=target_key,
-        system_prompt=system_prompt,
     )
 
     if not drop_invalid:
