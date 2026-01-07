@@ -160,20 +160,22 @@ def construct_legal_data(casehold_count=13000,
                                     split=split)
 
     # --- C4 Dataset (Standard format) ---
-    c4_dataset = load_dataset('allenai/c4', 'en', split='train', streaming=True)
-    c4_examples = 0
-    for example in c4_dataset:
-        text = example.get('text', "")
-        if len(text) < 100:
-            continue
-        finetune_data.append({
-            "source": "C4",
-            "input_text": text,  # Raw text.
-            "target_text": ""    # No additional formatting.
-        })
-        c4_examples += 1
-        if c4_examples >= c4_count:
-            break
+    if split == 'train':
+        c4_dataset = load_dataset('allenai/c4', 'en', split='train', streaming=True)
+        c4_examples = 0
+        for example in c4_dataset:
+            text = example.get('text', "")
+            if len(text) < 100:
+                continue
+            finetune_data.append({
+                "source": "C4",
+                "input_text": text,  # Raw text.
+                "target_text": ""    # No additional formatting.
+            })
+            c4_examples += 1
+            if c4_examples >= c4_count:
+                break
+
     finetune_data.extend(casehold_dataset)
     finetune_data.extend(billsum_dataset)
     finetune_data.extend(contractnli)
