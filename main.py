@@ -7,6 +7,8 @@ from datasets import load_from_disk
 from trl import  SFTConfig, SFTTrainer
 from peft import LoraConfig, get_peft_model
 
+os.environ["WANDB_PROJECT"] = "Efficient_Domain_Adaptation"
+os.environ["WANDB_DIR"] = "./assets/wandb"
 torch.cuda.empty_cache()
 
 model_name = "Qwen/Qwen3-0.6B"
@@ -30,6 +32,9 @@ peft_config = LoraConfig(
 
 sft_config = SFTConfig(
     output_dir=peft_model_save_dir,
+    report_to = "wandb",
+    logging_dir = os.path.join(peft_model_save_dir, "logs"),
+    run_name = "test_qwen3_medical_lora"
 )
 
 model = AutoModelForCausalLM.from_pretrained(
@@ -65,7 +70,7 @@ model = AutoModelForCausalLM.from_pretrained(
     device_map="cuda",
     cache_dir=model_save_dir
 )
-acc, maf, cm, predictions = evaluate_pubmedqa(model, tokenizer)
-print(f"PubMedQA Accuracy before fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
-acc, maf, cm, predictions = evaluate_pubmedqa(merged_model, tokenizer)
-print(f"PubMedQA Accuracy after fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}") 
+# acc, maf, cm, predictions = evaluate_pubmedqa(model, tokenizer)
+# print(f"PubMedQA Accuracy before fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
+# acc, maf, cm, predictions = evaluate_pubmedqa(merged_model, tokenizer)
+# print(f"PubMedQA Accuracy after fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}") 
