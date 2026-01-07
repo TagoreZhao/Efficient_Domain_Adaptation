@@ -40,7 +40,8 @@ def construct_med_data(pubmed_count=7000,
                        mednli_contradiction=0.33,
                        hqs_count=1000,
                        c4_count=0,
-                       seed=1234):
+                       seed=1234,
+                       split='train'):
     """
     Constructs a list of fine-tuning examples from four sources:
       - PubMedQA (formatted in Alcapa style)
@@ -68,16 +69,23 @@ def construct_med_data(pubmed_count=7000,
     finetune_data = []
 
     # Retrieve PubMedQA data. (Assumes get_pubmedqa is defined elsewhere)
-    pubmedqa_data = get_pubmedqa(pubmed_count=pubmed_count, positive=pubmed_yes, negative=pubmed_no, seed=seed)
+    pubmedqa_data = get_pubmedqa(pubmed_count=pubmed_count, 
+                                 positive=pubmed_yes, 
+                                 negative=pubmed_no, 
+                                 seed=seed,
+                                 split=split)
 
     # Retrieve MedNLI data. (Assumes get_mednli is defined elsewhere)
     mednli_data = get_mednli(mednli_count=mednli_count, 
                              entailment_prop=mednli_entailment, 
                              contradiction_prop=mednli_contradiction, 
-                             seed=seed)
+                             seed=seed,
+                             split=split)
 
     # --- HQS / MeQSum (Alcapa format) ---
-    hqs_data = get_hqs(hqs_count=hqs_count)
+    hqs_data = get_hqs(hqs_count=hqs_count,
+                       seed=seed,
+                       split=split)
     
     # --- C4 Dataset (Standard format) ---
     # For C4, we simply include the raw text as is.
@@ -426,6 +434,7 @@ def get_pubmedqa(
     negative=0.3,
     seed=1234,
     file_path="data/downloaded/pubmedqa_maybe_output.json",
+    split='train'
 ):
     """
     Prepare fine-tuning data from PubMedQA dataset with properly formatted prompts.
@@ -435,7 +444,14 @@ def get_pubmedqa(
     random.seed(seed)
 
     # Load the PubMedQA dataset
-    pubmed_data = load_dataset("qiaojin/PubMedQA", "pqa_artificial", split="train")
+    if split == 'train':
+        pubmed_data = load_dataset("qiaojin/PubMedQA", "pqa_artificial", split="train")
+    elif split == 'validation':
+        pubmed_data = load_dataset("qiaojin/PubMedQA", "pqa_artificial", split="train")
+        pubmed_data = pubmed_data.shuffle(seed=seed).select(range(pubmed_count))
+    else:
+        raise ValueError(f"Invalid split '{split}'. Must be 'train' or 'validation'.")
+    
     if len(pubmed_data) > pubmed_count:
         pubmed_data = pubmed_data.select(range(pubmed_count))
 
@@ -543,9 +559,17 @@ def get_mednli(mednli_count=7000,
                entailment_prop=0.33, 
                contradiction_prop=0.33, 
                seed = 1234,
-               mednli_file_path = 'data/downloaded/physionet.org/files/mednli/1.0.0/mli_train_v1.jsonl'):
+               split = 'train',
+               mednli_file_path = 'data/downloaded/'):
     random.seed(seed)
     finetune_data = []
+
+    if split == 'train':
+        mednli_file_path = os.path.join(mednli_file_path, 'physionet.org/files/mednli/1.0.0/mli_train_v1.jsonl')
+    elif split == 'validation':
+        mednli_file_path = os.path.join(mednli_file_path, 'physionet.org/files/mednli/1.0.0/mli_dev_v1.jsonl')
+    else:
+        raise ValueError(f"Invalid split '{split}'. Must be 'train' or 'validation'.")
     
     with open(mednli_file_path, "r", encoding="utf-8") as file:
         mednli_data = [json.loads(line) for line in file]
@@ -611,12 +635,20 @@ def get_mednli(mednli_count=7000,
         
     return finetune_data
 
-def get_hqs(hqs_count = 1000, data_dir = 'data/downloaded/MeQSum_ACL2019_BenAbacha_Demner-Fushman.xlsx'):
+def get_hqs(hqs_count = 1000, 
+            seed = 1234,
+            split = 'train',
+            data_dir = 'data/downloaded/MeQSum_ACL2019_BenAbacha_Demner-Fushman.xlsx'):
+    
+    random.seed(seed)
     
     finetune_data = []
     # Load the MeQSum dataset from Excel.
     hqs_df = pd.read_excel(data_dir)
-    hqs_df = hqs_df.head(hqs_count)
+    if split == 'train':
+        hqs_df = hqs_df.head(hqs_count)
+    elif split == 'validation':
+        hqs_df = hqs_df.sample(frac=1, random_state=seed).head(hqs_count)
     
     for _, row in hqs_df.iterrows():
         input_text = hqs_input_template.format(input_question=row['CHQ'])
