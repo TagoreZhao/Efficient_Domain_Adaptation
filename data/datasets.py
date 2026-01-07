@@ -123,7 +123,8 @@ def construct_legal_data(casehold_count=13000,
                          entailment_prop=0.35, 
                          contradiction_prop=0.2,  
                          c4_count=0, 
-                         seed=1234):
+                         seed=1234,
+                         split='train'):
     """
     Constructs a list of fine-tuning examples from three sources for the legal domain.
     
@@ -144,17 +145,19 @@ def construct_legal_data(casehold_count=13000,
     # Load streaming dataset; iterate and collect 13000 examples.
     casehold_dataset = get_casehold(casehold_count=casehold_count, 
                                     choice_prop = casehold_prop, 
-                                    seed=seed)
+                                    seed=seed,
+                                    split=split)
 
     # --- BillSum (Alpaca-style) ---
     billsum_dataset = get_billsum(billsum_count=billsum_count, 
-                                  seed=seed)
-
+                                  seed=seed,
+                                  split=split)
     # --- ContractNLI (Alpaca-style) ---
     contractnli = get_contractnli(contractnli_count=contractnli_count,
                                     entailment_prop=entailment_prop, 
                                     contradiction_prop=contradiction_prop,  
-                                    seed=seed)
+                                    seed=seed,
+                                    split=split)
 
     # --- C4 Dataset (Standard format) ---
     c4_dataset = load_dataset('allenai/c4', 'en', split='train', streaming=True)
@@ -197,74 +200,6 @@ def get_wikitext2(nsamples, seed, seqlen, tokenizer):
         tar[:, :-1] = -100
         trainloader.append((inp, tar))
     return trainloader, testenc
-
-def get_casehold(casehold_count=7000, 
-                 choice_prop=[1/5, 1/5, 1/5, 1/5, 1/5],
-                 seed=1234):
-    random.seed(seed)
-    
-    finetune_data = []
-    casehold_dataset = load_dataset('casehold/casehold', split='train', trust_remote_code=True)
-    
-    # Assume the labels are strings "0", "1", "2", "3", "4".
-    labels = ["0", "1", "2", "3", "4"]
-    
-    # Normalize the proportions (in case they do not sum to 1) and determine quotas per label.
-    total_prop = sum(choice_prop)
-    normalized_props = [p/total_prop for p in choice_prop]
-    designated_counts = {label: int(round(casehold_count * normalized_props[i])) for i, label in enumerate(labels)}
-    
-    # Adjust if rounding caused a mismatch in total count.
-    current_sum = sum(designated_counts.values())
-    diff = casehold_count - current_sum
-    for i in range(diff):
-        designated_counts[labels[i % len(labels)]] += 1
-
-    # Initialize counters for each label.
-    counts = {label: 0 for label in labels}
-    total_added = 0
-    
-    for example in casehold_dataset:
-        try:
-            citing_prompt = example['citing_prompt']
-            holding_0 = example.get('holding_0', "")
-            holding_1 = example.get('holding_1', "")
-            holding_2 = example.get('holding_2', "")
-            holding_3 = example.get('holding_3', "")
-            holding_4 = example.get('holding_4', "")
-            label = example['label']  # label is expected to be a string like "0", "1", etc.
-        except KeyError:
-            continue
-        
-        # Only add if the label is one of our designated labels and its quota is not met.
-        if label not in counts:
-            continue
-        
-        if counts[label] < designated_counts[label]:
-            formatted_text = casehold_template.format(
-                citing_prompt=citing_prompt,
-                holding_0=holding_0,
-                holding_1=holding_1,
-                holding_2=holding_2,
-                holding_3=holding_3,
-                holding_4=holding_4,
-            )
-            target_text = casehold_target_template.format(label=label)
-            finetune_data.append({
-                "source": "CaseHOLD",
-                "input_text": formatted_text,
-                "target_text": target_text  # The model predicts the response.
-            })
-            counts[label] += 1
-            total_added += 1
-            if total_added >= casehold_count:
-                break
-        
-        # Optionally, break early if all quotas are met.
-        if all(counts[l] >= designated_counts[l] for l in labels):
-            break
-
-    return finetune_data
 
 def get_Harrison(nsamples, seed, seqlen, tokenizer):
     """
@@ -661,14 +596,14 @@ def get_hqs(hqs_count = 1000,
 
     return finetune_data
 
-
 def get_casehold(casehold_count=7000, 
                  choice_prop=[1/5, 1/5, 1/5, 1/5, 1/5],
-                 seed=1234):
+                 seed=1234,
+                 split='train'):
     random.seed(seed)
     
     finetune_data = []
-    casehold_dataset = load_dataset('casehold/casehold', split='train', trust_remote_code=True)
+    casehold_dataset = load_dataset('casehold/casehold', split=split, trust_remote_code=True)
     
     # Assume the labels are strings "0", "1", "2", "3", "4".
     labels = ["0", "1", "2", "3", "4"]
@@ -731,11 +666,18 @@ def get_casehold(casehold_count=7000,
     return finetune_data
 
 def get_billsum(billsum_count=7000, 
-                 seed=1234):
+                 seed=1234,
+                 split='train'):
     
     random.seed(seed)
     finetune_data = []
-    billsum_dataset = load_dataset('FiscalNote/billsum', trust_remote_code=True, split='train')
+
+    if split == 'train':
+        billsum_dataset = load_dataset('FiscalNote/billsum', trust_remote_code=True, split='train')
+    elif split == 'validation':
+        billsum_dataset = load_dataset('FiscalNote/billsum', trust_remote_code=True, split='test')
+    else:
+        raise ValueError(f"Invalid split '{split}'. Must be 'train' or 'validation'.")
 
     count = 0
     for example in billsum_dataset:
@@ -772,11 +714,12 @@ def get_billsum(billsum_count=7000,
 def get_contractnli(contractnli_count=7000,
                     entailment_prop=0.33, 
                     contradiction_prop=0.33,  
-                    seed=1234):
+                    seed=1234,
+                    split='train'):
     
     random.seed(seed)
     finetune_data = []
-    contractNLI_dataset = load_dataset("kiddothe2b/contract-nli", "contractnli_a", split="train")
+    contractNLI_dataset = load_dataset("kiddothe2b/contract-nli", "contractnli_a", split=split)
     neutral_prop = 1 - entailment_prop - contradiction_prop
     if neutral_prop < 0:
         raise ValueError("The sum of entailment_prop and contradiction_prop cannot exceed 1.")
