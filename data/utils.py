@@ -10,7 +10,7 @@ def to_prompt_completion_conversation(
     """
     Convert a list of dicts with keys like input_text/target_text into:
       {
-        "prompt": [{"role": "user", "content": "..."}] (optionally preceded by system),
+        "prompt": [{"role": "user", "content": "..."}],
         "completion": [{"role": "assistant", "content": "..."}]
       }
 
@@ -40,7 +40,7 @@ def to_prompt_completion_hf(
     prompt/completion chat-list format:
 
         {
-          "prompt": [{"role": "user", "content": "..."}] (optionally preceded by system),
+          "prompt": [{"role": "user", "content": "..."}],
           "completion": [{"role": "assistant", "content": "..."}],
         }
 
@@ -69,3 +69,22 @@ def to_prompt_completion_hf(
 
     dataset = Dataset.from_list(formatted)
     return dataset.map(apply_chat_template, fn_kwargs={"tokenizer": tokenizer})
+
+def to_eval_loss_dataset(data_list, response_template="Response: The answer is"):
+    """
+    Converts a list of dicts with keys:
+      - 'input_text'  (prompt that ends with the response prefix)
+      - 'target_text' (gold completion, e.g., ' yes')
+    into a Dataset with a single 'text' field:
+      text = input_text + ' ' + normalized target_text
+
+    Use together with TRL's DataCollatorForCompletionOnlyLM configured
+    with the same response_template so that labels are created only
+    for the target span.
+    """
+    rows = []
+    for ex in data_list:
+        prompt = str(ex["input_text"]).rstrip()              # ensure single trailing space
+        target = str(ex["target_text"]).lstrip()             # strip leading spaces like ' yes'
+        rows.append({"text": f"{prompt} {target}"})
+    return Dataset.from_list(rows)

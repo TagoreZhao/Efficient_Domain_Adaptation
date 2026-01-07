@@ -90,4 +90,5 @@ contractNLI_input_template = (
         "Response:\n"
         "Final Answer:"
     )
+
 contractNLI_target_template = "{summary}"
