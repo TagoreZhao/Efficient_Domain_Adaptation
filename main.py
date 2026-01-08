@@ -14,7 +14,7 @@ os.environ["WANDB_PROJECT"] = "Efficient_Domain_Adaptation"
 os.environ["WANDB_DIR"] = "./assets/wandb"
 model_name = "Qwen/Qwen3-1.7B"
 model_save_dir = "model/downloaded"
-run_name = "qwen3_1.7b_med_3eps_all_token"
+run_name = "qwen3_1.7b_med_3eps_all_token_batch16"
 peft_model_save_dir = os.path.join(model_save_dir, run_name)
 seed = 42
 
@@ -35,12 +35,14 @@ sft_config = SFTConfig(
     do_eval=True,
     eval_strategy="steps",
     eval_steps=50,
-    per_device_train_batch_size = 16,
-    per_device_eval_batch_size  = 16,
+    per_device_train_batch_size = 4,
+    per_device_eval_batch_size  = 4,
     learning_rate=1e-4,
     weight_decay=0.01,
     num_train_epochs=3,
     eval_on_start=True,
+    ddp_find_unused_parameters = False,
+    seed=seed,
 )
 
 # dataset_path = 'data/downloaded/test_medical_data'
@@ -90,7 +92,7 @@ trainer = SFTTrainer(
     args=sft_config
 )
 print("Trainer prepared. Starting training...")
-trainer.train(resume_from_checkpoint=True)
+trainer.train()
 print("Training completed. Saving the model...")
 
 merged_model = peft_model.merge_and_unload()

@@ -12,4 +12,6 @@ cd /Users/918839576/Trepo/Efficient_Domain_Adaptation/
 pwd  # This will print the working directory to your log
 export PYTHONPATH=/Users/918839576/Trepo/Efficient_Domain_Adaptation:$PYTHONPATH
 
+TORCH_DISTRIBUTED_DEBUG=DETAIL \
+NCCL_DEBUG=INFO \
 torchrun --nproc_per_node=4 main.py 
