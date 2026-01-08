@@ -123,8 +123,8 @@ acc, maf, cm, predictions = evaluate_mednli(merged_model, tokenizer)
 print(f"MedNLI Accuracy after fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
 post["MedNLI"] = {"accuracy": float(acc), "macro_f1": float(maf)}
 rouge, prediction = evaluate_hqs(merged_model, tokenizer)
-print(f"HQS Rouge after fine-tuning: {rouge:.4f}")
-post["HQS"] = {"rouge": float(rouge)}
+print("HQS ROUGE after fine-tuning:", rouge)
+post["HQS"] = {"rouge": rouge}
 
 manifest_path = save_run_manifest(
     out_dir=peft_model_save_dir,
