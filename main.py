@@ -70,9 +70,9 @@ data_train = construct_med_data(pubmed_count = 7000,
                                 seed=seed)
 print(f"Number of training examples: {len(data_train)}")
 
-data_validation = construct_med_data(pubmed_count = 100,
+data_validation = construct_med_data(pubmed_count = 500,
                                     hqs_count= 100,
-                                    mednli_count= 100,
+                                    mednli_count= 1000,
                                     split='validation',
                                     seed=seed)
 print(f"Number of validation examples: {len(data_validation)}")
