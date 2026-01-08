@@ -2,6 +2,7 @@ import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from evaluation.domain_zero_shot import *
+from evaluation.perplexity import eval_ppl
 from trl import  SFTConfig, SFTTrainer
 from peft import LoraConfig, get_peft_model
 from data.datasets import construct_med_data, construct_legal_data
@@ -13,9 +14,9 @@ os.environ["WANDB_PROJECT"] = "Efficient_Domain_Adaptation"
 os.environ["WANDB_DIR"] = "./assets/wandb"
 model_name = "Qwen/Qwen3-1.7B"
 model_save_dir = "model/downloaded"
-peft_model_save_dir = os.path.join(model_save_dir, "qwen3_1.7b_med_3eps_all_token")
+run_name = "qwen3_1.7b_med_3eps_all_token"
+peft_model_save_dir = os.path.join(model_save_dir, run_name)
 seed = 42
-run_name = "qwen3_1.7b_med_3eps_classic"
 
 peft_config = LoraConfig(
     r = 8,
@@ -30,7 +31,7 @@ sft_config = SFTConfig(
     report_to = "wandb",
     logging_dir = os.path.join(peft_model_save_dir, "logs"),
     run_name = run_name,
-    completion_only_loss=True,
+    completion_only_loss=False,
     do_eval=True,
     eval_strategy="steps",
     eval_steps=50,
@@ -103,6 +104,11 @@ model = AutoModelForCausalLM.from_pretrained(
     device_map="cuda",
     cache_dir=model_save_dir
 )
+
+ppl = eval_ppl(model=model, tokenizer=tokenizer, dataset='harrison', seqlen=2048, device=torch.device("cuda:0"), seed=seed)
+print(f"Perplexity on Harrison before fine-tuning: {ppl:.4f}")
+ppl = eval_ppl(model=merged_model, tokenizer=tokenizer, dataset='harrison', seqlen=2048, device=torch.device("cuda:0"), seed=seed)
+print(f"Perplexity on Harrison after fine-tuning: {ppl:.4f}")
 
 pre = {}
 acc, maf, cm, predictions = evaluate_pubmedqa(model, tokenizer)
