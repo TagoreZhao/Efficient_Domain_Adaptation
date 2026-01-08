@@ -115,7 +115,7 @@ acc, maf, cm, predictions = evaluate_mednli(model, tokenizer)
 print(f"MedNLI Accuracy before fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
 pre["MedNLI"] = {"accuracy": float(acc), "macro_f1": float(maf)}
 rouge, prediction = evaluate_hqs(model, tokenizer)
-print(f"HQS Rouge before fine-tuning: {rouge:.4f}")
+print("HQS ROUGE before fine-tuning:", rouge)
 pre["HQS"] = {"rouge": float(rouge)}
 
 
