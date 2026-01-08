@@ -1,41 +1,44 @@
 import os
+import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from evaluation.domain_zero_shot import *
-import torch
-from datasets import load_from_disk
 from trl import  SFTConfig, SFTTrainer
 from peft import LoraConfig, get_peft_model
 from data.datasets import construct_med_data, construct_legal_data
 from data.utils import to_prompt_completion_hf
+from SFT.utils import save_run_manifest
 
 torch.cuda.empty_cache()
 os.environ["WANDB_PROJECT"] = "Efficient_Domain_Adaptation"
 os.environ["WANDB_DIR"] = "./assets/wandb"
-model_name = "Qwen/Qwen3-0.6B"
+model_name = "Qwen/Qwen3-1.7B"
 model_save_dir = "model/downloaded"
-peft_model_save_dir = os.path.join(model_save_dir, "test_qwen3_medical_lora")
+peft_model_save_dir = os.path.join(model_save_dir, "qwen3_1.7b_med_3eps_classic")
+seed = 42
+run_name = "qwen3_1.7b_med_3eps_classic"
 
 peft_config = LoraConfig(
     r = 8,
     lora_alpha=16,
-    lora_dropout=0,
+    lora_dropout=0.1,
     bias="none" ,
-    target_modules=["q_proj","v_proj"],
+    target_modules=["q_proj","v_proj", "o_proj", "k_proj", "up_proj", "down_proj", "gate_proj"],
 )
 
 sft_config = SFTConfig(
     output_dir=peft_model_save_dir,
     report_to = "wandb",
     logging_dir = os.path.join(peft_model_save_dir, "logs"),
-    run_name = "test_qwen3_medical_lora_with_eval",
+    run_name = run_name,
     completion_only_loss=True,
     do_eval=True,
     eval_strategy="steps",
     eval_steps=50,
     per_device_train_batch_size = 16,
     per_device_eval_batch_size  = 16,
+    learning_rate=1e-4,
+    weight_decay=0.01,
     num_train_epochs=3,
-    label_names = "completion",
     eval_on_start=True,
 )
 
@@ -57,20 +60,24 @@ peft_model = get_peft_model(model, peft_config)
 print("Model loaded.")
 
 print ("Preparing dataset...")
-data_train = construct_med_data(pubmed_count = 1000,
-                                hqs_count= 0,
-                                mednli_count= 0,
-                                split='train')
+data_train = construct_med_data(pubmed_count = 7000,
+                                hqs_count= 1000,
+                                mednli_count= 7000,
+                                split='train',
+                                seed=seed)
 print(f"Number of training examples: {len(data_train)}")
 
-data_validation = construct_med_data(pubmed_count = 200,
-                                    hqs_count= 0,
-                                    mednli_count= 0,
-                                    split='validation')
+data_validation = construct_med_data(pubmed_count = 100,
+                                    hqs_count= 100,
+                                    mednli_count= 100,
+                                    split='validation',
+                                    seed=seed)
 print(f"Number of validation examples: {len(data_validation)}")
 
 train_dataset = to_prompt_completion_hf(data_train, tokenizer=tokenizer)
 val_dataset = to_prompt_completion_hf(data_validation, tokenizer=tokenizer)
+train_dataset.save_to_disk(os.path.join(peft_model_save_dir, "med_train_dataset"))
+val_dataset.save_to_disk(os.path.join(peft_model_save_dir, "med_val_dataset"))
 print("Datasets converted to HuggingFace format. Dataset preparation completed.")
 
 
@@ -97,9 +104,38 @@ model = AutoModelForCausalLM.from_pretrained(
     cache_dir=model_save_dir
 )
 
+pre = {}
 acc, maf, cm, predictions = evaluate_pubmedqa(model, tokenizer)
 print(f"PubMedQA Accuracy before fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
+pre["PubMedQA"] = {"accuracy": float(acc), "macro_f1": float(maf)}
+acc, maf, cm, predictions = evaluate_mednli(model, tokenizer)
+print(f"MedNLI Accuracy before fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
+pre["MedNLI"] = {"accuracy": float(acc), "macro_f1": float(maf)}
+rouge, prediction = evaluate_hqs(model, tokenizer)
+print(f"HQS Rouge before fine-tuning: {rouge:.4f}")
+pre["HQS"] = {"rouge": float(rouge)}
+
+post = {}
 acc, maf, cm, predictions = evaluate_pubmedqa(merged_model, tokenizer)
 print(f"PubMedQA Accuracy after fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
+post["PubMedQA"] = {"accuracy": float(acc), "macro_f1": float(maf)}
+acc, maf, cm, predictions = evaluate_mednli(merged_model, tokenizer)
+print(f"MedNLI Accuracy after fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
+post["MedNLI"] = {"accuracy": float(acc), "macro_f1": float(maf)}
+rouge, prediction = evaluate_hqs(merged_model, tokenizer)
+print(f"HQS Rouge after fine-tuning: {rouge:.4f}")
+post["HQS"] = {"rouge": float(rouge)}
 
-
+manifest_path = save_run_manifest(
+    out_dir=peft_model_save_dir,
+    model_name=model_name,
+    peft_config=peft_config,
+    sft_config=sft_config,
+    tokenizer_name=model_name,
+    train_len=len(train_dataset),
+    val_len=len(val_dataset),
+    pre_metrics=pre,
+    post_metrics=post,
+    model_for_count=peft_model,  # counts trainable LoRA params
+)
+print("Saved manifest to:", manifest_path)
