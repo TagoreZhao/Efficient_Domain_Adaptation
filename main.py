@@ -105,11 +105,6 @@ model = AutoModelForCausalLM.from_pretrained(
     cache_dir=model_save_dir
 )
 
-ppl = eval_ppl(model=model, tokenizer=tokenizer, dataset='harrison', seqlen=2048, device=torch.device("cuda:0"), seed=seed)
-print(f"Perplexity on Harrison before fine-tuning: {ppl:.4f}")
-ppl = eval_ppl(model=merged_model, tokenizer=tokenizer, dataset='harrison', seqlen=2048, device=torch.device("cuda:0"), seed=seed)
-print(f"Perplexity on Harrison after fine-tuning: {ppl:.4f}")
-
 pre = {}
 acc, maf, cm, predictions = evaluate_pubmedqa(model, tokenizer)
 print(f"PubMedQA Accuracy before fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
@@ -132,6 +127,13 @@ post["MedNLI"] = {"accuracy": float(acc), "macro_f1": float(maf)}
 rouge, prediction = evaluate_hqs(merged_model, tokenizer)
 print("HQS ROUGE after fine-tuning:", rouge)
 post["HQS"] = {"rouge": rouge}
+
+
+ppl = eval_ppl(model=model, tokenizer=tokenizer, dataset='harrison', seqlen=2048, device=torch.device("cuda:0"), seed=seed)
+print(f"Perplexity on Harrison before fine-tuning: {ppl:.4f}")
+ppl = eval_ppl(model=merged_model, tokenizer=tokenizer, dataset='harrison', seqlen=2048, device=torch.device("cuda:0"), seed=seed)
+print(f"Perplexity on Harrison after fine-tuning: {ppl:.4f}")
+
 
 # manifest_path = save_run_manifest(
 #     out_dir=peft_model_save_dir,
