@@ -5,16 +5,16 @@ from evaluation.domain_zero_shot import *
 from evaluation.perplexity import eval_ppl
 from trl import  SFTConfig, SFTTrainer
 from peft import LoraConfig, get_peft_model
-from data.datasets import construct_med_data, construct_legal_data
+from data.datasets import construct_med_data
 from data.utils import to_prompt_completion_hf
-from SFT.utils import save_run_manifest
+
 
 torch.cuda.empty_cache()
 os.environ["WANDB_PROJECT"] = "Efficient_Domain_Adaptation"
 os.environ["WANDB_DIR"] = "./assets/wandb"
 model_name = "Qwen/Qwen3-1.7B"
 model_save_dir = "model/downloaded"
-run_name = "qwen3_1.7b_med_3eps_all_token_batch16"
+run_name = "qwen3_1.7b_med_3eps_all_token"
 peft_model_save_dir = os.path.join(model_save_dir, run_name)
 seed = 42
 
@@ -116,7 +116,7 @@ print(f"MedNLI Accuracy before fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
 pre["MedNLI"] = {"accuracy": float(acc), "macro_f1": float(maf)}
 rouge, prediction = evaluate_hqs(model, tokenizer)
 print("HQS ROUGE before fine-tuning:", rouge)
-pre["HQS"] = {"rouge": float(rouge)}
+pre["HQS"] = {"rouge": rouge}
 
 
 post = {}
