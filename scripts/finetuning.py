@@ -5,6 +5,9 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from trl import  SFTConfig, SFTTrainer
 from peft import LoraConfig, get_peft_model
 from datasets import Dataset
+from datetime import datetime
+import json
+import sys
 
 
 def parse_args():
@@ -31,7 +34,22 @@ def parse_args():
     parser.add_argument("--completion_only_loss", type=bool, default=False, help="Use completion only loss.")
     parser.add_argument("--weight_decay", type=float, default=0, help="Weight decay for optimizer.")
 
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    # ---- Print args at the beginning (rank-safe for torchrun) ----
+    rank = int(os.environ.get("RANK", "0"))
+    if rank == 0:
+        print("\n========== RUN CONFIG ==========")
+        print(f"Timestamp: {datetime.utcnow().isoformat()}Z")
+        print("Command:", " ".join(map(str, sys.argv)))
+        print("Args (sorted):")
+        for k, v in sorted(vars(args).items()):
+            print(f"  {k}: {v}")
+        print("Args (json):")
+        print(json.dumps(vars(args), indent=2, sort_keys=True))
+        print("================================\n")
+
+    return args
 
 if __name__ == "__main__":
 
