@@ -2,18 +2,15 @@ import os
 import torch
 import argparse
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from evaluation.domain_zero_shot import *
-from evaluation.perplexity import eval_ppl
 from trl import  SFTConfig, SFTTrainer
 from peft import LoraConfig, get_peft_model
-from data.datasets import construct_med_data
-from data.utils import to_prompt_completion_hf
+from datasets import Dataset
 
 
 def parse_args():
 
     parser = argparse.ArgumentParser(description="Fine-tune a language model with LoRA and SFT.")
-    parser.add_argument("--model_name", type=str, default="Qwen/Qwen3-1.7B", help="Pre-trained model name or path.")
+    parser.add_argument("--model_name", type=str, default="Qwen/Qwen3-0.6B", help="Pre-trained model name or path.")
     parser.add_argument("--tokenizer_name", type=str, default=None, help="Tokenizer name or path. If not provided, model_name will be used.")
     parser.add_argument("--model_save_dir", type=str, default="model/downloaded", help="Directory to save the model.")
     parser.add_argument("--run_name", type=str, default="there_is_no_name", help="Run name for logging.")
@@ -68,3 +65,46 @@ if __name__ == "__main__":
         ddp_find_unused_parameters = args.ddp_find_unused_parameters,
         seed=args.seed,
     )
+
+    print("Loading tokenizer...")
+    if args.tokenizer_name:
+        tokenizer = AutoTokenizer.from_pretrained(args.tokenizer_name)
+    else:
+        tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "left"
+    print("Tokenizer loaded.")
+
+    print("Loading model...")
+    model = AutoModelForCausalLM.from_pretrained(
+        args.model_name,
+        dtype="auto",
+        cache_dir=args.model_save_dir
+    )
+    peft_model = get_peft_model(model, peft_config)
+    print("Model loaded.")
+
+
+    print ("Loading dataset...")
+    train_data = Dataset.load_from_disk(args.train_dataset_path)
+    val_data = Dataset.load_from_disk(args.val_dataset_path)
+    print("Dataset loaded.")
+
+    print("Prepare Trainer...")
+    trainer = SFTTrainer(
+        model=peft_model,
+        train_dataset=train_data,
+        eval_dataset=val_data,
+        args=sft_config
+    )
+    print("Trainer prepared. Starting training...")
+    trainer.train()
+    print("Training completed. Saving the model...")
+
+    merged_model = peft_model.merge_and_unload()
+    merged_model.save_pretrained(peft_model_save_dir)
+    print("Model saved to", peft_model_save_dir)
+
+
+
+
