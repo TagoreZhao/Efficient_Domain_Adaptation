@@ -14,16 +14,16 @@ os.environ["WANDB_PROJECT"] = "Efficient_Domain_Adaptation"
 os.environ["WANDB_DIR"] = "./assets/wandb"
 model_name = "Qwen/Qwen3-1.7B"
 model_save_dir = "model/downloaded"
-run_name = "qwen3_1.7b_med_3eps_all_token"
+run_name = "qwen3_1.7b_med_3eps_completion_only_lr3e-4_qv_r16_alpha24"
 peft_model_save_dir = os.path.join(model_save_dir, run_name)
 seed = 42
 
 peft_config = LoraConfig(
-    r = 8,
-    lora_alpha=16,
+    r = 16,
+    lora_alpha=24,
     lora_dropout=0.1,
     bias="none" ,
-    target_modules=["q_proj","v_proj", "o_proj", "k_proj", "up_proj", "down_proj", "gate_proj"],
+    target_modules=["q_proj","v_proj"],
 )
 
 sft_config = SFTConfig(
@@ -31,13 +31,13 @@ sft_config = SFTConfig(
     report_to = "wandb",
     logging_dir = os.path.join(peft_model_save_dir, "logs"),
     run_name = run_name,
-    completion_only_loss=False,
+    completion_only_loss=True,
     do_eval=True,
     eval_strategy="steps",
     eval_steps=100,
     per_device_train_batch_size = 4,
     per_device_eval_batch_size  = 4,
-    learning_rate=1e-4,
+    learning_rate=3e-4,
     weight_decay=0.01,
     num_train_epochs=3,
     eval_on_start=True,
@@ -131,10 +131,10 @@ print("HQS ROUGE after fine-tuning:", rouge)
 post["HQS"] = {"rouge": rouge}
 
 
-ppl = eval_ppl(model=model, tokenizer=tokenizer, dataset='harrison', seqlen=2048, device=torch.device("cuda:0"), seed=seed)
-print(f"Perplexity on Harrison before fine-tuning: {ppl:.4f}")
-ppl = eval_ppl(model=merged_model, tokenizer=tokenizer, dataset='harrison', seqlen=2048, device=torch.device("cuda:0"), seed=seed)
-print(f"Perplexity on Harrison after fine-tuning: {ppl:.4f}")
+# ppl = eval_ppl(model=model, tokenizer=tokenizer, dataset='harrison', seqlen=2048, device=torch.device("cuda:0"), seed=seed)
+# print(f"Perplexity on Harrison before fine-tuning: {ppl:.4f}")
+# ppl = eval_ppl(model=merged_model, tokenizer=tokenizer, dataset='harrison', seqlen=2048, device=torch.device("cuda:0"), seed=seed)
+# print(f"Perplexity on Harrison after fine-tuning: {ppl:.4f}")
 
 
 # manifest_path = save_run_manifest(
