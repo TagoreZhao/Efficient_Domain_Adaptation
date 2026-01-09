@@ -49,3 +49,10 @@ torchrun --nproc_per_node=4 scripts/finetuning.py \
     --report_to "wandb" \
     --completion_only_loss True \
     --eval_steps 100
+
+
+python3 scripts/med_eval.py \
+    --model Qwen/Qwen3-0.6B \
+    --seed 1234 \
+    --log_dir model/downloaded/models--Qwen--Qwen3-0.6B/ \
+    --filename med_eval_log.txt

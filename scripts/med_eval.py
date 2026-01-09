@@ -1,8 +1,10 @@
 import os
 import torch
 import argparse
-from evaluation.domain_zero_shot import evaluate_hqs, evaluate_mednli, evaluate_pubmedqa
+from evaluation.perplexity import eval_ppl
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from evaluation.domain_zero_shot import evaluate_hqs, evaluate_mednli, evaluate_pubmedqa
+
 
 def parse_args():
 
@@ -23,20 +25,33 @@ if __name__ == "__main__":
     os.makedirs(args.log_dir, exist_ok=True)
 
     model = AutoModelForCausalLM.from_pretrained(args.model)
-
+    tokenizer = AutoTokenizer.from_pretrained(args.model)
+    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "left"
+    if torch.cuda.is_available():
+        model.to(torch.device("cuda:0"))
+    device = model.device
     with open(log_path, "w") as log_file:
 
-        acc, maf, cm, predictions = evaluate_pubmedqa(args.model,n_eval=500, seed=args.seed)
+        ppl = eval_ppl(model=model, tokenizer=tokenizer, dataset='harrison', seqlen=2048, device=device, seed=args.seed)
+        print(f"Perplexity on Harrison with seed {args.seed}: {ppl:.4f}")
+        log_file.write("Perplexity on Harrison with seed {}: {:.4f}\n".format(args.seed, ppl))
+        log_file.write("\n")
+
+        acc, maf, cm, predictions = evaluate_pubmedqa(model, n_eval=500, seed=args.seed, tokenizer=tokenizer, device=device)
+        print(f"PubMedQA Results with seed {args.seed}: Accuracy: {acc:.4f}, Macro F1: {maf:.4f}")
         log_file.write("PubMedQA Results with seed {}:\n".format(args.seed))
         log_file.write("Accuracy: {:.4f}, Macro F1: {:.4f}\n".format(acc, maf))
         log_file.write("\n")
 
-        acc, maf, cm, predictions = evaluate_mednli(args.model, seed=args.seed)
+        acc, maf, cm, predictions = evaluate_mednli(model, seed=args.seed, tokenizer=tokenizer, device=device)
+        print(f"MedNLI Results with seed {args.seed}: Accuracy: {acc:.4f}, Macro F1: {maf:.4f}")
         log_file.write("MedNLI Results with seed {}:\n".format(args.seed))
         log_file.write("Accuracy: {:.4f}, Macro F1: {:.4f}\n".format(acc, maf))
         log_file.write("\n")
 
-        rouge_scores, summaries = evaluate_hqs(args.model, n_eval=100, seed=args.seed)
+        rouge_scores, summaries = evaluate_hqs(model, n_eval=100, seed=args.seed, tokenizer=tokenizer, device=device)
+        print(f"HQS Results with seed {args.seed}: ROUGE-1: {rouge_scores['rouge1']:.4f}, ROUGE-2: {rouge_scores['rouge2']:.4f}, ROUGE-L: {rouge_scores['rougeL']:.4f}")
         log_file.write("HQS Results with seed {}:\n".format(args.seed))
         log_file.write("ROUGE-1 Score: {:.4f}\n".format(rouge_scores['rouge1'])) 
         log_file.write("ROUGE-2 Score: {:.4f}\n".format(rouge_scores['rouge2']))
