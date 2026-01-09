@@ -14,7 +14,7 @@ def parse_args():
     parser.add_argument("--mednli_contradiction", type=float, default=0.33, help="Ratio of 'contradiction' examples in the dataset.")
     parser.add_argument("--hqs_count", type=int, default=1000, help="Number of HQS examples for training.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility.")
-    parser.add_argument("--output_path", type=str, default="data/downloaded/med_dataset", help="Path to save the constructed dataset.")
+    parser.add_argument("--output_path", type=str, default="data/downloaded/qwen_med_dataset", help="Path to save the constructed dataset.")
     parser.add_argument("--model", type=str, default="Qwen/Qwen3-0.6B", help="Model type for which the dataset is being constructed.")
 
     return parser.parse_args()
@@ -39,7 +39,7 @@ if __name__ == "__main__":
         tokenizer = AutoTokenizer.from_pretrained(args.model)
         qwen3_dataset = to_prompt_completion_hf(dataset, tokenizer=tokenizer)
         qwen3_dataset.save_to_disk(args.output_path)
+
     elif "llama2" in str(args.model).lower():
         print("Llama2 dataset construction not implemented yet.")
 
-        
