@@ -116,10 +116,10 @@ def construct_med_data(pubmed_count=7000,
     
     return finetune_data
 
-def construct_legal_data(casehold_count=13000, 
+def construct_legal_data(casehold_count=7000, 
                          casehold_prop = [1/5, 1/5, 1/5, 1/5, 1/5], 
                          billsum_count=2000, 
-                         contractnli_count=7000,
+                         contractnli_count=6000,
                          entailment_prop=0.35, 
                          contradiction_prop=0.2,  
                          c4_count=0, 

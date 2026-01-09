@@ -27,6 +27,20 @@ export WANDB_DIR="./assets/wandb"
 #     --mednli_count 1000 \
 #     --hqs_count 100 
 
+python3 scripts/construct_legal.py \
+    --model Qwen/Qwen3-8B \
+    --output_path data/downloaded/qwen_legal_dataset_train \
+    --split train
+
+python3 scripts/construct_legal.py \
+    --model Qwen/Qwen3-8B \
+    --output_path data/downloaded/qwen_legal_dataset_val \
+    --split validation \
+    --casehold_count 500 \
+    --billsum_count 100 \
+    --contractnli_count 1000
+
+
 TORCH_DISTRIBUTED_DEBUG=DETAIL \
 NCCL_DEBUG=INFO \
 torchrun --nproc_per_node=4 scripts/finetuning.py \
