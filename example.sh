@@ -47,5 +47,5 @@ torchrun --nproc_per_node=4 scripts/finetuning.py \
     --weight_decay 0.01 \
     --lora_target_modules "q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj" \
     --report_to "wandb" \
-    --completion_only_loss \
+    --completion_only_loss True \
     --eval_steps 100
