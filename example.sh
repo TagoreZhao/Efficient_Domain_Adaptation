@@ -40,7 +40,7 @@ torchrun --nproc_per_node=4 scripts/finetuning.py \
     --learning_rate 2e-4 \
     --seed 1234 \
     --train_dataset_path data/downloaded/qwen_med_dataset_train \
-    --eval_dataset_path data/downloaded/qwen_med_dataset_val \
+    --val_dataset_path data/downloaded/qwen_med_dataset_val \
     --lora_r 8 \
     --lora_alpha 16 \
     --lora_dropout 0.05 \
