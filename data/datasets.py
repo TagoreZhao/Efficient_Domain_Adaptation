@@ -1,7 +1,6 @@
 import os
 import json
 import random
-from turtle import pd
 from datasets import load_dataset
 import pandas as pd
 from data.templates import *
