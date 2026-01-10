@@ -31,6 +31,9 @@ def get_loaders(
         return get_Harrison(nsamples, seed, seqlen, tokenizer)
     if 'pplmultilegal' in name:
         return get_multilegalpile_ppl(nsamples, seed, seqlen, tokenizer)
+    if 'c4' in name:
+        return get_c4(nsamples, seed, seqlen, tokenizer)
+    raise ValueError(f"Unknown dataset name '{name}'")
 
 def construct_med_data(pubmed_count=7000,
                        pubmed_yes=0.5,

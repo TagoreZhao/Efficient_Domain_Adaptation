@@ -75,11 +75,11 @@ export WANDB_DIR="./assets/wandb"
 # done
 
 
-for i in {1..10}; do
-  python3 scripts/legal_eval.py \
-    --model model/downloaded/qwen3_4b_legal_dense \
-    --seed $((1234 + i)) \
-    --log_dir model/downloaded/qwen3_4b_legal_dense/ \
-    --filename "legal_eval_log_run${i}.txt" \
-    --tokenizer Qwen/Qwen3-4B
-done
+# for i in {1..10}; do
+#   python3 scripts/legal_eval.py \
+#     --model model/downloaded/qwen3_4b_legal_dense \
+#     --seed $((1234 + i)) \
+#     --log_dir model/downloaded/qwen3_4b_legal_dense/ \
+#     --filename "legal_eval_log_run${i}.txt" \
+#     --tokenizer Qwen/Qwen3-4B
+# done
