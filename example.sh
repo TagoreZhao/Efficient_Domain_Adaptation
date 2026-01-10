@@ -2,8 +2,8 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zhaotagore@gmail.com
 #SBATCH -p gpucluster
-#SBATCH --job-name=qwen_4b_dense_med
-#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/qwen_4b_dense_med_slurm-%j.out
+#SBATCH --job-name=qwen_8b_dense_legal
+#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/qwen_8b_dense_legal_slurm-%j.out
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:4
 
@@ -27,34 +27,34 @@ export WANDB_DIR="./assets/wandb"
 #     --mednli_count 1000 \
 #     --hqs_count 100 
 
-python3 scripts/construct_legal.py \
-    --model Qwen/Qwen3-8B \
-    --output_path data/downloaded/qwen_legal_dataset_train \
-    --split train
+# python3 scripts/construct_legal.py \
+#     --model Qwen/Qwen3-8B \
+#     --output_path data/downloaded/qwen_legal_dataset_train \
+#     --split train
 
-python3 scripts/construct_legal.py \
-    --model Qwen/Qwen3-8B \
-    --output_path data/downloaded/qwen_legal_dataset_val \
-    --split validation \
-    --casehold_count 500 \
-    --billsum_count 100 \
-    --contractnli_count 1000
+# python3 scripts/construct_legal.py \
+#     --model Qwen/Qwen3-8B \
+#     --output_path data/downloaded/qwen_legal_dataset_val \
+#     --split validation \
+#     --casehold_count 500 \
+#     --billsum_count 100 \
+#     --contractnli_count 1000
 
 
 TORCH_DISTRIBUTED_DEBUG=DETAIL \
 NCCL_DEBUG=INFO \
 torchrun --nproc_per_node=4 scripts/finetuning.py \
-    --model_name Qwen/Qwen3-4B \
-    --tokenizer_name Qwen/Qwen3-4B \
+    --model_name Qwen/Qwen3-8B \
+    --tokenizer_name Qwen/Qwen3-8B \
     --model_save_dir model/downloaded/ \
-    --run_name qwen3_4b_med_dense \
+    --run_name qwen3_8b_legal_dense \
     --num_train_epochs 3 \
     --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 4 \
     --learning_rate 2e-4 \
     --seed 1234 \
-    --train_dataset_path data/downloaded/qwen_med_dataset_train \
-    --val_dataset_path data/downloaded/qwen_med_dataset_val \
+    --train_dataset_path data/downloaded/qwen_legal_dataset_train \
+    --val_dataset_path data/downloaded/qwen_legal_dataset_val \
     --lora_r 8 \
     --lora_alpha 16 \
     --lora_dropout 0.05 \
@@ -65,8 +65,8 @@ torchrun --nproc_per_node=4 scripts/finetuning.py \
     --eval_steps 100
 
 
-python3 scripts/med_eval.py \
-    --model Qwen/Qwen3-0.6B \
-    --seed 1234 \
-    --log_dir model/downloaded/models--Qwen--Qwen3-0.6B/ \
-    --filename med_eval_log.txt
+# python3 scripts/med_eval.py \
+#     --model Qwen/Qwen3-0.6B \
+#     --seed 1234 \
+#     --log_dir model/downloaded/models--Qwen--Qwen3-0.6B/ \
+#     --filename med_eval_log.txt
