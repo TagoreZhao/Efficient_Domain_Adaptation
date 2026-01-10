@@ -65,18 +65,21 @@ export WANDB_DIR="./assets/wandb"
 #     --eval_steps 100
 
 
-# python3 scripts/med_eval.py \
-#     --model Qwen/Qwen3-0.6B \
-#     --seed 1234 \
-#     --log_dir model/downloaded/models--Qwen--Qwen3-0.6B/ \
-#     --filename med_eval_log.txt
+# for i in {1..10}; do
+#   python3 scripts/med_eval.py \
+#     --model model/downloaded/qwen3_4b_med_dense \
+#     --seed $((1234 + i)) \
+#     --log_dir model/downloaded/qwen3_4b_med_dense/ \
+#     --filename "med_eval_log_run${i}.txt" \
+#     --tokenizer Qwen/Qwen3-4B
+# done
 
 
 for i in {1..10}; do
-  CUDA_VISIBLE_DEVICES=3 torchrun --nproc_per_node=1 scripts/legal_eval.py \
+  python3 scripts/legal_eval.py \
     --model model/downloaded/qwen3_4b_legal_dense \
     --seed $((1234 + i)) \
     --log_dir model/downloaded/qwen3_4b_legal_dense/ \
     --filename "legal_eval_log_run${i}.txt" \
-    --tokenizer Qwen/Qwen3-8B
+    --tokenizer Qwen/Qwen3-4B
 done

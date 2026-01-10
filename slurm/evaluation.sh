@@ -15,16 +15,16 @@ export WANDB_PROJECT="Efficient_Domain_Adaptation"
 export WANDB_DIR="./assets/wandb"
 
 for i in {1..10}; do
-  CUDA_VISIBLE_DEVICES=0 torchrun --nproc_per_node=1 scripts/med_eval.py \
-    --model model/downloaded/qwen3_8b_med_dense \
+  python3 scripts/med_eval.py \
+    --model model/downloaded/qwen3_4b_med_dense \
     --seed $((1234 + i)) \
-    --log_dir model/downloaded/qwen3_8b_med_dense/ \
+    --log_dir model/downloaded/qwen3_4b_med_dense/ \
     --filename "med_eval_log_run${i}.txt" \
-    --tokenizer Qwen/Qwen3-8B
+    --tokenizer Qwen/Qwen3-4B
 done
 
 for i in {1..10}; do
-  CUDA_VISIBLE_DEVICES=1 torchrun --nproc_per_node=1 scripts/legal_eval.py \
+  python3 scripts/legal_eval.py \
     --model model/downloaded/qwen3_8b_legal_dense \
     --seed $((1234 + i)) \
     --log_dir model/downloaded/qwen3_8b_legal_dense/ \
