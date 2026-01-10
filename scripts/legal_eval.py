@@ -13,6 +13,7 @@ def parse_args():
     parser.add_argument("--seed", type=int, default=42, help="Base random seed for reproducibility.")
     parser.add_argument("--log_dir", type=str, help="Path to save the evaluation log file.")
     parser.add_argument("--filename", type=str, default="legal_eval_results.txt", help="Filename for the evaluation results.")
+    parser.add_argument("--billsum_batch_size", type=int, default=1, help="Batch size for BillSum evaluation.")
     
 
     return parser.parse_args()
@@ -34,27 +35,29 @@ if __name__ == "__main__":
     device = model.device
     with open(log_path, "w") as log_file:
 
-        ppl = eval_ppl(model=model, tokenizer=tokenizer, dataset='legal_case_reports', seqlen=2048, device=device, seed=args.seed)
+        ppl = eval_ppl(model=model, tokenizer=tokenizer, dataset='pplmultilegal', seqlen=2048, device=device, seed=args.seed)
         print(f"Perplexity on Legal Case Reports with seed {args.seed}: {ppl:.4f}")
         log_file.write("Perplexity on Legal Case Reports with seed {}: {:.4f}\n".format(args.seed, ppl))
         log_file.write("\n")
 
-        acc, maf, cm, predictions = evaluate_contractnli(model, seed=args.seed, tokenizer=tokenizer, device=device)
+        acc, maf, cm, predictions = evaluate_contractnli(model, seed=args.seed, tokenizer=tokenizer, device=device, n_eval=1991)
         print(f"ContractNLI Results with seed {args.seed}: Accuracy: {acc:.4f}, Macro F1: {maf:.4f}")
         log_file.write("ContractNLI Results with seed {}:\n".format(args.seed))
         log_file.write("Accuracy: {:.4f}, Macro F1: {:.4f}\n".format(acc, maf))
         log_file.write("\n")
 
-        acc, maf, cm, predictions = evaluate_casehold(model, seed=args.seed, tokenizer=tokenizer, device=device)
+        acc, maf, cm, predictions = evaluate_casehold(model, seed=args.seed, tokenizer=tokenizer, device=device, n_eval=200)
         print(f"CaseHold Results with seed {args.seed}: Accuracy: {acc:.4f}, Macro F1: {maf:.4f}")
         log_file.write("CaseHold Results with seed {}:\n".format(args.seed))
         log_file.write("Accuracy: {:.4f}, Macro F1: {:.4f}\n".format(acc, maf))
         log_file.write("\n")
 
-        rouge_scores, summaries = evaluate_billsum(model, n_eval=100, seed=args.seed, tokenizer=tokenizer, device=device)
+        rouge_scores, summaries = evaluate_billsum(model, seed=args.seed, tokenizer=tokenizer, device=device, n_eval=200, batch_size=args.billsum_batch_size)
         print(f"BillSum Results with seed {args.seed}: ROUGE-1: {rouge_scores['rouge1']:.4f}, ROUGE-2: {rouge_scores['rouge2']:.4f}, ROUGE-L: {rouge_scores['rougeL']:.4f}")
         log_file.write("BillSum Results with seed {}:\n".format(args.seed))
         log_file.write("ROUGE-1 Score: {:.4f}\n".format(rouge_scores['rouge1'])) 
         log_file.write("ROUGE-2 Score: {:.4f}\n".format(rouge_scores['rouge2']))
         log_file.write("ROUGE-L Score: {:.4f}\n".format(rouge_scores['rougeL']))
         log_file.write("\n")    
+
+        

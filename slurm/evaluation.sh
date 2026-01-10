@@ -19,3 +19,9 @@ export WANDB_DIR="./assets/wandb"
 #     --seed 1234 \
 #     --log_dir model/downloaded/models--Qwen--Qwen3-0.6B/ \
 #     --filename med_eval_log.txt
+
+python3 scripts/legal_eval.py \
+    --model Qwen/Qwen3-0.6B \
+    --seed 1234 \
+    --log_dir model/downloaded/models--Qwen--Qwen3-8B/ \
+    --filename legal_eval_log.txt

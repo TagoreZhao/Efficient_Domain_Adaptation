@@ -7,7 +7,6 @@
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:4
 
-
 cd /Users/918839576/Trepo/Efficient_Domain_Adaptation/
 pwd  # This will print the working directory to your log
 export PYTHONPATH=/Users/918839576/Trepo/Efficient_Domain_Adaptation:$PYTHONPATH
