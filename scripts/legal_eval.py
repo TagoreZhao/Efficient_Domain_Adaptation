@@ -14,7 +14,7 @@ def parse_args():
     parser.add_argument("--log_dir", type=str, help="Path to save the evaluation log file.")
     parser.add_argument("--filename", type=str, default="legal_eval_results.txt", help="Filename for the evaluation results.")
     parser.add_argument("--billsum_batch_size", type=int, default=1, help="Batch size for BillSum evaluation.")
-    
+    parser.add_argument("--tokenizer", type=str, default=None, help="Path to the tokenizer. If not provided, use the model's tokenizer.")
 
     return parser.parse_args()
 
@@ -27,7 +27,7 @@ if __name__ == "__main__":
     os.makedirs(args.log_dir, exist_ok=True)
 
     model = AutoModelForCausalLM.from_pretrained(args.model)
-    tokenizer = AutoTokenizer.from_pretrained(args.model)
+    tokenizer = AutoTokenizer.from_pretrained(args.tokenizer if args.tokenizer else args.model)
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "left"
     if torch.cuda.is_available():

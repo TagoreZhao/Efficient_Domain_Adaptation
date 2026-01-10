@@ -10,6 +10,7 @@ def parse_args():
 
     parser = argparse.ArgumentParser(description="Evaluating model on medical datasets.")
     parser.add_argument("--model", type=str, default="model/downloaded/there_is_no_name", help="Path to the fine-tuned model.")
+    parser.add_argument("--tokenizer", type=str, default=None, help="Path to the tokenizer. If not provided, use the model's tokenizer.")
     parser.add_argument("--seed", type=int, default=42, help="Base random seed for reproducibility.")
     parser.add_argument("--log_dir", type=str, help="Path to save the evaluation log file.")
     parser.add_argument("--filename", type=str, default="med_eval_results.txt", help="Filename for the evaluation results.")
@@ -25,7 +26,7 @@ if __name__ == "__main__":
     os.makedirs(args.log_dir, exist_ok=True)
 
     model = AutoModelForCausalLM.from_pretrained(args.model)
-    tokenizer = AutoTokenizer.from_pretrained(args.model)
+    tokenizer = AutoTokenizer.from_pretrained(args.tokenizer if args.tokenizer else args.model)
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "left"
     if torch.cuda.is_available():

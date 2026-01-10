@@ -2,10 +2,10 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zhaotagore@gmail.com
 #SBATCH -p gpucluster
-#SBATCH --job-name=qwen_8b_dense_legal
-#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/qwen_8b_dense_legal_slurm-%j.out
+#SBATCH --job-name=eval_qwen_4b_dense_legal
+#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/eval_qwen_4b_dense_legal_slurm-%j.out
 #SBATCH --nodes=1
-#SBATCH --gres=gpu:4
+#SBATCH --gres=gpu:1
 
 
 cd /Users/918839576/Trepo/Efficient_Domain_Adaptation/
@@ -41,28 +41,28 @@ export WANDB_DIR="./assets/wandb"
 #     --contractnli_count 1000
 
 
-TORCH_DISTRIBUTED_DEBUG=DETAIL \
-NCCL_DEBUG=INFO \
-torchrun --nproc_per_node=4 scripts/finetuning.py \
-    --model_name Qwen/Qwen3-8B \
-    --tokenizer_name Qwen/Qwen3-8B \
-    --model_save_dir model/downloaded/ \
-    --run_name qwen3_8b_legal_dense \
-    --num_train_epochs 3 \
-    --per_device_train_batch_size 4 \
-    --per_device_eval_batch_size 4 \
-    --learning_rate 2e-4 \
-    --seed 1234 \
-    --train_dataset_path data/downloaded/qwen_legal_dataset_train \
-    --val_dataset_path data/downloaded/qwen_legal_dataset_val \
-    --lora_r 8 \
-    --lora_alpha 16 \
-    --lora_dropout 0.05 \
-    --weight_decay 0.01 \
-    --lora_target_modules "q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj" \
-    --report_to "wandb" \
-    --completion_only_loss True \
-    --eval_steps 100
+# TORCH_DISTRIBUTED_DEBUG=DETAIL \
+# NCCL_DEBUG=INFO \
+# torchrun --nproc_per_node=4 scripts/finetuning.py \
+#     --model_name Qwen/Qwen3-8B \
+#     --tokenizer_name Qwen/Qwen3-8B \
+#     --model_save_dir model/downloaded/ \
+#     --run_name qwen3_8b_legal_dense \
+#     --num_train_epochs 3 \
+#     --per_device_train_batch_size 4 \
+#     --per_device_eval_batch_size 4 \
+#     --learning_rate 2e-4 \
+#     --seed 1234 \
+#     --train_dataset_path data/downloaded/qwen_legal_dataset_train \
+#     --val_dataset_path data/downloaded/qwen_legal_dataset_val \
+#     --lora_r 8 \
+#     --lora_alpha 16 \
+#     --lora_dropout 0.05 \
+#     --weight_decay 0.01 \
+#     --lora_target_modules "q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj" \
+#     --report_to "wandb" \
+#     --completion_only_loss True \
+#     --eval_steps 100
 
 
 # python3 scripts/med_eval.py \
@@ -70,3 +70,13 @@ torchrun --nproc_per_node=4 scripts/finetuning.py \
 #     --seed 1234 \
 #     --log_dir model/downloaded/models--Qwen--Qwen3-0.6B/ \
 #     --filename med_eval_log.txt
+
+
+for i in {1..10}; do
+  CUDA_VISIBLE_DEVICES=3 torchrun --nproc_per_node=1 scripts/legal_eval.py \
+    --model model/downloaded/qwen3_4b_legal_dense \
+    --seed $((1234 + i)) \
+    --log_dir model/downloaded/qwen3_4b_legal_dense/ \
+    --filename "legal_eval_log_run${i}.txt" \
+    --tokenizer Qwen/Qwen3-8B
+done
