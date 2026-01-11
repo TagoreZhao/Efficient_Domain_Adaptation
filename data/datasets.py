@@ -9,13 +9,10 @@ local_data_directory = "data/downloaded"
 
 def get_loaders(
     name,
-    size = 1,
     nsamples=128,
     seed=0,
     seqlen=2048,
     tokenizer=None,
-    max_attempts=10000,
-    padding=True
 ):
     """
     Dynamically choose which dataset to load. 
@@ -363,7 +360,7 @@ def get_c4(nsamples, seed, seqlen, tokenizer):
     valenc = valenc.input_ids[0, : (256 * seqlen)]  # shape [val_seq_len]
 
     # Wrap in a helper class or just return the tensor
-    valdata = TokenizerWrapper(valenc)
+    # valdata = TokenizerWrapper(valenc)
 
     return trainloader, valdata
 
