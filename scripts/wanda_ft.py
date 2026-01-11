@@ -10,6 +10,7 @@ import json
 import sys
 from pruning.prune import prune_wanda
 from pruning.utils import check_sparsity
+from SFT.utils import init_dist_if_needed, get_ranks, rank0_prune_then_sync
 
 
 def parse_args():
@@ -102,28 +103,37 @@ if __name__ == "__main__":
     tokenizer.padding_side = "left"
     print("Tokenizer loaded.")
 
+    is_dist = init_dist_if_needed()
+    rank, local_rank, world_size = get_ranks()
+    torch.cuda.set_device(local_rank)
+    device = torch.device(f"cuda:{local_rank}")
+
     print("Loading model...")
     model = AutoModelForCausalLM.from_pretrained(
         args.model_name,
-        dtype="auto",
+        torch_dtype=torch.bfloat16,   # recommended (or float16)
         cache_dir=args.model_save_dir
-    )
+    ).to(device)
     print("Model loaded.")
     print("Applying Wanda pruning...")
     if args.pruning_ratio > 0.0:
-        prune_wanda(
+        print(f"[rank={rank}] applying Wanda (rank0-only) then syncing...")
+        model = rank0_prune_then_sync(
+            model,
+            prune_wanda,
             sparsity_ratio=args.pruning_ratio,
             nsamples=args.pruning_nsamples,
             seed=args.seed,
             seqlen=args.pruning_seqlen,
             dataset_name=args.pruning_dataset_name,
-            model=model,
             tokenizer=tokenizer,
-            device=None,
+            device=device,          # IMPORTANT: do not leave None
             prune_n=args.prune_n,
             prune_m=args.prune_m,
-            use_variant=args.use_variant
+            use_variant=args.use_variant,
         )
+        if rank == 0:
+            print("Pruning complete and broadcasted.")
     sparsity = check_sparsity(model)
     print(f"Model sparsity after Wanda pruning: {sparsity:.2f}%")
     print("Wanda pruning applied.")
@@ -149,6 +159,7 @@ if __name__ == "__main__":
     print("Training completed. Saving the model...")
 
     merged_model = peft_model.merge_and_unload()
+    merged_model = merged_model.to(device)
     print("Applying Wanda pruning to the merged model...")
     if args.pruning_ratio > 0.0:
         prune_wanda(
@@ -159,7 +170,7 @@ if __name__ == "__main__":
             dataset_name=args.pruning_dataset_name,
             model=merged_model,
             tokenizer=tokenizer,
-            device=None,
+            device=device,
             prune_n=args.prune_n,
             prune_m=args.prune_m,
             use_variant=args.use_variant
