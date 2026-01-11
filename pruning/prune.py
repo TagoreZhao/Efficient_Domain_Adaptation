@@ -13,6 +13,7 @@ def prune_wanda(
     seqlen,
     model,
     tokenizer,
+    dataset_name="c4",
     device=torch.device("cuda:0"),
     prune_n=0,
     prune_m=0,
@@ -40,7 +41,7 @@ def prune_wanda(
 
     print("loading calibration data")
     dataloader, _ = get_loaders(
-        "c4",
+        dataset_name,
         nsamples=nsamples,
         seed=seed,
         seqlen=seqlen,

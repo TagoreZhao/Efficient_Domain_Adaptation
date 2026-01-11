@@ -1,3 +1,6 @@
+import torch
+import torch.nn as nn
+
 class WrappedGPT:
     """
     Wrap a Linear layer to accumulate per-input-dimension squared L2 norms (row-scaler),
