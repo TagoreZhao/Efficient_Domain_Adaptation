@@ -39,6 +39,9 @@ def parse_args():
     parser.add_argument("--pruning_nsamples", type=int, default=128, help="Number of samples for Wanda pruning calibration.")
     parser.add_argument("--pruning_seqlen", type=int, default=2048, help="Sequence length for Wanda pruning calibration.")
     parser.add_argument("--pruning_dataset_name", type=str, default="c4", help="Dataset name for Wanda pruning calibration.")
+    parser.add_argument("--prune_n", type=int, default=0, help="Wanda prune_n parameter.")
+    parser.add_argument("--prune_m", type=int, default=0, help="Wanda prune_m parameter.")
+    parser.add_argument("--use_variant", action="store_true", help="Use Wanda variant.")
 
     args = parser.parse_args()
 
@@ -117,9 +120,9 @@ if __name__ == "__main__":
             model=model,
             tokenizer=tokenizer,
             device=torch.device("cuda:0"),
-            prune_n=0,
-            prune_m=0,
-            use_variant=False
+            prune_n=args.prune_n,
+            prune_m=args.prune_m,
+            use_variant=args.use_variant
         )
     sparsity = check_sparsity(model)
     print(f"Model sparsity after Wanda pruning: {sparsity:.2f}%")
