@@ -13,12 +13,6 @@ export PYTHONPATH=/Users/918839576/Trepo/Efficient_Domain_Adaptation:$PYTHONPATH
 export WANDB_PROJECT="Efficient_Domain_Adaptation"
 export WANDB_DIR="./assets/wandb"
 
-cd /Users/918839576/Trepo/Efficient_Domain_Adaptation/
-pwd  # This will print the working directory to your log
-export PYTHONPATH=/Users/918839576/Trepo/Efficient_Domain_Adaptation:$PYTHONPATH
-export WANDB_PROJECT="Efficient_Domain_Adaptation"
-export WANDB_DIR="./assets/wandb"
-
 TORCH_DISTRIBUTED_DEBUG=DETAIL \
 NCCL_DEBUG=INFO \
 torchrun --nproc_per_node=4 scripts/wanda_ft.py \

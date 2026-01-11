@@ -119,7 +119,7 @@ if __name__ == "__main__":
             dataset_name=args.pruning_dataset_name,
             model=model,
             tokenizer=tokenizer,
-            device=torch.device("cuda:0"),
+            device=None,
             prune_n=args.prune_n,
             prune_m=args.prune_m,
             use_variant=args.use_variant
@@ -159,7 +159,7 @@ if __name__ == "__main__":
             dataset_name=args.pruning_dataset_name,
             model=merged_model,
             tokenizer=tokenizer,
-            device=torch.device("cuda:0"),
+            device=None,
             prune_n=0,
             prune_m=0,
             use_variant=False

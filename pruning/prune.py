@@ -14,7 +14,7 @@ def prune_wanda(
     model,
     tokenizer,
     dataset_name="c4",
-    device=torch.device("cuda:0"),
+    device=None,
     prune_n=0,
     prune_m=0,
     use_variant=False,
