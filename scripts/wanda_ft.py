@@ -160,9 +160,9 @@ if __name__ == "__main__":
             model=merged_model,
             tokenizer=tokenizer,
             device=None,
-            prune_n=0,
-            prune_m=0,
-            use_variant=False
+            prune_n=args.prune_n,
+            prune_m=args.prune_m,
+            use_variant=args.use_variant
         )
     sparsity = check_sparsity(merged_model)
     print(f"Model sparsity after Wanda pruning: {sparsity:.2f}%")
