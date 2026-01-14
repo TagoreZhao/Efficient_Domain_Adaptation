@@ -161,6 +161,8 @@ if __name__ == "__main__":
     merged_model = peft_model.merge_and_unload()
     merged_model = merged_model.to(device)
     print("Applying Wanda pruning to the merged model...")
+    sparsity = check_sparsity(merged_model)
+    print(f"Model sparsity before Wanda pruning: {sparsity:.2f}%")
     if args.pruning_ratio > 0.0:
         prune_wanda(
             sparsity_ratio=args.pruning_ratio,
