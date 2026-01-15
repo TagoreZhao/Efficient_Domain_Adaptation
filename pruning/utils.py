@@ -1,3 +1,4 @@
+import math
 import torch
 import torch.nn as nn
 
@@ -243,3 +244,43 @@ def return_given_alpha(alpha, sort_res, W_metric, tmp_metric, sum_before):
     W_mask = (W_metric <= thres)
     cur_sparsity = (W_mask == True).sum().float() / W_mask.numel()
     return W_mask, cur_sparsity
+
+@torch.no_grad()
+def merge_lora_into_base(lora_linear, adapter: str = "default"):
+    """
+    base_weight <- base_weight + delta(adapter)
+    Does NOT change requires_grad settings.
+    """
+    if adapter not in lora_linear.lora_A:
+        return
+
+    # PEFT LoRA Linear exposes get_delta_weight(adapter) in recent versions;
+    # if not, you can compute B @ A * scaling yourself.
+    if hasattr(lora_linear, "get_delta_weight"):
+        delta = lora_linear.get_delta_weight(adapter)
+    else:
+        print("Computing delta manually")
+        A = lora_linear.lora_A[adapter].weight
+        B = lora_linear.lora_B[adapter].weight
+        delta = (B @ A) * lora_linear.scaling[adapter]
+        # fan_in_fan_out handling if needed
+        if getattr(lora_linear, "fan_in_fan_out", False):
+            delta = delta.T
+
+    # Make sure delta dtype/device matches base weight
+    base_w = lora_linear.base_layer.weight
+    base_w.add_(delta.to(device=base_w.device, dtype=base_w.dtype))
+
+@torch.no_grad()
+def reset_lora(lora_linear, adapter: str = "default"):
+    """
+    Re-initialize LoRA weights in-place.
+    Typical LoRA init: A ~ Kaiming, B = 0.
+    """
+    if adapter not in lora_linear.lora_A:
+        return
+    A = lora_linear.lora_A[adapter].weight
+    B = lora_linear.lora_B[adapter].weight
+
+    nn.init.kaiming_uniform_(A, a=math.sqrt(5))
+    nn.init.zeros_(B)
