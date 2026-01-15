@@ -16,9 +16,40 @@ def find_layers(module, layers=(nn.Linear,), name=""):
     return res
 
 def get_layers(model: nn.Module):
-    if hasattr(model, "model") and hasattr(model.model, "layers"):
-        return model.model.layers
-    raise AttributeError("Expected Qwen3-style `model.model.layers`.")
+    """
+    Return the decoder layer ModuleList for Qwen3-style models, including PEFT-wrapped models.
+
+    Works for:
+      - base Qwen3ForCausalLM:            model.model.layers
+      - PEFT wrappers (common):          model.base_model.model.model.layers
+                                        model.base_model.model.layers
+                                        model.base_model.model.layers, etc.
+    """
+    # 1) Unwrap PEFT if present
+    base = model
+    if hasattr(base, "base_model"):
+        base = base.base_model
+        # PEFT often stores the underlying HF model under .model
+        if hasattr(base, "model"):
+            base = base.model
+
+    # 2) Try common Qwen-style paths
+    if hasattr(base, "model") and hasattr(base.model, "layers"):
+        return base.model.layers
+
+    # Some stacks use model.layers directly
+    if hasattr(base, "layers"):
+        return base.layers
+
+    # 3) Last resort: search for a ModuleList named "...layers"
+    for name, mod in base.named_modules():
+        if name.endswith("layers") and isinstance(mod, nn.ModuleList):
+            return mod
+
+    raise AttributeError(
+        "Could not find decoder layers. Tried Qwen-style paths and fallback search "
+        "for a ModuleList named '*layers'."
+    )
 
 def make_position_ids(position_ids, seqlen, bsz, device):
     """
@@ -34,17 +65,41 @@ def make_position_ids(position_ids, seqlen, bsz, device):
         position_ids = position_ids.expand(bsz, -1)
     return position_ids
 
+
 def compute_position_embeddings(model, hidden_states, position_ids):
     """
-    Qwen3 expects `position_embeddings` as a tuple (cos, sin), produced by model.model.rotary_emb.
+    Qwen3 expects `position_embeddings` as a tuple (cos, sin) from rotary_emb.
+
+    Works for:
+      - base models: model.model.rotary_emb
+      - PEFT models: model.base_model.model.model.rotary_emb (or similar)
     """
-    if not (hasattr(model, "model") and hasattr(model.model, "rotary_emb")):
-        raise AttributeError("Expected Qwen3-style `model.model.rotary_emb` to compute RoPE embeddings.")
-    return model.model.rotary_emb(hidden_states, position_ids)  # (cos, sin)
+    base = _unwrap_to_base_model(model)
+
+    # Common Qwen-style locations
+    if hasattr(base, "model") and hasattr(base.model, "rotary_emb"):
+        rotary = base.model.rotary_emb
+    elif hasattr(base, "rotary_emb"):
+        rotary = base.rotary_emb
+    else:
+        raise AttributeError(
+            "Could not find rotary_emb. Tried base.model.rotary_emb and base.rotary_emb "
+            "(with PEFT unwrapping)."
+        )
+
+    # Different HF implementations vary slightly in signature; support both common call styles.
+    try:
+        return rotary(hidden_states, position_ids)  # (cos, sin)
+    except TypeError:
+        # Some variants use keyword args
+        return rotary(x=hidden_states, position_ids=position_ids)
+
 
 def layer_forward(model, layer, hidden_states, attention_mask=None, position_ids=None):
     """
     Forward a single Qwen3 decoder layer correctly by providing position_embeddings.
+    Compatible with PEFT-wrapped models; `layer` should be the actual decoder block module.
+
     hidden_states: [bsz, seqlen, hidden]
     Returns: hidden_states_out [bsz, seqlen, hidden]
     """
@@ -56,14 +111,13 @@ def layer_forward(model, layer, hidden_states, attention_mask=None, position_ids
 
     out = layer(
         hidden_states,
-        attention_mask=attention_mask,          # may be None; OK if your sequences are unpadded
+        attention_mask=attention_mask,
         position_ids=pos_ids,
         position_embeddings=pos_emb,
         past_key_values=None,
         use_cache=False,
         cache_position=None,
     )
-    # HF layers typically return a tuple; first element is hidden_states
     return out[0] if isinstance(out, (tuple, list)) else out
 
 def check_sparsity(model):
