@@ -91,31 +91,73 @@ def check_sparsity(model):
 
     model.config.use_cache = use_cache 
     return float(count)/total_params 
-
-def _get_decoder_layers(model: nn.Module):
-    """
-    Qwen3ForCausalLM typically has model.model.layers (Qwen3Model.layers).
-    This helper makes the access explicit and fail-fast with a clear error.
-    """
-    if hasattr(model, "model") and hasattr(model.model, "layers"):
-        return model.model.layers
-    raise AttributeError("Could not find decoder layers. Expected `model.model.layers` for Qwen3.")
-
-
 class _StopForward(Exception):
     """Internal exception used to early-exit the forward pass after capturing activations."""
     pass
 
 
+def _unwrap_to_base_model(model: nn.Module) -> nn.Module:
+    """
+    If `model` is a PEFT wrapper, unwrap to the underlying Hugging Face model.
+    This does not detach adapters; it just returns the object that owns the transformer stack.
+    """
+    # Common PEFT wrappers expose .base_model (PeftModelForCausalLM, etc.)
+    if hasattr(model, "base_model"):
+        base = model.base_model
+        # In PEFT, base_model often has .model which is the underlying HF model
+        if hasattr(base, "model"):
+            return base.model
+        return base
+    return model
+
+
+def _get_decoder_layers(model: nn.Module) -> nn.ModuleList:
+    """
+    Find the decoder layer ModuleList for Qwen-style / Llama-style HF models,
+    handling both plain models and PEFT wrappers.
+    """
+    base = _unwrap_to_base_model(model)
+
+    # Try common attribute chains
+    candidates = [
+        ("model", "layers"),              # e.g., Qwen3ForCausalLM: base.model.layers
+        ("model", "model", "layers"),      # some models nest .model.model.layers
+        ("transformer", "h"),              # GPT-style: transformer.h
+        ("gpt_neox", "layers"),            # GPT-NeoX style
+        ("decoder", "layers"),             # encoder-decoder style (decoder.layers)
+    ]
+
+    for chain in candidates:
+        obj = base
+        ok = True
+        for attr in chain:
+            if not hasattr(obj, attr):
+                ok = False
+                break
+            obj = getattr(obj, attr)
+        if ok and isinstance(obj, nn.ModuleList):
+            return obj
+
+    # Last resort: search by name for something ending with ".layers"
+    for name, mod in base.named_modules():
+        if name.endswith("layers") and isinstance(mod, nn.ModuleList):
+            return mod
+
+    raise AttributeError(
+        "Could not find decoder layers ModuleList. "
+        "Tried common paths (model.layers, model.model.layers, transformer.h, etc.)."
+    )
+
+
 @torch.no_grad()
 def prepare_calibration_input(model, dataloader, device=None, max_samples=None):
     """
-    Capture the hidden-states entering the first decoder layer for a set of calibration samples,
-    without replacing the layer module (uses a forward pre-hook instead).
-
+    Capture hidden-states entering the first decoder layer for calibration samples.
+    Works with PEFT-wrapped models by attaching the hook to the underlying base layer.
+    (This is edited based on Wanda Implementation)
     Returns:
-        inps:          [n_to_capture, seqlen, hidden]
-        outs:          same shape as inps (zeros)
+        inps:           [n_to_capture, seqlen, hidden]
+        outs:           same shape as inps (zeros)
         attention_mask: last seen attention_mask passed into layer 0 (may be None)
         position_ids:   last seen position_ids passed into layer 0 (may be None)
     """
@@ -131,30 +173,37 @@ def prepare_calibration_input(model, dataloader, device=None, max_samples=None):
 
     layers = _get_decoder_layers(model)
 
-    # Helper to normalize batch -> input_ids (batch, seqlen)
     def _get_input_ids(batch):
-        # your dataset returns (inp, tar); DataLoader returns same but with batch dim
-        if isinstance(batch, (tuple, list)):
+        # Supports:
+        # - (input_ids, labels) tuples
+        # - dict batches with "input_ids"
+        # - direct tensors
+        if isinstance(batch, dict):
+            x = batch["input_ids"]
+        elif isinstance(batch, (tuple, list)):
             x = batch[0]
         else:
             x = batch
         if x.dim() == 1:
-            x = x.unsqueeze(0)  # [1, seqlen]
+            x = x.unsqueeze(0)
         return x
 
-    # Grab one batch to infer seqlen
+    def _get_attention_mask(batch):
+        if isinstance(batch, dict) and "attention_mask" in batch:
+            return batch["attention_mask"]
+        return None
+
+    # Peek one batch for seqlen
     it = iter(dataloader)
     first = next(it)
     first_ids = _get_input_ids(first)
     seqlen = first_ids.shape[1]
 
-    # Determine how many samples we will actually capture
+    # Determine number of samples to capture
     total_batches = len(dataloader) if hasattr(dataloader, "__len__") else None
     n_to_capture = total_batches if total_batches is not None else 0
     if max_samples is not None:
         n_to_capture = min(n_to_capture, max_samples) if n_to_capture else max_samples
-
-    # If we can't know length, we require max_samples
     if n_to_capture == 0:
         if max_samples is None:
             raise ValueError("Dataloader has no __len__; pass max_samples.")
@@ -168,19 +217,16 @@ def prepare_calibration_input(model, dataloader, device=None, max_samples=None):
 
     cache = {"i": 0, "attention_mask": None, "position_ids": None}
 
-    # Pre-hook on the first decoder layer: capture inputs to that layer
     def _pre_hook(module, args, kwargs):
-        """
-        args[0] should be hidden_states entering decoder layer 0: [bsz, seqlen, hidden]
-        kwargs may include attention_mask, position_ids, etc.
-        """
         if not args:
-            raise RuntimeError("Unexpected: decoder layer received no positional args (hidden_states missing).")
+            raise RuntimeError("Decoder layer received no hidden_states positional arg.")
 
-        hs = args[0].to(device)  # [bsz, seqlen, hidden]
+        hs = args[0]
+        # hs: [bsz, seqlen, hidden]
+        if hs.device != device:
+            hs = hs.to(device, non_blocking=True)
+
         bsz = hs.shape[0]
-
-        # Capture sample-by-sample (works for batch_size=1; supports >1 until buffer fills)
         for b in range(bsz):
             if cache["i"] >= inps.shape[0]:
                 break
@@ -188,25 +234,30 @@ def prepare_calibration_input(model, dataloader, device=None, max_samples=None):
             cache["i"] += 1
 
         cache["attention_mask"] = kwargs.get("attention_mask", cache["attention_mask"])
-        cache["position_ids"] = kwargs.get("position_ids", cache["position_ids"])
+        cache["position_ids"]   = kwargs.get("position_ids", cache["position_ids"])
 
-        # Early stop once we have enough samples; otherwise allow forward to continue
         if cache["i"] >= inps.shape[0]:
             raise _StopForward()
 
-        # If you want to always stop immediately after layer-0 capture (faster but needs
-        # one model() call per sample/batch), uncomment the next line:
-        # raise _StopForward()
-
+    # Attach hook to the *actual* first decoder layer module
     hook_handle = layers[0].register_forward_pre_hook(_pre_hook, with_kwargs=True)
 
     def _run_batch(batch):
-        input_ids = _get_input_ids(batch).to(device)
-        # run until we either fill inps (hook raises _StopForward) or forward completes
-        model(input_ids=input_ids, use_cache=False)
+        input_ids = _get_input_ids(batch).to(device, non_blocking=True)
+        attn_mask = _get_attention_mask(batch)
+        if attn_mask is not None:
+            attn_mask = attn_mask.to(device, non_blocking=True)
+
+        # Run through the (possibly PEFT-wrapped) model.
+        # The hook is on base layer, so it will fire.
+        model(
+            input_ids=input_ids,
+            attention_mask=attn_mask,
+            use_cache=False,
+        )
 
     try:
-        # Process the first batch then the rest
+        # First batch then remainder
         for batch in [first]:
             if cache["i"] >= inps.shape[0]:
                 break
@@ -223,16 +274,12 @@ def prepare_calibration_input(model, dataloader, device=None, max_samples=None):
             except _StopForward:
                 break
     finally:
-        # Always remove hook + restore config/state
         hook_handle.remove()
         model.config.use_cache = use_cache
         if model_was_training:
             model.train()
 
-    attention_mask = cache["attention_mask"]
-    position_ids = cache["position_ids"]
-
-    return inps, outs, attention_mask, position_ids
+    return inps, outs, cache["attention_mask"], cache["position_ids"]
 
 def return_given_alpha(alpha, sort_res, W_metric, tmp_metric, sum_before):
     thres_cumsum = sum_before * alpha
