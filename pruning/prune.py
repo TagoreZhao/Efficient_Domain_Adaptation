@@ -8,7 +8,8 @@ from .utils import (get_layers,
                     return_given_alpha, 
                     prepare_calibration_input, 
                     merge_lora_into_base, 
-                    reset_lora)
+                    reset_lora,
+                    get_comp_norm)
 from peft.tuners.lora import Linear
 
 @torch.no_grad()
