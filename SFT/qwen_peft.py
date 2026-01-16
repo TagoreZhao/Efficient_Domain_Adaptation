@@ -4,18 +4,18 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from evaluation.domain_zero_shot import *
 from trl import  SFTConfig, SFTTrainer
 from peft import LoraConfig, get_peft_model
-from data.datasets import construct_med_data, construct_legal_data
+from data.datasets import construct_med_data
 from data.utils import to_prompt_completion_hf
-from SFT.utils import save_run_manifest
 
 torch.cuda.empty_cache()
-os.environ["WANDB_PROJECT"] = "Efficient_Domain_Adaptation"
+os.environ["WANDB_PROJECT"] = "test"
 os.environ["WANDB_DIR"] = "./assets/wandb"
-model_name = "Qwen/Qwen3-1.7B"
+model_name = "Qwen/Qwen3-0.6B"
 model_save_dir = "model/downloaded"
-peft_model_save_dir = os.path.join(model_save_dir, "qwen3_1.7b_med_3eps_classic")
+peft_model_save_dir = os.path.join(model_save_dir, "qwen3_0.6b_med_3eps_test")
+merged_model_save_dir = os.path.join(model_save_dir, "merged_qwen3_0.6b_med_3eps_test")
 seed = 42
-run_name = "qwen3_1.7b_med_3eps_classic"
+run_name = "qwen3_0.6b_med_3eps_test"
 
 peft_config = LoraConfig(
     r = 8,
@@ -36,7 +36,7 @@ sft_config = SFTConfig(
     eval_steps=50,
     per_device_train_batch_size = 16,
     per_device_eval_batch_size  = 16,
-    learning_rate=1e-4,
+    learning_rate=2e-4,
     weight_decay=0.01,
     num_train_epochs=3,
     eval_on_start=True,
@@ -92,9 +92,13 @@ print("Trainer prepared. Starting training...")
 trainer.train()
 print("Training completed. Saving the model...")
 
+peft_model.save_pretrained(peft_model_save_dir)
+tokenizer.save_pretrained(peft_model_save_dir)
+print("PEFT Model saved to", peft_model_save_dir)
+
 merged_model = peft_model.merge_and_unload()
-merged_model.save_pretrained(peft_model_save_dir)
-print("Model saved to", peft_model_save_dir)
+merged_model.save_pretrained(merged_model_save_dir)
+print("Model saved to", merged_model_save_dir)
 
 print("Evaluating model on PubMedQA...")
 model = AutoModelForCausalLM.from_pretrained(
@@ -112,8 +116,9 @@ acc, maf, cm, predictions = evaluate_mednli(model, tokenizer)
 print(f"MedNLI Accuracy before fine-tuning: {acc:.4f}, Macro F1: {maf:.4f}")
 pre["MedNLI"] = {"accuracy": float(acc), "macro_f1": float(maf)}
 rouge, prediction = evaluate_hqs(model, tokenizer)
-print(f"HQS Rouge before fine-tuning: {rouge:.4f}")
-pre["HQS"] = {"rouge": float(rouge)}
+print("HQS ROUGE before fine-tuning:", rouge)
+pre["HQS"] = {"rouge": rouge}
+
 
 post = {}
 acc, maf, cm, predictions = evaluate_pubmedqa(merged_model, tokenizer)
@@ -125,17 +130,3 @@ post["MedNLI"] = {"accuracy": float(acc), "macro_f1": float(maf)}
 rouge, prediction = evaluate_hqs(merged_model, tokenizer)
 print("HQS ROUGE after fine-tuning:", rouge)
 post["HQS"] = {"rouge": rouge}
-
-manifest_path = save_run_manifest(
-    out_dir=peft_model_save_dir,
-    model_name=model_name,
-    peft_config=peft_config,
-    sft_config=sft_config,
-    tokenizer_name=model_name,
-    train_len=len(train_dataset),
-    val_len=len(val_dataset),
-    pre_metrics=pre,
-    post_metrics=post,
-    model_for_count=peft_model,  # counts trainable LoRA params
-)
-print("Saved manifest to:", manifest_path)
