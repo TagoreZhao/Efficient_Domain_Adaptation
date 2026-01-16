@@ -2,6 +2,12 @@ import math
 import torch
 import torch.nn as nn
 
+
+def get_comp_norm(comp, dim):
+    comp_weight = comp.base_layer.weight + torch.matmul(comp.lora_B.default.weight,
+                                                        comp.lora_A.default.weight)
+    return torch.norm(comp_weight, p=2, dim=dim).reshape(1, -1)
+
 def find_layers(module, layers=(nn.Linear,), name=""):
     """
     Recursively find the layers of certain type(s) in a module.
