@@ -18,7 +18,8 @@ def foresight_prune(model,
                 prune_ratio,
                 mask_lr,
                 nsamples=128,
-                device=None):
+                device=None,
+                merge_lora=True):
     use_cache = model.config.use_cache
     model.config.use_cache = False
 
@@ -191,8 +192,9 @@ def foresight_prune(model,
             if score_tensor.device != orig_score_device:
                 score_tensor = score_tensor.to(orig_score_device)
             # merge the lora adpater, apply the mask, and reinitialized the lora adapter
-            merge_lora_into_base(subset[name], adapter="default")
-            reset_lora(subset[name], adapter="default")
+            if merge_lora:
+                merge_lora_into_base(subset[name], adapter="default")
+                reset_lora(subset[name], adapter="default")
             
             # Rowwise Selection
             W_mask = torch.zeros_like(importance, dtype=torch.bool)

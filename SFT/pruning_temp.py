@@ -4,7 +4,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import LoraConfig, get_peft_model, PeftModel
 from evaluation.perplexity import eval_ppl
 from pruning.utils import check_sparsity
-from pruning.prune import foresight_prune
+from pruning.prune import foresight_prune, prune_wanda
 from evaluation.domain_zero_shot import *
 import pandas as pd
 from data.datasets import get_loaders
@@ -17,7 +17,7 @@ model_name = "Qwen/Qwen3-0.6B"
 model_save_dir = "model/downloaded"
 adapter_save_dir = "model/downloaded/qwen3_0.6b_med_3eps_test"
 out_dir = "assets/pruning_temp_results"
-eval_reps = 2
+eval_reps = 30
 seed = 1234
 os.makedirs(model_save_dir, exist_ok=True)
 
@@ -33,17 +33,26 @@ peft_model = PeftModel.from_pretrained(
     model,
     adapter_save_dir)
 
-dataloader, _ = get_loaders(
-    name="harrison",
-    tokenizer=tokenizer,
-    seqlen=2048,
-    nsamples=128)
+# dataloader, _ = get_loaders(
+#     name="harrison",
+#     tokenizer=tokenizer,
+#     seqlen=2048,
+#     nsamples=128)
 
-foresight_prune(model=peft_model,
-                dataloader=dataloader,
-                prune_ratio=0.4,
-                mask_lr=0.5,
-                nsamples=128)
+# foresight_prune(model=peft_model,
+#                 dataloader=dataloader,
+#                 prune_ratio=0.4,
+#                 mask_lr=0.5,
+#                 nsamples=128)
+
+# model = peft_model.merge_and_unload()
+# prune_wanda(sparsity_ratio=0.4,
+#             nsamples=128,
+#             seed=42,
+#             seqlen=2048,
+#             model=model,
+#             tokenizer=tokenizer,
+#             dataset_name="harrison")
 
 model = peft_model.merge_and_unload()
 sparsity = check_sparsity(model)
@@ -81,7 +90,7 @@ for i in range(eval_reps):
 df = pd.DataFrame(rows)
 os.makedirs(out_dir, exist_ok=True)
 
-csv_path = os.path.join(out_dir, "metrics.csv")
+csv_path = os.path.join(out_dir, "dense_metrics.csv")
 df.to_csv(csv_path, index=False)
 
 print("Saved:", csv_path)
