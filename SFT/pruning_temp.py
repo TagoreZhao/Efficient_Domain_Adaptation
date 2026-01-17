@@ -17,7 +17,7 @@ model_name = "Qwen/Qwen3-0.6B"
 model_save_dir = "model/downloaded"
 adapter_save_dir = "model/downloaded/qwen3_0.6b_med_3eps_test"
 out_dir = "assets/pruning_temp_results"
-eval_reps = 30
+eval_reps = 10
 seed = 1234
 os.makedirs(model_save_dir, exist_ok=True)
 
@@ -33,17 +33,18 @@ peft_model = PeftModel.from_pretrained(
     model,
     adapter_save_dir)
 
-# dataloader, _ = get_loaders(
-#     name="harrison",
-#     tokenizer=tokenizer,
-#     seqlen=2048,
-#     nsamples=128)
+dataloader, _ = get_loaders(
+    name="harrison",
+    tokenizer=tokenizer,
+    seqlen=2048,
+    nsamples=128)
 
-# foresight_prune(model=peft_model,
-#                 dataloader=dataloader,
-#                 prune_ratio=0.4,
-#                 mask_lr=0.5,
-#                 nsamples=128)
+foresight_prune(model=peft_model,
+                dataloader=dataloader,
+                prune_ratio=0.4,
+                mask_lr=0.5,
+                nsamples=128,
+                PBS = True)
 
 # model = peft_model.merge_and_unload()
 # prune_wanda(sparsity_ratio=0.4,
@@ -90,7 +91,7 @@ for i in range(eval_reps):
 df = pd.DataFrame(rows)
 os.makedirs(out_dir, exist_ok=True)
 
-csv_path = os.path.join(out_dir, "dense_metrics.csv")
+csv_path = os.path.join(out_dir, "foresightPBS40_metrics.csv")
 df.to_csv(csv_path, index=False)
 
 print("Saved:", csv_path)

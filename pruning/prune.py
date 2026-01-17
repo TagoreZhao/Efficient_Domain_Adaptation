@@ -19,7 +19,8 @@ def foresight_prune(model,
                 mask_lr,
                 nsamples=128,
                 device=None,
-                merge_lora=True):
+                merge_lora=True,
+                PBS=True):
     use_cache = model.config.use_cache
     model.config.use_cache = False
 
@@ -187,14 +188,12 @@ def foresight_prune(model,
                 # Moving average: new_score = mask_lr * current + (1 - mask_lr) * previous
                 print("we use moving average")
                 importance = mask_lr * importance + (1 - mask_lr) * score_tensor
+
             # Update the stored score.
             score_tensor.copy_(importance)
             if score_tensor.device != orig_score_device:
                 score_tensor = score_tensor.to(orig_score_device)
             # merge the lora adpater, apply the mask, and reinitialized the lora adapter
-            if merge_lora:
-                merge_lora_into_base(subset[name], adapter="default")
-                reset_lora(subset[name], adapter="default")
             
             # Rowwise Selection
             W_mask = torch.zeros_like(importance, dtype=torch.bool)
@@ -203,6 +202,27 @@ def foresight_prune(model,
             indices = sort_res[1][:, :num_to_prune]
             rows = torch.arange(importance.shape[0]).unsqueeze(-1).to(importance.device)
             W_mask[rows, indices] = True
+
+            if PBS:
+                # Perform partial brain surgeon recovery
+                print("Performing PBS recovery")
+                lora_B_new = partial_brain_surgeon(
+                    X_hat=X_hat,
+                    M=~W_mask,
+                    B=lora_B,
+                    A=lora_A,
+                    W=weight,
+                    reg=1e-8,
+                    keep_weight=1.0,
+                    max_pruned_per_row=None,
+                    eps=1e-12,
+                    inplace=True,
+                )
+
+            if merge_lora:
+                merge_lora_into_base(subset[name], adapter="default")
+                reset_lora(subset[name], adapter="default")
+            
             weight.masked_fill_(W_mask, 0.0)
 
 
@@ -389,3 +409,133 @@ def prune_wanda(
     model.config.use_cache = use_cache
     torch.cuda.empty_cache()
     return model
+
+@torch.no_grad()
+def partial_brain_surgeon(
+    X_hat,
+    M,
+    B,
+    A,
+    W,
+    reg=1e-8,
+    keep_weight=1.0,
+    max_pruned_per_row=None,
+    eps=1e-12,
+    inplace=False,
+    xhat_is_squared=True,
+):
+    """
+    Adapter recovery under a fixed mask M (single-layer, closed-form), updating B only (A fixed).
+
+    This version matches the common transformer Linear shapes you provided:
+        X_hat:   [1, 1, n]  (here n=1024)  -> interpreted as per-input-feature energy
+        W:       [m, n]     (here m=2048, n=1024)
+        B:       [m, r]     (here r=8)
+        A:       [r, n]
+
+    IMPORTANT: With X_hat shaped like (.., n), we treat it as *column weights*:
+        g_j ≈ (X^T X)_{jj} = ||X_{:,j}||_2^2,  j=1..n
+
+    Row-wise objective (for each output row i):
+        min_{Δb_i}
+            || (U_{i,S_i} + Δb_i A_{:,S_i}) diag(sqrt(g_{S_i})) ||_2^2
+          + keep_weight * || (Δb_i A_{:,K_i}) diag(sqrt(g_{K_i})) ||_2^2
+          + reg * ||Δb_i||_2^2
+
+    where U = W + BA (current effective weight),
+          S_i are pruned columns in row i, K_i are kept columns in row i.
+
+    Closed form uses weighted Grams:
+        A D A^T and A_{S} D_S A_{S}^T, with D=diag(g).
+
+    Args:
+        X_hat: Tensor with last dim = n (preferred), e.g. [1,1,n] or [n].
+               If last dim == m, we fall back to row-weighting (older behavior).
+        M:     Binary mask [m,n], 0=pruned, 1=kept.
+        B,A,W: As above.
+        reg:   Ridge (Tikhonov) coefficient.
+        keep_weight: Strength of "do-no-harm on kept coordinates" penalty.
+        max_pruned_per_row: Optional cap on |S_i| via largest |U_{i,S_i}|.
+        eps:   Numerical floor for g.
+        inplace: Update B in-place if True.
+        xhat_is_squared: If True, X_hat already stores ||X_{:,j}||^2.
+                         If False, we will square it to get g.
+
+    Returns:
+        Updated B with same shape/device/dtype as input B.
+    """
+    # dtype/device harmonization
+    if B.dtype != A.dtype:
+        B = B.to(A.dtype)
+    device = A.device
+    dtype = A.dtype
+
+    # shapes
+    m, r = B.shape
+    rA, n = A.shape
+    assert rA == r, f"A has shape {A.shape}, but B has r={r}."
+    assert W.shape == (m, n), f"W shape {W.shape} must be (m,n)=({m},{n})."
+    assert M.shape == (m, n), f"M shape {M.shape} must be (m,n)=({m},{n})."
+
+    # move mask once to GPU
+    M_dev = M.to(device=device)
+
+    # clone or inplace
+    B_new = B if inplace else B.clone()
+
+    # current effective weight
+    U = W + B_new @ A  # (m, n)
+
+    # parse X_hat into a 1D vector
+    g_raw = X_hat
+    if not torch.is_tensor(g_raw):
+        g_raw = torch.tensor(g_raw)
+    g_raw = g_raw.to(device=device, dtype=dtype).reshape(-1)
+
+    # Two supported interpretations:
+    g = g_raw
+    if not xhat_is_squared:
+        g = g * g
+    g = torch.clamp(g, min=eps)  # (n,)
+
+    # Precompute A D A^T with D=diag(g):  ADAT = A diag(g) A^T
+    # Efficiently: (A * g) @ A^T where g broadcasts over columns
+    ADAT = (A * g.unsqueeze(0)) @ A.t()  # (r, r)
+
+    I_r = torch.eye(r, device=device, dtype=dtype)
+    reg_t = torch.tensor(reg, device=device, dtype=dtype)
+
+    for i in range(m):
+        # pruned columns in this row
+        S_i = (M_dev[i] == 0).nonzero(as_tuple=True)[0]
+        if S_i.numel() == 0:
+            continue
+
+        # optionally cap |S_i|
+        if max_pruned_per_row is not None and S_i.numel() > max_pruned_per_row:
+            x_pruned = U[i, S_i].abs()
+            topk = torch.topk(x_pruned, k=max_pruned_per_row, largest=True).indices
+            S_i = S_i[topk]
+
+        # gather sub-vectors/matrices
+        g_S = g[S_i]                 # (k,)
+        A_S = A[:, S_i]              # (r, k)
+        x_S = U[i, S_i]              # (k,)
+
+        # Weighted Gram on pruned set: A_S diag(g_S) A_S^T
+        # via (A_S * g_S) @ A_S^T
+        ApDpApT = (A_S * g_S.unsqueeze(0)) @ A_S.t()  # (r, r)
+
+        # Using identity: A_K D_K A_K^T = ADAT - ApDpApT
+        # Gram = ApDpApT + keep_weight*(ADAT - ApDpApT) + reg I
+        #      = keep_weight*ADAT + (1-keep_weight)*ApDpApT + reg I
+        Gram = keep_weight * ADAT + (1.0 - keep_weight) * ApDpApT + reg_t * I_r  # (r, r)
+
+        # rhs = x_S diag(g_S) A_S^T  == (x_S * g_S) @ A_S^T
+        rhs = (x_S * g_S) @ A_S.t()  # (r,)
+
+        # Solve Gram * z = rhs^T  => delta_b = -z^T (row vector)
+        z = torch.linalg.solve(Gram, rhs.unsqueeze(1)).squeeze(1)  # (r,)
+        B_new[i] = B_new[i] - z
+
+    return B_new
