@@ -90,17 +90,16 @@ def foresight_prune(model,
             lora_A       = subset[name].lora_A.default.weight
             lora_B       = subset[name].lora_B.default.weight
             if not hasattr(subset[name], "score") or subset[name].score is None:
+                print("Initializing score tensor")
                 subset[name].score = torch.zeros_like(weight, device=torch.device("cpu"))
-            score_tensor = subset[name].score
+            score_cpu = subset[name].score
             # X_hat is computed from the activation statistics (assumed to be feature norm)
             X_hat = torch.sqrt(wrapped_layers[name].scaler_row.reshape((1, -1))).to(mod.weight.device)
             # Save the original devices for score and mask
-            orig_score_device = score_tensor.device
+            orig_score_device = score_cpu.device
 
             # Move score and mask to the current computation device (assume weight's device)
-            device = weight.device
-            if score_tensor.device != device:
-                score_tensor = score_tensor.to(device)
+            prev = score_cpu.to(device=weight.device, dtype=weight.dtype, non_blocking=True)
 
             if name == "self_attn.q_proj":
                 effective_weight = weight + torch.matmul(lora_B, lora_A)
@@ -184,15 +183,13 @@ def foresight_prune(model,
                 print("This weight is not being recognized " + name)
                 comp_weight = None
 
-            if torch.count_nonzero(score_tensor) > 0:
+            if torch.count_nonzero(prev).item() > 0:
                 # Moving average: new_score = mask_lr * current + (1 - mask_lr) * previous
                 print("we use moving average")
-                importance = mask_lr * importance + (1 - mask_lr) * score_tensor
+                importance = mask_lr * importance + (1 - mask_lr) * prev
 
             # Update the stored score.
-            score_tensor.copy_(importance)
-            if score_tensor.device != orig_score_device:
-                score_tensor = score_tensor.to(orig_score_device)
+            score_cpu.copy_(importance.detach().to(orig_score_device))
             # merge the lora adpater, apply the mask, and reinitialized the lora adapter
             
             # Rowwise Selection
