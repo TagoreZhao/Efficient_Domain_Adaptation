@@ -2,7 +2,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zhaotagore@gmail.com
 #SBATCH -p gpucluster
-#SBATCH --job-name=qwen_8b_foresight_legal
+#SBATCH --job-name=qwen_8b_foresight_med
 #SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/qwen_8b_foresight_legal_slurm-%j.out
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:4
