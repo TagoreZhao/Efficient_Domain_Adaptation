@@ -195,6 +195,7 @@ class ForesightPruneCallback(TrainerCallback):
                         merge_lora=self.merge_lora,
                         PBS=False,              # force PBS off
                         device=device,
+                        moving_average=False
                     )
             finally:
                 target_model.train(was_training)

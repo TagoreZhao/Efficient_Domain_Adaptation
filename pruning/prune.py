@@ -20,7 +20,8 @@ def foresight_prune(model,
                 nsamples=128,
                 device=None,
                 merge_lora=True,
-                PBS=True):
+                PBS=True,
+                moving_average=True):
     use_cache = model.config.use_cache
     model.config.use_cache = False
 
@@ -183,7 +184,7 @@ def foresight_prune(model,
                 print("This weight is not being recognized " + name)
                 comp_weight = None
 
-            if torch.count_nonzero(prev).item() > 0:
+            if (torch.count_nonzero(prev).item() > 0) and moving_average:
                 # Moving average: new_score = mask_lr * current + (1 - mask_lr) * previous
                 print("we use moving average")
                 importance = mask_lr * importance + (1 - mask_lr) * prev
