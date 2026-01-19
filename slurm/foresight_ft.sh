@@ -2,8 +2,8 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zhaotagore@gmail.com
 #SBATCH -p gpucluster
-#SBATCH --job-name=qwen_8b_foresightPBS40_med_c4
-#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/qwen_8b_foresightPBS40_med_c4_slurm-%j.out
+#SBATCH --job-name=qwen_8b_foresight50_med_c4
+#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/qwen_8b_foresight50_med_c4_slurm-%j.out
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:4
 
@@ -19,7 +19,7 @@ torchrun --nproc_per_node=4 scripts/foresight_ft.py \
     --model_name Qwen/Qwen3-8B \
     --tokenizer_name Qwen/Qwen3-8B \
     --model_save_dir model/downloaded/ \
-    --run_name qwen3_8b_foresightPBS40_med_c4 \
+    --run_name qwen3_8b_foresight50_med_c4 \
     --num_train_epochs 3 \
     --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 4 \
@@ -35,8 +35,8 @@ torchrun --nproc_per_node=4 scripts/foresight_ft.py \
     --report_to "wandb" \
     --completion_only_loss True \
     --eval_steps 100 \
-    --PBS True \
-    --prune_ratio 0.4 \
+    --PBS False \
+    --prune_ratio 0.5 \
     --mask_lr 0.5 \
     --calib_names "c4" \
     --calib_seqlen 2048 \
