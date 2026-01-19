@@ -19,6 +19,7 @@ adapter_save_dir = "model/downloaded/qwen3_0.6b_med_3eps_test"
 out_dir = "assets/pruning_temp_results"
 eval_reps = 10
 seed = 1234
+calib_dataset = "c4"
 os.makedirs(model_save_dir, exist_ok=True)
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -34,7 +35,7 @@ peft_model = PeftModel.from_pretrained(
     adapter_save_dir)
 
 dataloader, _ = get_loaders(
-    name="harrison",
+    name=calib_dataset,
     tokenizer=tokenizer,
     seqlen=2048,
     nsamples=128)
@@ -72,6 +73,9 @@ for i in range(eval_reps):
     row = {
         "run_id": i,
         "seed": run_seed,
+        "calib_dataset": calib_dataset,
+        "sparsity": float(sparsity),
+        "harrison ppl": float(ppl),
         "pubmedqa_acc": float(pub_acc),
         "pubmedqa_macro_f1": float(pub_maf),
         "mednli_acc": float(med_acc),
