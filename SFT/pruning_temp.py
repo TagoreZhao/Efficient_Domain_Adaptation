@@ -41,10 +41,10 @@ dataloader, _ = get_loaders(
 
 foresight_prune(model=peft_model,
                 dataloader=dataloader,
-                prune_ratio=0.4,
+                prune_ratio=0.3,
                 mask_lr=0.5,
                 nsamples=128,
-                PBS = True)
+                PBS = False)
 
 # model = peft_model.merge_and_unload()
 # prune_wanda(sparsity_ratio=0.4,
@@ -91,7 +91,7 @@ for i in range(eval_reps):
 df = pd.DataFrame(rows)
 os.makedirs(out_dir, exist_ok=True)
 
-csv_path = os.path.join(out_dir, "foresightPBS40_metrics.csv")
+csv_path = os.path.join(out_dir, "foresight_harrison_metrics.csv")
 df.to_csv(csv_path, index=False)
 
 print("Saved:", csv_path)
