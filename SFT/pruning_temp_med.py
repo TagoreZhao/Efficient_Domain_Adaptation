@@ -17,10 +17,12 @@ model_name = "Qwen/Qwen3-0.6B"
 model_save_dir = "model/downloaded"
 adapter_save_dir = "model/downloaded/qwen3_0.6b_med_3eps_test"
 out_dir = "assets/pruning_temp_results"
-eval_reps = 10
+start_id = 11
+end_id = 30  # inclusive
 seed = 1234
-calib_dataset = "c4"
+calib_dataset = "c4"  # "harrison" or "c4"
 os.makedirs(model_save_dir, exist_ok=True)
+csv_path = os.path.join(out_dir, f"foresight_{calib_dataset}_metrics.csv")
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(
@@ -48,13 +50,13 @@ foresight_prune(model=peft_model,
                 PBS = False)
 
 # model = peft_model.merge_and_unload()
-# prune_wanda(sparsity_ratio=0.4,
+# prune_wanda(sparsity_ratio=0.3,
 #             nsamples=128,
 #             seed=42,
 #             seqlen=2048,
 #             model=model,
 #             tokenizer=tokenizer,
-#             dataset_name="harrison")
+#             dataset_name=calib_dataset)
 
 model = peft_model.merge_and_unload()
 sparsity = check_sparsity(model)
@@ -65,13 +67,16 @@ print (f"Perplexity after pruning: {ppl}")
 
 rows = []
 
-for i in range(eval_reps):
-    run_seed = seed + i
+for run_id in range(start_id, end_id + 1):
+    print(f"=== Run ID: {run_id} ===")
+    run_seed = seed + (run_id - 1)
+
     pub_acc, pub_maf, pub_cm, pub_preds = evaluate_pubmedqa(model, tokenizer, seed=run_seed)
     med_acc, med_maf, med_cm, med_preds = evaluate_mednli(model, tokenizer, seed=run_seed)
     rouge, hqs_preds = evaluate_hqs(model, tokenizer, seed=run_seed)
+
     row = {
-        "run_id": i,
+        "run_id": run_id,
         "seed": run_seed,
         "calib_dataset": calib_dataset,
         "sparsity": float(sparsity),
@@ -83,19 +88,13 @@ for i in range(eval_reps):
         "hqs_rouge1": float(rouge["rouge1"]),
         "hqs_rouge2": float(rouge["rouge2"]),
         "hqs_rougeL": float(rouge["rougeL"]),
+        "pubmedqa_cm_json": json.dumps(pub_cm.tolist() if hasattr(pub_cm, "tolist") else pub_cm),
+        "mednli_cm_json": json.dumps(med_cm.tolist() if hasattr(med_cm, "tolist") else med_cm),
     }
 
-    # Optional: store confusion matrices as JSON strings (so CSV stays valid)
-    # If pub_cm / med_cm are numpy arrays or torch tensors, convert to lists first.
-    row["pubmedqa_cm_json"] = json.dumps(pub_cm.tolist() if hasattr(pub_cm, "tolist") else pub_cm)
-    row["mednli_cm_json"]   = json.dumps(med_cm.tolist() if hasattr(med_cm, "tolist") else med_cm)
+    # Write this iteration immediately
+    df_row = pd.DataFrame([row])
+    file_exists = os.path.exists(csv_path)
+    df_row.to_csv(csv_path, mode="a", header=not file_exists, index=False)
 
-    rows.append(row)
-
-df = pd.DataFrame(rows)
-os.makedirs(out_dir, exist_ok=True)
-
-csv_path = os.path.join(out_dir, "foresight_harrison_metrics.csv")
-df.to_csv(csv_path, index=False)
-
-print("Saved:", csv_path)
+    print(f"Appended row to: {csv_path}")
