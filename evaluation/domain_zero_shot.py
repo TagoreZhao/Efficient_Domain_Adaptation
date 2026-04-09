@@ -374,7 +374,7 @@ def evaluate_billsum(
     batch_size=1,
     max_length=3000,  # IMPORTANT: define it
     save_output="assets/BillSum_generated_summaries.txt",
-    think_token_id=151668,             # </think> token id (adjust if different)
+    think_token_id=None,               # auto-resolved from tokenizer; falls back to None
 ):
     rouge = load_metric("rouge")
     random.seed(seed)
@@ -399,6 +399,20 @@ def evaluate_billsum(
     
     tokenizer.padding_side = "left"  # for causal LMs, left padding is safer
 
+    # Resolve think_token_id dynamically from tokenizer if not provided
+    if enable_thinking:
+        if think_token_id is None:
+            _think_id = tokenizer.convert_tokens_to_ids("</think>")
+            if _think_id is not None and _think_id != getattr(tokenizer, "unk_token_id", None):
+                think_token_id = _think_id
+            else:
+                import warnings
+                warnings.warn(
+                    "enable_thinking=True but tokenizer has no '</think>' token. "
+                    "Disabling thinking mode for this run."
+                )
+                enable_thinking = False
+
     generated_summaries = []
     start_time = time()
 
@@ -422,14 +436,24 @@ def evaluate_billsum(
                 for t, x in zip(batch_titles, batch_texts):
                     p = billsum_input_template.format(title=t, input_text=x)
                     conv = [{"role": "user", "content": p}]
-                    batch_prompts.append(
-                        tokenizer.apply_chat_template(
-                            conv,
-                            tokenize=False,
-                            add_generation_prompt=True,
-                            enable_thinking=True,
+                    try:
+                        batch_prompts.append(
+                            tokenizer.apply_chat_template(
+                                conv,
+                                tokenize=False,
+                                add_generation_prompt=True,
+                                enable_thinking=True,
+                            )
                         )
-                    )
+                    except TypeError:
+                        # Tokenizer doesn't support enable_thinking (non-Qwen model)
+                        batch_prompts.append(
+                            tokenizer.apply_chat_template(
+                                conv,
+                                tokenize=False,
+                                add_generation_prompt=True,
+                            )
+                        )
                 inputs = tokenizer(
                     batch_prompts,
                     return_tensors="pt",
@@ -953,16 +977,30 @@ def evaluate_hqs(
     save_output="assets/HQS_generated_summaries.txt",
     max_new_tokens=50,
     enable_thinking=False,
+    think_token_id=None,
     device="cuda",
     n_eval=100,
     seed=1234,
 ):
-    random.seed(seed)
-    torch.manual_seed(seed)
-
     """
     Summarize each question in an Excel file using a simple prompt and compute ROUGE.
     """
+    random.seed(seed)
+    torch.manual_seed(seed)
+
+    # Resolve think_token_id dynamically from tokenizer if not provided
+    if enable_thinking:
+        if think_token_id is None:
+            _think_id = tokenizer.convert_tokens_to_ids("</think>")
+            if _think_id is not None and _think_id != getattr(tokenizer, "unk_token_id", None):
+                think_token_id = _think_id
+            else:
+                import warnings
+                warnings.warn(
+                    "enable_thinking=True but tokenizer has no '</think>' token. "
+                    "Disabling thinking mode for this run."
+                )
+                enable_thinking = False
     rouge = load_metric("rouge")
     df = pd.read_excel(file_path)
 
@@ -1002,12 +1040,20 @@ def evaluate_hqs(
             if enable_thinking:
                 prompt = hqs_input_template.format(input_question=question)
                 prompt = [{"role": "user", "content": prompt}]
-                prompt = tokenizer.apply_chat_template(
-                    prompt,
-                    tokenize=False,
-                    add_generation_prompt=True,
-                    enable_thinking=True,  # Switches between thinking and non-thinking modes. Default is True.
-                )
+                try:
+                    prompt = tokenizer.apply_chat_template(
+                        prompt,
+                        tokenize=False,
+                        add_generation_prompt=True,
+                        enable_thinking=True,
+                    )
+                except TypeError:
+                    # Tokenizer doesn't support enable_thinking (non-Qwen model)
+                    prompt = tokenizer.apply_chat_template(
+                        prompt,
+                        tokenize=False,
+                        add_generation_prompt=True,
+                    )
                 inputs = tokenizer([prompt], return_tensors="pt").to(model.device)
             else:
                 prompt = hqs_input_template.format(input_question=question)
@@ -1033,8 +1079,8 @@ def evaluate_hqs(
             if enable_thinking:
                 output_ids = output_ids[0][len(inputs.input_ids[0]) :].tolist()
                 try:
-                    # rindex finding 151668 (</think>)
-                    index = len(output_ids) - output_ids[::-1].index(151668)
+                    # rindex finding </think> token
+                    index = len(output_ids) - output_ids[::-1].index(think_token_id)
                 except ValueError:
                     index = 0
 
