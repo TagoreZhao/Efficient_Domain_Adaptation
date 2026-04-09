@@ -1,0 +1,77 @@
+% IJCAI-ECAI 2026 Author's response
+
+% Template file with author's response
+
+\documentclass{article}
+\pdfpagewidth=8.5in
+\pdfpageheight=11in
+\usepackage{ijcai26-authors-response}
+
+
+\usepackage{times}
+\usepackage{soul}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[small]{caption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{lipsum}
+\urlstyle{same}
+
+\newtheorem{example}{Example}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+% \noindent\fbox{
+% 	\parbox{\linewidth}{
+% 		{\bf IMPORTANT NOTE (YOU CAN DELETE IT AFTER READING)}
+		
+% 		The response to the reviews {\bf cannot} include links to external resources. Your paper may be summarily rejected if you include such links in your response.
+		
+% 		Furthermore, it {\bf must be one page-only} and use this template without altering fonts, font sizes, or margins.
+		
+% 		In our experience, it is more efficient to focus on explicit questions asked in the reviews (especially those listed in the box ``Questions for the authors response'') than to enter into an argument with the reviewers about the significance/novelty of your results. However, feel free to use this space as you see fit, subject to the constraints above.
+% 	}
+% }
+
+\section*{Rebuttal}
+
+Thanks for all reviewers for reviewing the paper carefully.
+
+Rev \#c901a69 Q1: Although the paper employs exponential moving averages (EMA) to smooth the mask, could the combination of an early inaccurate mask and PBS's structural alterations to LoRA push the model toward suboptimal local solutions? There is a lack of quantitative analysis on the evolution dynamics of the mask throughout the training cycle.
+
+Answer: (Requires experiments for EMA)
+
+Rev \#c901a69 Q2: ForeSight's derivation estimates the loss of single-parameter zeroing based on a second-order Taylor expansion. This local approximation significantly compromises accuracy when simultaneously pruning a large number of weights (e.g., 40\% sparsity), as it neglects cross-terms between weights.
+
+Answer:  (Computing cross terms between weights requires expensive algorithms, making it unrealistic to run pruning and finetuning under the same budget. )
+
+Rev \#c901a69 Q3: As clearly shown in Figure 3 of the ablation experiment, when sparsity is pushed to 60\%, EfficientXpert experiences a steep decline in relative performance, which may hinder its practical applicability.
+
+Answer: （In domain specific pruning, 50 \% is the research frontier and we achieve SOTA among domain specific pruning algorithm and the standard pruning algorithm. We will be keep pushing the boundaries. ）
+
+Rev \#c9037d7 Q1: Missing critical ablation to isolate the core contribution. ForeSight differs from Wanda in two ways: (a) using effective weights (W+BA) instead of base weights, and (b) incorporating downstream loss via $(U_2U_2^\top)_{jj}$. These are confounded in all experiments. The paper did not test Wanda with effective weights (a trivial one-line modification), which would directly isolate whether the downstream propagation factor (the claimed primary novelty) actually drives the improvement. Without this, the central claim lacks direct empirical support.
+
+Answer: All LoRA+Wanda Experiments shown in Table 1-4, Figure 3-4 are using effective weights. We will make this clearer in the final version. We show in Figure 1 + LoRA， which first prune using the base weights then apply LoRA, failed terribly. Therefore, first doing LoRA and then apply Wanda on the final effective weights is a more suitable baseline. 
+
+Rev \#c9037d7 Q2: PBS seems unreliable. PBS hurts performance in multiple settings: LLaMA3.1-8B 50\% health drops from 103.31\% to 89.40\% relative performance; LLaMA2-7B 50\% health drops from 99.41\% to 94.83\%, but in other settings it helps substantially (106.6\% at 40\%). The paper did not provide analysis of when or why PBS fails, undermining its status as a contribution. The rank ablation (Figure 3c) also shows non-monotonic behavior inconsistent with the paper's narrative.
+
+Answer: We conduct ablation in Appendix section "Effect of Rank r on Partial Brain Surgeon". Partail Brain Surgeon is essentially a ridge regression problem, when we fixed the rank \(r\) and increase the number of pruning entires \(S_i\), pushing the problem into over constrained regime. By increasing the rank at 50\% sparsity, Foresight and partial brain surgeon surpasses all other methods at rank 16, 32, and 64.Therefore, users can trade computational power with performance at higher sparsity.  
+
+Rev \#c9037d7 Q3: Possible incomplete baselines. SparseGPT is absent despite seeming runnable on the same hardware. As a strong general pruning method that also performs post-pruning weight compensation, it is a natural and important baseline. D-Pruner and ATP numbers are cited from published results under different training configurations rather than reproduced, making the comparison soft despite the relative performance normalization.
+
+Answer: (Requires experiments)
+
+Rev \#c9037d7 Q4: Insufficient statistical reporting. Results are averaged over 4 runs, but no standard deviations or confidence intervals are reported. Many performance differences between methods are small (a few percentage points), making it impossible to assess statistical significance. The cases where ForeSight+PBS exceeds 100\% relative performance likely reflect evaluation variance, rather than consistent improvement from pruning.
+
+Answer: (Requires experiments)
+
+
+\end{document}
+
