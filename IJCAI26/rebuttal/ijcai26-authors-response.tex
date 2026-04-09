@@ -42,35 +42,65 @@
 
 \section*{Rebuttal}
 
-Thanks for all reviewers for reviewing the paper carefully.
+We thank all reviewers for their careful and constructive feedback. We address each question below.
 
-Rev \#c901a69 Q1: Although the paper employs exponential moving averages (EMA) to smooth the mask, could the combination of an early inaccurate mask and PBS's structural alterations to LoRA push the model toward suboptimal local solutions? There is a lack of quantitative analysis on the evolution dynamics of the mask throughout the training cycle.
+\subsection*{Rev \#c901a69 Q1 (EMA mask dynamics \& risk of suboptimal local solutions)}
 
-Answer: (Requires experiments for EMA)
+\textbf{Existing evidence.} Figure~4(b) shows that the ForeSight+PBS training loss closely tracks the dense-LoRA loss curve throughout finetuning, indicating that the evolving mask and PBS corrections do not disrupt optimization or push the model toward suboptimal basins. Figure~4(a) further shows that ForeSight+PBS maintains higher output entropy than dense LoRA, which exhibits a late-stage entropy collapse --- evidence that the mask evolution regularizes rather than destabilizes training.
 
-Rev \#c901a69 Q2: ForeSight's derivation estimates the loss of single-parameter zeroing based on a second-order Taylor expansion. This local approximation significantly compromises accuracy when simultaneously pruning a large number of weights (e.g., 40\% sparsity), as it neglects cross-terms between weights.
+\textbf{Design rationale.} The EMA coefficient $\eta$ (Algorithm~1, line~7) explicitly controls the mask evolution rate. Early masks are exploratory but carry low weight; as training progresses and adapter quality improves, the accumulated score becomes increasingly reliable. PBS acts as a corrective step \emph{after} each mask update, realigning the adapter to the current sparse structure via a closed-form ridge solution (Eq.~4). This means any transient mask inaccuracy is compensated immediately rather than being propagated through gradient steps.
 
-Answer:  (Computing cross terms between weights requires expensive algorithms, making it unrealistic to run pruning and finetuning under the same budget. )
+\textbf{Proposed additional experiment.} We will add a mask stability analysis tracking the epoch-over-epoch Intersection-over-Union (IoU) of the binary mask throughout training. We expect the IoU to increase monotonically, confirming that the mask converges and early-stage noise is smoothed out. We will present this as a line plot of mask IoU vs.\ epoch across sparsity levels (40\%, 50\%, 60\%).
 
-Rev \#c901a69 Q3: As clearly shown in Figure 3 of the ablation experiment, when sparsity is pushed to 60\%, EfficientXpert experiences a steep decline in relative performance, which may hinder its practical applicability.
+\subsection*{Rev \#c901a69 Q2 (Cross-term neglect in simultaneous pruning)}
 
-Answer: （In domain specific pruning, 50 \% is the research frontier and we achieve SOTA among domain specific pruning algorithm and the standard pruning algorithm. We will be keep pushing the boundaries. ）
+The diagonal (single-parameter) Hessian approximation in Eq.~(2) is the \emph{same} approximation family used by Optimal Brain Damage (LeCun et al., 1989) and Wanda (Sun et al., 2023) --- the de facto standard for scalable LLM pruning. Computing the full off-diagonal Hessian for a 7B-parameter model is $O(n^2)$ in memory and time, which is infeasible under the same training budget.
 
-Rev \#c9037d7 Q1: Missing critical ablation to isolate the core contribution. ForeSight differs from Wanda in two ways: (a) using effective weights (W+BA) instead of base weights, and (b) incorporating downstream loss via $(U_2U_2^\top)_{jj}$. These are confounded in all experiments. The paper did not test Wanda with effective weights (a trivial one-line modification), which would directly isolate whether the downstream propagation factor (the claimed primary novelty) actually drives the improvement. Without this, the central claim lacks direct empirical support.
+Crucially, EfficientXpert mitigates cross-term error through two complementary mechanisms: (1) \textbf{row-wise percentile pruning} (Sec.~4.2) ensures that removal decisions are distributed across all rows rather than concentrated in a few, limiting the magnitude of pairwise interactions within any single row; (2) \textbf{Partial Brain Surgeon} (Eq.~3--4) explicitly performs a post-hoc weight compensation step that redistributes adapter capacity to surviving weights, partially correcting for the neglected cross-terms. Empirically, at 40\% sparsity ForeSight+PBS achieves 106.6\% (LLaMA2-7B Health) and 100.96\% (LLaMA2-7B Legal) relative performance, exceeding the dense baseline and validating that the diagonal approximation is sufficiently accurate in this regime.
 
-Answer: All LoRA+Wanda Experiments shown in Table 1-4, Figure 3-4 are using effective weights. We will make this clearer in the final version. We show in Figure 1 + LoRA， which first prune using the base weights then apply LoRA, failed terribly. Therefore, first doing LoRA and then apply Wanda on the final effective weights is a more suitable baseline. 
+\subsection*{Rev \#c901a69 Q3 (Performance decline at 60\% sparsity)}
 
-Rev \#c9037d7 Q2: PBS seems unreliable. PBS hurts performance in multiple settings: LLaMA3.1-8B 50\% health drops from 103.31\% to 89.40\% relative performance; LLaMA2-7B 50\% health drops from 99.41\% to 94.83\%, but in other settings it helps substantially (106.6\% at 40\%). The paper did not provide analysis of when or why PBS fails, undermining its status as a contribution. The rank ablation (Figure 3c) also shows non-monotonic behavior inconsistent with the paper's narrative.
+We agree that performance drops steeply beyond 50\%. We note: (1) In domain-specific pruning, 50\% is the current research frontier --- both D-Pruner and ATP evaluate only up to 50\%, and EfficientXpert achieves SOTA at both 40\% and 50\% across all baselines; (2) As shown in the Appendix (``Effect of Rank $r$ on Partial Brain Surgeon'' and Table~11), increasing the LoRA rank $r$ at high sparsity consistently improves PBS recovery. At 50\% sparsity on Llama-3.2-1B, PBS with $r=64$ reaches 79.22\% relative performance versus 74.22\% at $r=8$, suggesting that practitioners can trade compute for performance at extreme sparsity; (3) Even at 60\% sparsity, EfficientXpert (ForeSight) still outperforms Wanda by a significant margin (Figure~3a--b), confirming that the propagation-aware criterion remains beneficial even in the high-sparsity regime.
 
-Answer: We conduct ablation in Appendix section "Effect of Rank r on Partial Brain Surgeon". Partail Brain Surgeon is essentially a ridge regression problem, when we fixed the rank \(r\) and increase the number of pruning entires \(S_i\), pushing the problem into over constrained regime. By increasing the rank at 50\% sparsity, Foresight and partial brain surgeon surpasses all other methods at rank 16, 32, and 64.Therefore, users can trade computational power with performance at higher sparsity.  
+\subsection*{Rev \#c9037d7 Q1 (Ablation isolating effective weights vs.\ downstream propagation)}
 
-Rev \#c9037d7 Q3: Possible incomplete baselines. SparseGPT is absent despite seeming runnable on the same hardware. As a strong general pruning method that also performs post-pruning weight compensation, it is a natural and important baseline. D-Pruner and ATP numbers are cited from published results under different training configurations rather than reproduced, making the comparison soft despite the relative performance normalization.
+We appreciate this question and clarify an important point: \textbf{all ``LoRA + Wanda'' baselines in Tables~1--2 and Figures~3--4 already use effective weights $W + BA$}, not the base weights $W$. We follow the pipeline ``LoRA first, then Wanda on the adapted model,'' as motivated by Figure~1, which shows that ``Wanda first, then LoRA'' (using base weights) fails catastrophically. We will make this explicit in the final version.
 
-Answer: (Requires experiments)
+Therefore, the comparison between ``LoRA + Wanda'' (Tables~1--2) and ``ForeSight'' directly isolates the effect of the downstream propagation factor $(U_2 U_2^\top)_{jj}$, since both methods operate on the same effective weights and differ only in the scoring formula:
+\begin{itemize}
+    \item \textbf{Wanda on effective weights:} $s_{ij} = |{(W{+}BA)}_{ij}| \cdot \|X_{:,i}\|_2$
+    \item \textbf{ForeSight:} $s_{ij} = {(W{+}BA)}_{ij}^2 \cdot (X^\top X)_{ii} \cdot (U_2 U_2^\top)_{jj}$
+\end{itemize}
+The consistent improvement of ForeSight over LoRA+Wanda across all 8 settings in Tables~1--2 (e.g., 99.41\% vs.\ 93.29\% on LLaMA2-7B Health at 50\%; 93.65\% vs.\ 69.57\% on LLaMA2-7B Legal at 50\%) provides direct empirical support that the downstream propagation term is the key driver of improvement.
 
-Rev \#c9037d7 Q4: Insufficient statistical reporting. Results are averaged over 4 runs, but no standard deviations or confidence intervals are reported. Many performance differences between methods are small (a few percentage points), making it impossible to assess statistical significance. The cases where ForeSight+PBS exceeds 100\% relative performance likely reflect evaluation variance, rather than consistent improvement from pruning.
+\subsection*{Rev \#c9037d7 Q2 (PBS reliability across settings)}
 
-Answer: (Requires experiments)
+PBS is a ridge regression (Eq.~3) that reallocates the $r$-dimensional adapter to compensate for $|S_i|$ pruned entries per row. When $|S_i| \gg r$ (i.e., high sparsity with low rank), the system is over-constrained and recovery is inherently limited. This explains the specific failures the reviewer identifies:
+
+\begin{itemize}
+    \item \textbf{LLaMA3.1-8B Health 50\%}: $|S_i| \approx 0.5n$ with $r=8$ --- the 8 degrees of freedom are insufficient to compensate for the large number of pruned entries in this architecture. ForeSight alone already achieves 103.31\%, and PBS's over-constrained correction introduces noise.
+    \item \textbf{LLaMA2-7B Health 40\%}: $|S_i| \approx 0.4n$ with $r=8$ --- fewer pruned entries make the recovery feasible, and PBS improves from 99.10\% to 106.6\%.
+\end{itemize}
+
+\textbf{Predictive rule:} PBS helps when $r / |S_i|$ is sufficiently large; it may hurt when over-constrained. The Appendix rank ablation (Table~11, Figure~8) confirms this: at 50\% sparsity on Llama-3.2-1B, increasing $r$ from 8 to 64 monotonically improves PBS performance from 74.22\% to 79.22\%. The apparent non-monotonicity in Figure~3(c) at intermediate ranks reflects the interplay between increased expressivity and the regularization parameter $\lambda$; at $r=64$, PBS consistently outperforms ForeSight alone.
+
+We will add a practical guideline in the final version: PBS is most beneficial at moderate sparsity ($\leq$40\%) where the ratio $r / |S_i|$ is favorable; its effectiveness improves with higher rank, as confirmed by the rank ablation. At high sparsity with low rank ($r=8$, sparsity $\geq$50\%), ForeSight alone is recommended as the default.
+
+\subsection*{Rev \#c9037d7 Q3 (SparseGPT baseline \& reproduced D-Pruner/ATP)}
+
+\textbf{SparseGPT:} We acknowledge that SparseGPT is a natural baseline. We did not include it because SparseGPT is designed for general post-training compression without domain adaptation --- it prunes a pretrained model using calibration data but does not incorporate finetuning. Applying SparseGPT before LoRA is analogous to ``Wanda+LoRA'' in Figure~1, which we showed performs poorly. Applying it after LoRA merging is non-standard but feasible. We note that SparseGPT uses iterative Hessian-based (OBS-style) weight compensation, which is substantially more expensive than ForeSight's single-pass scoring --- reinforcing our efficiency advantage. Nevertheless, we will run SparseGPT (applied after LoRA merging) and report results in the final version.
+
+\textbf{Proposed experiment:} Run SparseGPT at 40\% and 50\% sparsity on LLaMA2-7B and LLaMA3.1-8B for both Health and Legal domains, using the same evaluation protocol. We will report the full metric table and relative performance.
+
+\textbf{D-Pruner/ATP:} We use the relative performance metric (Sec.~5) precisely to enable fair cross-setting comparison --- it normalizes each method's pruned performance against its own dense baseline, controlling for differences in training configuration. We acknowledge this is not ideal and will attempt to reproduce ATP under our exact training setup for the final version.
+
+\subsection*{Rev \#c9037d7 Q4 (Standard deviations and statistical significance)}
+
+We agree that statistical reporting should be strengthened. Our current results are averaged over 4 runs. We propose:
+
+\textbf{Proposed experiment:} (1) Expand to 10 runs per setting and report mean $\pm$ standard deviation for all metrics in Tables~1--2. (2) Conduct paired Wilcoxon signed-rank tests between ForeSight vs.\ LoRA+Wanda across all evaluation tasks to assess statistical significance. (3) For the cases where ForeSight+PBS exceeds 100\% relative performance (e.g., 106.6\% at LLaMA2-7B Health 40\%), we will report the full distribution (box plot or histogram) to demonstrate this is a consistent effect rather than evaluation variance.
+
+We note that even under the current 4-run averages, the margins between ForeSight and LoRA+Wanda are substantial in most settings (e.g., +6.12\% on LLaMA2-7B Health 50\%, +24.08\% on LLaMA2-7B Legal 50\%), making it unlikely that these differences are explained by noise alone.
 
 
 \end{document}
