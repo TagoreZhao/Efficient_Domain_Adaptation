@@ -2,8 +2,8 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zhaotagore@gmail.com
 #SBATCH -p gpucluster
-#SBATCH --job-name=qwen_8b_sparsegpt50_med_c4
-#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/qwen_8b_sparsegpt50_med_c4_slurm-%j.out
+#SBATCH --job-name=llama2_7b_sparsegpt50_med_c4
+#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/llama2_7b_sparsegpt50_med_c4_slurm-%j.out
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:4
 
@@ -16,17 +16,17 @@ export WANDB_DIR="./assets/wandb"
 TORCH_DISTRIBUTED_DEBUG=DETAIL \
 NCCL_DEBUG=INFO \
 torchrun --nproc_per_node=4 scripts/sparsegpt_ft.py \
-    --model_name Qwen/Qwen3-8B \
-    --tokenizer_name Qwen/Qwen3-8B \
+    --model_name meta-llama/Llama-2-7b-hf \
+    --tokenizer_name meta-llama/Llama-2-7b-hf \
     --model_save_dir model/downloaded/ \
-    --run_name qwen3_8b_sparsegpt50_med_c4 \
+    --run_name llama2_7b_sparsegpt50_med_c4 \
     --num_train_epochs 3 \
     --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 4 \
     --learning_rate 2e-4 \
     --seed 1234 \
-    --train_dataset_path data/downloaded/qwen_med_dataset_train \
-    --val_dataset_path data/downloaded/qwen_med_dataset_val \
+    --train_dataset_path data/downloaded/llama2_med_dataset_train \
+    --val_dataset_path data/downloaded/llama2_med_dataset_val \
     --lora_r 8 \
     --lora_alpha 16 \
     --lora_dropout 0.05 \
