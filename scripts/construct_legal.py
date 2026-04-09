@@ -35,10 +35,20 @@ if __name__ == "__main__":
         seed=args.seed
     )
 
-    if "qwen3" in str(args.model).lower():
-        tokenizer = AutoTokenizer.from_pretrained(args.model)
-        qwen3_dataset = to_prompt_completion_hf(dataset, tokenizer=tokenizer)
-        qwen3_dataset.save_to_disk(args.output_path)
+    tokenizer = AutoTokenizer.from_pretrained(args.model)
 
-    elif "llama2" in str(args.model).lower():
-        print("Llama2 dataset construction not implemented yet.")
+    if tokenizer.chat_template is None:
+        # Base Llama models lack a chat template -- borrow from the Instruct variant
+        model_name = str(args.model)
+        if "llama-2" in model_name.lower():
+            instruct_name = model_name.replace("-hf", "-chat-hf")
+        else:
+            instruct_name = model_name + "-Instruct"
+        print(f"No chat template found for '{args.model}'. "
+              f"Borrowing from '{instruct_name}'.")
+        instruct_tokenizer = AutoTokenizer.from_pretrained(instruct_name)
+        tokenizer.chat_template = instruct_tokenizer.chat_template
+        print(f"Chat template borrowed successfully from '{instruct_name}'.")
+
+    hf_dataset = to_prompt_completion_hf(dataset, tokenizer=tokenizer)
+    hf_dataset.save_to_disk(args.output_path)

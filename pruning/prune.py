@@ -26,7 +26,7 @@ def foresight_prune(model,
     model.config.use_cache = False
 
     num_q_heads = model.config.num_attention_heads
-    head_dim = model.config.head_dim
+    head_dim = getattr(model.config, "head_dim", model.config.hidden_size // model.config.num_attention_heads)
     num_kv_groups = model.config.num_key_value_heads
 
     model.eval()
@@ -226,13 +226,13 @@ def foresight_prune(model,
 
         for j in range(min(128, inps.shape[0])):
             with torch.no_grad():
-                pos_emb = model.base_model.model.model.rotary_emb(x = inps[j].unsqueeze(0),position_ids = position_ids)
-                outs[j] = layer(
-                    inps[j].unsqueeze(0),
+                outs[j] = layer_forward(
+                    model=model,
+                    layer=layer,
+                    hidden_states=inps[j].unsqueeze(0),
                     attention_mask=attention_mask,
                     position_ids=position_ids,
-                    position_embeddings=pos_emb
-                )[0]
+                )
         inps, outs = outs, inps
 
     # Restore original cache setting
@@ -540,103 +540,115 @@ def partial_brain_surgeon(
 
 
 @torch.no_grad()
-def prune_sparsegpt(args, model, tokenizer, dev, prune_n=0, prune_m=0):
-    ## SparseGPT code available at: https://github.com/IST-DASLab/sparsegpt/tree/f5c25005a61f96a0933ca2f95705a963585aafaa
-    print('Starting ...')
-    dataloader, _ = get_loaders(args.calib_dataset, nsamples=args.nsamples,seed=args.seed,seqlen=args.seqlen,tokenizer=tokenizer)
+def prune_sparsegpt(
+    sparsity_ratio,
+    nsamples,
+    seed,
+    seqlen,
+    model,
+    tokenizer,
+    dataset_name="c4",
+    device=None,
+    prune_n=0,
+    prune_m=0,
+    blocksize=128,
+    percdamp=0.01,
+):
+    """
+    SparseGPT pruning -- model-agnostic version.
+    Reference: https://github.com/IST-DASLab/sparsegpt
 
-    use_cache = model.config.use_cache
+    Uses the same generic utilities as prune_wanda (prepare_calibration_input,
+    get_layers, layer_forward) so it works with Qwen3, Llama 2/3, and other
+    HuggingFace causal LMs.
+    """
+    from .sparsegpt import SparseGPT
+
+    use_cache = getattr(model.config, "use_cache", False)
     model.config.use_cache = False
-    if "llama" in args.model:
-        layers = model.model.layers
-    elif "opt" in args.model:
-        layers = model.model.decoder.layers
+    model.eval()
 
-    if "model.embed_tokens" in model.hf_device_map:
-        dev = model.hf_device_map["model.embed_tokens"]
+    if device is None:
+        device = next(model.parameters()).device
 
-    dtype = next(iter(model.parameters())).dtype
-    inps = torch.zeros(
-        (args.nsamples, model.seqlen, model.config.hidden_size), dtype=dtype, device=dev
+    print("loading calibration data")
+    dataloader, _ = get_loaders(
+        dataset_name,
+        nsamples=nsamples,
+        seed=seed,
+        seqlen=seqlen,
+        tokenizer=tokenizer,
     )
-    cache = {'i': 0, 'attention_mask': None, "position_ids": None}
+    print("dataset loading complete")
 
-    class Catcher(nn.Module):
-        def __init__(self, module):
-            super().__init__()
-            self.module = module
-        def forward(self, inp, **kwargs):
-            inps[cache['i']] = inp
-            cache['i'] += 1
-            cache['attention_mask'] = kwargs['attention_mask']
-            if "llama" in args.model:
-                cache['position_ids'] = kwargs['position_ids']
-            raise ValueError
-    layers[0] = Catcher(layers[0])
-    for batch in dataloader:
-        try:
-            model(batch[0].to(dev))
-        except ValueError:
-            pass
-    layers[0] = layers[0].module
-    torch.cuda.empty_cache()
+    inps, outs, attention_mask, position_ids = prepare_calibration_input(
+        model, dataloader, device=device,
+    )
 
-    outs = torch.zeros_like(inps)
-    attention_mask = cache['attention_mask']
-    position_ids = cache['position_ids']
+    layers = get_layers(model)
 
-    print('Ready.')
+    print(f"Ready. Pruning {len(layers)} layers with sparsity={sparsity_ratio}")
 
     for i in range(len(layers)):
         layer = layers[i]
-        if "llama" in args.model:
-            if f"model.layers.{i}" in model.hf_device_map:
-                dev = model.hf_device_map[f"model.layers.{i}"]
-                print(f"layer {i} device {dev}")
-                inps, outs, position_ids = inps.to(dev), outs.to(dev), position_ids.to(dev)
 
-        subset = find_layers(layer)
+        if hasattr(model, "hf_device_map") and f"model.layers.{i}" in model.hf_device_map:
+            dev = model.hf_device_map[f"model.layers.{i}"]
+            inps = inps.to(dev)
+            outs = outs.to(dev)
+            attention_mask = attention_mask.to(dev) if attention_mask is not None else None
+            position_ids = position_ids.to(dev) if position_ids is not None else None
+
+        subset = find_layers(layer, layers=(nn.Linear,))
 
         gpts = {}
         for name in subset:
             gpts[name] = SparseGPT(subset[name])
 
         def add_batch(name):
-            def tmp(_, inp, out):
+            def _hook(_, inp, out):
                 gpts[name].add_batch(inp[0].data, out.data)
-            return tmp
+            return _hook
 
         handles = []
         for name in gpts:
             handles.append(subset[name].register_forward_hook(add_batch(name)))
 
-        for j in range(args.nsamples):
-            if "llama" in args.model:
-                outs[j] = layer(inps[j].unsqueeze(0), attention_mask=attention_mask, position_ids=position_ids)[0]
-            else:
-                outs[j] = layer(inps[j].unsqueeze(0), attention_mask=attention_mask)[0]
+        for j in range(nsamples):
+            outs[j] = layer_forward(
+                model=model,
+                layer=layer,
+                hidden_states=inps[j].unsqueeze(0),
+                attention_mask=attention_mask,
+                position_ids=position_ids,
+            ).squeeze(0)
 
         for h in handles:
             h.remove()
 
         for name in gpts:
-            print(i, name)
-            print('Pruning ...')
-            if "norm" in args.model:
-                gpts[name].fasterprune(args.sparsity_ratio, prune_n=prune_n, prune_m=prune_m, percdamp=0.01, blocksize=128, norm=True)
-            else:
-                gpts[name].fasterprune(args.sparsity_ratio, prune_n=prune_n, prune_m=prune_m, percdamp=0.01, blocksize=128)
+            print(f"layer {i} | {name} | pruning ...")
+            gpts[name].fasterprune(
+                sparsity_ratio,
+                prune_n=prune_n,
+                prune_m=prune_m,
+                percdamp=percdamp,
+                blocksize=blocksize,
+            )
             gpts[name].free()
 
-        for j in range(args.nsamples):
-            if "llama" in args.model:
-                outs[j] = layer(inps[j].unsqueeze(0), attention_mask=attention_mask, position_ids=position_ids)[0]
-            else:
-                outs[j] = layer(inps[j].unsqueeze(0), attention_mask=attention_mask)[0]
-        layers[i] = layer 
-        torch.cuda.empty_cache()
+        for j in range(nsamples):
+            outs[j] = layer_forward(
+                model=model,
+                layer=layer,
+                hidden_states=inps[j].unsqueeze(0),
+                attention_mask=attention_mask,
+                position_ids=position_ids,
+            ).squeeze(0)
 
+        torch.cuda.empty_cache()
         inps, outs = outs, inps
 
     model.config.use_cache = use_cache
     torch.cuda.empty_cache()
+    return model

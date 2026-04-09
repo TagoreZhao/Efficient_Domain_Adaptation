@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Research project for efficient domain adaptation of LLMs using structured pruning (WANDA, Foresight) combined with LoRA fine-tuning. Targets medical and legal domains using Qwen3 models.
+Research project for efficient domain adaptation of LLMs using structured pruning (WANDA, SparseGPT, Foresight) combined with LoRA fine-tuning. Targets medical and legal domains using Qwen3 and Llama models.
 
 ## Environment Setup
 
@@ -41,6 +41,11 @@ torchrun --nproc_per_node=4 scripts/wanda_ft.py \
     --model_name Qwen/Qwen3-8B --pruning_ratio 0.5 \
     --pruning_dataset_name c4 ...
 
+# SparseGPT pruning + fine-tuning
+torchrun --nproc_per_node=4 scripts/sparsegpt_ft.py \
+    --model_name Qwen/Qwen3-8B --pruning_ratio 0.5 \
+    --pruning_dataset_name c4 --blocksize 128 --percdamp 0.01 ...
+
 # Foresight pruning + fine-tuning
 torchrun --nproc_per_node=4 scripts/foresight_ft.py ...
 ```
@@ -63,6 +68,7 @@ done
 ```bash
 sbatch slurm/finetune.sh
 sbatch slurm/wanda_ft.sh
+sbatch slurm/sparsegpt_ft.sh
 sbatch slurm/foresight_ft.sh
 ```
 
@@ -76,7 +82,8 @@ sbatch slurm/foresight_ft.sh
 - **`data/`** — Dataset loading and prompt template formatting. `datasets.py` builds mixed-task datasets (PubMedQA, MedNLI, HQS for medical; CASEHOLD, BillSum, ContractNLI for legal). `templates.py` defines per-task prompt formats. `utils.py` converts to HuggingFace prompt/completion format.
 
 - **`pruning/`** — Weight pruning algorithms applied before or during fine-tuning.
-  - `prune.py`: `prune_wanda()` (activation-aware one-shot pruning) and `foresight_prune()` (mask optimization via gradient signals).
+  - `prune.py`: `prune_wanda()` (activation-aware one-shot pruning), `prune_sparsegpt()` (Hessian-based second-order pruning), and `foresight_prune()` (mask optimization via gradient signals).
+  - `sparsegpt.py`: Core SparseGPT algorithm — Hessian accumulation and block-wise optimal weight update.
   - `WrappedGPT.py`: Hooks into layers to accumulate activation statistics for WANDA calibration.
   - `utils.py`: Layer extraction, calibration data loading (supports C4, WikiText2, medical corpus), sparsity checking.
 

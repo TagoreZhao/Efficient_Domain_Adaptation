@@ -127,10 +127,10 @@ def layer_forward(model, layer, hidden_states, attention_mask=None, position_ids
     return out[0] if isinstance(out, (tuple, list)) else out
 
 def check_sparsity(model):
-    use_cache = model.config.use_cache 
-    model.config.use_cache = False 
+    use_cache = model.config.use_cache
+    model.config.use_cache = False
 
-    layers = model.model.layers
+    layers = get_layers(model)
     count = 0 
     total_params = 0
     for i in range(len(layers)):
