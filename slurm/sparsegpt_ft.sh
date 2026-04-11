@@ -19,7 +19,7 @@ torchrun --nproc_per_node=4 scripts/sparsegpt_ft.py \
     --model_name meta-llama/Llama-3.2-1B \
     --tokenizer_name meta-llama/Llama-3.2-1B \
     --model_save_dir model/downloaded/ \
-    --run_name llama3_1b_sparsegp50_med_r8_c4 \
+    --run_name llama3_1b_sparsegp50_med_r64_c4 \
     --num_train_epochs 3 \
     --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 4 \
