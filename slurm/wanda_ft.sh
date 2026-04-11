@@ -3,7 +3,7 @@
 #SBATCH --mail-user=zhaotagore@gmail.com
 #SBATCH -p gpucluster
 #SBATCH --job-name=llama_1b_wanda50_med_c4
-#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/llama_1b_wanda50_med_r64_c4_slurm-%j.out
+#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/llama_1b_wanda50_med_r8_c4_slurm-%j.out
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:4
 
@@ -16,10 +16,10 @@ export WANDB_DIR="./assets/wandb"
 TORCH_DISTRIBUTED_DEBUG=DETAIL \
 NCCL_DEBUG=INFO \
 torchrun --nproc_per_node=4 scripts/wanda_ft.py \
-    --model_name meta-llama/Llama-3.1-8B \
-    --tokenizer_name meta-llama/Llama-3.1-8B \
+    --model_name meta-llama/Llama-3.2-1B \
+    --tokenizer_name meta-llama/Llama-3.2-1B \
     --model_save_dir model/downloaded/ \
-    --run_name llama3.1_8b_med_wanda50_med_c4_r32 \
+    --run_name llama3.2_1b_med_wanda50_med_c4_r8 \
     --num_train_epochs 3 \
     --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 4 \
@@ -27,7 +27,7 @@ torchrun --nproc_per_node=4 scripts/wanda_ft.py \
     --seed 1236 \
     --train_dataset_path data/downloaded/llama3_med_dataset_train \
     --val_dataset_path data/downloaded/llama3_med_dataset_val\
-    --lora_r 64 \
+    --lora_r 8 \
     --lora_alpha 16 \
     --lora_dropout 0.05 \
     --weight_decay 0.01 \
