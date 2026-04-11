@@ -3,7 +3,7 @@
 #SBATCH --mail-user=zhaotagore@gmail.com
 #SBATCH -p gpucluster
 #SBATCH --job-name=eval_llama3_1b_med_wanda50_c4
-#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/eval_llama3_1b_med_wanda50_c4_r64_slurm-%j.out
+#SBATCH --output=/Users/918839576/Trepo/Efficient_Domain_Adaptation/logs/eval_llama3_1b_med_wanda50_c4_r8_slurm-%j.out
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
 
@@ -15,9 +15,9 @@ export PYTHONPATH=/Users/918839576/Trepo/Efficient_Domain_Adaptation:$PYTHONPATH
 
 for i in {1..10}; do
   python3 scripts/med_eval.py \
-    --model model/downloaded/llama3.2_1b_med_wanda50_med_c4_r64 \
+    --model model/downloaded/llama3.2_1b_med_wanda50_med_c4_r8 \
     --seed $((1234 + i)) \
-    --log_dir model/downloaded/llama3.2_1b_med_wanda50_med_c4_r64/ \
+    --log_dir model/downloaded/llama3.2_1b_med_wanda50_med_c4_r8/ \
     --filename "med_eval_log_run${i}.txt" \
     --tokenizer meta-llama/Llama-3.2-1B 
 done
